@@ -1,0 +1,373 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    ViewBag.Title = "EditCase";
+    int i = 0;
+}
+<script src="~/Scripts/ui.dropdownchecklist-1.4-min.js" type="text/javascript"></script>
+<link href="~/Content/ui.dropdownchecklist.standalone.css" rel="stylesheet" type="text/css" />
+<script src="~/CustomScripts/cases-tabs.js" type="text/javascript"></script>
+<script src="~/CustomScripts/edit-cases.js" type="text/javascript"></script>
+<link href="~/Content/dropdown.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary
+    {
+        font-weight: bold;
+        opacity: 1;
+    }
+</style>
+<script type="text/javascript">
+
+//    //added by kumar for progress bar
+//    $(window).load(function () {
+//        var name = document.getElementById('imgname').value;
+//        // alert("hi " + name);
+//        var day = document.getElementById('currentday').value;
+//        //alert("Current day " + name2);
+//        var day1 = (day / 280) * 100;
+//        // alert(parseInt(day));
+//        var edd = document.getElementById('EDDdate').value;
+
+//        // alert("Edd date " + edd);
+//        $("#progressbar").progressbar({
+//            value: parseInt(day1)
+//        });
+//    });
+//    //end here
+</script>
+@*@section RightPanel{
+    @{string code = ViewBag.EDDdate.ToString();
+      string[] tmpe;
+      string duedate;
+
+      tmpe = code.Split(' ');
+
+      duedate = tmpe[0].ToString();
+
+    }
+    @MvcHelper.Rightpanel(ViewBag.ImageName, duedate)
+}*@
+<fieldset style="border: 1px solid rgb(128, 128, 128);">
+    <legend>
+        <h3>
+            Edit Case</h3>
+    </legend>
+    <div class="create_case_info_wrap">
+        <div class="newcase_L" style="display: inline-block">
+            <ul id="menucases">
+                <li><a href="#tabs-1">CaseInfo</a></li>
+                <li><a href="#tabs-2">Procedures</a></li>
+                <li><a href="#tabs-3">Medicaltests</a></li>
+                <li><a href="#tabs-4">Medications</a></li>
+                <li><a href="#tabs-5">Visits</a></li>
+                <li><a href="#tabs-6">Charts</a></li>
+            </ul>
+        </div>
+        <div class="newcase_right Edit_Case_Scroll">
+            @*Cases*@
+            <div id="tabs-1">
+                <form id="editCase" enctype="multipart/form-data">
+                <input type="hidden" name="CaseId" value="@Model.CaseId" />
+                <div class="dvd_btm_editcase" style="width: 100%; height: 400px; display: inline-block;">
+                    <div id="cases" class="EditCase">
+                        <h3 class="dvd1">
+                            Case Information</h3>
+                        <ul style="padding-right: 5px;">
+                            <li class="ECaseLabel">Case ID: </li>
+                            <li class="ECaseinput">
+                                @Model.CfId
+                            </li>
+                            <li class="ECaseLabel">Case name: </li>
+                            <li class="ECaseinput">
+                                <input type="text" id="editcasename" name="CaseName" value="@Model.CaseName" class="create-logtxts"  />
+                            </li>
+                            <li class="ECaseLabel">Case description: </li>
+                            <li class="ECaseinput">
+                                <input type="text" name="CaseDescription" value="@Model.CaseDescription" class="create-logtxts"  />
+                            </li>
+                            <li class="ECaseLabel">Type of problem </li>
+                            <li class="ECaseinput">
+                                <input type="text" name="TypeOfProblem" value="@Model.TypeOfProblem" class="create-logtxts" />
+                            </li>
+                            <li class="ECaseLabel">Patient type </li>
+                            <li class="ECaseinput">
+                                <div style="float: left; width: 55%">
+                                    <div style="display: inline-block; width: 100%; padding: 10px; color: rgb(89,89,89);
+                                        font-size: 12px; font-weight: bold">
+                                        @if (Model.PatientType == false)
+                                        {
+                                            <div style="float: left; width: 40%;">
+                                                <input type="radio" name="PatientType" value="false" />&nbsp;&nbsp;In Patient
+                                            </div>
+                                            <div style="float: left; width: 40%;">
+                                                <input type="radio" name="PatientType" value="true" checked="checked" />&nbsp;&nbsp;Out
+                                                Patient
+                                            </div>
+                                        }
+                                        else if (Model.PatientType == true)
+                                        {
+                                            <div style="float: left; width: 40%;">
+                                                <input type="radio" name="PatientType" value="true" checked="checked" />&nbsp;&nbsp;In
+                                                patient
+                                            </div>
+                                            <div style="float: left; width: 40%;">
+                                                <input type="radio" name="PatientType" value="false" />&nbsp;&nbsp;Out patient
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="ECaseLabel">Related cases </li>
+                            <li class="ECaseinput">
+                                <select id="s1" name="s1" multiple="multiple">
+                                    @if (Model.lstresultCaselist.Count == 0)
+                                    {
+                                        <option value="null" disabled="disabled">--Select--</option>
+                                        foreach (var value in Model.lstCases)
+                                        {
+                                        <option value="@value.CaseId">@value.CaseName</option>
+                                        }
+                                    }
+                                    else
+                                    {
+@*  <option value="null" disabled="disabled">--Select--</option>*@
+                                        foreach (var value in Model.lstresultCaselist)
+                                        {
+                                        <option value="@value.Id" selected="@value.IsChecked">@value.name</option>
+                                        }
+                                    }
+                                </select>
+                                <div style="float: right; margin: 5px 40% 0 0;">
+                                    <input type="button" id="btnCaseView" value="" name="Case" class="view_CV" />
+                                </div>
+                            </li>
+                            @* <li class="ECaseLabel">Related logs </li>
+                                <li class="ECaseinput">
+                                    <select id="s2" name="s2" multiple="multiple">
+                                        @if (Model.lstresultLoglist.Count == 0)
+                                        {
+                                            <option value="null" disabled="disabled">--Select--</option>
+                                            foreach (var value in Model.lstHealthlog)
+                                            {
+                                            <option value="@value.logId">@value.logName</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            foreach (var value in Model.lstresultLoglist)
+                                            {
+                                            <option value="@value.Id" selected="@value.IsChecked">@value.name</option>
+                                            }
+                                        }
+                                    </select>
+                                    <div style="float: right; margin: 5px 40% 0 0;">
+                                        <input type="button" id="btnCaseLogView" value="" name="Case" class="view_CV" />
+                                    </div>
+                                </li>*@
+                            <li class="ECaseLabel">Custom health log description </li>
+                            <li class="ECaseinput">
+                                <textarea class="create-logtxts" name="CustHealthlogDesc" title="CustomHealthLogDescription"
+                                    style="height: 40px">@Model.CustHealthlogDesc</textarea>
+                            </li>
+                            <li class="ECaseLabel">Hospital and Doctor Information </li>
+                            <li class="ECaseinput">
+                                <div id="hdinfo-div">
+                                    @if (Model.HospitalInfos == null)
+                                    {
+@* <span id="t1">You have no Hospital info</span>*@
+                                        <div id="ad2">
+                                            <label title="Add hospital and doctor info" id="label1" tabindex="4">
+                                                You have no Hosipital info
+                                                <br />
+                                                Add</label>
+                                        </div>
+                                        <ul id="HospitalInfo" style="width: 630px">
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <ul id="HDInfos" style="width: 250px">
+                                            @foreach (var Hdlist in Model.HospitalInfos)
+                                            {
+                                                try
+                                                {
+@*<li>
+                                                    <ul id="Hdlist[@i]" name="HDInfos" class="HspInfo">*@
+                                                <li>Hospital name: </li>
+                                                <li>
+                                                    @if (Hdlist.HospitalName == null)
+                                                    {
+                                                        <text>No Hospital Name</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" name="HospitalInfos[@i].HospitalName" value=" @Hdlist.HospitalName" />
+                                                    }
+                                                </li>
+                                                <li>Email: </li>
+                                                <li>
+                                                    @if (Hdlist.HospEmail == null)
+                                                    {
+                                                        <text>No Email </text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" name="HospitalInfos[@i].HospEmail" value="@Hdlist.HospEmail" />
+                                                    }
+                                                </li>
+                                                <li>Phoneno: </li>
+                                                <li>
+                                                    @if (Hdlist.HospPhno == null)
+                                                    {
+                                                        <text>No Phno </text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text"  name="HospitalInfos[@i].HospPhno" value="@Hdlist.HospPhno" />
+                                                    }
+                                                </li>
+                                                <li>Address: </li>
+                                                <li>
+                                                    @if (Hdlist.HospAddress == null)
+                                                    {
+                                                        <text>No Address </text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" name="HospitalInfos[@i].HospAddress" value="@Hdlist.HospAddress" />
+                                                    }
+                                                </li>
+@* </ul>
+                                                </li>*@
+                                                }
+                                                finally { i++; }
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="float: right">
+                    <input type="button" id="btnCaseEditSave" value="Save" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                    <div>
+                        <label style="font-weight: bold; color: Green;">@ViewBag.Message</label>
+                    </div>
+                </div>
+                </form>
+            </div>
+            @*Procedures*@
+            <div id="tabs-2" style="width: 100%">
+                <div>
+                    <div>
+                        <a id="btnAddprocdiv" class="greengrad add_HSPInfo">Add </a>
+                        <h3 class="dvd1">
+                            Procedure Information</h3>
+                    </div>
+                    <div id="proclst" style="width: 100%">
+                        @Html.Partial("EditProcedures", @Model)
+                    </div>
+                </div>
+            </div>
+            @*Medical Tests*@
+            <div id="tabs-3" style="width: 100%">
+                <div>
+                    <div>
+                        <a id="btnAddMedTestdiv" class="greengrad add_HSPInfo">Add </a>
+                        <h3 class="dvd1">
+                            Medical Test Information</h3>
+                    </div>
+                    <div id="medtstlst" style="width: 100%">
+                        @Html.Partial("EditMTests", @Model)
+                    </div>
+                </div>
+            </div>
+            @*Medications*@
+            <div id="tabs-4" style="width: 100%">
+                <div>
+                    <div>
+                        <a id="btnMedicationdiv" class="greengrad add_HSPInfo">Add </a>
+                        <h3 class="dvd1">
+                            Medication information</h3>
+                    </div>
+                    <div id="mslst" style="width: 100%">
+                        @Html.Partial("EditMedicalSchedule", Model)
+                    </div>
+                </div>
+            </div>
+            @*Visits*@
+            <div id="tabs-5" style="width: 100%">
+                <div>
+                    <div>
+                        <a id="btnAddvisitsdiv" class="greengrad add_HSPInfo">Add </a>
+                        <h3 class="dvd1">
+                            Visits</h3>
+                    </div>
+                    <div id="vstlst" style="width: 100%">
+                        @Html.Partial("EditVisits", @Model)
+                    </div>
+                </div>
+            </div>
+            @*Charts*@
+            <div id="tabs-6" style="width: 100%">
+                <div>
+                    <div>
+                        <a id="btnAddCharttdiv" class="greengrad add_HSPInfo">Add </a>
+                        <h3 class="dvd1">
+                            Charts Information</h3>
+                    </div>
+                    <div id="chartlst" style="width: 100%">
+                        @Html.Partial("EditCharts", @Model)
+                    </div>
+                </div>
+            </div>
+            @*Hospital*@
+            <div id="handdinfod" class="slide">
+                <ul style="display: inline-block; padding: 13px 13px">
+                    <li>Hospital name: </li>
+                    <li>
+                        <input type="text" id="Edithname" name="HospitalName" title="Hospital Name" class="create-logtxts" />
+                    </li>
+                    <li>Email</li>
+                    <li>
+                        <input type="text" id="Editemail" name="HospEmail" title="Email" class="create-logtxts" />
+                    </li>
+                    <li>Phoneno</li>
+                    <li>
+                        <input type="text" id="Editphno" name="HospPhno" title="Phoneno" class="create-logtxts" />
+                    </li>
+                    <li>Address</li>
+                    <li>
+                        <textarea id="Editadds" name="HospAddress" title="Address" class="create-logtxts"></textarea>
+                    </li>
+                </ul>
+                <div style="width: 100%" class="inline">
+                    <input type="button" name="cancelslide" value="Cancel" style="float: right" class="graygrad" />
+                    <input type="button" id="hsaved" name="save" value="Save" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Modal-div" style="display: none">
+    </div>
+    <div id="tab" style="display: none" />
+    <a href="@Url.Action("Cases", "Cases")" style="float:right;" class="graygrad">CLOSE
+        CASE</a>
+    <input type="hidden" id="imgname" value="@ViewBag.ImageName" />
+    <input type="hidden" id="currentday" value="@ViewBag.currentday" />
+    <input type="hidden" id="EDDdate" value="@ViewBag.EDDdate" />
+</fieldset>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

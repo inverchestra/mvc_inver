@@ -1,0 +1,256 @@
+﻿@model  InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UrinecompPicture
+@{
+    ViewBag.Title = "AddComplUrine";
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ReffDoctor,#pathologist').keydown(function (e) {
+            if (e.ctrlKey || e.altKey || e.entrKey) {
+                e.preventDefault();
+            } else {
+                var key = e.keyCode;
+                if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        $('#TestOnDate').keydown(function (event) {
+            event.preventDefault();
+        });
+        $('#TestOnDate').datepicker({
+            dateFormat: 'dd MM yy',
+            changeYear: true,
+            changeMonth: true,
+            maxDate: new Date()
+        });
+
+        $(".PinfoViewInfo").accordion({ heightStyle: "content"
+        })
+
+        $('#btnUtestSubmit').click(function () {
+
+            var patientname, scanon, reffdoc, radiolgist;
+
+            patientname = $('#PatientName').val();
+            scanon = $('#TestOnDate').val();
+            reffdoc = $('#ReffDoctor').val();
+
+
+            radiolgist = $('#pathologist').val();
+            // var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+            var rxDatePattern = /^(([0-9])|([0-2][0-9])|([3][0-1])){2}\ (January|February|March|April|May|June|July|August|September|October|November|Deccember)\ \d{4}$/;
+            var chkDateFormat = scanon.match(rxDatePattern);
+
+            if (patientname == "") {
+                alert('Please enter patient ID');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=1]').focus();
+                return false;
+            } else if (scanon == "") {
+                alert('Please enter test date');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=2]').focus();
+                return false;
+            } else if (chkDateFormat == null) {
+                alert('Please enter correct date format');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=2]').focus();
+                return false;
+            } else if (reffdoc == "") {
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=3]').focus();
+                alert('Please enter reference doctor');
+                return false;
+            } else if (radiolgist == "") {
+                $(".PinfoViewInfo").accordion({ active: 1 });
+                $('input[tabindex=21]').focus();
+                alert('Please enter pathologist');
+                return false;
+            }
+            $.ajax({
+                url: '/iHealthUser/MedWall/SaveComplUrine',
+                type: "POST",
+                aync: false,
+                cache: false,
+                data: new FormData($(this).parents('#frmUrineTest').get(0)),
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data != "0") {
+                        alert("Urine examination  saved successfully");
+                        $('div#UrineTests').empty().load('/iHealthUser/Medwall/GetUrineTests');
+
+                        $.modal.close();
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                }
+            });
+            return false;
+        });
+
+    });
+
+</script>
+<h2>
+    Urine Examination (Specimen:Urine)</h2>
+<div style="width: 550px">
+    <form id="frmUrineTest" action="/" method="post" enctype="multipart/form-data">
+    <div class="PinfoViewInfo">
+        <h3 id="patient">
+            Patient Information</h3>
+        <div>
+            <ul style="margin-top: 0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                    background-color: #f7f7f7;">Patient ID<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                        color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                    @Html.TextBoxFor(model => model.PatientName, new { title = "PatientName", @id = "PatientName", @class = "logintxts", @tabindex = "1" })
+                </li>
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                    background-color: #f7f7f7;">Tested on<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                        color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                    @Html.TextBoxFor(model => model.TestOnDate, new { title = "TestOnDate", placeholder = "DD MMM YYYY", @id = "TestOnDate", @class = "logintxts", @tabindex = "2", style = "font-size:smaller;" })
+                </li>
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                    background-color: #f7f7f7;">Referring doctor<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                        color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                    @Html.TextBoxFor(model => model.Reffdoctor, new { title = "Reffering Doctor", @id = "ReffDoctor", @class = "logintxts", @tabindex = "3" })
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Complete Urine Examination (Specimen:Urine)</h3>
+        <div>
+            <ul style="margin-top: 0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 34%  !important; float: left;
+                    background-color: #f7f7f7;">Complete Urine Examination (Specimen:Urine) </li>
+                <li class="Faminfo_gap_value" style="height: auto !important; width: 63% !important;">
+                    <div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Color</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Color, new { title = "Color", @id = "Color", @class = "logintxts", style = "width:50px;margin-left:5px;", @tabindex = "4" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Appearance</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Apperance, new { title = "Apperance,", @id = "Apperance,", @class = "logintxts", style = "width:60px;margin-left:5px;", @tabindex = "5" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Reaction</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Reaction, new { title = "Reaction", @id = "Reaction", placeholder = "4.6-7", @class = "logintxts", style = "width:50px;margin-left:5px; font-size:smaller", @tabindex = "6" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Specific gravity</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.SpecificGravity, new { title = "SpecificGravity", @id = "SpecificGravity", placeholder = "1.005-1.037", @class = "logintxts", style = "width:60px; margin-left:5px; font-size:xx-small", @tabindex = "7" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Sediment</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Sediment, new { title = "Sediment", @id = "Sediment", @class = "logintxts", style = "width:50px;margin-left:5px;", @tabindex = "8" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Albumin</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Albumin, new { title = "Albumin", @id = "Albumin", @class = "logintxts", style = "width:60px;margin-left:5px;", @tabindex = "9" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Sugar</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Sugar, new { title = "Sugar", @id = "Sugar", @class = "logintxts", style = "width:50px;margin-left:5px;", @tabindex = "10" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Ketone bodies</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.KetoneBodies, new { title = "KetoneBodies", @id = "KetoneBodies", @class = "logintxts", style = "width:60px;margin-left:5px;", @tabindex = "11" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Bilesalts</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Bilesalts, new { title = "Bilesalts", @id = "Bilesalts", @class = "logintxts", style = "width:50px;margin-left:5px;", @tabindex = "12" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Bilepigments</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Bilepigments, new { title = "Bilepigments", @id = "Bilepigments", @class = "logintxts", style = "width:60px;margin-left:5px;", @tabindex = "13" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Urobilnogen</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Urobilnogen, new { title = "Urobilnogen", @id = "Urobilnogen", @class = "logintxts", style = "width:50px;margin-left:5px;", @tabindex = "14" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Blood</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Blood, new { title = "Blood", @id = "Blood", @class = "logintxts", style = "width:60px;margin-left:5px;", @tabindex = "15" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Nitrite</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Nitrite, new { title = "Nitrite", @id = "Nitrite", @class = "logintxts", style = "width:50px;margin-left:5px;", @tabindex = "16" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Leucocytes</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Leucocytes, new { title = "Leucocytes", @id = "Leucocytes", @class = "logintxts", style = "width:60px;margin-left:5px;", @tabindex = "17" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">Puscells</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.puscells, new { title = "puscells", @id = "puscells", placeholder = "/hpf", @class = "logintxts", style = "width:50px;margin-left:5pxfont-size:smaller; color:gray;", @tabindex = "18" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Epithelial cells</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.Epitheialcells, new { title = "Epithelial cells", placeholder = "/hpf", @id = "Epitheialcells", @class = "logintxts", style = "width:60px;margin-left:5pxfont-size:smaller; color:gray;", @tabindex = "19" })
+                        </div>
+                        <div style="float: left; width: 135px; text-align: right">
+                            <span style="float: left">RBCS</span>
+                            @Html.TextBoxFor(model => model.urienepicture1.rbcs, new { title = "RBCS", @id = "rbcs", placeholder = "/hpf", @class = "logintxts", style = "width:50px;margin-left:5pxfont-size:smaller; color:gray;", @tabindex = "20" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align: right; margin-left:5px">
+                            <span style="float: left">Pathologist<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                                font-size: medium;">*</span> </span>
+                            @Html.TextBoxFor(model => model.urienepicture1.pathologist, new { title = "pathologist", @id = "pathologist", @class = "logintxts", style = "width:60px;margin-left:5px;", @tabindex = "21" })
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Urine Culture Sensitivity (specimen:Urine)</h3>
+        <div>
+            <ul style="margin-top: 0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 55%  !important; float: left;
+                    background-color: #f7f7f7;">Urine Culture Sensitivity (specimen:Urine) </li>
+                <li class="Faminfo_gap_value" style="height: auto !important; width: 40% !important;">
+                    <div>
+                        <div style="text-align: right">
+                            <span style="float: left">Gram stained smear</span>
+                            @Html.TextBoxFor(model => model.urineculture1.GramStainedSmear, new { title = "NumberofFetuses", @id = "NumberofFetuses", @class = "logintxts", style = "width:50px;margin-left:15px;", @tabindex = "22" })
+                        </div>
+                        <div style="text-align: right">
+                            <span style="float: left">Culture</span>
+                            @Html.TextBoxFor(model => model.urineculture1.Culture, new { title = "CRL", @id = "CRL", @class = "logintxts", style = "width:50px;margin-left:15px;", @tabindex = "23" })
+                        </div>
+                        <div style="text-align: right">
+                            <span style="float: left">Microbiologist</span>
+                            @Html.TextBoxFor(model => model.urineculture1.Microbiologist, new { title = "Microbiologist", @id = "Microbiologist", @class = "logintxts", style = "width:50px;margin-left:15px;", @tabindex = "24" })
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ul>
+        <li style="width: 100%" class="inline">
+            <input type="button" name="btnCancel" class="graygrad" value="Close" onclick="$.modal.close();" />
+            <input id="btnUtestSubmit" type="button" class="greengrad" value="Submit" />
+        </li>
+    </ul>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

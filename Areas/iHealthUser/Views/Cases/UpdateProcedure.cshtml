@@ -1,0 +1,121 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+
+
+        $('#EditPProvider,#EditPSurgieon,#EditPNotes').keydown(function (e) {
+            if (e.ctrlKey || e.altKey) {
+                e.preventDefault();
+            } else {
+                var key = e.keyCode;
+                if (!((key == 8) || (key == 32) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                    e.preventDefault();
+                }
+            }
+        });
+    });
+
+//    if (document.getElementById('r1').checked) {        
+//        $('#dateOfServiceprocedurenotify2').show();
+
+//    } else if (document.getElementById('r2').checked) {
+////        $('#dateOfServiceprocedurenotify2').val("");
+//        $('#dateOfServiceprocedurenotify2').hide();
+//        
+
+//    }
+//       
+//        
+//    $('#r1').click(function () {
+//        $('#dateOfServiceprocedurenotify2').show();
+//    });
+//    $('#r2').click(function () {
+//        $('#dateOfServiceprocedurenotify2').val("");
+//        $('#dateOfServiceprocedurenotify2').hide();
+//    });
+</script>
+<div id="UpdateProcedures" class="bluegrad" style="width: 490px">
+    <h2 class="h3border">
+        Procedure</h2>
+    <form id="frmUprocedureId" enctype="multipart/form-data" class="crtproc">
+    <input type="hidden" name="Procedures.CaseId" value="@Model.Procedures.CaseId" />
+    <input type="hidden" name="Procedures.ProcedureId" value="@Model.Procedures.ProcedureId" />
+    <ul style="display: inline-block; padding: 13px 13px">
+        <li class="labelnormal">Procedure name:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+        <li>
+            <input type="text" name="Procedures.ProcedureName" tabindex='1' value="@Model.Procedures.ProcedureName" title="Name of Procedure" id="EditPName" class="create-logtxts" />
+        </li>
+        <li class="labelnormal">Date of service:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+        <li>
+            <input type="text" name="Procedures.DateOfService" tabindex='2' id="dateOfServiceprocedure2" value="@Model.Procedures.DateOfService" placeholder="MM/DD/YYYY" title="Date you Service" class="create-logtxts" />
+        </li>
+        <li class="labelnormal">Provider or facility:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+        <li>
+            <input type="text" name="Procedures.ProviderOrFacility" tabindex='3' value="@Model.Procedures.ProviderOrFacility" class="create-logtxts" title="Enter the Hospital name " id="EditPProvider" />
+        </li>
+        <li class="labelnormal">Surgeon:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+        <li>
+            <input type="text" name="Procedures.Surgeon" tabindex='4' value="@Model.Procedures.Surgeon" class="create-logtxts" title="Enter the doctorname" id="EditPSurgieon" />
+        </li>
+        <li class="labelnormal">Do you want to be notified? </li>
+        <li>
+            @if (Model.Procedures.IsNotify == false)
+            {
+                <div style="float: left; width: 26%;">
+                    <input type="radio"  name="Procedures.IsNotify" value="true" />&nbsp;Yes
+                </div>
+                <div style="float: left; width: 26%;">
+                    <input type="radio"  name="Procedures.IsNotify" value="false" checked="checked" />&nbsp;No
+                </div>
+            }
+            else if (Model.Procedures.IsNotify == true)
+            {
+                <div style="float: left; width: 26%;">
+                    <input type="radio" id="r1" name="Procedures.IsNotify" value="true" checked="checked" />&nbsp;Yes
+                </div>
+                <div style="float: left; width: 46%;">
+                    <input type="radio" id="r2" name="Procedures.IsNotify" value="false" />&nbsp;No
+                </div>
+            }
+            <input type="text" id="dateOfServiceprocedurenotify2" name="Procedures.NotifyDate" placeholder="MM/DD/YYYY" title="Notify Date" tabindex='5' value="@Model.Procedures.NotifyDate" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d" class="create-logtxts" />
+        </li>
+        <li class="labelnormal">Notes: </li>
+        <li>
+            <textarea name="Procedures.Notes" cols="35" rows="7" title="Notes of the procedure"
+                class="create-logtxts" style="height: 40px" id="EditPNotes" tabindex='6'>@Model.Procedures.Notes</textarea>
+        </li>
+        <li class="labelnormal">Add document </li>
+        <li class="gap_top">
+            <input type="file" name="procfiles" multiple="multiple" class="create-logtxts" tabindex='7' />
+        </li>
+        <li style="float: right">
+            <input type="hidden" name="Procedures.CaseId" value="@Model.Procedures.CaseId" id="cid2" />
+            <input type="hidden" name="Procedures.ProcedureId" value="@Model.Procedures.ProcedureId"id="pid2" />
+            <div style="width: 81%" class="inline">
+                <input type="button" name="btnProcClose" value="Cancel" style="float: right;" class="graygrad" tabindex='8'
+                    onclick="$.modal.close()" />
+                <input type="button" name="btnProcUpdate" value="Update" style="float: right; margin-right: 10px;" tabindex='9'
+                    class="greengrad" />
+                @*changed submit to button*@
+            </div>
+        </li>
+    </ul>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

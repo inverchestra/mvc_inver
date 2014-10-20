@@ -1,0 +1,169 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UserHealthLog
+@{
+    int i = 0;
+}
+@Scripts.Render("~/bundles/ajaxfun")
+<script type="text/javascript">
+    $('#btnLogtoLogView').click(function () {
+
+        var logIds = $('#s3').val();
+
+        if (logIds.length > 1) {
+            alert("you have selected more than one log,please select only one log");
+        }
+        else {
+            var logId = logIds[0].toString();
+            //                    alert(logId);
+            $.ajax({
+                url: '/iHealthUser/HealthLog/ViewLogToLog',
+                type: 'GET',
+                async: false,
+                cache: false,
+                data: { logId: logId },
+                success: function (result) {
+                    $('#modal-div1').html(result).show('slide', { direction: 'down' }, 600);
+                    $('.accordion').accordion({
+                        collapsible: true
+                    });
+                    $('#btnlogCancel').click(function () {
+
+                        $("#modal-div1").hide("slide", { direction: 'down' }, 600);
+                    });
+                }
+            });
+        }
+    });
+</script>
+@using (Html.BeginForm("EditLog", "HealthLog", FormMethod.Post, new { style = "width:440px;", @class = "editlog" }))
+{
+    @Html.ValidationSummary(true)   
+    <div id="view">
+        <div id="viewlog">
+            <div style="border-bottom: 1px solid rgb(218,221,226); width: 100%">
+                @if (Model.logName == null)
+                {
+                    <h2>
+                        --No Name--</h2>
+                }
+                else
+                {
+                    <h3>@Model.logName</h3>
+                }
+                <input type="hidden" name="logId" value="@Model.logId" />
+                <input type="hidden" name="FirstObserved" value="@Model.FirstObserved" />
+            </div>
+            <div class="HLog">
+                <ul style="margin-left: 25px;">
+                    <li class="labelnormal">Log name<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                        color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                    <li>@Html.TextBoxFor(model => model.logName, new { title = "Name of the Log", tabindex = "1", style = "width: 146px;" })
+                        @Html.ValidationMessageFor(model => model.logName)
+                    </li>
+                    <li class="labelnormal">Log description: </li>
+                    <li>@*<textarea name="logDescription" rows="3" cols="17" class="create-logtxts" style="height: 25px">@Model.logDescription</textarea>*@
+                        @Html.TextAreaFor(model => model.logDescription, new { title = "Describe your Log", @class = "create-logtxts", tabindex = "2", style = "height: 25px;width:146px;" })
+                        @Html.ValidationMessageFor(model => model.logDescription)
+                    </li>
+                    <li class="labelnormal">Related logs </li>
+                    <li>
+                        <select id="s3" name="s3" multiple="multiple" tabindex="3">
+                            @if (Model.lstresultLogToLoglist.Count == 0)
+                            {
+                                <option value="null" disabled="disabled">--Select--</option>
+                                foreach (var value in Model.lstLogs)
+                                {
+                                <option value="@value.logId">@value.logName</option>
+                                }
+                            }
+                            else
+                            {
+                                foreach (var value in Model.lstresultLogToLoglist)
+                                {
+                                <option value="@value.Id" selected="@value.IsChecked">@value.name</option>
+                                }
+                            }
+                        </select>
+                        <div style="float: right; margin: -0px -37% 0 0;">
+                            <input type="button" id="btnLogtoLogView" title="view" value="" name="Case" class="view_CV" style="margin:7px 47px 0 0"/>
+                        </div>
+                    </li>
+                    <li class="labelnormal">First observed<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                        color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                    <li tabindex="4",>@Model.FirstObserved
+                        @*@Html.TextBoxFor(model => model.FirstObserved, new { title = "First Observed", style = "width: 146px;",@ReadOnly="ReadOnly"})
+                         @Html.ValidationMessageFor(model => model.FirstObserved)*@ </li>
+                </ul>
+            </div>
+            <div class="PMoreInfo_btm" style="margin: 10px 0 0 0;">
+                <h5>
+                    Recent symptom</h5>
+            </div>
+            <span class="RecentSymptoms_txt">*You can only edit the recent symptom that was logged.</span>
+            <div id="sym-div" class="HLog">
+                @if (Model.symptoms == null)
+                {
+                
+                    <h6>
+                        <span class="results">You have no symptoms for this log.</span></h6>
+                }
+                else
+                {
+                    <ul style="margin-left: 25px;">
+                        @foreach (var symptom in Model.symptoms)
+                        {
+                            if (i == 0)
+                            {
+                                try
+                                {
+                            <li class="labelnormal">Name<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                                color: rgb(251, 2, 2); font-size: medium;">*</span>:</li>
+                            <li>@*<input type="text" name="symptoms[@i].Name" value="@symptom.Name" />*@
+                                @Html.TextBoxFor(model => model.symptoms[@i].Name, new { title = "Symptom name", tabindex = "5", style = "width:146px;" })
+                                @Html.ValidationMessageFor(model => model.symptoms[@i].Name)
+                            </li>
+                            <li class="labelnormal">Description<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                                color: rgb(251, 2, 2); font-size: medium;">*</span>: </li>
+                            <li>@Html.TextAreaFor(model => model.symptoms[@i].Description, new { title = "Symptom Description", tabindex = "6", rows = "3", cols = "17", style = "height:25px; width :146px;" })
+                                @Html.ValidationMessageFor(model => model.symptoms[@i].Description)
+                                @*
+                            <textarea name="symptoms[@i].Description" rows="3" cols="17" style="height: 25px; width: 146px">@symptom.Description</textarea>*@
+                            </li>
+                            <li class="labelnormal">Reasons: </li>
+                            <li>
+                                <textarea name="symptoms[@i].Reasons" rows="3" cols="17" tabindex="7" style="height: 25px; width: 146px">@symptom.Reasons</textarea>
+                            </li>
+                            <li class="labelnormal">Medicines: </li>
+                            <li>
+                                <textarea name="symptoms[@i].Medicines" rows="3" tabindex="8" cols="17" style="height: 25px; width: 146px">@symptom.Medicines</textarea>
+                                <input type="hidden" name="symptoms[@i].DateTime" value="@symptom.DateTime" />
+                            </li>
+                                }
+                                finally { i++; }
+                            }
+                            else
+                            {
+                                try
+                                {
+                            <li class="hide">
+                                <input type="hidden" name="symptoms[@i].Name" value="@symptom.Name" />
+                                <input type="hidden" name="symptoms[@i].Description" value="@symptom.Description" />
+                                <input type="hidden" name="symptoms[@i].Reasons" value="@symptom.Reasons" />
+                                <input type="hidden" name="symptoms[@i].Medicines" value="@symptom.Medicines" />
+                                <input type="hidden" name="symptoms[@i].DateTime" value="@symptom.DateTime" />
+                            </li>
+                                }
+                                finally { i++; }
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+            <div style="width: 90%" class="inline">
+                <input type="button" id="btnCancel" value="Cancel" style="float: right" tabindex="10", class="graygrad" />
+                <input type="submit" value="Save" style="float: right; margin-right: 10px;" tabindex="9", class="greengrad" />
+            </div>
+            <div id="modal-div1" class="slide" style="width: auto;">
+            </div>
+        </div>
+    </div>
+}

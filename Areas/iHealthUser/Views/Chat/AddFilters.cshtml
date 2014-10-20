@@ -1,0 +1,132 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Filters
+@{
+    ViewBag.Title = "AddFilters";
+}
+<link href="~/Content/Chat.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $(function () {
+        //        var filters = $('.CheckBox:checked').map(function () { return this.value; }).get().join(',');
+        //        if (filters.length < 3) {
+        //            $(".graygrad").attr("disabled", false);
+        //            return this;
+        //        }
+
+
+        $('#btnFilterbutton').click(function () {
+            var Interests = $('.CheckBox:checked').map(function () { return this.value; }).get().join(',');
+            var filters = $('.CheckBox1:checked').map(function () { return this.value; }).get().join(',');
+            if (Interests.length < 3) {
+                alert("please select atleast two interests");
+                return false;
+            }
+            if (filters.length < 3) {
+                alert("please select atleast two filters");
+                return false;
+            }
+
+            $.ajax({
+                url: '/iHealthUser/Chat/Savefilters',
+                type: "POST",
+                aync: false,
+                cache: false,
+                data: new FormData($(this).parents('#frmfilter').get(0)),
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data != "0") {
+                        alert("Filters information saved successfully");
+                        $.modal.close();
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                }
+            });
+
+        });
+
+        $("input[name='btnCancel']").click(function () {
+
+            $.modal.close();
+        });
+    });
+</script>
+</script>
+<h2 style="width: 100%">
+    Add Filters</h2>
+@*@section LeftPanel {
+    <div class="left-pane">
+        <div class="left-tabs">
+            <ul>
+                <li><a href="@Url.Action("VitalsNew", "Medwall")">Vitals</a></li>
+                <li><a href="@Url.Action("Index", "Medwall")" class="pink-a">Timeline</a></li>
+                <li><a href="@Url.Action("GetWeeks", "Medwall")">Albums</a></li>
+                <li><a href="@Url.Action("PInfo", "PersonalInfo")">My<span style="color: #fff">-</span>Info</a></li>
+            </ul>
+        </div>
+        <div id="tablequestions">
+        </div>
+    </div>
+}*@
+<div id="share" style="line-height: 21px; font-size: 12px;">
+    <form id="frmfilter" action="/" method="post" enctype="multipart/form-data">
+    <div style="width: 100%; float: left">
+        <div style="width: 40%; float: left; margin: 5px 0">
+            <label style="font-size: 16px; color: #68A697">
+                Interests</label>
+            <div style="width: 75%; color: dimgray">
+                <ul>
+                    <li>@Html.CheckBoxFor(model => model.Outdoorsports, new { @class = "CheckBox" }) Outdoorsports
+                    </li>
+                    <li>@Html.CheckBoxFor(model => model.Swimming, new { @class = "CheckBox" }) Swimming
+                    </li>
+                    <li>@Html.CheckBoxFor(model => model.Yoga, new { @class = "CheckBox" }) Yoga</li>
+                    <li>@Html.CheckBoxFor(model => model.Adventuresports, new { @class = "CheckBox" }) Adventure
+                        sports </li>
+                    <li>@Html.CheckBoxFor(model => model.Gardening, new { @class = "CheckBox" }) Gardening
+                    </li>
+                    <li>@Html.CheckBoxFor(model => model.Animalcare, new { @class = "CheckBox" }) Animal
+                        Care</li>
+                    <li>@Html.CheckBoxFor(model => model.Pets, new { @class = "CheckBox" }) Pets </li>
+                    <br />
+                    <li>@Html.CheckBoxFor(model => model.Arts, new { @class = "CheckBox" }) Arts </li>
+                    <br />
+                    <li>@Html.CheckBoxFor(model => model.Modeling, new { @class = "CheckBox" }) Modeling</li>
+                    <li>@Html.CheckBoxFor(model => model.Interiordesigning, new { @class = "CheckBox" })
+                        Interiordesigning</li>
+                    <li>@Html.CheckBoxFor(model => model.Travelling, new { @class = "CheckBox" }) Travelling</li>
+                </ul>
+            </div>
+        </div>
+        <div style="width: 35%; float: left; margin: 5px 0">
+            <label style="font-size: 16px; color: #68A697">
+                Filters</label>
+            <div style="width: 85%; color: dimgray">
+                <ul>
+                    <li>@Html.CheckBoxFor(model => model.Hypertension, new { @class = "CheckBox1" }) Hypertension </li>
+                    <li>@Html.CheckBoxFor(model => model.Diabetes, new { @class = "CheckBox1" }) Diabetes</li>
+                    <li>@Html.CheckBoxFor(model => model.Latepregnancy, new { @class = "CheckBox1" }) Latepregnancy </li>
+                    <li>@Html.CheckBoxFor(model => model.Tripplets, new { @class = "CheckBox1" }) Tripplets </li>
+                    <li>@Html.CheckBoxFor(model => model.Asthma, new { @class = "CheckBox1" }) Asthma</li>
+                    <li>@Html.CheckBoxFor(model => model.Earlypregnancy, new { @class = "CheckBox1" }) Earlypregnancy </li>
+                    <li>@Html.CheckBoxFor(model => model.Thyroid, new { @class = "CheckBox1" }) Thyroid </li>
+                    <br />
+                    <li>@Html.CheckBoxFor(model => model.Twins, new { @class = "CheckBox1" }) Twins</li>
+                </ul>
+            </div>
+        </div>
+        <div style="width: 25%; float: left; margin: 5px 0">
+            <label style="font-size: 16px; color: #68A697">
+                Privacy</label>
+            <div style="width: 100%; color: dimgray">
+                @Html.CheckBoxFor(model => model.Privacy)
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%; float: left">
+        <input type="button" name="btnCancel" class="viewbutton" value="Close" onclick="$.modal.close();" />
+        <input id="btnFilterbutton" type="button" class="addbutton" value="Update filters" />
+    </div>
+    </form>
+</div>

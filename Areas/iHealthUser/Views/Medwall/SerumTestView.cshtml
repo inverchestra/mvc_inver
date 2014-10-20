@@ -1,0 +1,176 @@
+﻿@model  InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.SerumTest
+@{
+    ViewBag.Title = "EarlyScan";
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#ReffDoctor,#Pathologist').keydown(function (e) {
+            if (e.ctrlKey || e.altKey || e.entrKey) {
+                e.preventDefault();
+            } else {
+                var key = e.keyCode;
+                if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                    e.preventDefault();
+                }
+            }
+        });
+        $('#TestOnDate').keydown(function (event) {
+            event.preventDefault();
+        });
+        $('#TestOnDate').datepicker({
+            dateFormat: 'dd MM yy',
+            changeYear: true,
+            changeMonth: true,
+            maxDate: new Date()
+        });
+
+        $('#Tsh').keydown(function (event) {
+            var $th = $(this);
+
+            if (event.keyCode == 110 || event.keyCode == 173 || event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+            // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                    event.preventDefault();
+                }
+            }
+
+
+        });
+
+        $('#btnSerumEdit').click(function () {
+
+            var patientname, scanon, reffdoc, radiolgist, tsh;
+
+            patientname = $('#PatientName').val();
+            scanon = $('#TestOnDate').val();
+            reffdoc = $('#ReffDoctor').val();
+            tsh = $('#Tsh').val();
+
+            radiolgist = $('#Pathologist').val();
+            //var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+            var rxDatePattern = /^(([0-9])|([0-2][0-9])|([3][0-1])){2}\ (January|February|March|April|May|June|July|August|September|October|November|Deccember)\ \d{4}$/;
+            var chkDateFormat = scanon.match(rxDatePattern);
+
+            if (patientname == "") {
+                alert('Please enter patient ID');
+                $('input[tabindex=1]').focus();
+                return false;
+            } else if (scanon == "") {
+                alert('Please enter test date');
+                $('input[tabindex=2]').focus();
+                return false;
+            } else if (chkDateFormat == null) {
+                alert('Please enter correct date format');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=2]').focus();
+                return false;
+            }
+            else if (reffdoc == "") {
+                $('input[tabindex=3]').focus();
+                alert('Please enter reference doctor');
+                return false;
+            } else if (tsh == "") {
+                alert('Please enter tsh value');
+                $('input[tabindex=4]').focus();
+                return false;
+            } else if (radiolgist == "") {
+                alert('Please enter pathologist');
+                $('input[tabindex=5]').focus();
+                return false;
+            }
+
+
+
+            $.ajax({
+                url: '/iHealthUser/MedWall/EditSerumTest',
+                type: "POST",
+                aync: false,
+                cache: false,
+                data: new FormData($(this).parents('#frmearlyscan').get(0)),
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data != "0") {
+                        alert("information updated successfully");
+                        $('div#SeerumTests').empty().load('/iHealthUser/Medwall/GetSeerumTests');
+
+                        $.modal.close();
+
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+<h2>
+    Thyroid Stimulating Hormone (TSH) (Specimen-SERUM)</h2>
+<div style="width: 550px">
+    <div class="PinfoViewInfo">
+        <form id="frmearlyscan" action="/" method="post" enctype="multipart/form-data">
+        <ul>
+            @Html.HiddenFor(model => model.SerumId, new { title = "SerumId", @id = "SerumId", @class = "logintxts" })
+            <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                background-color: #f7f7f7;">Patient ID<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                @Html.TextBoxFor(model => model.PatientName, new { title = "PatientName", @id = "PatientName", @class = "logintxts", @tabindex = "1" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                background-color: #f7f7f7;">Tested on<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                @Html.TextBoxFor(model => model.TestOnDate1, new { title = "TestOnDate", placeholder = "MM/DD/YYYY", @id = "TestOnDate", @class = "logintxts", @tabindex = "2" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                background-color: #f7f7f7;">Referring doctor<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                @Html.TextBoxFor(model => model.ReffDoctor, new { title = "Reffering Doctor", @id = "ReffDoctor", @class = "logintxts", @tabindex = "3" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                background-color: #f7f7f7;">Thyroid Stimulating Hormone (TSH)<span style="font-weight: 600;
+                    padding: 15px 0px 0px 2px; color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                @Html.TextBoxFor(model => model.Thyroidstimulatinghormone, new { title = "Thyroidstimulatinghormone", @id = "Tsh", @class = "logintxts", @tabindex = "4" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;
+                background-color: #f7f7f7;">Pathologist<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li class="Faminfo_gap_value" style="width: 50%  !important;">
+                @Html.TextBoxFor(model => model.Pathologist, new { title = "Pathologist", @id = "Pathologist", @class = "logintxts", @tabindex = "5" })
+            </li>
+            <li style="width: 94%" class="inline">
+                <input type="button" name="btnCancel" class="graygrad" value="Close" onclick="$.modal.close();" />
+                <input id="btnSerumEdit" type="button" class="greengrad" value="Edit" />
+            </li>
+        </ul>
+        </form>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

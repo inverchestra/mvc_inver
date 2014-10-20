@@ -1,0 +1,81 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UserSymptom
+@{
+int i = 0;
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/ajaxfun")
+<script type="text/javascript" >
+    //From here it is for intellisense
+    $(function () {
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+
+        function extractLast(term) {
+            return split(term).pop();
+        }
+
+        $('#addreasons').bind('keydown', function (event) {
+
+            if (event.keyCode === $.ui.keyCode.TAB &&
+$(this).data('autocomplete').menu.active) {
+                event.preventDefault();
+            }
+        }).autocomplete({
+            source: function (request, response) {
+                $.getJSON('/iHealthUser/HealthLog/ReturnList', {
+                    term: extractLast(request.term)
+                }, response);
+            },
+            search: function () {
+                var term = extractLast(this.value);
+                if (term.length < 1) {
+                    return false;
+                }
+            },
+            focus: function () { return false; },
+            select: function (event, ui) {
+                var terms = split(this.value);
+                terms.pop();
+                terms.push(ui.item.value);
+                terms.push('');
+                this.value = terms.join(', ');
+                return false;
+            }
+        });
+    });
+    //End of Intellisense
+</script>
+<div id="addsymp">
+    @using (Html.BeginForm("AddSymptom","HealthLog", FormMethod.Post,new { @class="addsymptom", id="addsymptom",style = "width:390px;padding:10px" }))
+{
+    <h2 class="PMoreInfo_btm">Add symptom for your log</h2>
+    <ul>
+            <li class="labelnormal">Symptom name:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+            <li>@Html.TextBoxFor(model => model.Name, new { @class = "create-logtxts",tabindex="1", title = "Enter Symptom name" })
+                @Html.ValidationMessageFor(model => model.Name)
+                @Html.HiddenFor(model => model.LogId)
+            </li>
+            <li class="labelnormal">Description: <span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li>@Html.TextAreaFor(model => model.Description, new { @class = "create-logtxts", tabindex = "2", title = "Describe your symptom" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </li>
+            <li class="labelnormal">Reasons: </li>
+            <li>
+                <textarea id="addreasons" name="Reasons" class="create-logtxts" tabindex="3"title="Probable reason"></textarea>
+            </li>
+            <li class="labelnormal">Medicines: </li>
+            <li>
+                <textarea name="Medicines" class="create-logtxts" tabindex="4" title="Enter medicine name if u have taken"></textarea>
+            </li>
+        </ul>
+    <input type="hidden" name="symptoms[@i].DateTime" value="@DateTime.Now" />
+    <div style="width: 95%" class="inline">
+        <input type="button" id="btnCancel" value="Cancel" style="float: right" tabindex="6" class="graygrad" />
+        <input type="submit" value="Add" style="float: right; margin-right: 10px;" tabindex="5" class="greengrad" />
+    </div>
+
+    }
+</div>

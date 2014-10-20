@@ -1,0 +1,168 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UserHealthLog
+@{
+    int i = 1;
+}
+<script type="text/javascript">
+
+    $('#nav > li > a').click(function () {
+        if ($(this).attr('class') != 'active') {
+            $('#nav li ul').slideUp();
+            $(this).next().slideToggle();
+            $('#nav li a').removeClass('active');
+            $(this).addClass('active');
+        }
+    });
+
+    $('#btnLogtoLogView').click(function () {
+
+        var logIds = $('#s3').val();
+
+        if (logIds.length > 1) {
+            alert("you have selected more than one log,please select only one log");
+        }
+        else {
+            var logId = logIds[0].toString();
+            //                    alert(logId);
+            $.ajax({
+                url: '/iHealthUser/HealthLog/ViewLogToLog',
+                type: 'GET',
+                async: false,
+                cache: false,
+                data: { logId: logId },
+                success: function (result) {
+
+
+                    $('#modal-div1').html(result).show('slide', { direction: 'down' }, 600);
+
+                    $('#btnlogCancel').click(function () {
+
+                        $("#modal-div1").hide("slide", { direction: 'down' }, 600);
+                    });
+
+
+
+                }
+            });
+        }
+    });
+    
+</script>
+<div id="view" style="width: 400px">
+    <div id="viewlog">
+        <div style="border-bottom: 1px solid rgb(218,221,226); float: left; width: 100%">
+            @if (Model.logName == null)
+            {
+                <h2>
+                    --No Name--</h2>
+            }
+            else
+            {
+                <h2>@Model.logName</h2>                
+            }
+            <input type="hidden" id="logid" value="@Model.logId" />
+
+
+
+        </div>
+        <div class="HLog">
+            <ul>
+                <li class="labelnormal labelnormal_indent">Log name: </li>
+                <li class="lbbold ">
+                    @Model.logName
+                </li>
+                <li class="labelnormal labelnormal_indent">Log description: </li>
+                <li class="lbbold">
+                    @Model.logDescription
+                </li>
+                <li class="labelnormal labelnormal_indent">First observed: </li>
+                <li class="lbbold">
+                    @Model.FirstObserved
+                </li>
+                <li class="labelnormal labelnormal_indent">Related Logs </li>
+                <li class="labelbold">
+                    <select id="s3" name="s3" multiple="multiple" style="width: 90px">
+                        @if (Model.lstlogtolog == null || Model.lstlogtolog.Count == 0)
+                        {
+                            <option value="null" disabled="disabled">--No Logs--</option>
+                        }
+                        else
+                        {
+
+                            foreach (var value in Model.lstresultLogToLoglist)
+                            {
+                                if (value.IsChecked)
+                                {
+                            <option value="@value.Id" >@value.name </option>
+                           
+                                }
+                            }
+                        }
+                    </select>
+                    <div style="float: right;">
+                        <input type="button" id="btnLogtoLogView" value="" class="view_CV" title="View Log"
+                            name="view" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h5 class="PMoreInfo_btm" style="margin-top: 8px;">
+            Symptoms</h5>
+        <div id="sym-div">
+            @if (Model.symptoms == null)
+            {
+           
+                <span class="results">You have no symptoms for this log.</span>
+            }
+            else
+            {
+                <ul id="nav">
+                    @foreach (var symptom in Model.symptoms)
+                    {
+                        try
+                        {
+                        <li><a href="#symp[@i]"><span style="text-overflow: ellipsis; white-space: nowrap;
+                            overflow: hidden; display: inline-block; width: 350px">@symptom.DateTime.ToShortDateString()
+                            | @symptom.Description</span></a>
+                            <ul id="symp[@i]" style="border: none; margin:0 0 0 0px;" class="hlogAc">
+                                <li class="labelnormal labelnormal_indent">Name: </li>
+                                <li class="labelbold">
+                                    @if (symptom.Name == null || symptom.Name == "")
+                                    {
+                                        <text>no name</text>
+                                    }
+                                    else
+                                    {
+                                        @symptom.Name
+                                    }
+                                </li>
+                                <li class="labelnormal labelnormal_indent">Description: </li>
+                                <li class="labelbold">
+                                    @symptom.Description
+                                </li>
+                                <li class="labelnormal labelnormal_indent">Reasons: </li>
+                                <li class="labelbold">
+                                    @symptom.Reasons
+                                </li>
+                                <li class="labelnormal labelnormal_indent">Medicines: </li>
+                                <li class="labelbold">
+                                    @symptom.Medicines
+                                </li>
+                                <li class="labelnormal labelnormal_indent">Observed on: </li>
+                                <li class="labelbold">
+                                    @symptom.DateTime
+                                </li>
+                            </ul>
+                        </li>
+                        }
+                        finally { i++; }
+                    }
+                </ul>
+            }
+        </div>
+        <div style="width: 100%" class="inline">
+            <input type="button" id="btnCancel" value="close" style="float: right" class="graygrad"  onclick="$.modal.close();"/>
+        </div>
+    </div>
+</div>
+<div id="modal-div1" class="slide" style="width: auto;">
+</div>

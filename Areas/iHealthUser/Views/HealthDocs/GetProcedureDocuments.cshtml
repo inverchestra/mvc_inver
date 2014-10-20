@@ -1,0 +1,45 @@
+﻿@model IList<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Documents>
+<script src="~/CustomScripts/documentsview.js" type="text/javascript"></script>
+@*<br />*@
+<div id="table">
+    <div>
+        <table id="thead">
+            <thead>
+                <tr>
+                    <th style="width: 5%">
+                    </th>
+                    <th style="width: 23%;">
+                        Doc name
+                    </th>
+                    <th style="width: 35%;">
+                        Doc description
+                    </th>
+                    <th style="width: 5%">
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <table id="tbody">
+        <tbody>
+            @foreach (var value in Model)
+            {        
+                <tr>
+                    <td style="width: 5%;">
+                    </td>
+                    <td style="width: 23%;">
+                        @value.OriginalName
+                    </td>
+                    <td style="width: 35%; white-space: nowrap; overflow: hidden">
+                        @value.Name
+                    </td>
+                    <td style="width: 5%">
+                        <a id="@value.Id" class="anchor" style="cursor:pointer">View</a>
+                    </td>
+                </tr>    
+            }
+        </tbody>
+    </table>
+</div>
+<div id="tab" style="display: none">
+</div>

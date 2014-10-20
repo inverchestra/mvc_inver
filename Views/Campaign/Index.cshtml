@@ -1,0 +1,136 @@
+﻿@using System.Web.Optimization
+@model InnDocs.iHealth.Web.UI.Models.SingleRegisterModel
+
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=559035264151323";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="body">
+
+    <a class="close" data-dismiss="modal" style="margin: 16px 0 0; position: absolute; right: 17px">&times;</a>
+
+    <div class="row">
+
+        <div class="span6">
+
+            <div class="text-center" style="margin-top: 30px">
+                <p class="top-text">A precious gift for 40 weeks</p>
+                <p class="top-text1">for you and your bump within</p>
+            </div>
+
+            <div class="camp_img">
+                <img src="~/Content/img/promo.png" width="100%" />
+            </div>
+
+            <div class="text-center btmtxt">
+                <p class="bottom-text">You know something about you, a lot more</p>
+                <p class="bottom-text1">BumpDocs knows about you</p>
+            </div>
+
+        </div>
+
+
+        <div class="span5">
+            <div class="abs">
+                <div class="fb-like" data-href="https://www.facebook.com/Bumpdocs/" data-layout="button" data-action="like" data-show-faces="false" data-share="true" id="fb_btn">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="" style="border: none">
+                    <h3 class="h3c">Come, freeze in your precious moments !</h3>
+                </div>
+
+                <div class="c-signup span3">
+                    <form id="signup" action="/Home/Signup" method="post" novalidate="novalidate">
+
+                        <div class="sign_box">
+                            <div class="" style="border-right: 1px solid #eee;">
+                            </div>
+                            <div class="signup_field">
+                                <div class="control-group" style="">
+                                    <div class="input-prepend">
+                                        <span class="add-on"><i class="icon-user"></i></span>
+                                        @Html.TextBoxFor(m => m.RUserName, new { @class = "span2", @placeholder = "Name" })
+                                    </div>
+                                </div>
+                                <div class="control-group" style="">
+                                    <div class="input-prepend">
+                                        <span class="add-on"><i class="icon-envelope"></i></span>
+                                        @Html.TextBoxFor(m => m.EmailId, new { @class = "span2", @placeholder = "Email/Phone number" })
+                                    </div>
+                                </div>
+                                <div class="control-group" style="">
+                                    <div class="input-prepend">
+                                        <span class="add-on"><i class="icon-lock"></i></span>
+                                        @Html.PasswordFor(m => m.Password, new { @class = "span2", @placeholder = "Password", id = "txtcpassword" })
+                                    </div>
+                                </div>
+                                <div class="control-group" style="">
+                                    <div class="input-prepend">
+                                        <span class="add-on"><i class="icon-lock"></i></span>
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "span2", @placeholder = "Re-enter password" })
+                                    </div>
+                                </div>
+                                <label id="lblerror">@ViewBag.ErrorMessage</label>
+                                <div class="control-group text-right" style="">
+                                    <input type="submit" class="btn btn-success join_button" value="Join now" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="signin_right">
+
+                    <a href="@Url.Action("Facebook", "Account")" class="f_connect">
+                        <img src="~/Content/img/fbconnect.png" id="fb_img" /></a>
+
+                    <form id="clogin" action="@Url.Action("LoginNew", "Home")" method="post" class="signin_form">
+
+                        @* <h4 style="color: #fff">
+            Sign In <a href="@Url.Action("Facebook", "Account")" class="pull-right">
+                <img src="../../Content/img/facebook-login.png" width="60px" class="fb-image" /></a></h4>*@
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <span class="add-on" style="height: 20px"><i class="icon-envelope"></i></span>
+                                @Html.TextBoxFor(m => m.EmailId, new { @placeholder = "Email/Phone number", style = "width:auto", id = "email_txt" })
+                                @Html.ValidationMessageFor(model => model.EmailId)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <span class="add-on" style="height: 20px"><i class="icon-lock"></i></span>
+                                @Html.PasswordFor(m => m.Password, new { @placeholder = "Password", style = "width:auto", id = "password_txt" })
+                                @Html.ValidationMessageFor(Model => Model.Password)
+                            </div>
+                            <label style="font-weight: bold; color: Red; font-size: 12px;">@ViewBag.Password</label>
+                        </div>
+                        <div class="control-group">
+                            <a id="fp" style="cursor: pointer; color: #0088cc; font-size:small">Forgot password ?</a>
+                        </div>
+                        <div class="signbtn_div">
+                            <input type="submit" id="log-signin" class="btn btn-primary signbtn" value="Sign In" />
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="text-center">
+                <p class="right1">BumpDocs</p>
+                <p class="right2">Emotion Tracker . Personal Health Record . Yourself</p>
+                <p class="right3">Wisdom to deliver a healthy baby</p>
+                <p class="signup-block">Sign Up its free!</p>
+            </div>
+
+        </div>
+    </div>
+</div>

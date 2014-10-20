@@ -1,0 +1,466 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.Vitals.Vitals
+@{
+    ViewBag.Title = "";
+}
+<link href="~/Content/Vitals-tab.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        var status = document.getElementById('statusr').value;
+        if (parseInt(status, 0) == 0 || status == "") {
+            $('span#badge-page1').removeClass('now');
+        } else {
+
+            $('span#badge-page1').addClass('now');
+        }
+        var status1 = document.getElementById('statustip').value;
+
+        if (parseInt(status1, 0) == 0 || status == "") {
+            $('span#badge-page2').removeClass('now');
+        } else {
+
+            $('span#badge-page2').addClass('now');
+        }
+    });
+
+    $(function () {
+
+        $("#vitalsDiv").tabs();
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#Systole').keydown(function (event) {
+
+            var $th = $(this);
+
+            if (event.keyCode == 110 || event.keyCode == 173 || event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+
+                return;
+            }
+            else {
+
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+        $('#Diastole').keydown(function (event) {
+
+            var $th = $(this);
+
+            if (event.keyCode == 110 || event.keyCode == 173 || event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+
+                return;
+            }
+            else {
+
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                    event.preventDefault();
+                }
+            }
+        });
+    });
+    $(function () {
+        $("#dropdowntipo").change(function () {
+
+
+            var selectedid = $(this).val();
+            if (selectedid == "Pounds") {
+                $("#weight1").show();
+                $("#weight").hide();
+            }
+            else {
+                $("#weight1").hide();
+                $("#weight").show();
+            }
+        });
+
+        $("#dropdownhtinfo").change(function () {
+
+            var selectedid = $(this).val();
+            if (selectedid == "Feets") {
+                $("#feets").show();
+                $("#inches").show();
+                $("#height").hide();
+            }
+            else {
+                $("#feets").hide();
+                $("#inches").hide();
+                $("#height").show();
+            }
+        });
+
+        $('#btnHnWUpdate').click(function () {
+            var ht = $("#height").val();
+            var wt = $("#weight").val();
+            var wt1 = $("#weight1").val();
+            var feet = $("#feets").val();
+            var inch = $("#inches").val();
+            var dropdownval = $("#txtBldGrp").val();
+
+            var drpHeight = $('#dropdownhtinfo').val();
+            var sistole = $("#Systole").val();
+            var diastole = $("#Diastole").val();
+
+
+            var drpWeight = $('#dropdowntipo').val();
+
+            if (drpHeight == "Cms") {
+
+                if (ht == "") {
+
+                    alert("Enter your valid height");
+                    $('input[tabindex=1]').focus();
+                    return false;
+
+                }
+                else {
+                    if (ht > 250 || ht < 15) {
+                        alert("Enter your valid height");
+                        $('input[tabindex=1]').focus();
+                        return false;
+                    }
+                }
+
+            }
+            else if (drpHeight == "Feets") {
+
+                if (feet == "") {
+                    alert("Enter your valid height");
+                    $('input[tabindex=2]').focus();
+                    return false;
+                }
+
+                if (feet > 8 || feet < 1) {
+                    alert("Enter your valid feet");
+                    $('input[tabindex=2]').focus();
+                    return false;
+                }
+
+            }
+            if (drpWeight == "kg") {
+
+                if (wt == "") {
+
+                    alert("Enter your valid weight ");
+                    $('input[tabindex=4]').focus();
+                    return false;
+
+                }
+                else {
+                    if (wt > 999 || wt < 3) {
+                        alert("Enter your valid weight");
+                        $('input[tabindex=4]').focus();
+                        return false;
+                    }
+                }
+
+            }
+            else if (drpWeight == "Pounds") {
+
+                if (wt1 == "") {
+                    alert("Enter your valid weight ");
+                    $('input[tabindex=5]').focus();
+                    return false;
+                }
+                else {
+
+                    if (wt1 > 999 || wt1 < 3) {
+                        alert("Enter your valid weight");
+                        $('input[tabindex=5]').focus();
+                        return false;
+                    }
+                }
+
+            }
+
+
+            if (dropdownval == "") {
+                alert("Please select blood group");
+                return false;
+            } else if (sistole > 250 || sistole < 70) {
+                alert("Please enter a valid systole value (70-250)");
+                return false;
+            }
+            else if (diastole < 40 || diastole > 90) {
+                alert("Please enter a valid diastole value (40-90)");
+                return false;
+
+
+            }
+            if (sistole == "") {
+                alert("Please enter sistole value");
+                return false;
+            }
+            if (diastole == "") {
+                alert("Please enter diastole value");
+                return false;
+            }
+            var a = $('#subscription_order_form21').serialize();
+
+            if ($('#height').val() != "" || $('#weight').val() != "" || $('#weight1').val() != "" || $('#feets').val() != "" || $('#inches').val() != "") {
+
+                $.ajax({
+                    type: 'post',
+                    url: '/DoulaBumpUser/DoulaMedwall/HeightandWeight',
+                    data: a,
+                    success: function (data) {
+                        SetData(data);
+                    }
+                });
+            }
+            function SetData(data) {
+                $("#vitalsDiv").html(data);
+            }
+        });
+    });
+
+    $(function () {
+        $("#editweight").click(function () {
+
+            $.ajax({
+                url: '/DoulaBumpUser/DoulaMedwall/HnWEdit',
+                type: 'GET',
+                success: function (result) {
+                    $.modal.close();
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                        }
+                    });
+                }
+            });
+        });
+
+    });
+</script>
+@section LeftPanel {
+    <div class="left-pane">
+        <div class="left-tabs">
+            <ul>
+                <li><a href="@Url.Action("DoulaVitals", "DoulaMedwall")" class="pink-a">Vitals</a></li>
+                <li><a href="@Url.Action("Index", "DoulaMedwall")">Timeline</a></li>
+                <li><a href="@Url.Action("GetWeeks", "DoulaMedwall")">Albums</a></li>
+                <li><a href="@Url.Action("DoulaPInfo", "DoulaPersonal")">My<span style="color: #fff">-</span>Info</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="tablequestions">
+    </div>
+}
+<div id="vitalsDiv">
+    <div>
+        <form id="subscription_order_form21" class="" method="post" enctype="multipart/form-data">
+        <div style="background-color: #f7f7f7">
+            <ul id="vital-icon">
+                <li style="padding: 10px; font-size: medium; font-weight: bold"><span>Essential Info</span></li>
+            </ul>
+        </div>
+        <br />
+        <div style="width: 100%; margin: 0 0 0 10px">
+            @if (Model.HnW.CreatedOn != null)
+            {
+                <label>
+                    Recent updation on:
+                </label>
+                <label style="color: Red">
+                    (@Html.DisplayTextFor(model => model.HnW.Created) )</label>
+
+            }
+        </div>
+        <div class="vitals">
+            <ul>
+                @if (Model.HnW.Height != null)
+                {
+                    <li style="width: 30%; display: inline-block; background-color: #f7f7f7">Height (cm)</li>
+                    <li style="width: 60%">
+                        @Html.DisplayTextFor(model => Model.HnW.Height)
+                    </li>
+                }
+                @if (Model.HnW.Weight != null)
+                {
+                    <li style="width: 30%; display: inline-block; background-color: #f7f7f7">Weight (lbs)
+                    </li>
+                    <li style="width: 60%">
+                        @Html.DisplayTextFor(model => Model.HnW.Weight)
+                    </li>
+                }
+                @if (Model.HnW.BloodGroup != null)
+                {
+                    <li style="width: 30%; display: inline-block; background-color: #f7f7f7">Blood group
+                    </li>
+                    <li style="width: 60%">
+                        @Html.DisplayTextFor(model => model.HnW.BloodGroup)
+                    </li>
+                }
+                @if (Model.HnW.BloodPressure != null)
+                {
+                    <li style="width: 30%; display: inline-block; background-color: #f7f7f7">Blood pressure
+                    </li>
+                    <li style="width: 60%">
+                        @Html.DisplayTextFor(model => model.HnW.BloodPressure)
+                    </li>
+                   @* <input type="button" value="edit" id="editweight" class="greengrad" />*@
+                }
+            </ul>
+            @if (Model.HnW.Weight == null)
+            {
+                <div style="width: 100%; margin-top: 10px">
+                    <div class="vitals_essleft">
+                        Height<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                            font-size: medium;">*</span>
+                        <select id="dropdownhtinfo" style="margin-left: 89px; width: 85px">
+                            <option value="Cms">Cms</option>
+                            <option value="Feets">Feets</option>
+                        </select>
+                    </div>
+                    <div class="vitals_essright">
+                        @Html.TextBoxFor(model => model.HnW.Height, new { @id = "height", @placeholder = "Cms", title = "Cms", @class = "weight-type", @style = "width:60px", tabindex = "1" })
+                        @Html.TextBoxFor(model => model.HnW.feets, new { @id = "feets", @placeholder = "feets", title = "feets", @class = "height-type", @style = "display:none;width:60px", tabindex = "2" })
+                        @Html.TextBoxFor(model => model.HnW.inches, new { @id = "inches", @placeholder = "inches", title = "inches", @class = "height-type", @style = "display:none;width:60px", tabindex = "3" })
+                    </div>
+                </div>
+
+                <div style="width: 100%; margin-top: 10px">
+                    <div class="vitals_essleft">
+                        Weight<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                            font-size: medium;">*</span>
+                        <select id="dropdowntipo" style="margin-left: 85px; width: 85px">
+                            <option value="kg">kgs</option>
+                            <option value="Pounds">Pounds</option>
+                        </select>
+                    </div>
+                    <div class="vitals_essright">
+                        @Html.TextBoxFor(model => model.HnW.Weight1, new { @id = "weight", @placeholder = "kgs", title = "kgs", @class = "weight-type", @style = "width:60px", tabindex = "4" })
+                        @Html.TextBoxFor(model => model.HnW.Weight, new { @id = "weight1", @placeholder = "pounds", title = "Pounds", @class = "weight-type", @style = "display:none;width:60px", tabindex = "5" })
+                    </div>
+                </div>
+            }
+            @if (Model.HnW.BloodGroup == null)
+            {
+                <div style="width: 100%; margin-top: 10px">
+                    <div class="vitals_essleft" style="margin-top: 5px">
+                        Blood Group<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                            font-size: medium;">*</span>
+                    </div>
+                    <div class="vitals_essright">
+                        <select id="txtBldGrp" name="HnW.BloodGroup" style="width: 155px;">
+                            <option value="">please select</option>
+                            @if (Model == null)
+                            {
+                                <option selected="selected" value="A +ve">A +ve</option>
+                            }
+                            else
+                            {
+                                <option value="A +ve">A +ve</option>
+                            }
+                            @if (Model == null)
+                            {
+                                <option selected="selected" value="A -ve">A -ve</option>
+                            }
+                            else
+                            {
+                                <option value="A -ve">A -ve</option>
+                            }
+                            @if (Model == null)
+                            {
+                                <option value="B +ve" selected="selected">B +ve</option>
+                            }
+                            else
+                            {
+                                <option value="B +ve">B +ve</option>
+                            }
+                            @if (Model == null)
+                            {
+                                <option value="B -ve" selected="selected">B -ve</option>
+                            }
+                            else
+                            {
+                                <option value="B -ve">B -ve</option>
+                            }
+                            @if (Model == null)
+                            {
+                                <option value="O +ve" selected="selected">O +ve</option>
+                            }
+                            else
+                            {
+                                <option value="O +ve">O +ve</option>
+                            }
+                            @if (Model == null)
+                            {
+                                <option value="O -ve" selected="selected">O -ve</option>
+                            }
+                            else
+                            {
+                                <option value="O -ve">O -ve</option>
+                            }
+                            @if (Model == null)
+                            {
+                                <option value="AB +ve" selected="selected">AB +ve</option>
+                            }
+                            else
+                            {
+                                <option value="AB +ve">AB +ve</option>
+                            }
+                            @if (Model == null)
+                            {
+                                <option value="AB -ve" selected="selected">AB -ve</option>
+                            }
+                            else
+                            {
+                                <option value="AB -ve">AB -ve</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+            @if (Model.HnW.BloodPressure == null)
+            {
+                <div style="width: 100%; margin-top: 10px">
+                    <div class="vitals_essleft" style="margin-top: 5px">
+                        Blood pressure (Sys/Dis)<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                            color: rgb(251, 2, 2); font-size: medium;">*</span>
+                    </div>
+                    <div class="vitals_essright">
+                        @Html.TextBoxFor(model => model.Systole, new { title = "Systole", @class = "logintxt-blood", name = "Systole", @style = "width:60px", tabindex = "6" })
+                        /
+                        @Html.TextBoxFor(model => model.Diastole, new { title = "Diastole", @class = "logintxt-blood", name = "Diastole", @style = "width:60px", tabindex = "7" })
+                    </div>
+                </div>
+
+                @*<input id="btnHnWUpdate" type="button" class="greengrad" value="Submit" style="margin-right: 5px" />*@
+            }
+            <li style="width: 100%" class="inline"><a href="@Url.Action("DoulaVitals", "DoulaMedwall")" style="color:#0088cc" >
+                Back</a> </li>
+            @*<div style="width: 100%; float: right; margin: 10px 15px 0 0;" class="inline">
+<input type="button" class="graygrad" value="Close" onclick="$.modal.close();" />
+</div>*@
+        </div>
+        </form>
+    </div>
+    <input type="hidden" id="statusr" value="@ViewBag.statusresponce" />
+    <input type="hidden" id="statustip" value="@ViewBag.statustip" />
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

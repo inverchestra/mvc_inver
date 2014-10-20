@@ -1,0 +1,248 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    int i = 1;
+}
+<script src="~/CustomScripts/documentsview.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $('#nav > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('#nav li ul').slideUp();
+                $(this).next().slideToggle();
+                $('#nav li a').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+        $("#dateOfServiceprocedurenotify1").hide();
+        $("input[type='radio']").change(function () {
+
+            if ($(this).val() == "true") {
+                $("#dateOfServiceprocedurenotify1").show();
+
+            }
+
+            else {
+                $("#dateOfServiceprocedurenotify1").hide();
+            }
+
+        }); 
+
+        //        $('img.btneditMT').click(function (e) {
+        //            e.stopPropagation()
+        //            $.ajax({
+        //                url: '/ihealthuser/Cases/UpdateMTView',
+        //                type: 'GET',
+        //                async: false,
+        //                data: { mtId: $(this).parents('li').find('input[name="MedicalTests.MedicalTestId"]').val() },
+        //                cache: false,
+        //                success: function (result) {
+        //                    $('#modal-Mupdate').html(result).modal({
+        //                    closeHTML:'',
+        //                        onShow: function () {
+
+        ////                            $('#dateOfMtest2').datepicker({
+        ////                                changeYear: true,
+        ////                                changeMonth: true
+        ////                            }); // sandeep added
+        //                            $('#dateOfMtest2').datetimepicker(); 
+        //                            $('#dateofmtestnotify2').datepicker({
+        //                                changeYear: true,
+        //                                changeMonth: true
+
+        //                            });
+        //                            $('input[name="btncanel"]').click(function () {
+        //                                $.modal.close();
+        //                            });
+
+
+        //                        }
+        //                    });
+        //                }
+        //            });
+        //        });       
+
+        $('img.btneditMT').click(function (e) {
+            e.stopPropagation()
+            $.ajax({
+                url: '/iHealthuser/Cases/UpdateMTView',
+                type: 'GET',
+                async: false,
+                data: { mtId: $(this).parents('li').find('input[name="MedicalTests.MedicalTestId"]').val() },
+                cache: false,
+                success: function (result) {
+                    $('#modal-Mupdate').html(result).modal({
+                        closeHTML: "",
+                        onShow: function () {
+
+                            $('#dateOfMtest2').datetimepicker({
+                                changeYear: true,
+                                changeMonth: true
+                            }); // sandeep added
+
+                            $('#dateofmtestnotify2').datepicker({
+                                changeYear: true,
+                                changeMonth: true
+
+                            });//jagadeesh added
+                            $('input[name="btncanel"]').click(function () {
+                                $.modal.close();
+                            });
+
+                            $('input[name="btnMTUpdate"]').click(function () {
+                                if ($("#EditMTName").val() == "") {
+                                    alert("Please enter medical test name");
+                                    $('input[tabindex=1]').focus();
+                                    //  return false;
+                                }
+                                else if ($("#dateOfMtest2").val() == "") {
+                                    alert("Please enter medical test date");
+                                    $('input[tabindex=2]').focus();
+                                }
+                                else {
+                                    $.ajax({
+                                        url: '/iHealthuser/Cases/UpdateMedicalTest',
+                                        type: "POST",
+                                        async: false,
+                                        cache: false,
+                                        data: new FormData($(this).parents('#frmUMTestId').get(0)),
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (data) {
+                                            alert("Your modifications are updates successfully");
+                                            $(data).accordion({ collapsible: true });
+                                            $('#medtstlst').html(data);
+                                            $.modal.close();
+                                        }
+
+                                    });
+                                }
+                                return false;
+                            });
+                        }
+
+                    });
+
+                }
+
+
+            });
+
+        });
+
+        $('img[name="delMedicalTest"]').click(function (e) {
+            e.stopPropagation();
+            var id = $(this).parents('li').find('input[name="MedicalTests.MedicalTestId"]').val(); //Modified AswinCOde By V
+            var CaseId = $(this).parents('li').find('input[name="MedicalTests.CaseId"]').val();
+            var d = $(this).parents('li');
+            var response = confirm("Please confirm if you really want to delete");
+            if (response) {
+                $.ajax({
+                    url: "/ihealthuser/Cases/DeleteMedicalTest",
+                    type: 'POST',
+                    async: false,
+                    cache: false,
+                    // dataType: 'json',
+                    data: $(this).parents("#frmEditMT").serialize(),
+                    success: function (data) {
+                        //                        if (success == '1020') {
+                        //                            alert("Deleted Successfully");
+                        //                            $(d).remove();
+                        //                            $('ul.accordion').accordion('destroy').accordion({
+                        //                                collapsable: true
+                        //                            });
+                        //                        }
+                        //                        else {
+                        //                            alert("Not Deleted, Error in Server Code");
+                        //                        }
+                        alert("Deleted Successfully");
+                        $(d).remove();
+                        $(data).accordion({ collapsible: true });
+                        $('#medtstlst').html(data);
+                        $.modal.close();
+                    }
+
+                });
+            }
+            return false;
+        });
+
+    });
+</script>
+<div id="medicalTests">
+    <form id="frmEditMT" action="" enctype="multipart/form-data">
+    <input type="hidden" name="CaseId" id="CaseId" value="@Model.CaseId" />
+    @if (Model.lstMedicalTest.Count == 0)
+    {
+        <span class="results">You have no medical tests for this case</span>
+    }
+    else
+    {
+        <ul id="nav">
+            @foreach (var mtList in Model.lstMedicalTest)
+            {
+                try
+                {
+                <li><a href="#mtList[@i]" onclick="return false;"><span style="-ms-text-overflow: ellipsis;
+                    -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+                    display: inline-block; width: 100px">@mtList.DateOfTest1
+                    | @mtList.TestName</span>
+                    <img src="~/Images/edit.png" alt="Edit" class="btneditMT" style="float: right;" />
+                    <img src="~/Images/delete.png" name="delMedicalTest" class="delMedicalTest" alt="Delete MedicalTest"
+                        style="float: right;" />
+                    <input type="hidden" name="MedicalTests.CaseId" value="@mtList.CaseId" />
+                    <input type="hidden" name="MedicalTests.MedicalTestId" value="@mtList.MedicalTestId" />
+                </a>
+                    <ul id="cmListt[@i]" style="border: none">
+                        <li class="labelChart">Medical test name: </li>
+                        <li class="labelChartB">
+                            @if (mtList.TestName == null || mtList.TestName == "")
+                            {
+                                <text>no name</text>
+                            }
+                            else
+                            {
+                                @mtList.TestName
+                            }
+                        </li>
+                        <li class="labelChart">Date of test: </li>
+                        <li class="labelChartB">
+                            @mtList.DateOfTest1
+                        </li>
+                        <li class="labelChart">Documents: </li>
+                        <li class="labelChartB">
+                            @if (mtList.lstDocuments == null || mtList.lstDocuments.Count == 0)
+                            {
+                                <text>--No Documents--</text>
+                            }
+                            else
+                            {
+                                foreach (var documents in mtList.lstDocuments)
+                                {<a id="@documents.Id" class="anchor">@documents.OriginalName</a> }
+                            }
+                        </li>
+                    </ul>
+                </li>
+                }
+                finally { i++; }
+            }
+        </ul>
+    }
+    </form>
+</div>
+<div id="modal-Mupdate" style="display: none">
+</div>
+<div id="tab" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

@@ -1,0 +1,578 @@
+﻿
+.logo_img {
+    margin-right: 8px;
+    margin-bottom: 2px;
+    border-radius: 3px;
+}
+
+.BRight {
+    height: 420px;
+    float: left;
+    margin-top: 90px;
+    background: url('../picture/iphone1.png') no-repeat;
+    background-size: contain;
+}
+
+#container {
+    width: 146px;
+    height: 251px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+div.slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+    div.slides > div {
+        position: absolute;
+        top: 0;
+        width: 146px;
+        display: none;
+        padding: 0;
+        margin: 0;
+    }
+
+#loopedSlider {
+    margin: 65px 0 0 15px;
+    width: 161px;
+    position: relative;
+    clear: both;
+}
+
+
+
+.Bleft {
+    width: 620px;
+    height: 450px;
+    float: left;
+    margin-top: 30px;
+    background: url('../picture/web.png') no-repeat;
+    background-size: contain;
+    margin-left: 25px;
+}
+
+#webcontainer {
+    width: 575px;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+div.webslides {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+    div.webslides > div {
+        position: absolute;
+        top: 0;
+        width: 575px;
+        display: none;
+        padding: 0;
+        margin: 0;
+    }
+
+#webSlider {
+    margin: 29px 0 0 21px;
+    width: 575px;
+    position: relative;
+    clear: both;
+}
+
+.desktop_img {
+    width: 576px;
+    height: 280px;
+}
+
+.mobile_img1 {
+    height: 250px;
+}
+
+.mobile_img2 {
+    /*width:168px;*/
+    height: 251px;
+}
+
+.mobile_img3 {
+    /*width:168px;*/
+    height: 252px;
+}
+
+.mobile_img4 {
+    /*width:168px;*/
+    height: 250px;
+}
+
+.form_login {
+    margin: 0;
+    background-color: #f6f6f6;
+    padding: 25px 5px 25px 5px;
+    width: 100%;
+}
+
+.fb-image {
+    width: 81%;
+}
+
+.toptext {
+    font-size: 50px;
+    color: #808080;
+    margin-top: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: -25px;
+}
+
+.middletext {
+    width: 280px;
+    margin: 10px 0 0 -3px;
+}
+
+.bottomtext {
+    font-size: 27px;
+    color: #808080;
+    margin-top: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    margin-left: 0;
+}
+
+.leftfeatures {
+    margin-bottom: 15px;
+}
+
+.rightfeatures {
+}
+
+.home_left {
+    margin: 0;
+    border-right: 1px solid #f0f0f0;
+}
+
+.market_text {
+    font-size: 20px;
+    color: #808080;
+    margin: 20px 0 20px 0;
+}
+
+.map {
+    height: 250px;
+}
+
+.web_img {
+    background-image: url('../picture/desktop.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 92px;
+    height: 84px;
+    float: left;
+    margin-right: 1px;
+}
+
+    .web_img:hover {
+        background-image: url('../picture/COL1.png');
+        background-repeat: no-repeat;
+        width: 92px;
+        height: 84px;
+        background-size: cover;
+        margin-right: 1px;
+    }
+
+
+.apple_img {
+    background-image: url('../picture/apple.png');
+    background-repeat: no-repeat;
+    width: 92px;
+    height: 84px;
+    background-size: cover;
+    float: left;
+    margin-right: 1px;
+}
+
+    .apple_img:hover {
+        background-image: url('../picture/COL2.png');
+        background-repeat: no-repeat;
+        width: 92px;
+        height: 84px;
+        background-size: cover;
+        margin-right: 1px;
+    }
+
+.market_img {
+    background-image: url('../picture/android.png');
+    background-repeat: no-repeat;
+    width: 92px;
+    height: 84px;
+    background-size: cover;
+    float: left;
+    margin-right: 1px;
+}
+
+    .market_img:hover {
+        background-image: url('../picture/COL3.png');
+        background-repeat: no-repeat;
+        width: 92px;
+        height: 84px;
+        background-size: cover;
+        margin-right: 1px;
+    }
+
+
+@media (min-width:1024px) and (max-width:1279px) {
+
+    #background {
+        margin-bottom: 55px;
+    }
+
+    .signin {
+        margin-left: 10px;
+    }
+
+    .form_login {
+        width: 110%;
+    }
+
+    .Bleft {
+        width: 500px;
+        height: 380px;
+        margin-left: 10px;
+    }
+
+    #webcontainer {
+        width: 463px;
+        height: 224px;
+    }
+
+    div.webslides > div {
+        width: 463px;
+    }
+
+    #webSlider {
+        margin: 24px 0 0 17px;
+        width: 463px;
+    }
+
+    .desktop_img {
+        width: 463px;
+        height: 224px;
+    }
+
+
+    .BRight {
+        /*width: 180px;*/
+        height: 371px;
+    }
+
+    #container {
+        width: 124px;
+        height: 212px;
+    }
+
+    div.slides > div {
+        width: 150px;
+    }
+
+    #loopedSlider {
+        margin: 56px 0 0 13px;
+        width: 137px;
+    }
+
+    .mobile_img1 {
+        height: 215px;
+    }
+
+    .mobile_img2 {
+        height: 220px;
+    }
+
+    .mobile_img3 {
+        height: 215px;
+    }
+
+    .mobile_img4 {
+        height: 215px;
+    }
+
+    .bottomtext {
+        font-size: 22px;
+    }
+
+    .leftfeatures {
+        margin-right: 15px;
+    }
+
+    .rightfeatures {
+        margin-left: 15px;
+    }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+
+    #background {
+        margin-top: 125px;
+    }
+
+    .Bleft {
+        display: none;
+    }
+
+    .BRight {
+        margin-top: 20px;
+        margin-left: 100px;
+    }
+
+    .home_left {
+        width: 400px;
+    }
+
+    .signin {
+        width: 270px;
+        margin-left: 30px;
+    }
+
+    .bottomtext {
+        width: 720px;
+        font-size: 22px;
+        margin-top: 20px;
+        margin-left: 30px;
+    }
+
+    .toptext {
+        font-size: 40px;
+        line-height: 36px;
+    }
+
+    .leftfeatures {
+        width: 500px;
+        margin-bottom: 0;
+    }
+
+    .rightfeatures {
+        margin-left: 82px;
+        margin-top: -10px;
+    }
+
+    .map {
+        margin-left: 4px;
+    }
+}
+
+@media (min-width:568px) and (max-width:767px) {
+
+    .Bleft {
+        display: none;
+    }
+
+    .BRight {
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+
+    .home_left {
+        width: 240px;
+        float: left;
+    }
+
+    .signin {
+        width: 240px;
+        margin-left: 30px;
+        float: left;
+    }
+
+    .bottomtext {
+        width: 530px;
+        font-size: 16px;
+        margin-top: 20px;
+        float: left;
+    }
+
+    .toptext {
+        font-size: 28px;
+        line-height: 32px;
+    }
+
+    .middletext {
+        margin: 10px 0 0 -20px;
+    }
+
+    .leftfeatures {
+        width: 500px;
+        margin-bottom: 0;
+    }
+
+    .map {
+        margin-left: 4px;
+    }
+}
+
+@media (min-width:480px) and (max-width:567px) {
+
+    #background {
+        margin-top: 65px;
+    }
+
+    .Bleft {
+        display: none;
+    }
+
+    .BRight {
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+
+    .home_left {
+        width: 205px;
+        float: left;
+    }
+
+    .signin {
+        width: 210px;
+        margin-left: 5px;
+        float: left;
+    }
+
+    .bottomtext {
+        width: 435px;
+        font-size: 13px;
+        margin-top: 10px;
+        float: left;
+    }
+
+    .toptext {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .middletext {
+        margin: 10px 0 0 -18px;
+        width: 250px;
+    }
+
+    .leftfeatures {
+        width: 430px;
+        margin-bottom: 0;
+    }
+
+    .market_text {
+        margin-top: 20px;
+    }
+
+    .web_img {
+        width: 77px;
+        height: 71px;
+        margin-left:15px;
+    }
+    .web_img:hover {
+        width: 77px;
+        height: 71px;
+    }
+
+     .apple_img {
+        width: 77px;
+        height: 71px;
+    }
+      .apple_img:hover {
+        width: 77px;
+        height: 71px;
+    }
+      .market_img {
+        width: 77px;
+        height: 71px;
+    }
+       .market_img:hover {
+        width: 77px;
+        height: 71px;
+    }
+}
+
+@media (max-width:479px) {
+
+    .Bleft {
+        display: none;
+    }
+
+    .toptext {
+        font-size: 20px;
+        margin-left: 0;
+    }
+
+    .home_left {
+        border-right: none;
+    }
+
+    .BRight {
+        margin-top: 20px;
+        margin-left: 52px;
+    }
+
+    .signin {
+        margin-left: 0;
+    }
+
+    .form_login {
+        background-color: #fff;
+        border-bottom: 1px solid #d9d9d9;
+    }
+
+    .bottomtext {
+        font-size: 24px;
+        line-height: 30px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+        .bottomtext > span {
+            line-height: 1.7;
+        }
+
+            .bottomtext > span:nth-child(3) {
+                font-size: 20px;
+            }
+
+    .market_text {
+        margin: 25px 0 20px 0;
+    }
+
+    .var_nav {
+        width: 260px;
+        height: 70px;
+    }
+
+    .link_bg {
+        width: 70px;
+        height: 70px;
+    }
+
+    .icon {
+        width: 70px;
+        height: 70px;
+    }
+
+        .icon i {
+            top: 10px;
+            position: relative;
+        }
+
+    .feature_link {
+        top: 5px;
+        left: 30px;
+        font-size: 20px;
+    }
+
+    .link_title p {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .fb-image {
+        height: auto;
+    }
+}

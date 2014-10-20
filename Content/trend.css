@@ -1,0 +1,58 @@
+﻿/* File Created: January 17, 2014 */
+
+.trends
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: auto;
+}
+
+.trend-wrap
+{
+    
+    clear: both;
+    display: inline-block;
+    margin: 10px 10px 10px 15px;
+    width: 95.4%;
+    border: 1px solid #d5d5d5;
+}
+
+.trend
+{
+    width: 500px;
+    height: 70px;
+    float: left;
+    padding: 15px 5px; /*box-shadow: 0 0 1px 1px #d5d5d5;*/
+}
+
+.trend:nth-child(2n)
+{
+    float: right;
+}
+
+.trend-desc
+{
+    display: inline-block;
+    width: 140px;
+    height: 85px;
+    padding: 10px 5px 5px 10px;
+    background: rgb(202,45,112);
+    float: right;
+    
+}
+
+tspan
+{
+    display: none;
+}
+
+.dxc-tooltip > text > tspan
+{
+    display: block;
+}
+
+.dxc-tooltip > text
+{
+    font-size: 14px !important; /*font-weight: 600 !important*/
+}

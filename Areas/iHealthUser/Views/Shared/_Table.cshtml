@@ -1,0 +1,202 @@
+﻿<div id="table">
+    <div>
+        <table id="thead">
+            <thead>
+                <tr>
+                    <th style="width: 5%; text-align: center; padding-left: 0px">
+                       
+                    </th>
+                    <th style="width: 23%;">Log name
+                    </th>
+                    <th style="width: 35%;">Log description
+                    </th>
+                    <th style="width: 22%; padding-left: 18px">Date created
+                    </th>
+                    <th style="width: 5%"></th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    @if (Page.Values.Count > 0)
+    {
+        <table id="tbody">
+            <tbody>
+           
+                @foreach (var value in Page.Values)
+                {
+                   
+                        <tr>
+
+                        <td style="width: 5%; text-align: center; padding-left: 0px">
+                            <input type="checkbox" />
+                        </td>
+                        <td style="width: 23%; white-space: nowrap; overflow: hidden">
+                            @value.logName
+                        </td>
+                        <td style="width: 35%; white-space: nowrap; overflow: hidden">
+                            @value.logDescription
+                        </td>
+                        <td style="width: 23%;">
+                            @value.date
+                        </td>
+                        <td class="add" style="width: 4%; padding-left: 0px; text-align: center">
+                            <input type="hidden" id="logid" value="@value.logId" />
+                            <img src="~/Images/add.png" alt="Add Symptom" style="width: 16px; height: 16px;" title="Add symptom to this log" />
+                        </td>
+
+                    </tr>
+                
+                    <tr>
+                        <td colspan="5" style="border-right: 1px solid rgb(190,196,196);">
+                            <input type="hidden" name="logId" value="@value.logId" />
+                            <div style="padding: 8px">
+                                <div>
+                                    <div style="width: 45%; float: right">                                       
+                                        <input id="btnDownload" class="btnDownload" type="button" name="download" title="Download this log"/>                                      
+                                        <img src="~/Images/edit.png" alt="Edit" title="Edit this log" class="btnEdit" style="cursor:pointer; float: right; margin-right: 0px;" />                                       
+                                       <input type="button" class="view" style="float:right; margin:0px px 0 0;"; name="View" title="View this log" />
+                                    </div>
+                                    <h6>Log Info</h6>
+                                </div>
+                                <ul class="Grid_content_pane">
+                                    <li>
+                                        <div>
+
+
+                                            <div class="tldiv">
+                                                Log name:
+                                            </div>
+                                            <div class="trdiv">
+                                                @value.logName
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="tldiv">
+                                            Log description:
+                                        </div>
+                                        <div class="trdiv">
+                                            @value.logDescription
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="tldiv">
+                                            First observed:
+                                        </div>
+                                        <div class="trdiv">
+                                            @value.FirstObserved
+                                        </div>
+                                    </li>
+                                </ul>
+                           
+                                <div style="width: 100%; float:left; margin:10px 0 10px 0;" >
+                                    <div>
+                                        <h6>Symptoms</h6>
+                                    </div>
+                                    @if (value.symptoms == null)
+                                    {
+                                     
+                                        <span>You have no symptoms for this log.</span>
+                                    }
+                                    else
+                                    {
+                                       <ul class="Grid_content_pane">
+                                            @foreach (var symptom in value.symptoms)
+                                            {
+                                                <li>
+                                                    <div class="tldiv">
+                                                        Symptom name:
+                                                    </div>
+                                                    <div class="trdiv">
+                                                        @if (symptom.Name == null || symptom.Name == "")
+                                                        {
+                                                            <text>no name</text>
+                                                        }
+                                                        else
+                                                        {
+                                                            @symptom.Name
+                                                        }
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="pager">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount
+            @if (ViewBag.FromSearch != null)
+            {
+                if (Model.HasPreviousPage)
+                {
+                @Html.ActionLink("<<", "GetSearchedLogs", new { page = 1, searchtext1 = ViewBag.FromSearch }, new { @class = "first" })
+                @Html.Raw(" ");
+                @Html.ActionLink("< Prev", "GetSearchedLogs", new { page = Model.PageNumber - 1, searchtext1 = ViewBag.FromSearch }, new { @class = "prev" })
+                }
+                else
+                {
+                
+                @Html.Raw(" ");
+                
+}
+            }
+            else
+            {
+                if (Model.HasPreviousPage)
+                {
+                @Html.ActionLink("<<", "MyLogs", new { page = 1 }, new { @class = "first" })
+                @Html.Raw(" ");
+                @Html.ActionLink("< Prev", "MyLogs", new { page = Model.PageNumber - 1 }, new { @class = "prev" })
+                }
+                else
+                {
+                
+                @Html.Raw(" ");
+               
+            }
+            }
+            @if (ViewBag.FromSearch != null)
+            {
+                if (Model.HasNextPage)
+                {
+                @Html.ActionLink("Next >", "GetSearchedLogs", new { page = Model.PageNumber + 1, searchtext1 = ViewBag.FromSearch }, new { @class = "next"})
+                @Html.Raw(" ");
+                @Html.ActionLink(">>", "GetSearchedLogs", new { page = Model.PageCount, searchtext1 = ViewBag.FromSearch }, new { @class = "last"})
+                }
+                else
+                {
+                
+                @Html.Raw(" ")
+                
+}
+            }
+            else
+            {
+                if (Model.HasNextPage)
+                {
+                @Html.ActionLink("Next >", "MyLogs", new { page = Model.PageNumber + 1 }, new { @class = "next"})
+                @Html.Raw(" ");
+                @Html.ActionLink(">>", "MyLogs", new { page = Model.PageCount }, new { @class = "last"})
+                }
+                else
+                {
+                
+                @Html.Raw(" ")
+                
+            }
+            }
+        </div>
+    }
+    else
+    {
+        <text> <center>No Records to display </center></text>
+    }
+</div>

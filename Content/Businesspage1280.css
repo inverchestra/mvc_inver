@@ -1,0 +1,15 @@
+﻿
+
+.footer
+{
+    /*background: url("../Images/Footer_bg.jpg") repeat-x scroll 0 0 transparent;*/
+    background: url("../Images/pheader.png") repeat-x scroll 0 0 transparent;
+    border: 0 none;
+    clear: both !important;
+    height: 50px;
+    margin: 0 auto;
+    max-width: 1366px !important;
+    position: relative;
+    width: 100%;
+    z-index: 9999;
+} 

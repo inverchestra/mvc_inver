@@ -1,0 +1,56 @@
+*{
+	padding: 0;
+	margin:0;
+}
+
+body{
+	
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 100%;
+}
+
+body, html{
+ 	height: 100%;
+}
+
+#header{
+	color: #fff;
+	
+	height: 30px;
+	opacity: 0.7;
+	text-align: center;
+	line-height: 70px;
+	font-family: 'Gafata',Verdana,Geneva,sans-serif;
+}
+
+#wrapper{
+	position: relative;
+	min-height: 100%;
+}
+
+
+/*#footer{
+    position : absolute;
+    bottom : 0;
+	height: 50px;
+	width: 100%;
+	color: #fff;
+	background: #000;
+	opacity: 0.7;
+	text-align: center;
+	font-family: 'Gafata',Verdana,Geneva,sans-serif;
+}
+
+#footer a{
+	text-decoration: none;
+	color: #0096db;
+}
+
+#footer a:hover{
+	color: #5fccfe;
+}
+
+
+#footer-text{
+	line-height: 50px;
+}*/

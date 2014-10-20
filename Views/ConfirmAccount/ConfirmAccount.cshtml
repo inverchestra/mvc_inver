@@ -1,0 +1,260 @@
+﻿@using System.Web.Optimization
+@using InnDocs.iHealth.Web.UI.Models
+@model InnDocs.iHealth.Web.UI.Models.ConfirmSingleRegModel
+@{
+       
+    ConfirmSingleRegModel obj = new ConfirmSingleRegModel();
+    List<SelectListItem> Countries = obj.Countries();
+    List<SelectListItem> Stypes = obj.Stypes();
+    List<SelectListItem> duedatetypes = obj.duedatetypes();
+}
+<style type="text/css">
+    input[type="checkbox"]
+    {
+        margin: 0 !important;
+        line-height: normal;
+    }
+</style>
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('body').css({ 'background-image': 'url(../Content/img/12345.jpg)', 'width': '100%', 'background-size': 'cover', 'background-repeat': 'no-repeat' });
+        });
+
+        $(function () {
+
+            //  $("#Container").css({ 'padding': '125px 350px', 'margin': 'auto' });
+            var objLocalZone = new Date();
+            var strLocalZone = '' + objLocalZone;
+
+            var mySplitResult = strLocalZone.split(" ");
+
+            var newLocalZone = mySplitResult[5].slice(0, mySplitResult[5].length - 2) + ':' + mySplitResult[5].slice(mySplitResult[5].length - 2, mySplitResult[5].length);
+            alert(newLocalZone);
+            document.getElementById("hdnTimeZone").value = newLocalZone;
+
+            $('#Regdate').datepicker({
+                yearRange: "-110:+0",
+                changeYear: true,
+                changeMonth: true,
+                maxDate: new Date()
+                //minDate: dateToday()
+            });
+
+
+
+
+            $('#duedate').datepicker({
+                yearRange: "-1:+0",
+                changeYear: true,
+                changeMonth: true,
+                minDate: '-280d',
+                maxDate: '+0d'
+                //  maxDate: new Date()
+            });
+
+            $("#duedatedrop").change(function () {
+                var selection = $("#duedatedrop").val();
+                //alert("Hi");
+                // alert(" selected value " + selection);
+                if (selection == "I know my due date") {
+                    //alert("Hi");
+                    // alert(" selected value " + selection);
+                    $("#duedate").datepicker("destroy");
+                    $('#duedate').datepicker({
+                        yearRange: "-1:+1",
+                        changeYear: true,
+                        changeMonth: true,
+                        minDate: '-0d',
+                        maxDate: '+280d'
+                        //minDate: dateToday()
+                    });
+                }
+                else if (selection == "Date of conception") {
+
+                    $("#duedate").datepicker("destroy");
+                    $('#duedate').datepicker({
+                        yearRange: "-1:+0",
+                        changeYear: true,
+                        changeMonth: true,
+                        minDate: '-280d',
+                        maxDate: '+0d'
+                        //  maxDate: new Date()
+                    });
+                }
+                else {
+                    //   alert(" selected value " + selection);
+                    //                $('#duedate').datepicker({
+                    //                    yearRange: "-0:+0",
+                    //                    changeYear: true,
+                    //                    changeMonth: true,
+                    //                    //                    maxDate: '1y'
+                    //                    minDate: new Date()
+                    //                });
+                    $("#duedate").datepicker("destroy");
+                    $('#duedate').datepicker({
+                        yearRange: "-1:+0",
+                        changeYear: true,
+                        changeMonth: true,
+                        minDate: '-280d',
+                        maxDate: '+0d'
+                        //  maxDate: new Date()
+                    });
+
+                }
+
+
+
+            });
+
+            $('#cnfrmcancel').click(function () {
+                //alert("Hi");
+                window.location = "/";
+            });
+
+        });
+    </script>
+}
+@*
+@Scripts.Render("~/bundles/ca1");*@ @*@Scripts.Render("~/bundles/ajaxfns")*@ @*<div>
+    <img src="~/Content/img/12345.jpg" width="100%" />
+</div>*@
+<form action="@Url.Action("ConfirmAccount", "ConfirmAccount")" method="post" >
+@*@Scripts.Render("~/bundles/ajaxfnsj")
+@using (Ajax.BeginForm("ConfirmAccount", "ConfirmAccount", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "closeModal", OnFailure = "displayError", OnBegin = "loading" }))
+{*@
+@Html.ValidationSummary(true)
+<input type="hidden" name="UserId" value="@ViewBag.muserid" />
+<div class="container">
+    <input type="hidden" name="UserId" value="@ViewBag.muserid" />
+    <div class="span3">
+    </div>
+    <div class="span5 well" style="box-shadow: 0 0 5px #888888; margin-top: 20px;">
+        <div style="border-bottom: 1px solid rgb(218,221,226); width: auto">
+            <h3 style="margin: 0">
+                Registration Details</h3>
+        </div>
+        @*<input type="hidden" id="hdnTimeZone" name="hdnTimeZone" />*@
+        @Html.HiddenFor(model => model.Timezone, new { id = "hdnTimeZone", name = "hdnTimeZone" })
+        <div style="width: 80%; margin-top: 10px">
+            <div>
+                @Html.TextBoxFor(model => model.DOB, new { @placeholder = "Your date of birth", title = "MM/DD/YYYY", @class = "logintxts1", pattern = @"(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d", id = "Regdate", style = "width:97% !important" })
+                @Html.ValidationMessageFor(model => model.DOB)
+            </div>
+            @*style="margin-left: 3%; width: 90%;" style="margin: 0 0 0 10px;"*@ @*<li class="labelnormal" style="margin: 6px 2px 20px; padding: 0 0 0 10px">@Html.RadioButtonFor(model => model.Gender, "male", new { @checked = "checked" })&nbsp;
+            Male &nbsp;&nbsp
+            @Html.RadioButtonFor(model => model.Gender, "female")&nbsp; Female</li>*@
+            <div>
+                @Html.DropDownListFor(model => model.Country, Countries, new { @class = "Reg_Details_select1", style = "width:101% !important" })
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.Pincode, new { @placeholder = "Pin/Zip Code", title = "Your area Pin/Zip Code", @class = "logintxts1", id = "zipcode", style = "width:97% !important" })
+                @Html.ValidationMessageFor(model => model.Pincode)
+            </div>
+            @*<li class="labelnormal" style="margin: 6px 2px; padding: 0 0 0 10px">Subscription type:</li>
+            <li style="margin: 6px 2px; padding: 0 0 0 10px; width: 400px">@Html.DropDownListFor(model => model.SubscriptionType, Stypes, new { @class = "Reg_Details_select1", style = "width:100% !important" })</li>
+            <li onchange="change()" id="tryit" style="margin: 6px 2px; padding: 0 0 0 10px">@Html.CheckBoxFor(model => model.TryIt)
+                &nbsp; Try it</li>*@ @*<li style="margin: 6px 2px; padding: 0 0 0 10px">
+                <div id="id1" style="display: inline-block; padding: 0px; color: rgb(89,89,89); font-size: 12px;">
+                    <div style="float: left;">
+                        <input type="checkbox" onchange="change1()" />&nbsp; Promotional code
+                    </div>*@ @*<div id="id2" @*style="display: inline-block; width: 50%; margin: -10px 0 0 0; height: 28px;">@*
+        @* @( @Html.TextBoxFor(model => model.PromoCodeValue, new { @placeholder = "Promotional code", id = "RegUser_PromoCodeValue", @class = "logintxts1", style = "display:none;width:100% !important" })@*
+                    @*</div>*@ @*  </div>
+            </li>*@ What is your due date? choose one method :
+            <div>
+                @Html.DropDownListFor(model => model.duemethod, duedatetypes, new { @id = "duedatedrop", @class = "Reg_Details_select1", style = "width:101% " })
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.duedate, new { @placeholder = "MM/DD/YYYY", title = "MM/DD/YYYY", @class = "logintxts1", pattern = @"(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d", id = "duedate", style = "width:97% " })
+                @Html.ValidationMessageFor(model => model.duedate)
+            </div>
+            <div class="row">
+                <div class="span12" style="margin-bottom: 5px">
+                    <label class="radio" style="width: 25%; float: left">
+                        @Html.RadioButtonFor(model => model.UserPlan, "FreeUser", new { @checked = "checked" })
+                        Free user
+                    </label>
+                    @* <label class="radio" style="width: 25%; float: left">
+                    @Html.RadioButtonFor(model => model.UserPlan, "PaidUser") Paid user
+                </label>*@
+                </div>
+                <div class="span2" style="float: left">
+                    <label style="font-size: small; font-weight: bold">
+                        Interests</label>
+                    <div style="width: 100%; font-size: smaller; color: dimgray">
+                        <p>
+                            @Html.CheckBoxFor(model => model.Adventuresports) Adventure sports
+                            @Html.CheckBoxFor(model => model.Gardening) Gardening
+                        </p>
+                        <p>
+                            @Html.CheckBoxFor(model => model.Outdoorsports) Outdoor sports &nbsp;&nbsp;&nbsp;
+                            @Html.CheckBoxFor(model => model.Swimming) Swimming
+                        </p>
+                        <p>
+                            @Html.CheckBoxFor(model => model.Interiordesigning) Interior designing &nbsp;@Html.CheckBoxFor(model => model.Modeling)
+                            Modeling
+                        </p>
+                        <p>
+                            @Html.CheckBoxFor(model => model.Animalcare) Animal Care &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.CheckBoxFor(model => model.Travelling) Travelling
+                        </p>
+                        <p>
+                            @Html.CheckBoxFor(model => model.Yoga) Yoga &nbsp;&nbsp;&nbsp; @Html.CheckBoxFor(model => model.Arts)
+                            Arts &nbsp;&nbsp; @Html.CheckBoxFor(model => model.Pets) Pets
+                        </p>
+                    </div>
+                </div>
+                <div class="span2" style="float: left; margin-bottom: 30px">
+                    <label style="font-size: small; font-weight: bold">
+                        Filters</label>
+                    <div style="width: 100%; font-size: smaller; color: dimgray">
+                        <p>
+                            @Html.CheckBoxFor(model => model.Latepregnancy) Late pregnancy &nbsp;&nbsp; @Html.CheckBoxFor(model => model.Diabetes)
+                            Diabetes
+                        </p>
+                        <p>
+                            @Html.CheckBoxFor(model => model.Earlypregnancy) Early pregnancy &nbsp; @Html.CheckBoxFor(model => model.Thyroid)
+                            Thyroid
+                        </p>
+                        <p>
+                            @Html.CheckBoxFor(model => model.Hypertension) Hypertension &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.CheckBoxFor(model => model.Twins) Twins</p>
+                        <p>
+                            @Html.CheckBoxFor(model => model.Tripplets) Tripplets &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.CheckBoxFor(model => model.Asthma) Asthma</p>
+                    </div>
+                </div>
+                <div class="span1" style="float: left; margin-top: 2px">
+                    <label style="font-size: small; font-weight: bold">
+                        Privacy</label>
+                    <div style="width: 100%; font-size: smaller; color: dimgray">
+                        <label class="radio" style="float: left; padding-left: 0">
+                            @Html.CheckBoxFor(model => model.Privacy)
+                            Yes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input type="button" value="Cancel" class="btn btn-primary" id="cnfrmcancel" />
+            <input id="btnSubmit" type="submit" class="btn btn-primary" value="Bump In" />
+        </div>
+    </div>
+</div>
+@*}*@
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>
+</form>

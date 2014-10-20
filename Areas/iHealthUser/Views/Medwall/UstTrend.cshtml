@@ -1,0 +1,218 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.Vitals.Vitals
+<div style="width:500px; overflow:auto;">
+    <table id="pra">
+        <tbody>
+            <tr>
+                <td style="width: 150px; color: #0088cc; font-size: 13px">
+                    Date
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td style="font-weight: 600; color: Gray; width: 80px;">
+                        @item.dateUST
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Choroid plexus cyst
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.ChoroidPlexusCyst
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Ventriculomegaly
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.Ventriculomegaly
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Echogenic bowel
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.EchogenicBowel
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Head shape
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.HeadShape
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Nuchal pad
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.NuchalPad
+                    </td>
+                }
+            </tr>
+             <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Cysterna magna
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.CysternaMagna
+                    </td>
+                }
+            </tr>
+             <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Cleft lip
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.CleftLip
+                    </td>
+                }
+            </tr>
+             <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Echogenic foci in heart
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.EchogenicFociInHeart
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Dilated renal pelvis
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.DilatedRenalPelvis
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Short femur / humerus
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.ShortFemurOrHumerus
+                    </td>
+                }
+            </tr>
+             <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Talipes
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.Talipes
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Sandal gap
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.SandalGap
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Clinodactyly
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.Clinodactyly
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Clenched hand
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.ClenchedHand
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Two-vessel cord
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.TwoVesselCord
+                    </td>
+                }
+            </tr>
+             <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Maternal age
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.MaternalAge
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td style="color: #0088cc; font-size: 15px">
+                    Nuchal translucency 
+                </td>
+                @foreach (var item in Model.LstUST)
+                {
+                    <td>
+                        @item.USTObservationsXmlFields.NuchalTranslucency
+                    </td>
+                }
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

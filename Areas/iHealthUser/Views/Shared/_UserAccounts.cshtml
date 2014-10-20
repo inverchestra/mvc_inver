@@ -1,0 +1,27 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $("#UserId").change(function () {
+            //debugger;
+
+            //            var hdnUserID = $("#UserDetails option:selected").val();
+            var hdnUserID = $(this).val();
+            $('#hdSelectedID').val(hdnUserID);
+            $('#GroupUsersList').submit();
+        });
+    });
+</script>
+@{ InnDocs.iHealth.Web.UI.Models.UserInformation user = (InnDocs.iHealth.Web.UI.Models.UserInformation)HttpContext.Current.Session["LoginUser"]; }
+@{ InnDocs.iHealth.Web.UI.Models.SingleRegisterModel regUser = (InnDocs.iHealth.Web.UI.Models.SingleRegisterModel)HttpContext.Current.Session["RegUser"]; }
+@*@if (user.IsModerator)
+{
+    if (regUser.IsGroupUser)
+    {
+        var domainid = user.DomainId;
+        using (Html.BeginForm("ChangeUser", "DashBoard", FormMethod.Post, new { id = "GroupUsersList" }))
+        {
+    @Html.Hidden("hdSelectedID")
+    <strong style="color: white; font: normal 14px 'Tauri',sans-serif;">Switch user: @Html.DropDownList("UserDetails", (IEnumerable<SelectListItem>)Session["UsesrList"], new { id = "UserId" })
+    </strong>
+        }
+    }
+}*@

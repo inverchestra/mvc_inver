@@ -1,0 +1,1706 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B3F62AFA-E865-490A-9FBF-06A7F8348A13}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InnDocs.iHealth.Web.UI</RootNamespace>
+    <AssemblyName>InnDocs.iHealth.Web.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\..\..\VITALS\www.bumpdocs.com\BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Pdf">
+      <HintPath>..\..\..\FACEBOOK\facebook by cs\InnDocs.iHealth.Web.UI\bin\Aspose.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="CaptchaMvc">
+      <HintPath>..\..\..\FACEBOOK\facebook by cs\InnDocs.iHealth.Web.UI\bin\CaptchaMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.4.2\lib\net40-client\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\FACEBOOK\facebook by cs\InnDocs.iHealth.Web.UI\bin\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\FACEBOOK\facebook by cs\InnDocs.iHealth.Web.UI\bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.1.4\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.1.4\lib\net40\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.1.4\lib\net40\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.1.0.1\lib\net40\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\..\..\FACEBOOK\facebook by cs\InnDocs.iHealth.Web.UI\bin\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\..\FACEBOOK\facebook by cs\InnDocs.iHealth.Web.UI\bin\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\..\..\FACEBOOK\facebook by cs\InnDocs.iHealth.Web.UI\bin\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Sessiontimeout.cs" />
+    <Compile Include="Areas\DoulaBumpUser\Controllers\DoulaBumpController.cs" />
+    <Compile Include="Areas\DoulaBumpUser\Controllers\DoulaMedwallController.cs" />
+    <Compile Include="Areas\DoulaBumpUser\Controllers\DoulaPersonalController.cs" />
+    <Compile Include="Areas\DoulaBumpUser\Controllers\DoulaTrendsController.cs" />
+    <Compile Include="Areas\DoulaBumpUser\DoulaBumpUserAreaRegistration.cs" />
+    <Compile Include="Areas\HospitalUser\Controllers\HospAdminController.cs" />
+    <Compile Include="Areas\HospitalUser\Controllers\ReportController.cs" />
+    <Compile Include="Areas\HospitalUser\HospitalUserAreaRegistration.cs" />
+    <Compile Include="Areas\HospitalUser\Models\DepartToBranch.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Analysis.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\HospAudit.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Branch.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\CreatePatient.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\CreateUser.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateBranch.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateDepartments.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateDoctors.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateHospitalPersonalInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateHospMedicalInformation.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateHospUserInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateRelationships.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateRolePermissionsInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Create\CreateRolesInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Departments.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Doctors.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditBranch.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditDepartments.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditDoctors.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditHospitalPersonalInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditHospMedicalAndPersonalInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditHospMedicalInformation.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditHospUserInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditPatientToDoctor.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditRelationships.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditRolePermissionsInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Edit\EditRolesInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\GET\GetBranch.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\GET\GetDepartments.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\GET\GetDoctorsInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\GET\GetHospitalinfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\GET\GetHospitalUserInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\HospitalInformation.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\HospitalUser.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\HospMedicalInformation.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\HospPersonalInfo.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\PatientToDoctor.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Relationships.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\RolePermissions.cs" />
+    <Compile Include="Areas\HospitalUser\Models\HospitalOnBoundary\Roles.cs" />
+    <Compile Include="Areas\HospitalUser\Models\ResultDeptList.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\AccountSettingsController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\CasesController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\ChatController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\DoctorController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\HealthDocsController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\HealthLogController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\HealthRecordController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\HealthTrackerController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\MedwallController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\MyDocsController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\OnlinePaymentUpdate.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\PersonalInfoController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\TipsController.cs" />
+    <Compile Include="Areas\iHealthUser\Controllers\TrendsController.cs" />
+    <Compile Include="Areas\iHealthUser\iHealthUserAreaRegistration.cs" />
+    <Compile Include="Areas\iHealthUser\Models\MedicalAndPersonal.cs" />
+    <Compile Include="Areas\iHealthUser\Models\MedicalInformation.cs" />
+    <Compile Include="Areas\iHealthUser\Models\OnlinePayments.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Payments.cs" />
+    <Compile Include="Areas\iHealthUser\Models\PersonalInformation.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\AddUser.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\AlbumsUpload.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Antihiv.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\AuditHistory.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\BloodPicture.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Cases.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\CaseToCase.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\CaseToLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Cbp.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\ChangePassword.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Charts.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Comments.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\ContactUs.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\ContactUsViewModel.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Doctor.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Documents.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\DoulaUser.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Feedback.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Filters.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\GetLogToLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\HealthLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Hepatitisb.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Hospital.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\LogToLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\MedicalSchedules.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\MedicalTests.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\mSchedule.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\MyDocsTree.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\NurseReadings.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\OnlineUsers.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\PostComments.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Procedures.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Questions.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Rbs.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\ResultList.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Schedule.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\SearchFields.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\SerumTest.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Tests.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Tips.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\TipsAndQA.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\TipsandResponse.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\UltraScans.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\UrieneCulture.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\UrienePicture.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\UrinecompPicture.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\User.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\UserHealthLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\UserSymptom.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Vdrl.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserRepository\Visits.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateChart.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateContactInfo.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateMedicalSchedule.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateMedicalTest.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreatePostComment.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateProcedure.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateTests.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateUltraScans.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateUserCase.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateUserLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditChart.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditMedicalSchedule.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditMedicalTest.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditPostComment.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditProcedure.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditTests.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EDitUltraScan.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditUserCases.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditUserLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Edit\EditVisits.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\GetAuditReports.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetCaseTocases.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetCaseToLogs.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetCharts.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\Getdocuments.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetFilters.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetHealthLogs.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetMedicalSchedules.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetMedicalTests.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetPostComments.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetProcedures.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetTests.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetUltraScan.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetUserCases.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Get\GetVisits.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\Create\CreateVisit.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserServiceRepository\UploadFiles.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserUtility\HealthLogToUserLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserUtility\ResultLogList.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserUtility\TipsUtitlity.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserUtility\UserLogToHealthLog.cs" />
+    <Compile Include="Areas\iHealthUser\Models\UserUtility\XmlStringListSerializer.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\BloodTests.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\HeightandWeight.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\CompleteBloodPicture.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\Fhr.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\GetVitals\GetVitals.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\SkinTest.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\STDs.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\UrineTest.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\UST.cs" />
+    <Compile Include="Areas\iHealthUser\Models\Vitals\Vitals.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BumpDocsController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\ChangeNewPasswordController.cs" />
+    <Compile Include="Controllers\ConfirmAccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\Chat.cs" />
+    <Compile Include="Hubs\TestChat.cs" />
+    <Compile Include="Models\Analytic.cs" />
+    <Compile Include="Models\ConfirmSingleRegModel.cs" />
+    <Compile Include="Models\ConfrimAccount.cs" />
+    <Compile Include="Models\DomainServerPath.cs" />
+    <Compile Include="Models\ForgotPassword.cs" />
+    <Compile Include="Models\HospitalInfo.cs" />
+    <Compile Include="Models\HospitalRegisterModel.cs" />
+    <Compile Include="Models\HospitalServiceCals.cs" />
+    <Compile Include="Models\iHealthUser.cs" />
+    <Compile Include="Models\LoginAndSignUp.cs" />
+    <Compile Include="Models\ota.cs" />
+    <Compile Include="Models\RegisteredUser.cs" />
+    <Compile Include="Models\RegisterUser.cs" />
+    <Compile Include="Models\SingleRegisterModel.cs" />
+    <Compile Include="Models\UpdateUserDetails.cs" />
+    <Compile Include="Models\UserInfoandPInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\CryptorEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\campaign.css" />
+    <Content Include="Content\Chat.css" />
+    <Content Include="Content\clockpicker.css" />
+    <Content Include="Content\Feedback.css" />
+    <Content Include="Content\img\12345.jpg" />
+    <Content Include="Content\img\close-group %281%29.png" />
+    <Content Include="Content\img\Email Chat.png" />
+    <Content Include="Content\img\new.png" />
+    <Content Include="Content\img\open-group.png" />
+    <Content Include="Content\img\previous.png" />
+    <Content Include="Content\img\close png.png" />
+    <Content Include="Content\img\confirmationcode.jpg" />
+    <Content Include="Content\img\fbconnect.png" />
+    <Content Include="Content\img\Like Us.png" />
+    <Content Include="Content\img\likeus-new.png" />
+    <Content Include="Content\img\promo.png" />
+    <Content Include="Content\img\sample.jpg" />
+    <Content Include="Content\standalone.css" />
+    <Content Include="css\idangerous.swiper.css" />
+    <Content Include="css\mobile-slider.css" />
+    <Content Include="CustomScripts\mywizard.js" />
+    <Content Include="js\idangerous.swiper-2.1.min.js" />
+    <Content Include="js\jquery-1.10.1.min.js" />
+    <Content Include="js\loopedslider.js" />
+    <Content Include="obj\Debug\InnDocs.iHealth.Web.UI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\InnDocs.iHealth.Web.UI.dll" />
+    <Content Include="obj\Debug\InnDocs.iHealth.Web.UI.pdb" />
+    <Content Include="picture\1.jpg" />
+    <Content Include="picture\android.png" />
+    <Content Include="picture\apple.png" />
+    <Content Include="picture\App_Store.png" />
+    <Content Include="picture\bumpdocs_logo.jpg" />
+    <Content Include="picture\bumpinwithfacebook.png" />
+    <Content Include="picture\cell-1.png" />
+    <Content Include="picture\cell.png" />
+    <Content Include="picture\cell1.png" />
+    <Content Include="picture\cell2.png" />
+    <Content Include="picture\cell3.png" />
+    <Content Include="picture\cell4.png" />
+    <Content Include="picture\cell5.png" />
+    <Content Include="picture\cell6.png" />
+    <Content Include="picture\cell7.png" />
+    <Content Include="picture\cell8.png" />
+    <Content Include="picture\COL1.png" />
+    <Content Include="picture\COL2.png" />
+    <Content Include="picture\COL3.png" />
+    <Content Include="picture\desktop.png" />
+    <Content Include="picture\GooglePlay-Icon.png" />
+    <Content Include="picture\iphone1.png" />
+    <Content Include="picture\iphoneblack-1.png" />
+    <Content Include="picture\iphoneblack.png" />
+    <Content Include="picture\mobile-1.png" />
+    <Content Include="picture\mobile-2.png" />
+    <Content Include="picture\mobile-3.png" />
+    <Content Include="picture\mobile-4.png" />
+    <Content Include="picture\mobile-5.png" />
+    <Content Include="picture\mobile-6.png" />
+    <Content Include="picture\mobile-7.png" />
+    <Content Include="picture\mobile-8.png" />
+    <Content Include="picture\mobile-9.png" />
+    <Content Include="picture\mobile-test.png" />
+    <Content Include="picture\Myinfo-web.png" />
+    <Content Include="picture\Timeline-web.png" />
+    <Content Include="picture\trends-mobile.png" />
+    <Content Include="picture\unnamed.png" />
+    <Content Include="picture\web-network.png" />
+    <Content Include="picture\web.png" />
+    <Content Include="picture\Windows8_Store.png" />
+    <Content Include="picture\with ribbon.jpg" />
+    <Content Include="Scripts\clockpicker.js" />
+    <Content Include="Scripts\fb.js" />
+    <Content Include="Areas\iHealthUser\Views\Chat\AddFilters.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\DayUpload.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\WeekUpload.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GetDays.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GetWeeks.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\Web.config" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaBump\Index.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaBump\_ChangePassword.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaPersonal\DoulaPInfo.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaTrends\Trends.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\AddDoulaUser.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\AnomalyScans.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\AnomalyScanview.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\BloodTestView.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\DoulaVitals.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\EarlyScan.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\EarlyScans.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\EarlyScanView.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GetBloodTests.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GetDays.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GetImagesWeeks.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GetMonths.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GetSeerumTests.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GetUrineTests.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GetWeeks.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GrowthScans.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\GrowthScanview.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\Medwall.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\NtScans.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\NTScanview.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\SerumTestView.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\ShowAllQuestions.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\ShowAllTips.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\TableQuestions.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\TableQuestionsByUserId.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\TableTips.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\TableTipsBYUserId.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\testsNew.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\UnreadQuestByuserId.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\UnreadQuestions.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\UnReadTips.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\UnreadTipsBYUserId.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\UrienePictureView.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\ViewTips.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\VitalsEssentialInfo.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\VitalsFhr.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\VitalsSkinTest.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\VitalsStds.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\_completeBP.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\DoulaMedwall\_ustNew.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\Shared\_DoulaUserLayout.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\DoulaBumpUser\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Administration\AuditHistory.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Administration\GetActiveUsers.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ConfirmAccount.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ConfirmAccount1.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ConfirmAccountByMobile.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ConfirmFacebookAccount.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ConfirmHospRegAccount.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ConfirmHospSubUserAccount.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ConfirmSubUserAccount.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\View1.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\TimeZone.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\NotiFicationTime.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\QResponses1.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\TableQuestions1.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Tips\Index.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Tips\Tip.cshtml" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\InnDocs.iHealth.Web.UI.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <Content Include="Scripts\jquery.signalR-1.1.4.js" />
+    <Content Include="Scripts\jquery.signalR-1.1.4.min.js" />
+    <Content Include="Scripts\jquery.timepicker.js" />
+    <Content Include="UIScripts\chat.js" />
+    <Content Include="UIScripts\Mchat.js" />
+    <Content Include="UIScripts\chatScript.js" />
+    <Content Include="UIScripts\MchatScript.js" />
+    <Content Include="UIScripts\FastulFilter.js" />
+    <Content Include="UIScripts\jquery.filtertable.js" />
+    <Content Include="UIScripts\jquery.tablesorter.js" />
+    <Content Include="UIScripts\other_pagechat.js" />
+    <Content Include="UIScripts\tipnav.js" />
+    <Content Include="UIScripts\tips.js" />
+    <Content Include="weeks\1.jpg" />
+    <Content Include="weeks\10.jpg" />
+    <Content Include="weeks\11.jpg" />
+    <Content Include="weeks\12.jpg" />
+    <Content Include="weeks\13.jpg" />
+    <Content Include="weeks\14.jpg" />
+    <Content Include="weeks\15.jpg" />
+    <Content Include="weeks\16.jpg" />
+    <Content Include="weeks\17.jpg" />
+    <Content Include="weeks\18.jpg" />
+    <Content Include="weeks\19.jpg" />
+    <Content Include="weeks\2.jpg" />
+    <Content Include="weeks\20.jpg" />
+    <Content Include="weeks\21.jpg" />
+    <Content Include="weeks\22.jpg" />
+    <Content Include="weeks\23.jpg" />
+    <Content Include="weeks\24.jpg" />
+    <Content Include="weeks\25.jpg" />
+    <Content Include="weeks\26.jpg" />
+    <Content Include="weeks\27.jpg" />
+    <Content Include="weeks\28.jpg" />
+    <Content Include="weeks\29.jpg" />
+    <Content Include="weeks\3.jpg" />
+    <Content Include="weeks\30.jpg" />
+    <Content Include="weeks\31.jpg" />
+    <Content Include="weeks\32.jpg" />
+    <Content Include="weeks\33.jpg" />
+    <Content Include="weeks\34.jpg" />
+    <Content Include="weeks\35.jpg" />
+    <Content Include="weeks\36.jpg" />
+    <Content Include="weeks\37.jpg" />
+    <Content Include="weeks\38.jpg" />
+    <Content Include="weeks\39.jpg" />
+    <Content Include="weeks\4.jpg" />
+    <Content Include="weeks\40.jpg" />
+    <Content Include="weeks\41.jpg" />
+    <Content Include="weeks\5.jpg" />
+    <Content Include="weeks\6.jpg" />
+    <Content Include="weeks\7.jpg" />
+    <Content Include="weeks\8.jpg" />
+    <Content Include="weeks\9.jpg" />
+    <None Include="App_Code\MvcHelper.cshtml" />
+    <Content Include="CommentImages\11112013110736Hydrangeas.jpg" />
+    <Content Include="CommentImages\11112013110753Tulips.jpg" />
+    <Content Include="Content\1024_BusinessPage.css" />
+    <Content Include="Content\1366Above_BusinessPage.css" />
+    <Content Include="Content\am.css" />
+    <Content Include="Content\basic.css" />
+    <Content Include="Content\basic_ie.css" />
+    <Content Include="Content\1025.css" />
+    <Content Include="Content\800.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\Businesspage1280.css" />
+    <Content Include="Content\BusinessPageStyles.css" />
+    <Content Include="Content\colorbox.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\dd.css" />
+    <Content Include="Content\demo.css" />
+    <Content Include="Content\dropdown.css" />
+    <Content Include="Content\features.css" />
+    <Content Include="Content\gallery.css" />
+    <Content Include="Content\img\1.1N.jpg" />
+    <Content Include="Content\img\1.6N.jpg" />
+    <Content Include="Content\img\1.6N2.png" />
+    <Content Include="Content\img\1.7N.jpg" />
+    <Content Include="Content\img\1.7N.png" />
+    <Content Include="Content\img\1.7N2.jpg" />
+    <Content Include="Content\img\1.png" />
+    <Content Include="Content\img\12.jpg" />
+    <Content Include="Content\img\13.2.jpg" />
+    <Content Include="Content\img\13.224.jpg" />
+    <Content Include="Content\img\13.226.png" />
+    <Content Include="Content\img\134 %281%29.jpg" />
+    <Content Include="Content\img\134.jpg" />
+    <Content Include="Content\img\2 %281%29.jpg" />
+    <Content Include="Content\img\2.jpg" />
+    <Content Include="Content\img\2.png" />
+    <Content Include="Content\img\3 %281%29.jpg" />
+    <Content Include="Content\img\3%281%29.jpg" />
+    <Content Include="Content\img\3.jpg" />
+    <Content Include="Content\img\3.png" />
+    <Content Include="Content\img\3333.jpg" />
+    <Content Include="Content\img\4.png" />
+    <Content Include="Content\img\ac.png" />
+    <Content Include="Content\img\ads banner 250x250.jpg" />
+    <Content Include="Content\img\album.png" />
+    <Content Include="Content\img\Albums1.png" />
+    <Content Include="Content\img\ans.png" />
+    <Content Include="Content\img\app-image.png" />
+    <Content Include="Content\img\app-image1.png" />
+    <Content Include="Content\img\app-image2.png" />
+    <Content Include="Content\img\blank.gif" />
+    <Content Include="Content\img\cp.png" />
+    <Content Include="Content\img\dwn.png" />
+    <Content Include="Content\img\e.info.png" />
+    <Content Include="Content\img\e.jpg" />
+    <Content Include="Content\img\facebook circle.png" />
+    <Content Include="Content\img\facebook-login.png" />
+    <Content Include="Content\img\facebook-widget.png" />
+    <Content Include="Content\img\fancybox_loading%402x.gif" />
+    <Content Include="Content\img\fancybox_loading.gif" />
+    <Content Include="Content\img\fancybox_overlay.png" />
+    <Content Include="Content\img\fancybox_sprite%402x.png" />
+    <Content Include="Content\img\fancybox_sprite.png" />
+    <Content Include="Content\img\fbloginfemaleonly.png" />
+    <Content Include="Content\img\FHR.png" />
+    <Content Include="Content\img\fshare.jpeg" />
+    <Content Include="Content\img\fullscreen_overlay_pattern.png" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\img\healthDocs1.png" />
+    <Content Include="Content\img\HealthRecords1.png" />
+    <Content Include="Content\img\imgmm.jpg" />
+    <Content Include="Content\img\intro.jpg" />
+    <Content Include="Content\img\intro.png" />
+    <Content Include="Content\img\left1.png" />
+    <Content Include="Content\img\linkedin-round.png" />
+    <Content Include="Content\img\linkedin.png" />
+    <Content Include="Content\img\MedWall1.png" />
+    <Content Include="Content\img\mom and baby.jpg" />
+    <Content Include="Content\img\My info1.png" />
+    <Content Include="Content\img\new1.1.png" />
+    <Content Include="Content\img\no photos.jpg" />
+    <Content Include="Content\img\NoImageIcon.jpg" />
+    <Content Include="Content\img\noise.png" />
+    <Content Include="Content\img\pay.png" />
+    <Content Include="Content\img\Personal.png" />
+    <Content Include="Content\img\Questions1.png" />
+    <Content Include="Content\img\right1.png" />
+    <Content Include="Content\img\SkinTest.png" />
+    <Content Include="Content\img\slide-01.jpg" />
+    <Content Include="Content\img\slide-02.jpg" />
+    <Content Include="Content\img\slide-55.jpg" />
+    <Content Include="Content\img\Slider_img1.jpg" />
+    <Content Include="Content\img\Slider_img11.jpg" />
+    <Content Include="Content\img\Slider_img2.jpg" />
+    <Content Include="Content\img\Slider_img22.jpg" />
+    <Content Include="Content\img\Slider_img33.jpg" />
+    <Content Include="Content\img\Slider_img44.jpg" />
+    <Content Include="Content\img\Slider_img55.jpg" />
+    <Content Include="Content\img\small.png" />
+    <Content Include="Content\img\so.png" />
+    <Content Include="Content\img\STD1.png" />
+    <Content Include="Content\img\Thanks for registering.png" />
+    <Content Include="Content\img\time.png" />
+    <Content Include="Content\img\Timeline1.png" />
+    <Content Include="Content\img\Tips1.png" />
+    <Content Include="Content\img\twitter.png" />
+    <Content Include="Content\img\Twitter_circle.png" />
+    <Content Include="Content\img\unnamed.png" />
+    <Content Include="Content\img\vital.png" />
+    <Content Include="Content\img\vitals new.png" />
+    <Content Include="Content\img\Vitals1.png" />
+    <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\landscape.css" />
+    <Content Include="Content\Myinfo-resolution.css" />
+    <Content Include="Content\MyInfo.css" />
+    <Content Include="Content\nivo-slider.css" />
+    <Content Include="Content\plusgallery.css" />
+    <Content Include="Content\portrait.css" />
+    <Content Include="Content\PostColorBox.css" />
+    <Content Include="Content\progress.css" />
+    <Content Include="Content\resolution.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site1.css" />
+    <Content Include="Content\style_v.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\timeline.css" />
+    <Content Include="Content\trend.css" />
+    <Content Include="Content\ui.dropdownchecklist.standalone.css" />
+    <Content Include="Content\uploadify.css" />
+    <Content Include="Content\User.css" />
+    <Content Include="Content\Vitals-tab.css" />
+    <Content Include="CustomScripts\confirmaccount.js" />
+    <Content Include="CustomScripts\createaccount.js" />
+    <Content Include="CustomScripts\createdepartments.js" />
+    <Content Include="CustomScripts\dx.chartjs.debug.js" />
+    <Content Include="CustomScripts\dx.chartjs.js" />
+    <Content Include="CustomScripts\eidtvisits.js" />
+    <Content Include="CustomScripts\Administration.js" />
+    <Content Include="CustomScripts\AdminPCode.js" />
+    <Content Include="CustomScripts\Ajax-chngpwd.js" />
+    <Content Include="CustomScripts\ajax-fns.js" />
+    <Content Include="CustomScripts\ajax-log.js" />
+    <Content Include="CustomScripts\ajax-user-fns.js" />
+    <Content Include="CustomScripts\Case-Edit.js" />
+    <Content Include="CustomScripts\Case-View.js" />
+    <Content Include="CustomScripts\Cases-Delete.js" />
+    <Content Include="CustomScripts\cases-new.js" />
+    <Content Include="CustomScripts\cases-script.js" />
+    <Content Include="CustomScripts\cases-tabs.js" />
+    <Content Include="CustomScripts\cases.js" />
+    <Content Include="CustomScripts\change-pswd.js" />
+    <Content Include="CustomScripts\create-cases.js" />
+    <Content Include="CustomScripts\createvisit.js" />
+    <Content Include="CustomScripts\datepicker.js" />
+    <Content Include="CustomScripts\delete.js" />
+    <Content Include="CustomScripts\documentsview.js" />
+    <Content Include="CustomScripts\dropDown.js" />
+    <Content Include="CustomScripts\dynamic-controls.js" />
+    <Content Include="CustomScripts\edit-cases.js" />
+    <Content Include="CustomScripts\edit-user.js" />
+    <Content Include="CustomScripts\FooterLinks.js" />
+    <Content Include="CustomScripts\Forgotpwd.js" />
+    <Content Include="CustomScripts\globalize.min.js" />
+    <Content Include="CustomScripts\HospAdmin.js" />
+    <Content Include="CustomScripts\jquery-1.4.3.min.js" />
+    <Content Include="CustomScripts\jquery-1.8.3.min.js" />
+    <Content Include="CustomScripts\jquery-1.9.1.min.js" />
+    <Content Include="CustomScripts\jquery.fancybox.js" />
+    <Content Include="CustomScripts\jquery.fancybox.pack.js" />
+    <Content Include="CustomScripts\jquery.nivo.slider.js" />
+    <Content Include="CustomScripts\jquery.nivo.slider.pack.js" />
+    <Content Include="CustomScripts\knockout-2.2.1.js" />
+    <Content Include="CustomScripts\Mobilevalidation.js" />
+    <Content Include="CustomScripts\PAcc-User.js" />
+    <Content Include="CustomScripts\script.js" />
+    <Content Include="CustomScripts\ShowAllDoctors.js" />
+    <Content Include="CustomScripts\ShowAllPatients.js" />
+    <Content Include="CustomScripts\tabs.js" />
+    <Content Include="CustomScripts\timeline.js" />
+    <Content Include="CustomScripts\updatevisits.js" />
+    <Content Include="icon-bumdocs.ico" />
+    <Content Include="Images\1386158579_print.png" />
+    <Content Include="Images\404.jpg" />
+    <Content Include="Images\45.gif" />
+    <Content Include="Images\add2.png" />
+    <Content Include="Images\add_icon.png" />
+    <Content Include="Images\admin_icon.png" />
+    <Content Include="Images\ads banner 250x250.jpg" />
+    <Content Include="Images\american-express.png" />
+    <Content Include="Images\arrows.png" />
+    <Content Include="Images\background3.jpg" />
+    <Content Include="Images\BikeRides.jpg" />
+    <Content Include="Images\blankImg.png" />
+    <Content Include="Images\bloodtest-icon.png" />
+    <Content Include="Images\border.png" />
+    <Content Include="Images\brushed.png" />
+    <Content Include="Images\bullets.png" />
+    <Content Include="Images\Cards.png" />
+    <Content Include="Images\changepw.png" />
+    <Content Include="Images\controls.png" />
+    <Content Include="Images\dd_arrow.gif" />
+    <Content Include="Images\devider.jpg" />
+    <Content Include="Images\devider.png" />
+    <Content Include="Images\devider_btm.png" />
+    <Content Include="Images\DiscoverCard.png" />
+    <Content Include="Images\dot.gif" />
+    <Content Include="Images\dot.png" />
+    <Content Include="Images\download.gif" />
+    <Content Include="Images\Error Page.jpg" />
+    <Content Include="Images\feedback-tab.png" />
+    <Content Include="Images\Feedback.png" />
+    <Content Include="Images\flogin.png" />
+    <Content Include="Images\folder.png" />
+    <Content Include="Images\foldericon.png" />
+    <Content Include="Images\Footer_bg.jpg" />
+    <Content Include="Images\full-banner-468x60.jpg" />
+    <Content Include="Images\gray_jean.png" />
+    <Content Include="Images\grid_header.png" />
+    <Content Include="Images\grid_Icons.png" />
+    <Content Include="Images\Header1_bg.jpg" />
+    <Content Include="Images\Header_bg.jpg" />
+    <Content Include="Images\Header_bg.png" />
+    <Content Include="Images\health records.png" />
+    <Content Include="Images\healthtracker icon.png" />
+    <Content Include="Images\hearttest-icon.png" />
+    <Content Include="Images\height-icon.png" />
+    <Content Include="Images\Icons.png" />
+    <Content Include="Images\inndocs4.png" />
+    <Content Include="Images\left-arrow.png" />
+    <Content Include="Images\loader.gif" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\loading_background.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\Logo_medlogs.png" />
+    <Content Include="Images\Mastercard.png" />
+    <Content Include="Images\medlogs.png" />
+    <Content Include="Images\medlogsnew.png" />
+    <Content Include="Images\Medlogx1.png" />
+    <Content Include="Images\Medlogx2.png" />
+    <Content Include="Images\new-blue1.png" />
+    <Content Include="Images\new-blue2.png" />
+    <Content Include="Images\next_page.png" />
+    <Content Include="Images\overlay.png" />
+    <Content Include="Images\password.png" />
+    <Content Include="Images\pdf.png" />
+    <Content Include="Images\PhoneEmailFax.png" />
+    <Content Include="Images\read.png" />
+    <Content Include="Images\readmore.png" />
+    <Content Include="Images\readmsg.png" />
+    <Content Include="Images\right-arrow.png" />
+    <Content Include="Images\Right_menu_item.png" />
+    <Content Include="Images\Right_pannel_Icons.png" />
+    <Content Include="Images\setting.png" />
+    <Content Include="Images\SignUp.png" />
+    <Content Include="Images\sign_in.png" />
+    <Content Include="Images\skin test icon.jpg" />
+    <Content Include="Images\Slider_img1.jpg" />
+    <Content Include="Images\Slider_img1_1024.jpg" />
+    <Content Include="Images\Slider_img2.jpg" />
+    <Content Include="Images\Slider_img2_1024.jpg" />
+    <Content Include="Images\Slider_img3.png" />
+    <Content Include="Images\Slider_img3_1024.jpg" />
+    <Content Include="Images\smallprint_icon1.jpg" />
+    <Content Include="Images\socialNetworkIcons.png" />
+    <Content Include="Images\STD-icon.png" />
+    <Content Include="Images\textbx_bg.jpg" />
+    <Content Include="Images\timeline-dots.png" />
+    <Content Include="Images\txt_bx.png" />
+    <Content Include="Images\txt_search.jpg" />
+    <Content Include="Images\ultrasound-icon.png" />
+    <Content Include="Images\unread-1.png" />
+    <Content Include="Images\unread-2.png" />
+    <Content Include="Images\unreadmsg.png" />
+    <Content Include="Images\urinetest-icon.png" />
+    <Content Include="Images\UserAccountSetupIcon.png" />
+    <Content Include="Images\view.png" />
+    <Content Include="Images\Visacard.png" />
+    <Content Include="Images\zoomIcon.png" />
+    <Content Include="Scripts\bootstrap-carousel.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\html5shiv.js" />
+    <Content Include="CustomScripts\inndocsscript.js" />
+    <Content Include="CustomScripts\mylogs-script.js" />
+    <Content Include="CustomScripts\personal-account.js" />
+    <Content Include="CustomScripts\selected-tab.js" />
+    <Content Include="CustomScripts\table-paging.js" />
+    <Content Include="CustomScripts\table-toggle.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\add.png" />
+    <Content Include="Images\btmdiv.jpg" />
+    <Content Include="Images\businesssolutions.png" />
+    <Content Include="Images\close-btn.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\dashboard.png" />
+    <Content Include="Images\default-user.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\delete1.png" />
+    <Content Include="Images\downloadicon.png" />
+    <Content Include="Images\dummyface.png" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\Facebook.png" />
+    <Content Include="Images\FacebookT.png" />
+    <Content Include="Images\favoriteicolorcon.png" />
+    <Content Include="Images\favoriteicon.png" />
+    <Content Include="Images\healthrecordicon.png" />
+    <Content Include="Images\healthrecords.png" />
+    <Content Include="Images\healthtrackericon.png" />
+    <Content Include="Images\InnDocs.png" />
+    <Content Include="Images\inndocs2.png" />
+    <Content Include="Images\inndocs3.png" />
+    <Content Include="Images\inndocsbckgrnd.jpg" />
+    <Content Include="Images\LinkedIn.png" />
+    <Content Include="Images\LinkedInT.png" />
+    <Content Include="Images\loginbckgrnd.png" />
+    <Content Include="Images\logout.png" />
+    <Content Include="Images\midhead.jpg" />
+    <Content Include="Images\myinfoicon.png" />
+    <Content Include="Images\notificationicon.png" />
+    <Content Include="Images\print.png" />
+    <Content Include="Images\printicon.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\searchicon.png" />
+    <Content Include="Images\searchiconT.png" />
+    <Content Include="Images\share.png" />
+    <Content Include="Images\shareicon.png" />
+    <Content Include="Images\Skype.png" />
+    <Content Include="Images\SkypeT.png" />
+    <Content Include="Images\tickericon.png" />
+    <Content Include="Images\tophead.jpg" />
+    <Content Include="Images\twitter-bird-dark-bgsT.png" />
+    <Content Include="Images\twitter-bird-light-bgsT.png" />
+    <Content Include="Images\twitter-bird.png" />
+    <Content Include="Images\uploadify-cancel.png" />
+    <Content Include="Images\YouTube.png" />
+    <Content Include="Images\YouTubeT.png" />
+    <Content Include="Scripts\fileDownload.js" />
+    <Content Include="Scripts\html5validation.js" />
+    <Content Include="Scripts\jquery-1.2.6.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jQuery-block-ui.js" />
+    <Content Include="Scripts\jquery-json.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery-ui-1.9.2.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery.autocomplete.js" />
+    <Content Include="Scripts\jquery.autocomplete.min.js" />
+    <Content Include="Scripts\jquery.autocomplete.pack.js" />
+    <Content Include="Scripts\jquery.colorbox.js" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
+    <Content Include="Scripts\jquery.nivo.slider.pack.js" />
+    <Content Include="Scripts\jquery.simplemodal.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.updnWatermark.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.watermark.min.js" />
+    <Content Include="Scripts\jQueryUI.js" />
+    <Content Include="Scripts\jui.js" />
+    <Content Include="Scripts\jui1.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\maps.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\ui.dropdownchecklist-1.4-min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="UIScripts\control.js" />
+    <Content Include="UIScripts\functions.js" />
+    <Content Include="Views\Home\NewHome.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\TableTipsBYUserId.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\TableQuestionsByUserId.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\UnReadTips.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\UnreadTipsBYUserId.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\UnreadQuestions.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\UnreadQuestByuserId.cshtml" />
+    <Content Include="App_Code\Timeline.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\SelectScan.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\EarlyScan.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\EarlyScanView.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\UnreadQuestionsBYUserId.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\VitalsNew2.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\VitalsFhr.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\VitalsSkinTest.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\VitalsStds.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\VitalsEssentialInfo.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\VitalsNew.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\EarlyScans.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\NTScans.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\AnomalyScans.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GrowthScans.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GetBloodTests.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GetUrineTests.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\SelectTest.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GetSeerumTests.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\SerumTest.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\SerumTestView.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Trends\Trends.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\AddComplUrine.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\AnamolyScan.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\AnomalyScanview.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\BloodTestView.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\CBPView.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GrowthScan.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\GrowthScanview.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\NTScan.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\NTScanview.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\testsNew.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\UrienePictureView.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Medwall\_ustNew.cshtml" />
+    <Content Include="Views\Home\code.cshtml" />
+    <Content Include="Views\Home\NewPassword.cshtml" />
+    <Content Include="Views\Home\Password.cshtml" />
+    <Content Include="Views\Campaign\Index.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Chat\Index.cshtml" />
+    <Content Include="Views\Home\terms.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\DoulaBumpUser\Models\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Home.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Shared\_Register.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\DashBoard\DashBoard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\PersonalInfo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_UserAccounts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthLog\CreateNewLog.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\HealthLog\EditLog.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\HealthLog\MyLogs.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\HealthLog\ViewLog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\AddUser_old.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\EditUser.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\ModeratorAccountSettings.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\UserAccountSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_Sidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\PersonalInfo\PInfo1.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\PersonalInfo\PInfo2.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\PersonalInfo\PInfo3.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\PersonalInfo\PInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthRecord\CreateCase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthDocs\MyDocs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthRecord\Cases.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthLog\AddSymptom.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthRecord\MyAllCases.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthRecord\ViewCase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthRecord\EditViewCase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthRecord\ViewDocument.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\Cases.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\EditCase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\UpdateProcedure.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\UpdateMedicalTest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\UpdateVisit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\MedicalScheduleList.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\MedicalTestList.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\ProcedureList.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\VisitList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\CreateMedicalSchedules.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\CreateMedicalTests.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\CreateProcedures.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\UpdateMedicalSchedule_old.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\HandDinfo.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\ScheduleInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\AddMedicalSchedules.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\AddMedicalTests.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\AddVisits.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\ViewDocument.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\CreateCase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\CaseView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\EditMedicalSchedule_old.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\EditMTests.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\EditProcedures.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\EditVisits.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\Error404.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\CustomError.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ForgotPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\ConfirmAccount1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\CreateVisits.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\UpdateVisitView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\CreateCharts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\EditCharts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\ChartList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\AllAuditReports.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\UserAdministration.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\CreateUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\EditUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\UserManagement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Payment\Payment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Payment\Confirmpayment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthDocs\GetSearchedDocs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\TreeViewCases2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\Prescription_old.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\TreeViewCases.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\PCode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\CreatePromoCode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\EditPromoCode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthDocs\GetProcedureDocuments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ChangeNewPassword\ChangeNewPassword1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\UpdateCharts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\AddCharts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\Audit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_iHealthUserLayout.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Shared\_Table.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Shared\_TableCase.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\feedback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\feedback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\_ChangePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\MyDocs\Charts.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\MyDocs\ChartsUploadDocument.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\MyDocs\MedicalTests.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\MyDocs\MedTestUploadDocument.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\MyDocs\MyDocs.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\MyDocs\Procedures.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\MyDocs\UploadDocument.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\AddUser_sandeep.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\MyDocs\MedicationsUploadDocument.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\MyDocs\Medications.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\PaymentForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\EditMedicalSchedule.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\Prescription.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\UpdateMedicalSchedule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Blog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Careers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Contactus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\DocumentViewer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Pricing.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Services.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\FContactus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\MFContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\MFHome.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\MFServices.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\MFSupport.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthLog\ViewLogToLog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\ConfirmSubUserAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\PrintSelection.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Cases\ViewPrintDown.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Select.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\SingleRegister.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\HospitalRegister.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\AddDepttoBranch.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\AddDoctortoDept.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\Branch.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\CreateBranchInfo.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\CreateUser.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\HospitalInfo.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\ShowAllDepartments.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\ShowAllDoctors.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\ShowAllPatient.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\TableBranches.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\TableDepartments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\Shared\_HospitalUserLayout.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\Shared\_Login.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\Shared\_Sidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\ConfirmHospSubUserAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\AddPatientToDoctor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\EditHospitalUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_DoctorLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Shared\_DoctorHeader.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Doctor\DoctorInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\HospitalInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\EditHospUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\DoctorInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\Report\HospitalIo.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\Report\HospitalReg.cshtml" />
+    <Content Include="Areas\HospitalUser\Views\Report\UserReports.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ResendOtaCode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\ConfirmAccountByMobile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Administration\AdminSelect.cshtml" />
+    <Content Include="Areas\iHealthUser\Views\Administration\AdminSingleRegister.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\ConfirmHospRegAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\AddUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\EditUserInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\VerifyPhone.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\PaymentManagement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\_AutoRecharge.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\_BillingInformation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\_PaymentDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\_PurchaseHistory.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\ShowAllBranches.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\CreateBranch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\UpdateBranch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\CreateDepartments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\UpdateDepartment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\CreateDoctor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\SearchPatient.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HospitalUser\Views\HospAdmin\AssignDepertment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\OnlinePaymentUpdate\UpdatePayment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\View1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\VerifyEmail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\AddEmail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\AddMobileNumber.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BumpDocs\ConfirmAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BumpDocs\View1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Cases\SubscribeNow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\MyDocs\SubscribeNow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\HealthLog\MedWall.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\Medwall.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\TablePosts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\ConfirmFacebookAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\GetMonths.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\GetImagesWeeks.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\ShowAllTips.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\TableTips.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\ViewTips.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\ShowAllQuestions.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\ViewQuestion.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\TableQuestions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\QResponses.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\Vitals.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\_completeBP.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\_fHR.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\_heightAndWeight.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\_skinTest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\_sTDs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\_urineTest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\CompleteBPEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\FhrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\HnWEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\SkinTestEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\STDsEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\UrineTestEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\UstAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\WeightTrend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\SkinTestTrend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\UrineTestTrend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\STDsTrend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\UstTrend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\_uST.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Common_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Signup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\common.cshtml" />
+    <Content Include="Views\Home\Confirm_OTAcode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ConfirmAccount\ConfirmAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\FBAccount.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\AddBloodTestPopup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\Medwall\BloodTestsTrend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ChangeNewPassword\ChangeNewPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\iHealthUser\Views\AccountSettings\VerifyEmail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ErrorMessage.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

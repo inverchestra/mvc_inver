@@ -1,0 +1,41 @@
+﻿@model PagedList.IPagedList<InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.Departments>
+@{
+    ViewBag.Title = "ShowAllDepartments";
+}
+
+@Scripts.Render("~/bundles/CreateDepartment")
+<h2>
+    DepartmentsInfo</h2>
+<div style="width: 100%; display: inline-block">
+    <ul>
+ 
+        <li>
+            <input type="button" name="btnAddDept" value="Create Department" title="Click to Submit"
+                class="greengrad" style="float: right; margin-right: 25px; width: 140px" /></li>
+     @*   <li>
+            <input type="button" name="btnDeleteDepartment" value="Delete Department" title="Click to Submit"
+                class="greengrad" style="float: right; margin-right: 25px; width: 130px" /></li>
+        <li>
+            <input type="button" name="btnUpdateDept" value="Update Department" title="Click to Submit"
+                class="greengrad" style="float: right; margin-right: 25px; width: 130px" /></li>*@
+    </ul>
+</div>
+<div class="PAccount">
+    <table id="user" style="width: 100%">
+        <thead style="background-image: -ms-linear-gradient(top, #6A6A6A 0%, #000000 300%);
+            height: 26px; background-image: -moz-linear-gradient(top, #6A6A6A 0%, #000000 300%);
+            background-image: -o-linear-gradient(top, #6A6A6A 0%, #000000 300%); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #6A6A6A), color-stop(3, #000000));
+            background-image: -webkit-linear-gradient(top, #6A6A6A 0%, #000000 300%); background-image: linear-gradient(to bottom, #6A6A6A 0%, #000000 300%);
+            color: white; font-size: 14px;">
+            <tr>
+               
+            </tr>
+        </thead>
+    </table>
+    @if (Model != null)
+    {
+        <div id="branchdiv" style="display: block; height: 360px; overflow: auto;">
+            @RenderPage("~/Areas/HospitalUser/Views/HospAdmin/TableDepartments.cshtml", new { Values = Model })
+        </div>
+    }
+</div>

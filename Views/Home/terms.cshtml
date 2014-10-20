@@ -1,0 +1,299 @@
+﻿@{
+    ViewBag.Title = "terms";
+    Layout = null;
+}
+
+<link href="~/Content/user.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="~/css/mobile-slider.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Site1.css" rel="stylesheet" type="text/css" />
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('ul.nav>li>a, p.pull-right>a').on('click', function (e) {
+            e.preventDefault();
+            var target = $(this).attr('href');
+
+            $('html,body').animate({
+                scrollTop: (parseInt($(target).offset().top, 10) - 50).toString()
+            }, 700);
+        });
+    });
+</script>
+
+<div class="navbar-wrapper">
+    <div class="container">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="~/home/home">
+                    <img src="~/picture/bumpdocs_logo.jpg" height="24" width="24" class="logo_img" />BumpDocs</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class=""><a href="#terms">Terms of Use</a></li>
+                        @*<li><a href="#about">About</a></li>*@
+                        <li><a href="#policy">Privacy Policy</a></li>
+                        <li><a href="#rules">Rules</a></li>
+                    </ul>
+                </div>
+                <div class="text-right social_head">
+                    <a class="facebook" href="http://www.facebook.com/bumpdocs" target="_blank" title="Facebook">
+                        <img src="~/Content/img/facebook circle.png" height="26px" width="26px" /></a>
+                    <a class="linkedin" href="http://www.linkedin.com/company/1164512" title="LinkedIn"
+                        target="_blank">
+                        <img src="~/Content/img/linkedin-round.png" height="26px" width="26px" /></a>
+                    <a class="twitter" href="https://twitter.com/bumpdocs" title="Twitter" target="_blank">
+                        <img src="~/Content/img/twitter_circle.png" height="23px" width="23px" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="terms" style="margin-top: 60px">
+
+        <p class="title" style="font-weight: bold">Terms of Use</p>
+
+        <p class="paragraph">These Terms of Service ("Terms") govern your access to and use of BumpDocs, including any BumpDocs mobile applications and websites (the "Services"), and any videos, information, text, graphics, photos or other materials uploaded, downloaded or appearing on the Services (collectively referred to as "Content"). Your access to and use of the Services is conditioned on your acceptance of and compliance with these Terms. By accessing or using the Services you agree to be bound by these Terms.</p>
+
+        <p class="heading">1. Basic Terms</p>
+
+        <p class="paragraph">You are responsible for your use of the Services, for any Content you post to the Services, and for any consequences thereof. The Content you submit, post, or display will not be able to be viewed by other users of the Services and through third party services and websites. You can provide any Content that you are comfortable sharing with yourself and your doula under these Terms.</p>
+
+        <p class="paragraph">You may use the Services only if you can form a binding contract with BumpDocs and are not a person barred from receiving services under the laws of applicable jurisdiction. If you are accepting these Terms and using the Services on behalf of a company, organization, government, or other legal entity, you represent and warrant that you are authorized to do so. You may use the Services only in compliance with these Terms and all applicable local, state, national, and international laws, rules and regulations.</p>
+
+        <p class="paragraph">The Services that BumpDocs provides are always evolving and the form and nature of the Services that BumpDocs provisions may change from time to time without prior notice to you. In addition, BumpDocs may stop (permanently or temporarily) providing the Services (or any features within the Services) to you or to users generally and may not be able to provide you with prior notice. We also retain the right to create limits on use and storage at our sole discretion at any time without prior notice to you.</p>
+
+        <p class="paragraph">The Services may include advertisements, which may be targeted to the Content or information on the Services, queries made through the Services, or other information. The types and extent of advertising by BumpDocs on the Services are subject to change. In consideration for BumpDocs granting you access to and use of the Services, you agree that BumpDocs and its parent, third party providers and partners may place such advertising on the Services or in connection with the display of Content or information from the Services whether submitted by you or others.</p>
+
+        <p class="heading">2. Privacy</p>
+
+        <p class="paragraph">Any information that you provide to BumpDocs is subject to our Privacy Policy, which governs our collection and use of your information. You understand that through your use of the Services you consent to the collection and use (as set forth in the Privacy Policy) of this information, including the transfer of this information to the United States and/or other countries for storage, processing and use by BumpDocs. As part of providing you the Services, we may need to provide you with certain communications, such as service announcements and administrative messages. These communications are considered part of the Services and your BumpDocs account, which you may not be able to opt-out from receiving.</p>
+
+        <p class="heading">3. Passwords</p>
+
+        <p class="paragraph">You are responsible for safeguarding the password or credentials that you use to access the Services and for any activities or actions under your account. We encourage you to use "strong" passwords (passwords that use a combination of upper and lower case letters, numbers and symbols) with your account and with other accounts that you may connect to your BumpDocs account (such as Facebook or your email). BumpDocs cannot and will not be liable for any loss or damage arising from your failure to comply with the above requirements.</p>
+
+        <p class="heading">4. Content on the Services</p>
+
+        <p class="paragraph">All Content, whether publicly posted or privately transmitted, is the sole responsibility of the person who originated such Content. We may, but are not required to monitor or control the Content posted via the Services and we cannot take responsibility for such Content. Any use or reliance on any Content or materials posted via the Services or obtained by you through the Services is at your own risk.</p>
+
+        <p class="paragraph">We do not endorse, support, represent or guarantee the completeness, truthfulness, accuracy, or reliability of any Content or communications posted via the Services or endorse any opinions expressed via the Services. You understand that by using the Services, you may be exposed to Content that might be offensive, harmful, inaccurate or otherwise inappropriate, or in some cases, postings that have been mislabeled or are otherwise deceptive. Under no circumstances will BumpDocs be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the Services or broadcast elsewhere.</p>
+
+        <p class="heading">5. Your Rights</p>
+
+        <p class="paragraph">You retain your rights to any Content you submit, post or display on or through the Services. In order to make the Services available to you and other users, BumpDocs needs a license from you. By submitting, posting or displaying Content on or through the Services, you grant us a worldwide, non-exclusive, royalty-free license (with the right to sublicense) to use, copy, reproduce, process, adapt, modify, publish, transmit, display and distribute such Content in any and all media or distribution methods (now known or later developed).</p>
+
+        <p class="paragraph">You agree that this license includes the right for BumpDocs to provide, promote, and improve the Services and to make Content submitted to or through the Services available to other companies, organizations or individuals who partner with BumpDocs for the syndication, broadcast, distribution or publication of such Content on other media and services, subject to our terms and conditions for such Content use. Such additional uses by BumpDocs, or other companies, organizations or individuals who partner with BumpDocs, may be made with no compensation paid to you with respect to the Content that you submit, post, transmit or otherwise make available through the Services.</p>
+
+        <p class="paragraph">We may not modify or adapt your Content in order to transmit, display or distribute it over computer networks and in various media and/or make changes to your Content as are necessary to conform and adapt that Content to any requirements or limitations of any networks, devices, services or media. For example, if you choose to share a video through your connected Facebook account, we will not adapt your Content so that it can be attached to a post in our connections.</p>
+
+        <p class="paragraph">You are responsible for your use of the Services, for any Content you provide, and for any consequences thereof, including the use of your Content by other users and our third party partners. You understand that your Content may be syndicated, broadcast, distributed, or published by our partners and if you do not have the right to submit Content for such use, it may subject you to liability. BumpDocs will not be responsible or liable for any use of your Content by BumpDocs in accordance with these Terms. You represent and warrant that you have all the rights, power and authority necessary to grant the rights granted herein to any Content that you submit.</p>
+
+        <p class="heading">6. Your License to Use the Services</p>
+
+        <p class="paragraph">BumpDocs gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software that is provided to you by BumpDocs as part of the Services. This license is for the sole purpose of enabling you to use and enjoy the benefit of the Services as provided by BumpDocs, in the manner permitted by these Terms.</p>
+
+        <p class="heading">7. BumpDocs Rights</p>
+
+        <p class="paragraph">All right, title, and interest in and to the Services (excluding Content provided by users) are and will remain the exclusive property of BumpDocs and its licensors. The Services are protected by copyright, trademark, and other laws of both the United States and foreign countries. BumpDocs reserves all rights not expressly granted in these Terms. You acknowledge and agree that any feedback, comments, or suggestions you may provide regarding BumpDocs, or the Services is entirely voluntary and we will be free to use such feedback, comments or suggestions as we see fit and without any obligation to you.</p>
+
+        <p class="heading">8. Restrictions on Content and Use of the Services</p>
+
+        <p class="paragraph">We reserve the right at all times (but will not have an obligation) to remove or refuse to distribute any Content on the Services and to suspend terminate users or reclaim usernames and profile URLs without liability to you. You may not post Content that:</p>
+
+        <p class="paragraph">
+            &#10004;	Impersonates another person or entity in a manner that does or is intended to mislead, confuse, or deceive others;<br />
+            &#10004;	Violates the rights of a third party, including copyright, trademark, privacy, and publicity rights.<br />
+            &#10004;	Is a direct and specific threat of violence to others;<br />
+            &#10004;	Is pornographic or sexually explicit;<br />
+            &#10004;	Is furtherance of illegal activities; or<br />
+            &#10004;	Is harassing, abusive, or constitutes spam.
+        </p>
+
+        <p class="paragraph">
+            The BumpDocs Rules (which are part of these Terms) further detail what is prohibited on the Service.<br />
+            We also reserve the right to access, read, preserve, and disclose any information as we reasonably believe is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce the Terms, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect the rights, property or safety of BumpDocs, its users and the public. BumpDocs does not disclose personally identifying information to third parties except in accordance with our Privacy Policy.
+        </p>
+
+        <p class="paragraph">You may not do any of the following while accessing or using the Services: (i) access, tamper with, or use non-public areas of the Services, BumpDocs's computer systems, or the technical delivery systems of BumpDocs's providers; (ii) probe, scan, or test the vulnerability of any system or network or breach or circumvent any security or authentication measures; (iii) access or search or attempt to access or search the Services by any means (automated or otherwise) other than through our currently available, published interfaces that are provided by BumpDocs (and only pursuant to those terms and conditions), unless you have been specifically allowed to do so in a separate agreement with BumpDocs (NOTE: crawling the Services is permissible if done in accordance with the provisions of the robots.txt file, however, scraping the Services without the prior consent of BumpDocs is expressly prohibited); (iv) forge any TCP/IP packet header or any part of the header information in any email or posting, or in any way use the Services to send altered, deceptive or false source-identifying information; or (v) interfere with, or disrupt, (or attempt to do so), the access of any user, host or network, including, without limitation, sending a virus, overloading, flooding, spamming, mail-bombing the Services, or by scripting the creation of Content in such a manner as to interfere with or create an undue burden on the Services.</p>
+
+        <p class="heading">9. Copyright Policy</p>
+
+        <p class="paragraph">BumpDocs respects the intellectual property rights of others and expects users of the Services to do the same. We will respond to notices of alleged copyright infringement that comply with applicable law and are properly provided to us. If you believe that your Content has been copied in a way that constitutes copyright infringement, please provide us with the following information: (i) a physical or electronic signature of the copyright owner or a person authorized to act on their behalf; (ii) identification of the copyrighted work claimed to have been infringed; (iii) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material; (iv) your contact information, including your address, telephone number, and an email address; (v) a statement by you that you have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and (vi) a statement that the information in the notification is accurate, and, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.</p>
+
+        <p class="paragraph">
+            We reserve the right to remove Content alleged to be infringing without prior notice and at our sole discretion. In appropriate circumstances, BumpDocs will also terminate a user's account if the user is determined to be a repeat infringer. Our designated copyright agent for notice of alleged copyright infringement appearing on the Services is:<br />
+            <i>Copyright Agent - BumpDocs</i><br />
+            <i>Email: copyright@BumpDocs.com</i>
+        </p>
+
+        <p class="heading">10. Ending These Terms</p>
+
+        <p class="paragraph">
+            The Terms will continue to apply until terminated by either you or BumpDocs as follows.<br />
+            You may end your legal agreement with BumpDocs at any time for any reason by deactivating your accounts and discontinuing your use of the Services.
+        </p>
+
+        <p class="paragraph">We may suspend or terminate your accounts or cease providing you with all or part of the Services at any time for any reason, including, but not limited to, if we reasonably believe: (i) you have violated these Terms, (ii) you create risk or possible legal exposure for us; or (iii) our provision of the Services to you is no longer commercially viable. We will make reasonable efforts to notify you by the email address associated with your account or through the Services the next time you attempt to access your account.</p>
+
+        <p class="paragraph">In all such cases, the Terms shall terminate, including, without limitation, your license to use the Services, except that the following sections shall continue to apply: 4, 5, 7, 8, 10, 11, and 12.</p>
+
+        <p class="paragraph">Nothing in this section shall affect BumpDocs's rights to change, limit or stop the provision of the Services without prior notice, as provided above in section 1.</p>
+
+        <p class="heading">11.Disclaimers and Limitations of Liability</p>
+
+        <p class="paragraph">Please read this section carefully since it limits the liability of BumpDocs and its parents, subsidiaries, affiliates, related companies, officers, directors, employees, agents, representatives, partners, and licensors (collectively, the "BumpDocs Entities"). Each of the subsections below only applies up to the maximum extent permitted under applicable law. Some jurisdictions do not allow the disclaimer of implied warranties or the limitation of liability in contracts, and as a result the contents of this section may not apply to you. Nothing in this section is intended to limit any rights you may have which may not be lawfully limited.</p>
+
+        <p class="sideheading">A. The Services are Available "AS-IS"</p>
+
+        <p class="paragraph">Your access to and use of the Services or any Content is at your own risk. You understand and agree that the Services is provided to you on an "AS IS" and "AS AVAILABLE" basis. Without limiting the foregoing, BUMPDOCS ENTITIES DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+
+        <p class="paragraph">BumpDocs Entities make no warranty and disclaim all responsibility and liability for: (i) the completeness, accuracy, availability, timeliness, security or reliability of the Services or any Content; (ii) any harm to your computer system, loss of data, or other harm that results from your access to or use of the Services, or any Content; (iii) the deletion of, or the failure to store or to transmit, any Content and other communications maintained by the Services; (iv) whether the Services will meet your requirements or be available on an uninterrupted, secure, or error-free basis. No advice or information, whether oral or written, obtained from BumpDocs Entities or through the Services, will create any warranty not expressly made herein.</p>
+
+        <p class="sideheading">B. Links</p>
+
+        <p class="paragraph">The Services may contain links to third-party websites or resources. You acknowledge and agree that we are not responsible or liable for: (i) the availability or accuracy of such websites or resources; or (ii) the content, products, or services on or available from such websites or resources. Links to such websites or resources do not imply any endorsement by BumpDocs Entities of such websites or resources or the content, products, or services available from such websites or resources. You acknowledge sole responsibility for and assume all risk arising from your use of any such websites or resources.</p>
+
+        <p class="sideheading">C. Limitation of Liability</p>
+
+        <p class="paragraph">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE BUMPDOCS ENTITIES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOOD-WILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (i) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICES; (ii) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICES, INCLUDING WITHOUT LIMITATION, ANY DEFAMATORY, OFFENSIVE OR ILLEGAL CONDUCT OF OTHER USERS OR THIRD PARTIES; (iii) ANY CONTENT OBTAINED FROM THE SERVICES; OR (iv) UNAUTHORIZED ACCESS, USE OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.</p>
+
+        <p class="paragraph">IN NO EVENT SHALL THE AGGREGATE LIABILITY OF THE BUMPDOCS ENTITIES EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS (U.S. $100.00) OR THE AMOUNT YOU PAID BUMPDOCS, IF ANY, IN THE PAST SIX MONTHS FOR THE SERVICES GIVING RISE TO THE CLAIM.</p>
+
+        <p class="paragraph">THE LIMITATIONS OF THIS SUBSECTION SHALL APPLY TO ANY THEORY OF LIABILITY, WHETHER BASED ON WARRANTY, CONTRACT, STATUTE, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, AND WHETHER OR NOT THE BUMPDOCS ENTITIES HAVE BEEN INFORMED OF THE POSSIBILITY OF ANY SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.</p>
+
+        <p class="heading">12. General Terms</p>
+
+        <p class="sideheading">A. Waiver and Severability</p>
+
+        <p class="paragraph">The failure of BumpDocs to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. In the event that any provision of these Terms is held to be invalid or unenforceable, then that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.</p>
+
+        <p class="sideheading">B. Controlling Law and Jurisdiction</p>
+
+        <p class="paragraph">These Terms and any action related thereto will be governed by the laws of State of Virginia without regard to or application of its conflict of law provisions or your state or country of residence. All claims, legal proceedings or litigation arising in connection with the Services will be brought solely in the federal or state courts located in San Francisco County, California, United States, and you consent to the jurisdiction of and venue in such courts and waive any objection as to inconvenient forum.</p>
+
+        <p class="sideheading">C. Entire Agreement</p>
+
+        <p class="paragraph">These Terms, the BumpDocs Rules and our Privacy Policy are the entire and exclusive agreement between BumpDocs and you regarding the Services (excluding any services for which you have a separate agreement with BumpDocs that is explicitly in addition or in place of these Terms), and these Terms supersede and replace any prior agreements between BumpDocs and you regarding the Services.</p>
+
+        <p class="paragraph">
+            We may revise these Terms from time to time, the most current version will always be at https://BumpDocs.com. If the revision, in our sole discretion, is material we will notify you via email to the email associated with your account or through the Services. If you do not wish to be bound by any such revisions to the Terms, you must end these Terms with us as set forth in Section 10 above. By continuing to access or use the Services after those revisions become effective, you agree to be bound by the revised Terms.<br />
+            These Services are operated and provided by InnDocs Corporation, Inc., 8201 Greensboro Drive, Suite 300, McLean, VA, USA - 22102. If you have any questions about these Terms, please contact us.
+        </p>
+
+    </div>
+</div>
+
+<div id="policy" style="background-color: #f8f8f8;">
+    <div class="container">
+
+        <p class="title" style="font-weight: bold;">BumpDocs Privacy Policy</p>
+
+        <p class="paragraph">This Privacy Policy describes how and when BumpDocs collects, uses, and shares your information when you use BumpDocs, including our mobile applications and websites (the "Services"). BumpDocs receives your information through our mobile applications, websites, email notifications, and other interactions with our Services. When using any of our Services you consent to the collection, transfer, manipulation, storage, disclosure and other uses of your information as described in this Privacy Policy. Irrespective of which country you reside in or supply information from, you authorize BumpDocs to use your information in the United States and any other country where BumpDocs operates.</p>
+
+        <p class="title">Information Collection and Use</p>
+
+        <p class="paragraph"><span class="firsttxt">Creating a BumpDocs Account and Profile Information :</span> When you create a BumpDocs account, you must provide access credentials either in the form of an email address and password or by authentication using another service, such as Facebook. You may optionally provide us with additional profile information, including a short bio, location, and profile picture. If you create your BumpDocs account by connecting through another service, we may use public information from that connected account to help complete your BumpDocs profile. You may update or modify your profile information and contact information at any time. Profile information is available publicly on our Services, such as on your profile page.</p>
+
+        <p class="paragraph"><span class="firsttxt">Contact Information :</span> In addition to using your contact information to create your account, we may use this information to send you information about our Services, respond to your requests and facilitate your use of the Services. We may use the contact information (such as your phone number or email address) to help connect you with other BumpDocs users, even if that information is not publicly displayed. Some contact information may be required in order to use certain Services. For example, you must have a verified phone number attached to your account in order to send a confirmation message to you.</p>
+
+        <p class="paragraph"><span class="firsttxt">Finding peers (Bumpies) and Connecting to Other Services :</span> Our Services include several features to help connect you to the accounts of peers. For example, you may upload information from your address book or connect your BumpDocs account to your account on another service such as Facebook. BumpDocs will match the information you provide with the contact information of other BumpDocs users in order to provide and improve the Services, for example by making recommendations and routing BumpDocs messages. You may remove address book data from BumpDocs at any time through the settings in your BumpDocs app. When you connect your BumpDocs account to other services, you are able to post your Content to those services as well. You may disconnect your BumpDocs account from your account on the other services at any time. Disconnecting your BumpDocs account will immediately revoke our authorization to cross-post on your behalf or otherwise access that account and we will delete information obtained from that connection (other than information that was publicly posted on BumpDocs, such as profile information), which may take some time.</p>
+
+        <p class="paragraph"><span class="firsttxt">Content, Following, and other Public Information :</span> BumpDocs is a emotion sharing platform, so most of the information you provide us is information that you choose to be not made public. This includes not only the Content that you post and data provided with such Content, such as when it was posted and other public interactions on the Services. Your public information is broadly and instantly disseminated. For instance, your profile information and public Content are immediately delivered to a wide range of users and other services that access BumpDocs. When you share information or Content via the Services like Facebook, you should think carefully about what you are making public.</p>
+
+        <p class="paragraph"><span class="firsttxt">Location Information :</span> In addition to profile information, you may also tell us your exact location if you choose to enable your computer or mobile device to send us location information. We may use and store information about your location to provide features of our Services, such as tagging a post with a location, and to improve and customize the Services, for example, with Content that has been tagged near your location.</p>
+
+        <p class="paragraph"><span class="firsttxt">Links :</span> We may keep track of how you interact with links across our Services, including our email notifications, third-party services, and client applications, by redirecting clicks or through other means. We do this to help improve our Services, for example to provide relevant advertising, and to be able to share aggregate click statistics such as how many times a particular link was clicked on.</p>
+
+        <p class="paragraph"><span class="firsttxt">Cookies :</span> Like many websites, we use "cookie" technology to collect additional website usage data and to improve our Services, but we do not require cookies for many parts of our Services such as chatting with your peers. A cookie is a small data file that is transferred to your computer's hard disk. BumpDocs may use both session cookies and persistent cookies to better understand how you interact with our Services, to monitor aggregate usage by our users and web traffic routing on our Services, and to customize and improve our Services. Most Internet browsers automatically accept cookies. If you do not want cookies from BumpDocs or other websites, you can instruct your browser, by changing its settings, to stop accepting cookies or to prompt you before accepting a cookie from the websites you visit. However, some Services may not function properly if you disable cookies.</p>
+
+        <p class="paragraph"><span class="firsttxt">Log Data :</span> Our servers automatically record information ("Log Data") created by your use of the Services. Log Data may include information such as your IP address, browser type, operating system, the referring web page, pages visited, location, your mobile carrier, device and application IDs, search terms, and cookie information. We receive Log Data when you interact with our Services, for example, when you visit our websites, sign into our Services, connect with peers hosted by BumpDocs, or interact with our email notifications. BumpDocs uses Log Data to provide our Services and to measure, customize, and improve them. If not already done earlier, we will either delete Log Data or remove any common account identifiers, such as your username, full IP address, or email address, after 18 months.</p>
+
+        <p class="paragraph"><span class="firsttxt">Third-Parties :</span> BumpDocs uses a variety of third-party services to help provide our Services, such as hosting our various blogs and wikis, and to help us understand the use of our Services, such as Google Analytics. These third-parties may collect information sent by your browser or mobile device, such as cookies, your IP address, or device ID.</p>
+
+        <p class="title">Information Sharing and Disclosure</p>
+
+        <p class="paragraph"><span class="firsttxt">Your Consent :</span> We may share or disclose your information at your direction, such as when you choose to publicly post a video or update your profile information.</p>
+
+        <p class="paragraph"><span class="firsttxt">Service Providers :</span> We engage service providers to perform functions and provide services to us in the United States and abroad. We may share your private personal information with such service providers subject to confidentiality obligations consistent with this Privacy Policy, and on the condition that the third parties use your private personal data only on our behalf and pursuant to our instructions.</p>
+
+        <p class="paragraph"><span class="firsttxt">Law and Harm :</span> Notwithstanding anything to the contrary in this Policy, we may preserve or disclose your information if we believe that it is reasonably necessary to comply with a law, regulation or legal request; to protect the safety of any person; to address fraud, security or technical issues; or to protect BumpDocs’s rights or property. However, nothing in this Privacy Policy is intended to limit any legal defenses or objections that you may have to a third party's, including a government's, request to disclose your information.</p>
+
+        <p class="paragraph"><span class="firsttxt">Business Transfers :</span> In the event that BumpDocs is involved in a bankruptcy, merger, acquisition, reorganization or sale of assets, your information may be sold or transferred as part of that transaction. The promises in this Privacy Policy will apply to your information as transferred to the new entity.</p>
+
+        <p class="paragraph"><span class="firsttxt">Non-Private or Non-Personal Information :</span> We may share or disclose your non-private, aggregated or otherwise non-personal information, such as your public user profile information, public posts, the people you follow or that follow you, or the number of users who clicked on a particular link (even if only one did).</p>
+
+        <p class="heading">Modifying Your Personal Information</p>
+
+        <p class="paragraph">
+            If you are a registered user of our Services, we provide you with tools and account settings to access or modify the profile information you provided to us and associated with your account.<br />
+            You can also permanently delete your BumpDocs account by contacting us.
+        </p>
+
+        <p class="heading">Our Policy Towards Non-Pregnant</p>
+
+        <p class="paragraph">Our Services are not directed to persons under 21. If you become aware that someone has provided us with personal information without your consent, please contact us. We do not knowingly collect personal information from people under 21. If we become aware that a person under 21 has provided us with personal information, we take steps to remove such information and terminate the anonymous account.</p>
+
+        <p class="heading">Changes to this Policy</p>
+
+        <p class="paragraph">We may revise this Privacy Policy from time to time. The most current version of the policy will govern our use of your information and will always be at https://BumpDocs.com/privacy. If we make a change to this policy that, in our sole discretion, is material, we will notify you via an email to the email address associated with your account or through the Services. By continuing to access or use the Services after those changes become effective, you agree to be bound by the revised Privacy Policy.</p>
+
+    </div>
+</div>
+
+<div class="container">
+    <div id="rules" style="margin-bottom: 20px">
+
+        <p class="title" style="font-weight: bold">The BumpDocs Rules</p>
+
+        <p class="paragraph">Our goal is to provide a service that allows you to discover and receive content from sources that interest you as well as to share your content with others. We respect the ownership of the content that users share and each user is responsible for the content he or she provides. Because of these principles, we do not actively monitor user content and will not censor user content, except in limited circumstances described below.</p>
+
+        <p class="title">Content Boundaries and Use of BumpDocs</p>
+
+        <p class="paragraph">In order to provide the BumpDocs service and the ability to communicate and stay connected with others, there are some limitations on the type of content that can be published with BumpDocs. These limitations comply with legal requirements and make BumpDocs a better experience for all. We may need to change these rules from time to time and reserve the right to do so. Please check back here to see the latest.</p>
+
+        <p class="paragraph" style="line-height: 1.8">
+            &#10004;    <span class="firsttxt1">Impersonation :</span> You may not impersonate others through the BumpDocs service in a manner that does or is intended to mislead, confuse, or deceive others.<br />
+            &#10004;	<span class="firsttxt1">Trademark :</span> We reserve the right to restrict the use of certain user names and profile URLs on behalf of businesses or individuals that hold legal claim or trademark on those user names or profile URLs. Accounts using business names and/or logos to mislead others will be permanently suspended.<br />
+            &#10004;	<span class="firsttxt1">Privacy :</span> You may not publish or post other people's private and confidential information, such as credit card numbers, street address or Social Security/National Identity numbers, without their express authorization and permission.<br />
+            &#10004;	<span class="firsttxt1">Violence and Threats :</span> You may not publish or post direct, specific threats of violence against others.<br />
+            &#10004;	<span class="firsttxt1">Copyright :</span> We will respond to clear and complete notices of alleged copyright infringement. Our copyright procedures are set forth in the Terms of Service.<br />
+            &#10004;	<span class="firsttxt1">Unlawful Use :</span> You may not use our service for any unlawful purposes or in furtherance of illegal activities. International users agree to comply with all local laws regarding online conduct and acceptable content.<br />
+            &#10004;	<span class="firsttxt1">Pornography and Sexually Explicit Content :</span> You may not post content that is pornographic or sexually explicit—even if it is of yourself or marked as sensitive. For more information on this policy and its application, please see this help center article.<br />
+            &#10004;	<span class="firsttxt1">Misuse of BumpDocs logo :</span> You may not use BumpDocs logo unless it is provided by BumpDocs. Accounts using these logo’s as part of profile photos or in a way that falsely implies affiliation with BumpDocs will be suspended.
+        </p>
+
+        <p class="title">Spam and Abuse</p>
+
+        <p class="paragraph">BumpDocs strives to protect its users from spam and abuse. Technical abuse and user abuse are not tolerated on BumpDocs and may result in permanent suspension.</p>
+
+        <p class="paragraph" style="line-height: 1.8">
+            <span style="font-size: 19px">&#149;</span> 	<span class="firsttxt1">Serial Accounts :</span> You may not create serial accounts for disruptive or abusive purposes, or with overlapping use cases. Mass account creation may result in suspension of all related accounts.<br />
+            <span style="font-size: 19px">&#149;</span>	<span class="firsttxt1">Profile URL Squatting :</span> You may not engage in profile URL squatting. Accounts that are inactive for more than six months may also have their profile URLs removed or reclaimed without further notice. Some of the factors that we take into account when determining what conduct is considered to be profile URL squatting are:<br />
+            &#10004;	the number of profile URLs created;<br />
+            &#10004;	creating profile URLs for the purpose of preventing others from using those profile URL names;<br />
+            &#10004;	creating profile URLs for the purpose of selling those profile URLs.<br />
+            <span style="font-size: 19px">&#149;</span>	<span class="firsttxt1">Selling accounts :</span> You may not purchase or sell BumpDocs accounts.<br />
+            <span style="font-size: 19px">&#149;</span>	<span class="firsttxt1">Malware/Phishing :</span> You may not publish or link to malicious content intended to damage or disrupt another user’s browser or computer, or to compromise a user’s privacy or login information.<br />
+            <span style="font-size: 19px">&#149;</span>	<span class="firsttxt1">Spam :</span> You may not use the BumpDocs service for the purpose of spamming anyone. Some of the factors that we take into account when determining what conduct is considered to be spamming are:<br />
+            <span style="font-size: 19px">&#149;</span>	<span class="firsttxt1">Profile Images :</span> You may not use obscene or pornographic images in your profile photo.
+        </p>
+
+        <p class="paragraph">Accounts engaging in any of the activities specified above may be subject to permanent suspension.</p>
+
+    </div>
+</div>
+
+
+<p class="copyright">
+    &copy; 2013 Inndocs Corporation
+</p>
+
+
+

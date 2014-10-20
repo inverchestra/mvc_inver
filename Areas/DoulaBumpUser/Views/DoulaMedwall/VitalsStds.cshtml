@@ -1,0 +1,221 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.Vitals.Vitals
+@{
+    ViewBag.Title = "";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var status = document.getElementById('statusr').value;
+        if (parseInt(status, 0) == 0 || status == "") {
+            $('span#badge-page1').removeClass('now');
+        } else {
+
+            $('span#badge-page1').addClass('now');
+        }
+        var status1 = document.getElementById('statustip').value;
+
+        if (parseInt(status1, 0) == 0 || status == "") {
+            $('span#badge-page2').removeClass('now');
+        } else {
+
+            $('span#badge-page2').addClass('now');
+        }
+    });
+
+    $(function () {
+
+        $("#vitalsDiv").tabs();
+    });
+    $(function () {
+        $('#btnstdsWUpdate').click(function () {
+            var a = $('#subscription_order_form12').serialize();
+            $.ajax({
+                type: 'post',
+                url: '/DoulaBumpUser/DoulaMedwall/STDs',
+                data: a,
+                success: function (data) {
+                    $.modal.close();
+                    SetData(data);
+                }
+            });
+        });
+    });
+    function SetData(data) {
+        $("#vitalsDiv").html(data); // HTML DOM replace
+    }
+
+    $(function () {
+        $("#EditStds").click(function () {
+
+            $.ajax({
+                url: '/DoulaBumpUser/DoulaMedwall/STDsEdit',
+                type: 'GET',
+                success: function (result) {
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                            $("input[name = 'btnCancel']").click(function () {
+                                $.modal.close();
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+@section LeftPanel {
+    <div class="left-pane">
+        <div class="left-tabs">
+            <ul>
+               <li><a href="@Url.Action("DoulaVitals", "DoulaMedwall")" class="pink-a">Vitals</a></li>
+                <li><a href="@Url.Action("Index", "DoulaMedwall")">Timeline</a></li>
+                <li><a href="@Url.Action("GetWeeks", "DoulaMedwall")">Albums</a></li>
+                <li><a href="@Url.Action("DoulaPInfo", "DoulaPersonal")">My<span style="color: #fff">-</span>Info</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="tablequestions" style="width: 150px">
+    </div>
+}
+@*<h2>
+Vitals</h2>*@
+<div id="vitalsDiv">
+    <form id="subscription_order_form12" class="" method="post" enctype="multipart/form-data">
+    <div style="background-color: #f7f7f7">
+        <ul id="vital-icon">
+            <li style="padding: 10px; font-size: medium; font-weight: bold"><span>Sexually transmitted
+                diseases information</span></li>
+        </ul>
+    </div>
+    <br />
+    <div style="width: 100%; margin: 0 0 0 10px">
+        @if (Model.STDs.CreatedOn != null)
+        {
+            <label>
+                Recent updation on:</label>
+            <label style="color: Red">
+                (@Html.DisplayTextFor(model => model.STDs.CreatedOn) )</label>
+        }
+    </div>
+    <div class="vitals">
+        <ul>
+            @if (Model.STDs.CreatedOn != null)
+            {
+                <li style="">
+                    <div>
+                        <div style="width: 25%; display: inline-block; background-color: #f7f7f7">
+                            Syphilis :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var Syphilis = Model.STDs.Syphilis ? "Yes" : "No";}
+                            <label title="Syphilis">@Syphilis</label>
+                        </div>
+                    </div>
+                </li>
+                <li style="">
+                    <div>
+                        <div style="width: 25%; display: inline-block; background-color: #f7f7f7">
+                            Herpes :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var Herpes = Model.STDs.Herpes ? "Yes" : "No";}
+                            <label title="Herpes">@Herpes</label>
+                        </div>
+                    </div>
+                </li>
+                <li style="">
+                    <div>
+                        <div style="width: 25%; display: inline-block; background-color: #f7f7f7">
+                            Hepatitis B & C :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var HepatitisBnC = Model.STDs.HepatitisBnC ? "Yes" : "No";}
+                            <label title="HepatitisBnC">@HepatitisBnC</label>
+                        </div>
+                    </div>
+                </li>
+                <li style="">
+                    <div>
+                        <div style="width: 25%; display: inline-block; background-color: #f7f7f7">
+                            Gonorrhea :</div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var Gonorrhea = Model.STDs.Gonorrhea ? "Yes" : "No";}
+                            <label title="Gonorrhea">@Gonorrhea</label>
+                        </div>
+                    </div>
+                </li>
+                <li style="border-bottom: 1px solid #f0f0f0">
+                    <div>
+                        <div style="width: 25%; display: inline-block; background-color: #f7f7f7">
+                            Chlamydia :</div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var Chlamydia = Model.STDs.Chlamydia ? "Yes" : "No";}
+                            <label title="Chlamydia">@Chlamydia</label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                 @*   <input id="EditStds" type="button" class="greengrad" value="Update" />*@
+                </li>
+            }
+            else
+            {
+
+                <li style="width: 30%">Syphilis</li>
+                <li style="width: 65%">
+                    <input type="radio" name="STDs.Syphilis" value="True" />
+                    Yes &nbsp;&nbsp;
+                    <input type="radio" name="STDs.Syphilis" value="False" checked="checked" />
+                    No </li>
+                <li style="width: 30%">Herpes</li>
+                <li style="width: 65%">
+                    <input type="radio" name="STDs.Herpes" value="True" />
+                    Yes &nbsp;&nbsp;
+                    <input type="radio" name="STDs.Herpes" value="False" checked="checked" />
+                    No </li>
+                <li style="width: 30%">Hepatitis B & C </li>
+                <li style="width: 65%">
+                    <input type="radio" name="STDs.HepatitisBnC" value="True" />
+                    Yes &nbsp;&nbsp;
+                    <input type="radio" name="STDs.HepatitisBnC" value="False" checked="checked" />
+                    No </li>
+                <li style="width: 30%">Gonorrhea</li>
+                <li style="width: 65%">
+                    <input type="radio" name="STDs.Gonorrhea" value="True" />
+                    Yes &nbsp;&nbsp;
+                    <input type="radio" name="STDs.Gonorrhea" value="False" checked="checked" />
+                    No </li>
+                <li style="width: 30%">Chlamydia</li>
+                <li style="width: 65%">
+                    <input type="radio" name="STDs.Chlamydia" value="True" />
+                    Yes &nbsp;&nbsp;
+                    <input type="radio" name="STDs.Chlamydia" value="False" checked="checked" />
+                    No </li>
+                <li style="width: 100%; border-top: 1px solid #f7f7f7" class="inline">
+                    @*<input id="btnstdsWUpdate" type="button" class="greengrad" value="Submit" style="margin-right: 10px" />*@
+                </li>
+            }
+            <li style="width: 100%" class="inline"><a href="@Url.Action("DoulaVitals", "DoulaMedwall")" style="color:#0088cc" >
+                Back</a> </li>
+        </ul>
+    </div>
+    </form>
+</div>
+<div>
+    <input type="hidden" id="statusr" value="@ViewBag.statusresponce" />
+    <input type="hidden" id="statustip" value="@ViewBag.statustip" />
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

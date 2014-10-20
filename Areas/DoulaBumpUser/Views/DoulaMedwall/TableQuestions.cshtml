@@ -1,0 +1,195 @@
+﻿@model IEnumerable<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Questions>
+@{
+    ViewBag.title = "";
+}
+<script type="text/javascript">
+
+
+    $(function () {
+        $('ul#ques li input ').click(function () {
+            // alert('hi');
+            var id = $(this).parents('li').find("input[name='QuestionId']").val();
+            //   alert(id);
+            var restype = $(this).parents('li').find("input[name='responsetype']").val();
+            /// alert(restype);
+            $.ajax({
+                url: '/DoulaBumpUser/DoulaMedwall/QResponses',
+                type: "GET",
+                async: false,
+                closeOnEscape: true,
+                data: { qid: id },
+                success: function (data) {
+                    $('#ajaxtab').html(data).modal({
+                        closeHTML: "",
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+
+                            $('#savebranch').click(function () {
+                                if (restype == "input") {
+                                    if ($('#textanswer').val() == "") {
+                                        alert("please enter your answer");
+                                    }
+                                    else {
+                                        var ans = $('#textanswer').val();
+                                        $.ajax({
+                                            url: '/DoulaBumpUser/DoulaMedwall/QResponses',
+                                            type: "POST",
+                                            async: false,
+                                            closeOnEscape: true,
+                                            data: { ans: ans, id: id },
+                                            success: function (result) {
+                                                if (result != "0") {
+                                                    $.modal.close();
+                                                }
+                                                else {
+                                                    alert("Creation Failed !!");
+                                                }
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 30);
+
+                                            }
+                                        });
+                                    }
+                                }
+                                else if (restype == "boolean") {
+                                    if ($('#blue:checked').val() == 'on') {
+                                        var ans = 'true';
+                                    }
+                                    else {
+                                        var ans = 'false';
+                                    }
+                                    if (ans == 'true' || ans == 'false') {
+                                        $.ajax({
+                                            url: '/DoulaBumpUser/DoulaMedwall/QResponses',
+                                            type: "POST",
+                                            async: false,
+                                            closeOnEscape: true,
+                                            data: { ans: ans, id: id },
+                                            success: function (result) {
+                                                if (result != "0") {
+                                                    $.modal.close();
+                                                }
+                                                else {
+                                                    alert("Creation Failed !!");
+                                                }
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 30);
+
+                                            }
+                                        });
+                                    }
+                                }
+
+                                else {
+                                    if ($('#blue1:checked').val() == 'on') {
+                                        var ans = 'true';
+                                    } else {
+                                        var ans = 'false';
+                                    }
+                                    var txt = $('#textanswer1').val();
+                                    ans = ans + txt;
+                                    if ($('#textanswer1').val() == "") {
+                                        alert("please enter your answer");
+                                    }
+                                    else {
+                                        $.ajax({
+                                            url: '/DoulaBumpUser/DoulaMedwall/QResponses',
+                                            type: "POST",
+                                            async: false,
+                                            closeOnEscape: true,
+                                            data: { ans: ans, id: id },
+                                            success: function (result) {
+                                                if (result != "0") {
+                                                    $.modal.close();
+                                                }
+                                                else {
+                                                    alert("Creation Failed !!");
+                                                }
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 30);
+
+                                            }
+                                        });
+                                    }
+
+                                }
+
+                            });
+
+                        }
+                    });
+
+                }
+            });
+
+        });
+    });
+
+</script>
+<div>
+
+    <ul id="ques" style="border: 1px solid #d5d5d5; margin-top: 30px">
+        @if (Model != null && Model.Count() > 0)
+        {
+            <li>
+                <h5 style="background-color: #eeeeee; padding: 5px; color: gray">Question of the day</h5>
+            </li>
+
+            foreach (var post in Model)
+            {
+            <li class="listyle" style="background-color: #f9f9f9; height: auto; margin-bottom: 0px">Q: @post.Question
+                <div>
+                    <input type="hidden" value="@post.QuestionId" name="QuestionId" />
+                    <input type="hidden" value="@post.ResponseType" name="responsetype" />
+                    @if (post.ResponseStatus == false)
+                    {
+
+                       @* <input type="button" id="response" value="Response" class="response" style="float: right" />*@
+                    }
+                </div>
+                <div>
+                    <label style="float: left; padding-top: 5px; color: Gray">
+                        A: @post.Response
+                    </label>
+                </div>
+            </li>
+          
+
+            <li>
+                <div id="input" style="display: none">
+                    <input type="text" id="res" />
+                    <input type="button" id="btnsubmit" value="Ok" />
+                    <input type="button" id="btncancel" value="Cancel" />
+                </div>
+            </li>
+
+
+            }
+        }
+        else
+        {
+             <h5 style="background-color: #f9f9f9; padding: 5px; color: gray; text-align:center">No Question !</h5>
+        }
+    </ul>
+    
+    <a href="@Url.Action("ShowAllQuestions", "DoulaMedwall")"  style="color: rgb(202, 45, 112); float:right; margin-top:5px">View more</a>
+    <a href="@Url.Action("UnreadQuestions", "DoulaMedwall")"  style="color:Green; float:left; margin-top:5px">Unread quetions</a>
+    
+</div>
+<div id="quest" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

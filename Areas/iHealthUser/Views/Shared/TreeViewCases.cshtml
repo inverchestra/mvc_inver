@@ -1,0 +1,226 @@
+﻿@*@model PagedList.IPagedList<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases>*@
+@{
+    int k = 0;
+}
+@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.MyDocsTree
+<script src="../../../../jQuerytw/jquery.min.js" type="text/javascript"></script>
+<link href="../../../../jQuerytw/jquery.treeview.css" rel="stylesheet" type="text/css" />
+<script src="../../../../jQuerytw/jquery.treeview.js" type="text/javascript"></script>
+<link href="../../../../jQuerytw/screen.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.ajaxSetup({ async: false, cache: false });
+
+        //        $('#browser').treeview({
+        //            collapsed: true,
+        //            unique: false,
+        //            cookie: { enabled: true }
+        //        });
+
+        $("#browser").treeview({
+            animated: "fast",
+            collapsed: true,
+            unique: true,
+//            toggle: function () {
+//                console.log("%s was toggled.", $(this).find(">span").text());
+//            }
+        });
+
+        //  $("span.file").click(function () {
+        $('span[title="procedure"]').click(function () {
+            var caseId = $(this).find('input[name="CaseId"]').val();
+            var pId = $(this).find('input[name="ProcedureId"]').val();
+            alert("CaseId : " + caseId);
+            alert("ProcedureId : " + pId);
+            $.ajax({
+                url: '/iHealthUser/HealthDocs/GetProcedureDocuments',
+                data: { pId: pId },
+                dataType: 'html',
+                type: 'GET',
+                success: function (data) {
+                     alert(data);
+                    //       $("#TreeViewData").html(data[0].OriginalName);
+                    $("#TreeViewData").html(data);
+                }
+            });
+            return false;
+        });
+        $('span[title="medtest"]').click(function () {
+            var caseId = $(this).find('input[name="CaseId"]').val();
+            var medTestId = $(this).find('input[name="MedTestId"]').val();
+            alert("CaseId : " + caseId);
+            alert("MedicalTestId : " + medTestId);
+            $.ajax({
+                url: '/iHealthUser/HealthDocs/GetMedTestDocuments',
+                data: { medTestId: medTestId },
+                dataType: 'html',
+                type: 'GET',
+                success: function (data) {
+                     alert(data);
+                    //       $("#TreeViewData").html(data[0].OriginalName);
+                    $("#TreeViewData").html(data);
+                }
+            });
+            return false;
+        });
+        $('span[title="medschedule"]').click(function () {
+            var caseId = $(this).find('input[name="CaseId"]').val();
+            var medScheduleId = $(this).find('input[name="MedScheduleId"]').val();
+            alert("CaseId : " + caseId);
+            alert("MedicalSchedule Id : " + medScheduleId);
+            $.ajax({
+                url: '/iHealthUser/HealthDocs/GetMedScheduleDocuments',
+                data: { medScheduleId: medScheduleId },
+                dataType: 'html',
+                type: 'GET',
+                success: function (data) {
+                     alert(data);
+                    //       $("#TreeViewData").html(data[0].OriginalName);
+                    $("#TreeViewData").html(data);
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+<div style="float: left; width: 35%; height: 450px; background-color: rgb(236,252,251);
+    overflow: scroll;">
+    <ul id="browser" class="filetree treeview-famfamfam">
+        @foreach (var year in Page.Values.lstYears)
+        {
+            <li class="lstyear" id="@year"><span class="folder">@year</span>
+                <ul>
+                    @foreach (var Month in Page.Values.lstMonths)
+                    {
+                        try
+                        {
+                        
+                        <li class="lstmonth" id="@Month">@*<span class="folder">@Month</span>*@ <span><a href="@Url.Action("GetAllCasesbyYearMonthCaseId", "HealthDocs", new { monthv = @Month, yearv = @year })">
+                            @Month</a></span>
+                            <ul>
+                                @if (year == Page.Values.year)
+                                {
+                                    if (Month == Page.Values.month)
+                                    {
+                                        if (Page.Values.lstCases != null)
+                                        {
+                                            foreach (var value in Page.Values.lstCases)
+                                            {
+                                    <li><span class="folder">@value.CaseName</span>
+                                        <ul>
+                                            <li><span class="folder"><a href="@Url.Action("GetAllValuesOfSingleCase", "HealthDocs", new { SelectedYear = @year, SelectedMonth = @Month, SelectedCaseId = @value.CaseId })">
+                                                Procedure</a></span>
+                                                <ul>
+                                                    @if (Page.Values.caseId == value.CaseId)
+                                                    {
+                                                        if (Page.Values.lstProcedure.Count != 0)
+                                                        {
+                                                            foreach (var procedures in Page.Values.lstProcedure)
+                                                            {
+                                                        <li><span class="file" title='procedure'>
+                                                            <input type="hidden" name="CaseId" value="@value.CaseId" />
+                                                            <input type="hidden" name="ProcedureId" value="@procedures.ProcedureId" />
+                                                            @procedures.ProcedureName
+                                                        </span></li>
+                                                                
+                                                            }
+                                                        }
+@* else
+                                                        {
+                                                        <li><span class="file">no procedures</span> </li>
+                                                        }*@
+                                                    }
+                                                </ul>
+                                            </li>
+                                            @*  <li><span class="file">Medical Test</span></li>*@
+                                            <li><span class="folder">@* <input type="hidden" name="CaseId" value="@value.CaseId" />*@
+                                                <a href="@Url.Action("GetAllValuesOfSingleCase", "HealthDocs", new { SelectedYear = @year, SelectedMonth = @Month, SelectedCaseId = @value.CaseId })">
+                                                    Medical Tests</a></span>
+                                                <ul>
+                                                    @if (Page.Values.caseId == value.CaseId)
+                                                    {
+                                                        if (Page.Values.lstMedTests.Count != 0)
+                                                        {
+                                                            foreach (var medTest in Page.Values.lstMedTests)
+                                                            {
+                                                        <li><span class="file" title='medtest'>
+                                                            <input type="hidden" name="CaseId" value="@value.CaseId" />
+                                                            <input type="hidden" name="MedTestId" value="@medTest.MedicalTestId" />
+                                                            @medTest.TestName</span> </li>
+                                                            }
+                                                        }
+@* else
+                                                        {
+                                                        <li><span class="file">no medTests</span> </li>
+                                                        }*@
+                                                    }
+                                                </ul>
+                                            </li>
+                                            <li><span class="folder"><a href="@Url.Action("GetAllValuesOfSingleCase", "HealthDocs", new { SelectedYear = @year, SelectedMonth = @Month, SelectedCaseId = @value.CaseId })">
+                                                Medication schedule</a></span>
+                                                <ul>
+                                                    @if (Page.Values.caseId == value.CaseId)
+                                                    {
+                                                        if (Page.Values.lstMedSchdules.Count != 0)
+                                                        {
+                                                            foreach (var medSchedule in Page.Values.lstMedSchdules)
+                                                            {
+                                                        <li><span class="file" title='medschedule'>
+                                                            <input type="hidden" name="CaseId" value="@value.CaseId" />
+                                                            <input type="hidden" name="MedScheduleId" value="@medSchedule.MedicalScheduleId" />
+                                                            @medSchedule.Pharmacy</span> </li>
+                                                            }
+                                                        }
+@* else
+                                                        {
+                                                        <li><span class="file">no medSchedule</span> </li>
+                                                        }*@
+                                                    }
+                                                </ul>
+                                            </li>
+                                            <li><span class="folder"><a href="@Url.Action("GetAllValuesOfSingleCase", "HealthDocs", new { SelectedYear = @year, SelectedMonth = @Month, SelectedCaseId = @value.CaseId })">
+                                                Visits</a></span>
+                                                <ul>
+                                                    @if (Page.Values.caseId == value.CaseId)
+                                                    {
+                                                        if (Page.Values.lstVisits.Count != 0)
+                                                        {
+                                                            foreach (var visits in Page.Values.lstVisits)
+                                                            {
+                                                        <li><span class="file">@visits.Reason</span> </li>
+                                                            }
+                                                        }
+@* else
+                                                        {
+                                                        <li><span class="file">No visits</span> </li>
+                                                        }*@
+                                                    }
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                    <li><span class="file">No cases..</span> </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </li>
+                        }
+                        finally
+                        {
+                            k++;
+                        }
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>
+<div id="TreeViewData" style="float: left; width: 64%; height: 450px;">
+</div>

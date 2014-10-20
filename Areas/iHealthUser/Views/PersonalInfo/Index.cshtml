@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "MyInfo";
+    ViewBag.TitleName = "My Information";
+}
+
+<h2 style="margin:0">My Information</h2>
+<script src="~/Scripts/jQuery.js"></script>
+<script src="~/Scripts/jQueryUI.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("div#myinfo > ul").tabs();
+    });
+</script>
+
+<div id="myinfo">
+
+    <ul>
+        <li>
+            <a href="#prsnInfo"><span>My Profile</span></a>
+        </li>
+        <li>
+            <a href="#mdclInfo"><span>Medical Information</span></a>
+        </li>
+        <li>
+            <a href="#emrgContact"><span>Emergency Contacts</span></a>
+        </li>
+        <li>
+            <a href="#insurances"><span>My Insurances</span></a>
+        </li>
+    </ul>
+
+    @*PersonalInformation*@
+    <div id="prsnInfo" style="background-color:white; width:85%; min-height:300px;padding-top:15px; padding:10px;">
+        <div style="float:right; margin-right:10px;">
+        <a href="#" title="Edit">
+            <img src="~/Images/edit.png" />
+        </a>
+        </div>
+        <div>
+        This has personal information in it...
+        </div>
+    </div>
+
+    @*Medical Information*@
+    <div id="mdclInfo" style="background-color:white; width:85%; min-height:300px;padding-top:15px; padding:10px;">
+        <div style="float:right; margin-right:10px;">
+        <a href="#" title="Edit">
+            <img src="~/Images/edit.png" />
+        </a>
+        </div>
+
+        This has medical information in it...
+    </div>
+
+    @*Emergency Contacts*@
+    <div id="emrgContact" style="background-color:white; width:85%; min-height:300px;padding-top:15px; padding:10px;">
+        <div style="float:right; margin-right:10px;">
+        <a href="#" title="Edit">
+            <img src="~/Images/edit.png" />
+        </a>
+        </div>
+        This has emergency contacts in it...
+    </div>
+
+    @*Insurances*@
+    <div id="insurances" style="background-color:white; width:85%; min-height:300px;padding-top:15px; padding:10px;">
+        <div style="float:right; margin-right:10px;">
+        <a href="#" title="Edit">
+            <img src="~/Images/edit.png" />
+        </a>
+        </div>
+        This has insurance details in it...
+    </div>
+
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

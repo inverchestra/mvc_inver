@@ -1,0 +1,193 @@
+﻿@{
+    
+    ViewBag.title = "";
+}
+@using (Html.BeginForm())
+{
+    <div id="table">
+        <div>
+            <table id="thead">
+                <thead>
+                    <tr>
+                        <th style="width: 20%; text-align: center; padding-left: 0px">
+                            Branch ID
+                        </th>
+                        <th style="width: 20%; padding-left: 33px;">
+                            Branch name
+                        </th>
+                        <th style="width: 20%">
+                            Branch Address
+                        </th>
+                        <th style="width: 20%">
+                            Branch Details
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        @if (Page.Values.Count > 0)
+        {
+            <table id="tbody">
+                <tbody>
+                    @foreach (var value in Page.Values)
+                    {
+                        <tr>
+                            <td style="width: 5.4%; padding-left: 0;">
+                                <input type="checkbox" />
+                            </td>
+                            <td style="width: 31.8%; text-align: auto; padding-left: 26.1px;">
+                                @value.BranchID
+                            </td>
+                            <td style="width: 28.3%; padding-left: 20.9px;">
+                                @value.BranchName
+                            </td>
+                            <td style="width: 31.1%; padding-left: 25;">
+                                @value.BranchAddress
+                            </td>
+                            <td style="width: 29%; padding-right: 14.2;">
+                                @value.BranchDetails
+                            </td>
+                            <td>
+                                <input type="hidden" name="branchId" value=" @value.Id" />
+                            </td>
+                        </tr>
+                
+                                               
+                        <tr>
+                            <td colspan="6" style="border-right: 1px solid rgb(190,196,196);">
+                                <input type="hidden" value="@value.Id" name="Id" class="inputhidden"/>
+                                <div style="padding: 8px">
+                                    <div>
+                                        <div style="width: 45%; float: right">
+                                            @* <input id="btnDownload" class="btnDownload" type="button" name="download" title="Download this log"/>                *@
+                                            <img src="~/Images/edit.png" alt="Edit" title="Edit this Branch" class="btnEditBranch"
+                                                style="cursor: pointer; float: right; margin-right: 0px;" />
+                                            <img src="~/Images/delete.png" alt="Edit" title="Delete this Branch" class="btnDeleteBranch"
+                                                style="cursor: pointer; float: right; margin-right: 0px;" />
+                                            @* <input type="button" class="view" style="float:right; margin:0px px 0 0;"; name="View" title="View this log" />*@
+                                        </div>
+                                        <h6>
+                                            Branch Info</h6>
+                                    </div>
+                                    <ul class="Grid_content_pane">
+                                        <li>
+                                            <div>
+                                                <div class="tldiv">
+                                                    Branch Id:
+                                                </div>
+                                                <div class="trdiv">
+                                                    @value.BranchID
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tldiv">
+                                                Branch Name:
+                                            </div>
+                                            <div class="trdiv">
+                                                @value.BranchName
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tldiv">
+                                                Branch Address:
+                                            </div>
+                                            <div class="trdiv">
+                                                @value.BranchAddress
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="tldiv">
+                                                Branch Details:
+                                            </div>
+                                            <div class="trdiv">
+                                                @value.BranchDetails
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+            
+            <div class="pager">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount
+                @if (ViewBag.FromSearch != null)
+                {
+                    if (Model.HasPreviousPage)
+                    {
+                    @Html.ActionLink("<<", "GetSearchedBranches", new { page = 1, searchtext1 = ViewBag.FromSearch }, new { @class = "first" })
+                    @Html.Raw(" ");
+                    @Html.ActionLink("< Prev", "GetSearchedBranches", new { page = Model.PageNumber - 1, searchtext1 = ViewBag.FromSearch }, new { @class = "prev" })
+                    }
+                    else
+                    {
+
+                    @Html.Raw(" ");
+
+                    }
+                }
+                else
+                {
+                    if (Model.HasPreviousPage)
+                    {
+                    @Html.ActionLink("<<", "ShowAllBranches", new { page = 1 }, new { @class = "first" })
+                    @Html.Raw(" ");
+                    @Html.ActionLink("< Prev", "ShowAllBranches", new { page = Model.PageNumber - 1 }, new { @class = "prev" })
+                    }
+                    else
+                    {
+
+                    @Html.Raw(" ");
+
+                    }
+                }
+                @if (ViewBag.FromSearch != null)
+                {
+                    if (Model.HasNextPage)
+                    {
+                    @Html.ActionLink("Next >", "GetSearchedLogs", new { page = Model.PageNumber + 1, searchtext1 = ViewBag.FromSearch }, new { @class = "next" })
+                    @Html.Raw(" ");
+                    @Html.ActionLink(">>", "GetSearchedLogs", new { page = Model.PageCount, searchtext1 = ViewBag.FromSearch }, new { @class = "last" })
+                    }
+                    else
+                    {
+
+                    @Html.Raw(" ")
+
+                    }
+                }
+                else
+                {
+                    if (Model.HasNextPage)
+                    {
+                    @Html.ActionLink("Next >", "ShowAllBranches", new { page = Model.PageNumber + 1 }, new { @class = "next" })
+                    @Html.Raw(" ");
+                    @Html.ActionLink(">>", "ShowAllBranches", new { page = Model.PageCount }, new { @class = "last" })
+                    }
+                    else
+                    {
+
+                    @Html.Raw(" ")
+
+                    }
+                }
+            </div>
+
+            
+            
+            
+        }
+        else
+        {
+            <text>
+            <center>
+                No Records to display
+            </center></text>
+        }
+    </div>
+}

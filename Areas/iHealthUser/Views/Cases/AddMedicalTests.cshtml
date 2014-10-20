@@ -1,0 +1,89 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<div id="medicaltests" class="bluegrad" style="width: 400px; height: 350px">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            Medical Test</h3>
+    </div>
+    <form id="frmmt" enctype="multipart/form-data">
+    <ul style="display: inline-block; padding: 13px 13px">
+        <li>
+            <input type="hidden" name="CaseId" id="CaseId" value="@Model.CaseId" />
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Test name:</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="text" name="MedicalTests.TestName" class="create-logtxts" title="Name of the test"
+                    required />
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Date of test:</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="text" name="MedicalTests.DateOfTest" id="dateOfMtest3" placeholder="MM/DD/YYYY"
+                    title="Test service date" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d"
+                    class="create-logtxts" required />
+            </div>
+        </li>
+        @*sandeep added new code start here*@
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Do you want to be notified?</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="radio" name="MedicalTests.IsNotify" value="true" required />&nbsp;Yes
+                <input type="radio" name="MedicalTests.IsNotify" value="false" checked="checked" />&nbsp;No
+                <input type="text" id="notifyDate" name="MedicalTests.NotifyDate" placeholder="MM/DD/YYYY" title="Notify Date"
+                        pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d" class="create-logtxts" @*style="width: 100px;height: 25px;padding-left: 3px;border-radius: 4px;border: 2px solid rgb(89,89,89);*@" />
+            </div>
+        </li>
+        @*sandeep added new code end here*@
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Diagnostic center:</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="text" name="MedicalTests.DC" class="create-logtxts" title="Name of the test"
+                    required />
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Test documents:</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="file" name="MTfiles" title="Select the document" multiple="multiple" />
+            </div>
+        </li>
+        <li>
+            <div style="width: 100%" class="inline">
+                <input type="button" name="cancel" value="Cancel" style="float: right" class="graygrad" />
+                <input type="submit" id="btnMTSave" name="save" value="Save" style="float: right;
+                    margin-right: 10px;" class="greengrad" />
+            </div>
+        </li>
+    </ul>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>
+

@@ -1,0 +1,111 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    int i = 0;
+}
+
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<div id="UpdateMSchedules" class="bluegrad">
+    <form id="frmUMSchedule" enctype="multipart/form-data">
+        <div id="prescription" style="width: 610px;">
+
+            <div style="border-bottom: 1px solid rgb(218,221,226);">
+                <h3>Prescription:</h3>
+            </div>
+            <br />
+            <input type="hidden" name="MedicalSchdule.CaseId" value="@Model.MedicalSchdule.CaseId" />
+            <input type="hidden" name="MedicalSchdule.MedicalScheduleId" value="@Model.MedicalSchdule.MedicalScheduleId" />
+
+            <div id="presccontnr" style="width: 100%">
+                <div id="presctop" class="inline"> 
+ <div class="crtproc" style="width: 96%;">
+                  <ul>
+                    <li class="labelnormal">Pharmacy: </li>
+                         
+                         
+                      <li>
+                            <input type="text" name="MedicalSchdule.Pharmacy" value="@Model.MedicalSchdule.Pharmacy" title="the pharmcy name where you brought medications" class="create-logtxts" />
+                        </li>
+                   <li class="h3border" style="width: 100%; height: 18px; margin-bottom: 10px;">
+<h6> Presciprtion period</h6>
+</li>        
+                        
+                    
+                 <li>
+                            Start:</li><li>
+                    <input type="text" name="MedicalSchdule.DatePrescribed" value="@Model.MedicalSchdule.DatePrescribed" class="crt" />
+                       </li><li>
+                            End:</li>
+<li>
+                    <input type="date" name="MedicalSchdule.Dispensed" value="@Model.MedicalSchdule.Dispensed" class="crt" />
+                       </li>
+</ul>
+                    </div>
+
+                </div>
+
+                <div id="prescbtm" class="inline" style="width: 100%">
+
+                    <div style="border-bottom: 1px solid rgb(218,221,226);">
+                        <img id="addmed" src="~/Images/add.png"  alt="add" class="inline" style="float: right" />
+                        <h4>Medicines:</h4>
+                    </div>
+
+                    <div id="medlist" style="width: 100%; height: 150px; max-height: 200px;  overflow-y: scroll; overflow-x: hidden" class="inline">
+                        @if (Model.MedicalSchdule.lstSchedule.Count == 0 || Model.MedicalSchdule.lstSchedule == null)
+                        {
+                            <text>--No medicines--</text>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.MedicalSchdule.lstSchedule)
+                            {
+                                try
+                                {
+                            <div class="med" style="padding: 3px; margin-top: 2px;">
+                                <input type="text" name="ScheduleInfo[@i].MedicineName" title="Name of the Medicine" placeholder="Medicine" class="crt" 
+                                    style="width: 90px; margin:0 5px 0 0;" value="@item.MedicineName" />
+
+                                <div style=" padding-top: 2px" class="crt inline">
+
+                                    <input type="text" name="ScheduleInfo[@i].DosageTaken" style="margin:0 5px 0 0; border: 1px solid #BED0DF; width: 48px;" placeholder="Quantity" value="@item.DosageTaken" />
+                                    @Html.DropDownList("ScheduleInfo[" + i + "].TypeOfMedicine", new SelectList(Model.MedType.AsEnumerable(), "Text", "Value", item.TypeOfMedicine), new { style = "border: none; width: 80px;" })
+                                    @Html.DropDownList("ScheduleInfo[" + i + "].FrequencyTaken", new SelectList(Model.FreqType.AsEnumerable(), "Text", "value", item.FrequencyTaken), new { style = "border: none; width: 80px;" })
+
+                                </div>
+                                <input type="text" name="ScheduleInfo[@i].TotalQuantity" title="Total quantity" placeholder="Quantity" class="crt" value="@item.TotalQuantity" style="width: 55px;margin:0 5px 0 0; border: 1px solid #BED0DF;" />
+                                <label for="notify" title="Alert me!" style="padding-top: 3px; font-weight: bolder; color: rgb(89,89,89);">
+                                    @Html.CheckBox("ScheduleInfo[" + i + "].IsNotify", item.IsNotify, new { id = "notify" + i })
+                                </label>
+                                <input type="text" name="ScheduleInfo[@i].Starttime" value="@item.Starttime" title="Starting time" style="width: 62px; display: none;" class="crt" placeholder="Start Time" />
+                                <div class="x inline" id="medi[@i]">
+                                    <img alt="Delete" src="../../Images/delete.png" name="imgmed" />
+                                </div>
+                            </div>
+                                }
+                                finally { i++; }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+           <div style="width:100%" class="inline">
+                <input type="button" id="btnMSUpdate" value="Save" style="float:right; margin-right:10px;" class="greengrad"/>
+            </div>
+
+        </div>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

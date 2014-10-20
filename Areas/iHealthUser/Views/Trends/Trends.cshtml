@@ -1,0 +1,327 @@
+﻿<script type="text/javascript">
+    $(window).load(function () {
+
+        $.ajax({
+            url: "/trends/WeightTrend",
+            dataType: 'json',
+            cache: false,
+            type: "GET",
+            success: function (data) {
+
+                if (data.length > 0) {
+                    var index = data.length;
+                    $('p#pwt').html(data[index - 1].Weight + " <small style='font-size:15px'>lbs</small>");
+
+                    $('#weight').dxChart({
+                        dataSource: data,
+                        commonSeriesSettings: {
+                            argumentField: 'date'
+                        }, argumentAxis: {
+                            grid: { visible: false }
+                        }, valueAxis: {
+                            grid: { visible: false }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            font: { size: 20, weight: 800 },
+                            customizeText: function (e) {
+                                return e.argumentText.split(' ', 1) + ' : Weight: ' + e.valueText + ' lbs';
+                            }
+                        },
+                        legend: {
+                            visible: false
+                        },
+
+                        series: [{ name: 'weight (lbs)', valueField: 'Weight', color: '#ca2d70', point: { size: 3}}],
+                        commonPaneSetting: {
+                            border: {
+                                visible: true,
+                                left: true
+                            }
+                        },
+                        commonAxisSettings: { visible: false }
+
+                    });
+                } else {
+                    $('#weight').append('<div style="text-align:center"><span >No data to display the trend</span></div>');
+                }
+            }
+        }).fail(function () { $('#weight').append('<div style="text-align:center"><span >Oops something went wrong. We fix this as soon as possible.</span></div>'); });
+
+        $.ajax({
+            url: "/trends/BPTrend",
+            dataType: 'json',
+            cache: false,
+            type: "GET",
+            success: function (data) {
+                if (data.length > 0) {
+
+                    var index = data.length;
+                    $('p#phb').html(data[index - 1].hemo + " <small style='font-size:15px'>g/dl</small>");
+
+                    $('#hb').dxChart({
+                        dataSource: data,
+                        commonSeriesSettings: {
+                            argumentField: 'TestDate'
+                        }, argumentAxis: {
+                            grid: { visible: false }
+                        }, valueAxis: {
+                            grid: { visible: false }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            font: { size: 20, weight: 800 },
+                            customizeText: function (e) {
+                                return e.argumentText.split(' ', 1) + ' : Hemoglobin ' + e.valueText + ' g/dl';
+                            }
+                        },
+                        legend: {
+                            visible: false
+                        },
+
+                        series: [{ valueField: 'hemo', color: '#ca2d70', point: { size: 3}}],
+                        commonPaneSetting: {
+                            border: {
+                                visible: true,
+                                left: true
+                            }
+                        },
+                        commonAxisSettings: { visible: false }
+
+                    });
+                } else {
+                    console.log('else');
+                    $('#hb').append('<div style="text-align:center"><span >No data to display the trend</span></div>');
+                }
+            }
+        }).fail(function () {
+            $('#hb').append('<div style="text-align:center"><span >Oops something went wrong. We fix this as soon as possible.</span></div>');
+        });
+
+        $.ajax({
+            url: "/trends/BSTrend",
+            dataType: 'json',
+            cache: false,
+            type: "GET",
+            success: function (data) {
+                if (data.length > 0) {
+
+                    var index = data.length;
+                    $('p#pbs').html(data[index - 1].sugar + " <small style='font-size:15px'>mg/dl</small>");
+
+                    $('#bs').dxChart({
+                        dataSource: data,
+                        commonSeriesSettings: {
+                            argumentField: 'TestDate'
+                        }, argumentAxis: {
+                            grid: { visible: false }
+                        }, valueAxis: {
+                            grid: { visible: false }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            font: { size: 20, weight: 700 },
+                            customizeText: function (e) {
+                                return e.argumentText.split(' ', 1) + ' : Blood sugar: ' + e.valueText + ' mg/dl';
+                            }
+                        },
+                        legend: {
+                            visible: false
+                        },
+
+                        series: [{ valueField: 'sugar', color: '#ca2d70', point: { size: 3}}],
+                        commonPaneSetting: {
+                            border: {
+                                visible: true,
+                                left: true
+                            }
+                        },
+                        commonAxisSettings: { visible: false }
+
+                    });
+                } else {
+                    $('#bs').append('<div style="text-align:center"><span >No data to display the trend</span></div>');
+                }
+            }
+        });
+
+
+        $.ajax({
+            url: "/trends/FHRTrend",
+            dataType: 'json',
+            cache: false,
+            type: "GET",
+            success: function (data) {
+                if (data.length > 0) {
+
+                    var index = data.length;
+                    $('p#pfhr').html(data[index - 1].bp + " <small style='font-size:15px'>bpm</small>");
+
+                    $('#fhr').dxChart({
+                        dataSource: data,
+                        commonSeriesSettings: {
+                            argumentField: 'dateFHR'
+                        }, argumentAxis: {
+                            grid: {
+                                visible: false
+                            }
+                        }, valueAxis: {
+                            grid: {
+                                visible: false
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            font: { size: 20, weight: 700 },
+                            customizeText: function (e) {
+                                return e.argumentText.split(' ', 1) + ' : FHR: ' + e.valueText + ' bpm';
+                            }
+                        },
+                        title: "",
+                        legend: {
+                            visible: false
+                        },
+
+                        series: [{ name: 'FHR (bpm)', valueField: 'bp', color: '#ca2d70', point: { size: 3}}],
+                        commonPaneSetting: {
+                            border: {
+                                visible: true,
+                                left: true
+                            }
+                        }
+
+                    });
+                } else {
+                    $('#fhr').append('<div style="text-align:center"><span >No data to display the trend</span></div>');
+
+                }
+            }
+        }).fail(function () { $('#fhr').append('<div style="text-align:center"><span >Oops something went wrong. We fix this as soon as possible.</span></div>'); });
+
+        $.ajax({
+            url: "/trends/BlPtrend",
+            dataType: 'json',
+            cache: false,
+            type: "GET",
+            success: function (data) {
+
+                if (data.length > 0) {
+
+                    var index = data.length;
+                    $('p#pbp').html(data[index - 1].systole + "/" + data[index - 1].diastole);
+
+                    $('#bp').dxChart({
+                        dataSource: data,
+                        commonSeriesSettings: {
+                            argumentField: 'date'
+                        }, argumentAxis: {
+                            grid: {
+                                visible: false
+                            }
+                        }, valueAxis: {
+                            grid: {
+                                visible: false
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            shared: true,
+                            font: { size: 20, weight: 700 },
+                            customizeText: function (e) {
+                                return e.argumentText.split(' ', 1) + ' : ' + e.valueText;
+                            }
+                        },
+                        title: "",
+                        legend: {
+                            visible: false
+                        },
+
+                        series: [{ valueField: 'systole', color: '#ca2d70', point: { size: 3} },
+                        { valueField: 'diastole', color: '#ca2d70', point: { size: 3}}],
+                        commonPaneSetting: {
+                            border: {
+                                visible: true,
+                                left: true
+                            }
+                        }
+                    });
+                } else {
+                    $('#bp').append('<div style="text-align:center"><span >No data to display the trend</span></div>');
+
+                }
+            }
+        }).fail(function () { $('#bp').append('<div style="text-align:center"><span >Oops something went wrong. We fix this as soon as possible.</span></div>'); });
+    });
+
+</script>
+<div class="trends">
+    <div class="trend-wrap">
+        <div id="weight" class="trend">
+        </div>
+        <div class="trend-desc">
+            <h5 style="font-weight: bold; color: White; text-align: center">
+                Weight
+            </h5>
+            <p id="pwt" style="color: White; font-size: 35px; word-wrap: break-word; margin: 20px 0 0 0;
+                font-weight: bold; text-align: center">
+            </p>
+        </div>
+    </div>
+    <div class="trend-wrap">
+        <div id="hb" class="trend">
+        </div>
+        <div class="trend-desc">
+            <h5 style="font-weight: bold; color: White; text-align: center">
+                Hb
+            </h5>
+            <p style="font-size: 12px; word-wrap: break-word; color: White; text-align: center">
+                (Hb- Hemoglobin)
+            </p>
+            <p id="phb" style="color: White; font-size: 35px; word-wrap: break-word; margin: 2px 0 0 0;
+                font-weight: bold; text-align: center">
+            </p>
+        </div>
+    </div>
+    <div class="trend-wrap">
+        <div id="bs" class="trend">
+        </div>
+        <div class="trend-desc">
+            <h5 style="font-weight: bold; color: White; text-align: center">
+                Blood sugar
+            </h5>
+            <p id="pbs" style="color: White; font-size: 35px; word-wrap: break-word; margin: 10px 0 0 0;
+                font-weight: bold; text-align: center">
+            </p>
+        </div>
+    </div>
+    <div class="trend-wrap">
+        <div id="fhr" class="trend">
+        </div>
+        <div class="trend-desc">
+            <h5 style="font-weight: bold; color: White; text-align: center">
+                F.H.R.
+            </h5>
+            <p style="color: White; font-size: 12px; word-wrap: break-word; text-align: center">
+                (Fetal heart-beat rate)
+            </p>
+            <p id="pfhr" style="color: White; font-size: 35px; word-wrap: break-word; margin: 2px 0 0 0;
+                font-weight: bold; text-align: center">
+            </p>
+        </div>
+    </div>
+    <div class="trend-wrap">
+        <div id="bp" class="trend">
+        </div>
+        <div class="trend-desc">
+            <h5 style="font-weight: bold; color: White; text-align: center">
+                B.P.
+            </h5>
+            <p style="color: White; font-size: 12px; word-wrap: break-word; text-align: center">
+                (Blood pressure)
+            </p>
+            <p id="pbp" style="color: White; font-size: 35px; word-wrap: break-word; margin: 2px 0 0 0;
+                font-weight: bold; text-align: center">
+            </p>
+        </div>
+    </div>
+</div>

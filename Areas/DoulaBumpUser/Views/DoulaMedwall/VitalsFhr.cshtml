@@ -1,0 +1,182 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.Vitals.Vitals
+@{
+    ViewBag.Title = "";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var status = document.getElementById('statusr').value;
+        if (parseInt(status, 0) == 0 || status == "") {
+            $('span#badge-page1').removeClass('now');
+        } else {
+
+            $('span#badge-page1').addClass('now');
+        }
+        var status1 = document.getElementById('statustip').value;
+
+        if (parseInt(status1, 0) == 0 || status == "") {
+            $('span#badge-page2').removeClass('now');
+        } else {
+
+            $('span#badge-page2').addClass('now');
+        }
+    });
+
+    $(function () {
+
+        $("#vitalsDiv").tabs();
+    });
+
+    $(function () {
+        $('#bpmvalue').keydown(function (event) {
+
+            var $th = $(this);
+
+            if (event.keyCode == 110 || event.keyCode == 173 || event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+
+                return;
+            }
+            else {
+
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                    event.preventDefault();
+                }
+            }
+        });
+    });
+
+    $(function () {
+        $("#btnfhrsubmit").click(function () {
+            var fhr = $("#bpmvalue").val();
+            if (fhr == "") {
+                alert("Please enter valid beats per minute");
+                $('input[tabindex=1]').focus();
+                return false;
+            }
+            else if (fhr < 0) {
+                alert("Please enter valid beats per minute");
+                $('input[tabindex=1]').focus();
+                return false;
+            }
+            else {
+                var a = $('#subscription_order_form21').serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/DoulaBumpUser/DoulaMedwall/FHRInfo',
+                    data: a,
+                    success: function (data) {
+                        SetData(data);
+                    }
+                });
+            }
+            function SetData(data) {
+                $("#vitalsDiv").html(data);
+            }
+        });
+        $("#fhredit").click(function () {
+
+            $.ajax({
+                url: '/DoulaBumpUser/DoulaMedwall/FhrEdit',
+                type: 'GET',
+                success: function (result) {
+
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        onShow: function (e) {
+
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                            $("input[name='btnCancel']").click(function () {
+
+                                $.modal.close();
+                            });
+                        }
+
+                    });
+
+                }
+            });
+
+        });
+    });
+
+</script>
+@section LeftPanel {
+    <div class="left-pane">
+        <div class="left-tabs">
+            <ul>
+               <li><a href="@Url.Action("DoulaVitals", "DoulaMedwall")" class="pink-a">Vitals</a></li>
+                <li><a href="@Url.Action("Index", "DoulaMedwall")">Timeline</a></li>
+                <li><a href="@Url.Action("GetWeeks", "DoulaMedwall")">Albums</a></li>
+                <li><a href="@Url.Action("DoulaPInfo", "DoulaPersonal")">My<span style="color: #fff">-</span>Info</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="tablequestions">
+    </div>
+}
+<div id="vitalsDiv">
+    @* <div id="rhead">*@
+    <form id="subscription_order_form21" class="" method="post" enctype="multipart/form-data">
+    <div style="background-color: #f7f7f7">
+        <ul id="vital-icon">
+            <li style="padding: 10px; font-size: medium; font-weight: bold"><span>Fetal heart rate
+                information</span></li>
+        </ul>
+    </div>
+    <br />
+    <div style="width: 100%; margin: 0 0 0 10px">
+        @if (Model.FHR.CreatedOn != null)
+        {
+            <label>
+                Recent updation on:
+            </label>
+            <label style="color: Red">
+                (@Html.DisplayTextFor(model => model.FHR.CreatedOn) )</label>
+        }
+    </div>
+    <div class="vitals">
+        <ul>
+            <li style="width: 30%; display: inline-block; background-color: #f7f7f7">Beats per minute<span
+                style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            @if (Model.FHR.Bpm != null)
+            {
+                <li class="Faminfo_gap_value" style="width: 30%;">
+                    @Html.DisplayTextFor(model => model.FHR.Bpm)
+                </li>
+                <li style="width: 30%">
+                 @*   <input type="button" value="Update" name="newdatafhr" id="fhredit" class="greengrad"
+                        style="float: none" />*@
+                </li>
+            }
+            else
+            {
+                <li style="width: 30%; display: inline-block;">
+                    @Html.TextBoxFor(model => model.FHR.Bpm, new { title = "Fhr", @class = "logintxts", @id = "bpmvalue", tabindex = "1" })
+                </li>
+                <li style="width: 30%" class="inline">
+                    @*<input type="button" value="Submit" name="newdatafhr" id="btnfhrsubmit" class="greengrad"
+                        style="float: none" />*@
+                </li>
+            }
+            <li style="width: 100%; margin-top: 10px" class="inline"><a href="@Url.Action("DoulaVitals", "DoulaMedwall")" style="color:#0088cc" >
+                Back</a> </li>
+        </ul>
+    </div>
+    </form>
+</div>
+<div>
+    <input type="hidden" id="statusr" value="@ViewBag.statusresponce" />
+    <input type="hidden" id="statustip" value="@ViewBag.statustip" />
+</div>
+<script>    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r]
+= i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 *
+new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async =
+1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js',
+'ga'); ga('create', 'UA-47299480-1', 'bumpdocs.com'); ga('send', 'pageview');
+</script>

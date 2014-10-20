@@ -1,0 +1,47 @@
+﻿@model IEnumerable<InnDocs.iHealth.Web.UI.Models.UserInformation>
+@if (Model!= null)
+{
+    <div>
+        <table id="thead">
+            <thead>
+                <tr>
+                    <th style="width: 5%; text-align: center; padding-left: 0px">
+                        
+                    </th>
+                    <th style="width: 23%;"> First Name
+                    </th>
+                    <th style="width: 35%;">Email Id
+                    </th>
+                    <th style="width: 22%; padding-left: 18px">Created on
+                    </th>
+                    <th style="width: 5%"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    
+    <table id="user1">
+        <tbody>
+            @foreach (var usr in Model)
+            {
+                <tr>
+                     <td style="width: 16%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@usr.FirstName
+                    </td>
+                    <td style="width: 18%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@usr.EmailId
+                    </td>
+                    <td style="width: 18%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@usr.CreatedOn
+                    </td>
+                </tr>
+    
+            }
+        </tbody>
+    </table>
+ 
+}
+else
+{
+    <text>
+    <center>
+        ----------- No Reports to display -----------
+    </center></text>
+}

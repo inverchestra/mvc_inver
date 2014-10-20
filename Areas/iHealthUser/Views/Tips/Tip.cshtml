@@ -1,0 +1,48 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserUtility.Tip
+@{
+    ViewBag.Title = "Bumpdocs - Tip";
+}
+
+@section LeftPanel {
+    <div class="left-pane">
+        <div class="left-tabs">
+            <ul>
+                <li><a href="@Url.Action("VitalsNew", "Medwall")">Vitals</a></li>
+                <li><a href="@Url.Action("Index", "Medwall" )" class="pink-a">Timeline</a></li>
+                <li><a href="@Url.Action("GetWeeks", "Medwall")">Albums</a></li>
+                <li><a href="@Url.Action("PInfo", "PersonalInfo")">My<span style="color: #fff">-</span>Info</a></li>
+                <li><a href="@Url.Action("Index", "Chat")">Chat</a></li>
+            </ul>
+        </div>
+    </div>
+}
+@*@section RightPanel{
+    <div style="margin: 70px 0 0 5px">
+        <a href="@Url.Action("Question", "Questions", new { week = Model.week })">
+            <img src="@Html.Raw("http://localhost:12937/bqi/" + ((Model.week == "1" || Model.week == "2") ? "1&@" : Model.week) + "week.png")" alt="growth this week" style="width:250px;" />
+        </a>
+    </div>
+}*@
+<script src="~/UIScripts/tipnav.js" type="text/javascript"></script>
+<div id="tipcontainer">
+    <div class="tipnav">
+        <a data-rel="back" title="pervious tip">&#x276e;</a>
+        <a data-rel="right" style="display: none" title="next tip">&#x276f;</a>
+    </div>
+    <p>Informational tip</p>
+    <p>
+        <label><span>Week:</span><span data-sp="week">@Model.Week</span> &nbsp; <span data-sp="d">Day:<span data-sp="day">@Model.Day</span></span></label>
+        <br style="margin: 0 0 5px 0" />
+        <span data-sp="title">@Model.Title</span>
+    </p>
+    @if (Model.STip != null && Model.STip.Count > 0) {
+        <ul>
+            @foreach (var item in Model.STip) {
+                <li>@item</li>
+            }
+        </ul>
+    }
+
+    <input type="hidden" data-rel="week" value="@Model.Week" />
+    <input type="hidden" data-rel="day" value="@Model.Day" />
+</div>

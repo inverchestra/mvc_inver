@@ -1,0 +1,653 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    ViewBag.Title = "Cases";
+}
+
+@*Old*@
+
+<script type="text/javascript" src="~/CustomScripts/cases-tabs.js"></script>
+<script type="text/javascript" src="~/CustomScripts/cases-script.js"></script>
+<link href="~/Content/ui.dropdownchecklist.standalone.css" rel="stylesheet" type="text/css" />
+<div style="width: 600px; height: 300px" class="bluegrad">
+    <div style="display: inline-block; width: 100%;">
+        <div style="display: inline-block" class="tldiv">
+            <ul id="menucases">
+                <li><a href="#tabs-1">CaseInfo</a></li>
+                <li><a href="#tabs-2">Procedures</a></li>
+                <li><a href="#tabs-3">Medicaltests</a></li>
+                <li><a href="#tabs-4">Medications</a></li>
+                <li><a href="#tabs-5">Visits</a></li>
+            </ul>
+        </div>
+        <div class="trdiv" style="width: 68%">
+            @*Cases*@
+            <div id="tabs-1" style="width: 99%; display: inline-block;" class="caseover">
+                <form id="crtCase" action="@Url.Action("CreateCase", "HealthRecord")" method="post" enctype="multipart/form-data" >
+                <div id="cases">
+                    <div style="border-bottom: 1px solid rgb(218,221,226);">
+                        <h3>
+                            Case Information</h3>
+                    </div>
+                    <br />
+                    <ul style="padding-right: 5px;">
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Case Name:</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="CaseName" title="Name of Procedure" class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Case description:</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="CaseDescription" class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Type Of Problem</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="TypeOfProblem" class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Hospital and Doctor Information</h6>
+                            </div>
+                            <div id="clicks" class="trdiv" style="width: 55%">
+                                <div id="ad" style="float: right; cursor: pointer">
+                                    Add</div>
+                                <div>
+                                    <ul class="accordion" id="hdinfo">
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6 style="margin-top: 10px;">
+                                    Patient Type</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <div style="display: inline-block; width: 100%; padding: 10px; color: rgb(89,89,89);
+                                    font-size: 12px; font-weight: bold">
+                                    <div style="float: right; width: 40%;">
+                                        <input type="radio" name="PatientType" value="true" />In Patient
+                                    </div>
+                                    <div style="float: left; width: 40%;">
+                                        <input type="radio" name="PatientType" value="false" checked="checked" />Out Patient
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Nurse Readings</h6>
+                            </div>
+                            <div id="clickreadings" class="trdiv" style="width: 55%">
+                                <input type="text" name="BMIHeight" placeholder="Height" class="create-logtxts" />
+                                <input type="text" name="BMIWeight" placeholder="Weight" class="create-logtxts" />
+                            </div>
+                            <div>
+                                <ul id="Nurseinfo">
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Related Cases</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <select id="s1" name="s1" multiple="multiple">
+                                    @if (Model.lstCases.Count == 0)
+                                    {
+                                        <option value="null" disabled="disabled">--No Cases--</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="null" disabled="disabled">--Select--</option>
+                                        foreach (var value in Model.lstCases)
+                                        {
+                                        <option value="@value.CaseId" >@value.CaseName</option>
+                                        }
+
+
+                                    }
+                                </select>
+                                <input type="button" id="btnCaseView" value="View" name="Case" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Related Logs</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <select id="s2" name="s2" multiple="multiple">
+                                    @if (Model.lstHealthlog.Count == 0)
+                                    {
+                                        <option value="null" disabled="disabled">--No Logs--</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="null" disabled="disabled">--Select-- </option>
+                                        foreach (var value in Model.lstHealthlog)
+                                        {
+                                        <option value="@value.logId">@value.logName </option>  
+                                        }
+
+                                    }
+                                </select>
+                                <input type="button" id="btnCaseLogView" value="View" name="view" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6 style="margin-top: 10px;">
+                                    Custom Health Log Description</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <textarea class="create-logtxts" cols="20" rows="20" name="CustHealthlogDesc" title="CustomHealthLogDescription"
+                                    style="height: 40px" required></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6 style="margin-top: 10px;">
+                                    Doctors Log</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <textarea name="DoctorsLog" cols="20" rows="20" class="create-logtxts" title="Describe DoctorsLog"
+                                    style="height: 40px"></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6 style="margin-top: 10px;">
+                                    Diet Prescription</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <textarea id="DietPrescription" cols="20" rows="20" name="DietPresc" class="create-logtxts"
+                                    title="DietPrescription" style="height: 40px;"></textarea>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6 style="margin-top: 10px;">
+                                    Precautions</h6>
+                            </div>
+ 
+                            <div class="trdiv" style="width: 55%">
+                                <textarea name="Precautions" class="create-logtxts" cols="20" rows="20" title="Precautions"
+                                    style="height: 40px"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div style="width:100%" class="inline">
+                    <input type="submit" id="btncasesave" value="Save" class="greengrad" />
+                    <input type="button" id="cancel" value="Cancel" style="float:right" class="graygrad" />
+                </div>
+                </form>
+            </div>
+            @*Procedures*@
+            <div id="tabs-2" style="width: 100%">
+                <div>
+                    <div style="border-bottom: 1px solid rgb(218,221,226);">
+                        <div id="procdiv" class="greengrad" style="float: right; text-align: center; margin-bottom: 5px">
+                            Add</div>
+                        <h3>
+                            Procedure Information</h3>
+                    </div>
+                    <br />
+                    <ul class="accordion" id="proclist">
+                    </ul>
+                </div>
+            </div>
+            @*Medical Tests*@
+            <div id="tabs-3" style="width: 100%">
+                <div>
+                    <div style="border-bottom: 1px solid rgb(218,221,226);">
+                        <div id="medtdiv" class="greengrad" style="float: right; text-align: center; margin-bottom: 5px">
+                            Add</div>
+                        <h3>
+                            Medical Test Information</h3>
+                    </div>
+                    <br />
+                    <ul id="medtestlst" class="accordion">
+                    </ul>
+                </div>
+            </div>
+            @*Medications*@
+            <div id="tabs-4" style="width: 100%" class="caseover">
+                <form id="medform" action="@Url.Action("CreateNewMedicalSchedule", "HealthRecord")" method="post" enctype="multipart/form-data">
+                <div id="medicationsd">
+                    <div style="border-bottom: 1px solid rgb(218,221,226);">
+                        @*<div id="meddiv" class="greengrad" style="float: right; text-align: center; margin-bottom: 5px">Add</div>*@
+                        <h3>
+                            Medications Information</h3>
+                    </div>
+                    <br />
+                    <ul id="medschelst" class="accordion">
+                    </ul>
+                    <ul style="display: inline-block; padding: 13px 13px">
+                        <li>
+                            <input type="hidden" name="CaseId" id="CaseId2" />
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Date First Prescribed:</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="MedicalSchdule.DatePrescribed" placeholder="MM/DD/YYYY"
+                                    title="the day to start the medications" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d"
+                                    class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Date Dispensed:</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="MedicalSchdule.Dispensed" placeholder="MM/DD/YYYY" title="the day to stop the medications"
+                                    pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d" class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    DoctorName</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="MedicalSchdule.DoctorName" class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Reason Taken</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="MedicalSchdule.Reason" title="the reason to take the medicine"
+                                    id="reason" class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    PharmcyName</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="text" name="MedicalSchdule.Pharmacy" title="the pharmcy name where you brought medications"
+                                    class="create-logtxts" />
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    SendNotifications</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="checkbox" value="true" name="MedicalSchdule.SendNotification" />Yes
+                                <input type="checkbox" value="false" name="MedicalSchdule.SendNotification">No
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Schedule</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%;">
+                                <div style="float: right">
+                                    <img id="imgadd" src="~/Images/add.png" width="20" height="20" alt="add" />
+                                </div>
+                                <div>
+                                    <ul id="medsc" class="accordion">
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="tldiv" style="width: 35%">
+                                <h6>
+                                    Adddocument</h6>
+                            </div>
+                            <div class="trdiv" style="width: 55%">
+                                <input type="file" name="msfiles" title="Select the Document" multiple="multiple" />
+                            </div>
+                        </li>
+                        <li>
+                           <div style="width:100%" class="inline">
+                                <input type="submit" id="medicationsave" value="Save" style="float:right; margin-right:10px;" class="greengrad" />
+                            </div>
+                            @*<div style="float: right">
+                                <input type="button" name="cancel" value="Cancel" class="graygrad">
+                            </div>*@ </li>
+                    </ul>
+                </div>
+                </form>
+            </div>
+            <div id="tabs-5" style="width: 100%">
+                <div>
+                    <div style="border-bottom: 1px solid rgb(218,221,226);">
+                        <div id="visitdiv" class="greengrad" style="float: right; text-align: center; margin-bottom: 5px">
+                            Add</div>
+                        <h3>
+                            Visits</h3>
+                    </div>
+                    <br />
+                    <ul id="viewdiv" class="accordion">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @*Procedures*@
+        <div id="procedures" class="slide">
+            <form id="procs" action="@Url.Action("CreateNewProcedure", "HealthRecord")" method="post"  enctype="multipart/form-data">
+            <ul style="display: inline-block; padding: 13px 13px">
+                <li>
+                    <input type="hidden" name="CaseId" id="CaseId" />
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Procedure Name:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="Procedures.ProcedureName" title="Name of Procedure" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            DateofService:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="Procedures.DateOfService" placeholder="MM/DD/YYYY" title="Date you Service"
+                            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Provider(or)Facility</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="Procedures.ProviderOrFacility" class="create-logtxts" title="Enter the Hospital name " />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Surgeon:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="Procedures.Surgeon" class="create-logtxts" title="Enter the doctorname" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Notes:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <textarea name="Procedures.Notes" cols="35" rows="7" title="Notes of the procedure"
+                            class="create-logtxts" style="height: 40px"></textarea>
+                        <br />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Adddocument</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="file" name="procfiles" multiple="multiple" />
+                    </div>
+                </li>
+                <li>
+                   <div style="width:100%" class="inline">
+                        
+                        <input type="button" name="cancel" value="Close" style="float:right" class="graygrad" />
+                        <input type="submit" id="btnProcedureAdd" name="save" value="Save" style="float:right; margin-right:10px;" class="greengrad"/>
+                    </div>
+                </li>
+            </ul>
+            </form>
+        </div>
+        @*Medical Tests*@
+        <div id="medicaltests" class="slide">
+            <form id="medtests" action="@Url.Action("CreateNewMedicalTest", "HealthRecord")" method="post"  enctype="multipart/form-data">
+            <ul style="display: inline-block; padding: 13px 13px">
+                <li>
+                    <input type="hidden" name="CaseId" id="CaseId1" />
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Test Name:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="MedicalTests.TestName" class="create-logtxts" title="Name of the Test" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Date of Test:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="MedicalTests.DateOfTest" placeholder="MM/DD/YYYY" title="Test Service Date"
+                            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Diagnostic Center:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="MedicalTests.DC" class="create-logtxts" title="Name of the Test" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Test Documents:</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="file" name="MTfiles" title="Select the Document" multiple="multiple" />
+                    </div>
+                </li>
+                <li>
+                    <div style="width:100%" class="inline">
+                       
+                        <input type="button" name="cancel" value="Close" style="float:right" class="graygrad" />
+                         <input type="submit" id="BtnMtestAdd" name="save" value="Save" style="float:right; margin-right:10px;" class="greengrad" />
+                    </div>
+                </li>
+            </ul>
+            </form>
+        </div>
+        @*Hospital*@
+        <div id="handdinfod" class="slide">
+            <ul style="display: inline-block; padding: 13px 13px">
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Hospital Name</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="HDInfos.HospitalName" title="Hospital Name" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Doctors Name</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="HDInfos.DoctorName" title="Doctors Name" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div style="width:100%" class="inline">
+                       
+                    
+                        <input type="button" name="cancel" value="Close" style="float:right" class="graygrad"/>
+                         <input type="button" id="hsave" name="save" value="Save" style="float:right; margin-right:10px;" class="greengrad" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        @*Medication Schedules*@
+        <div id="schedule" class="slide">
+            <ul style="display: inline-block; padding: 13px 13px">
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Medicine Name</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="ScheduleInfo.MedicineName" title="Enter Name of the Medicine"
+                            class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Type of Medicine</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="ScheduleInfo.TypeOfMedicne" title="Enter type of Medicine"
+                            class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            DosageTaken</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="ScheduleInfo.DosageQuantity" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Frequency Taken</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="ScheduleInfo.FrequencyTaken" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Quantity</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="ScheduleInfo.Quantity" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Days Supply</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="ScheduleInfo.DaysSupply" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Notes</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <textarea name="ScheduleInfo.Notes" cols="15" rows="7" title="Notes of the schedule"
+                            class="create-logtxts" style="height: 40px"></textarea>
+                    </div>
+                </li>
+                <li>
+                    <div style="width:100%" class="inline">
+                        
+                        <input type="button" name="cancel" value="Cancel" style="float:right" class="graygrad" />
+                        <input type="button" id="schedulsave" value="Save" style="float:right; margin-right:10px;" class="greengrad" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        @*Visits*@
+        <div id="visit" class="slide">
+            <form id="visits" action="@Url.Action("CreateNewVisit", "HealthRecord")" method="post" enctype="multipart/form-data" >
+            <ul style="display: inline-block; padding: 13px 13px">
+                <li>
+                    <input type="hidden" name="CaseId" id="CaseId3" />
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Visit date</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="lstVisits[0].VisitDate" placeholder="MM/DD/YYYY" title="Test Service Date"
+                            pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Reason</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="lstVisits[0].Reason" title="Reason to visit" class="create-logtxts" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 35%">
+                        <h6>
+                            Provider(or)Facility</h6>
+                    </div>
+                    <div class="trdiv" style="width: 55%">
+                        <input type="text" name="lstVisits[0].ProviderFacility" class="create-logtxts" title="Provider Name" />
+                    </div>
+                </li>
+                <li>
+                    <div class="tldiv" style="width: 55%">
+                        <h6>
+                           Send Notification</h6>
+                    </div>
+                    <input type="checkbox" name="IsNotify[0].IsNotify" value="true" />Yes
+                    <input type="checkbox" name="IsNotify[0].IsNotify" value="false" />No </li>
+                <li>
+                    <div style="width:100%" class="inline">
+                       
+                        <input type="button" name="cancel" value="Close" style="float:right" class="graygrad" />
+                         <input type="submit" value="Save" style="float:right; margin-right:10px;" class="greengrad" />
+                    </div>
+                </li>
+            </ul>
+            </form>
+        </div>
+        @*PleaseWait*@
+        <div id="plzwt" class="slide">
+            <h2>
+                Please Wait...</h2>
+        </div>
+        <div id="modal-div1" class="slide" style="width: 400px">
+        </div>
+    </div>
+</div>

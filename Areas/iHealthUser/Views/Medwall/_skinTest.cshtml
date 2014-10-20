@@ -1,0 +1,154 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.Vitals.Vitals
+@{
+    ViewBag.Title = "";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnskintest").click(function () {
+            $.ajax({
+                url: '/iHealthUser/Medwall/SkinTestEdit',
+                type: 'GET',
+                success: function (result) {
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                            $("input[name = 'btnCancel']").click(function () {
+                                $.modal.close();
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+        $("#btnSkinTestTrend").click(function () {
+            $.ajax({
+                url: '/iHealthUser/Medwall/SkinTestTrend',
+                type: 'GET',
+                success: function (result) {
+
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+
+</script>
+<div>
+<div style="border-bottom: 1px solid rgb(218,221,226); width: 100%; margin:10px">
+    @if (Model.ST.CreatedOn != null)
+    {
+        <label>
+            Recent updation on:
+        </label> 
+        <label style="color: Red">
+            (@Html.DisplayTextFor(model => model.ST.CreatedOn) )</label>
+    }
+    </div>
+    <div class="vitals">
+        <ul>
+            @if (Model.ST != null)
+            {  
+                <li style="">
+                    <div>
+                        <div style="width: 30%; display: inline-block;background-color:#f7f7f7">
+                            Color of nipples :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var ColourOfNipples = Model.ST.ColourOfNipples ? "Yes" : "No";}
+                            <label title="GlucoseTolerantTest">@ColourOfNipples</label>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="">
+                    <div>
+                        <div style="width: 30%; display: inline-block;background-color:#f7f7f7">
+                            Pigmentation spots on skin :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var PigmentationSpotsOnSkin = Model.ST.PigmentationSpotsOnSkin ? "Yes" : "No";}
+                            <label title="UrinaryTtractInFection">@PigmentationSpotsOnSkin</label>
+                        </div>
+                    </div>
+                </li>
+               
+                <li style="">
+                    <div>
+                        <div style="width: 30%; display: inline-block;background-color:#f7f7f7">
+                            Complexion of skin :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var ComplexionOfSkin = Model.ST.ComplexionOfSkin ? "Yes" : "No";}
+                            <label title="Protein">@ComplexionOfSkin</label>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="">
+                    <div>
+                        <div style="width: 30%; display: inline-block;background-color:#f7f7f7">
+                            Stretch marks :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var StretchMarks = Model.ST.StretchMarks ? "Yes" : "No";}
+                            <label title="BloodCells">@StretchMarks</label>
+                        </div>
+                    </div>
+                </li>
+                
+                <li style="">
+                    <div style="border-bottom:1px solid #f0f0f0">
+                        <div style="width: 30%; display: inline-block;background-color:#f7f7f7">
+                            Acne :
+                        </div>
+                        <div style="width: 40%; display: inline-block">
+                            @{ var Acne = Model.ST.Acne ? "Yes" : "No";}
+                            <label title="Ketones">@Acne</label>
+                        </div>
+                    </div>
+                </li>
+                
+               
+         
+            }
+            else
+            {
+                <li>No data is available.</li>
+            
+                <li style="width: 100%" class="inline">
+                    <div style="width: 100%; float: right; margin: 0 7px 0 0;" class="inline">
+                    </div>
+                </li>
+            }
+            <li style="width: 100%" class="inline">
+                <a href="@Url.Action("VitalsNew", "Medwall")" style="color:#0088cc" >Back</a>
+                <input id="btnskintest" type="button" class="greengrad" value="Update" />
+            </li>
+           @* <li>
+                <input type="button" id="btnSkinTestTrend" value="Trend" class="graygrad" />
+            </li>*@
+            
+        </ul>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

@@ -1,0 +1,893 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.MedicalAndPersonal
+@{
+    ViewBag.Title = "MyInfo";
+}
+@*<h2>PInfo</h2>*@
+<link href="../../../../Content/MyInfo.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jQuery-block-ui.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.simplemodal.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    //      $(document).ready(function () {
+    $(function () {
+        $('#btnsave').click(function () {
+            document.getElementById("hdSelectedItems").value = "";
+            var T = document.getElementById("T");
+
+            T.value = document.getElementById("Title").innerHTML;
+            T.value += ",";
+            T.value += "PInfo";
+
+            var hdSelectedItems = document.getElementById("hdSelectedItems");
+            var allItems = document.getElementById("Alergies");
+
+            var optsLength = allItems.options.length;
+
+            for (var i = 0; i < optsLength; i++) {
+
+                if (allItems.options[i].selected) {
+                    var op = allItems.options[i].text;
+
+                    if (hdSelectedItems.value != '') {
+                        hdSelectedItems.value += ","
+                    }
+                    hdSelectedItems.value += op;
+                }
+            }
+            $.post($(this).attr("action"), { data: T, data1: hdSelectedItems }, {}, "json");
+        });
+
+        $('#btnUpdate').click(function () {
+
+            //var viewid = document.getElementById("viewid").value;
+            var viewid = document.getElementById("viewid");
+
+            viewid.value = document.getElementById("viewid").value;
+            viewid.value += ",";
+            viewid.value += "PInfo";
+            document.getElementById("button").value = "btnUpdate";
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            //                var dateNoticed = document.getElementById("DateNoticed").val;
+            var reaction = document.getElementById("Reaction").value;
+            //alert(tbVieInfoName);
+            var severity = document.getElementById("Severity").val;
+            var provider = document.getElementById("Provider").val;
+            var notes = document.getElementById("Notes").val;
+
+
+            $.post($(this).attr("action"), { data1: tbVieInfoName, data2: button, data3: reaction, data4: severity, data5: provider, data6: notes, data7: viewid }, {}, "json");
+        });
+
+        $('#btnRemove').click(function () {
+
+            document.getElementById("button").value = "btnRemove";
+
+            var viewid = document.getElementById("viewid");
+
+            viewid.value = document.getElementById("viewid").value;
+            viewid.value += ",";
+            viewid.value += "PInfo";
+
+
+
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            //alert(tbVieInfoName);
+
+
+            $.post($(this).attr("action"), { data1: tbVieInfoName, data2: button, data3: viewid }, {}, "json");
+
+
+
+        });
+
+
+        $("#ViewMore").click(function () {
+            $('#PMoreInfo').modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $('#btnCancelMore').click(function () {
+                        $.modal.close();
+                    });
+                }
+
+            });
+        });
+
+        $("#btnEdit").click(function () {
+            $.modal.close();
+            $('#edit').modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $('#btnCancelEdit').click(function () {
+                        $.modal.close();
+                    });
+                }
+
+            });
+        });
+
+
+
+
+
+        $("#chngPic").click(function () {
+            $("#dialog").modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $("input[name = 'btnCancel']").click(function () {
+                        $.modal.close();
+                    });
+                }
+
+            });
+
+        });
+
+
+        //Ends here
+
+
+
+        $('#AllergiesAddBtn,#CancerAddBtn,#AsthmaAddBtn,#LiverAddBtn,#HeartAddBtn').click(function () {
+
+            $.blockUI.defaults.css = {}; //this will remove the default css for centering all elements
+            var result = $(this).attr('Id');
+
+            var result1;
+            if (result == "AllergiesAddBtn") {
+                document.getElementById("Title").innerHTML = "Add Allergy";
+                document.getElementById("SubTitle").innerHTML = "Add an Allergy from a list";
+                result1 = "Allergies";
+                var showResult = $('#AllergyPopup1');
+            }
+            else if (result == "CancerAddBtn") {
+                document.getElementById("Title").innerHTML = "Add Cancer";
+                document.getElementById("SubTitle").innerHTML = "Add Cancer from a list";
+                result1 = "Cancer";
+                var showResult = $('#AllergyPopup1');
+            }
+            else if (result == "AsthmaAddBtn") {
+                document.getElementById("Title").innerHTML = "Add Asthma";
+                document.getElementById("SubTitle").innerHTML = "Add Asthma or Chest Problems from a list";
+                result1 = "Asthma";
+                var showResult = $('#AllergyPopup1');
+            }
+            else if (result == "LiverAddBtn") {
+                document.getElementById("Title").innerHTML = "Add Liver";
+                document.getElementById("SubTitle").innerHTML = "Add Liver Disease from a list";
+                result1 = "Liver";
+                var showResult = $('#AllergyPopup1');
+            }
+            else if (result == "HeartAddBtn") {
+                document.getElementById("Title").innerHTML = "Add Heart";
+                document.getElementById("SubTitle").innerHTML = "Add Heart Problems from a list";
+                result1 = "Heart";
+                var showResult = $('#AllergyPopup1');
+            }
+
+            //$.post('PersonalInfo/GetListItems', { data: result1 }, function (success) {   //// For local
+            $.post('/PersonalInfo/GetListItems', { data: result1 }, function (success) { ////// For Datacenter
+                var data = [];
+
+                for (i = 0; i < success.length; i++) {
+
+                    data[i] = success[i].Text;
+                }
+
+                // $.each(success, function (a) {
+                // $('#Alergies').append($("<option value=" + success[a].Text + ">" + success[a].Text + "</option>"));
+
+                // });
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+
+                        //Inteliisense
+                        function split(val) {
+                            return val.split(/,\s*/);
+                        }
+
+                        function extractLast(term) {
+
+                            return split(term).pop();
+                        }
+
+                        $('#searchtxt').bind('keydown', function (event) {
+
+                            if (event.keyCode === $.ui.keyCode.TAB &&
+                        $(this).data('autocomplete').menu.active) {
+
+                                event.preventDefault();
+                            }
+                        }).autocomplete({
+                            source: function (request, response) {
+                                $.getJSON('/iHealth/iHealthUser/PersonalInfo/LookUpReasons?name=' + result1, {
+                                    term: extractLast(request.term)
+                                }, response);
+                            },
+                            search: function () {
+                                var term = extractLast(this.value);
+                                if (term.length < 1) {
+                                    return false;
+                                }
+                            },
+                            focus: function () { return false; },
+                            select: function (event, ui) {
+                                var terms = split(this.value);
+                                terms.pop();
+                                terms.push(ui.item.value);
+                                terms.push('');
+                                this.value = terms.join(', ');
+                                return false;
+                            }
+                        });
+
+                        //End of Intellisense
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                            // $('#Alergies').empty();
+
+                        });
+                    }
+
+                });
+            }, "json");
+
+        });
+
+
+
+
+        $(".Ulist li ").click(function () { //"#ulAllergies li"               
+
+            //                $.blockUI.defaults.css = {};
+
+            $('#tbVieInfoName').val($(this).text());
+
+            var Result = ['Reaction', 'Severity', 'Provider', 'Notes'];
+
+            var reaction = document.getElementById("Reaction").val;
+            var severity = document.getElementById("Severity").val;
+            var provider = document.getElementById("Provider").val;
+            var notes = document.getElementById("Notes").val;
+
+            var g = $(this).parent().attr("id");
+            document.getElementById("viewid").value = g.substring(2);
+
+            var viewid = document.getElementById("viewid").value;
+
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            //alert(tbVieInfoName);
+            $.post('/iHealth/iHealthUser/PersonalInfo/GetRelated', { data: tbVieInfoName, data1: viewid }, function (Result) {
+                $('#ViewAllInfo').modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+
+                        $('#Reaction').val(Result.Reaction);
+                        $('#Severity').val(Result.Severity);
+                        $('#Provider').val(Result.Provider);
+                        $('#Notes').val(Result.Notes);
+                        $("input[name= 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+
+            }, "json");
+        });
+
+
+        $('.Ulist').css({ overflow: 'auto', paddingBottom: '10px', height: '90px' }); //document.getElementsByClassName('Ulist');//.getElementById('UlAllergies'); //.getElementsByClassName('Ulist');//,UlCancer,ULAsthma'); //.getElementsByTagName("ul"); //.getElementsByClassName('Ulist'); //.getElementById('UlAllergies'); 
+
+        $(".Ulist li").hover(
+  function () {
+      $(this).css("background", "#151B54");
+      $(this).css("color", "white");
+      // $('.Ulist1').css({ overflow: 'scroll', paddingBottom: '10px', height: '90px' });
+
+
+  },
+  function () {
+      $(this).css("background", "");
+      $(this).css("color", "blue");
+      //$('.Ulist1').css({ overflow: 'hidden', paddingBottom: '10px', height: '90px' });
+  }
+);
+
+    });
+    //AD for Image Upload and View
+    function preview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview_image')
+                .attr('src', e.target.result)
+                .width(400)
+                .height(400);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
+
+<style type="text/css">
+    .ui-widget-content
+    {
+        height: 200px !important;
+    overflow-y: auto;
+  
+    width: 306px !important;
+    }
+</style>
+@*AD code for Change Image*@
+<div id="dialog" title="Upload files" style="display: none; width: 300px;">
+    <form id="fileUploadForm" style="width:100%; background-color:transparent" action="@Url.Action("Upload", "PersonalInfo")" method="post" enctype = "multipart/form-data" >
+    <p>
+        <input type="file" id="fileUpload" name="fileUpload" style="width: 23px;" />
+    </p>
+    <p>
+        <input type="submit" value="Upload file" class="greengrad" />
+        <input type="button" name="btnCancel" value="Cancel" class="greengrad" style="float: right" /></p>
+    </form>
+</div>
+@*AD code for Edit Personal Info Details*@
+<div id="edit" style="display: none; width: 300px;">
+    <form id="EditInfoform" action="@Url.Action("EditPersonalInfo", "PersonalInfo")" method="post">
+    <div id="PEdit">
+        <div style="border-bottom: 1px solid rgb(218,221,226);">
+            <h2>
+                Edit Details</h2>
+        </div>
+        <ul>
+            <li>
+                <div style="float: left;">
+                    Name
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.FirstName)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Dateofbirth
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.DateOfBirth)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Gender
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Gender)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Country
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Country)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    State
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.state)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    City
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.City)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Address
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Address)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Contact
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Contact)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Emergency
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Emergency)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Work TelNo.
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.WorkTelNumber)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Mobile No.
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.MobileNumber)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Religion
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Religion)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Street
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Contact)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Town
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.Town)
+                </div>
+            </li>
+            <li>
+                <div style="float: left;">
+                    Zip Code
+                </div>
+                <div style="float: right;">
+                    @Html.TextBoxFor(model => model.PInfo1.ZipCode)
+                </div>
+                @Html.HiddenFor(model => model.PInfo1.UserId)
+                @Html.HiddenFor(model => model.PInfo1.DomainID)
+            </li>
+            <li>@*<input  type="Submit" id="btnDone" value="Done"  style="background-color:rgb(32,180,143); color:white; border:1px solid rgb(26,145,115);height:25px;margin-right:5px; border-radius:3px; font-weight:bold; float:right;" /></li>*@
+                <div style="width: 100%" class="inline">
+                    <input type="Submit" value="Done" id="btnDone" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                    <input type="button" id="btnCancelEdit" value="Cancel" style="float: right" class="graygrad" />
+                </div>
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@*End here*@ @* AD Code for Personal Info starts here*@
+<div id="PMoreInfo" style="display: none; width: 300px;">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h2>
+            Personal Information</h2>
+    </div>
+    <div id="PInfo">
+        <div style="margin-left: 20px;">
+            <ul>
+                <li>
+                    <div style="float: left; color: White;">
+                        Name</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.FirstName)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                       Date of birth</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.DateOfBirth)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Gender</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Gender)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Country</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Country)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        State</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.state)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        City</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.City)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Address</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Address)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Contact</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Contact)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Emergency</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Emergency)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Work TelNo.</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.WorkTelNumber)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Mobile No.</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.MobileNumber)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Religion</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Religion)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Street</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Street)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Town</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.Town)</div>
+                </li>
+                <li>
+                    <div style="float: left; color: White;">
+                        Zip Code</div>
+                    <div style="float: right;">
+                        @Html.DisplayFor(model => model.PInfo1.ZipCode)</div>
+                </li>
+            </ul>
+        </div>
+        <div style="width: 100%" class="inline">
+            <input type="button" value="Edit" id="btnEdit" style="float: right; margin-right: 10px;"
+                class="greengrad" />
+            <input type="button" id="btnCancelMore" value="Cancel" style="float: right" class="graygrad" />
+        </div>
+    </div>
+</div>
+@* AD Code for Personal Info Ends here*@ @* AD Code for View Information when User click on list, starts here*@
+<div id="ViewAllInfo" style="display: none; width: 350px;">
+    <form id="UpdateInfoform" action="@Url.Action("UpdateAlergiesInfo", "PersonalInfo")" method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h2>
+            View Information</h2>
+    </div>
+    <div style="margin-left: 20px;">
+        <ul>
+            <li style="display:none;"> 
+                <input type="hidden" id="viewid" name="viewid" />
+            </li>
+            <li style="display:none;">
+                <input type="hidden" id="button" name="button" />
+            </li>
+            @*  @Html.Hidden("viewid")
+           @Html.Hidden("button")*@
+            <li>
+                <label id="AName" style="margin-right: 30px; color: blue">
+                    Name :
+                </label>
+                <input style="width: 140px;" type="text" id="tbVieInfoName" name="tbVieInfoName"
+                    class="pli" value="" />
+            </li>
+            @* <li><label id="ADate" style="margin-right:30px;  color:blue">Date Noticed :</label>@Html.TextBox("DateNoticed")</li> *@
+            <li>
+                <label id="AReact" style="margin-right: 30px; color: blue">
+                    Reaction :</label><input style="width: 140px;" type="text" id="Reaction" name="Reaction"
+                        class="pli" value="" /></li>
+            <li>
+                <label id="ASiv" style="margin-right: 30px; color: blue">
+                    Severity :</label><input style="width: 140px;" type="text" name="Severity" id="Severity"
+                        class="pli" /></li>
+            <li>
+                <label id="AProv" style="margin-right: 30px; color: blue">
+                    Provider or Facility :</label><input style="width: 140px;" type="text" id="Provider"
+                        name="Provider" class="pli" /></li>
+            <li>
+                <label id="ANotes" style="margin-right: 30px; color: blue">
+                    Notes :</label>
+                <textarea style="width: 140px;" rows="4" cols="16" id="Notes" name="Notes" class="pli"> </textarea></li>
+        </ul>
+        <input type="submit" value="Update" id="btnUpdate" class="greengrad" />
+        <input type="submit" id="btnRemove" value="Remove" class="greengrad" />
+        <input type="button" name="btnCancel" value="Cancel" class="greengrad" style="float: right" />
+        <br />
+    </div>
+    </form>
+</div>
+@* AD Code for View Allergies  Info End here*@
+<div id="MainContainer">
+    <div id="LeftTop" style="float: left; height: 500px; width: 49%; background-color: yellow;">
+        <div id="LeftTop1" style="float: left; height: 33%; width: 99%; /*background-color: red;
+            */ border-bottom: 1px solid rgb(218,221,226);">
+            <div id="pInfoMainDiv" style="width: 100%; height: 100%;">
+                <div id="leftpInfoDiv" style="float: left; width: 35%; height: 100%;">
+                    <div class="myinfosubheadings" style="float: left; width: 100%; height: 20px;">
+                        Personal Profile
+                    </div>
+                    @{
+                        if (Model.PInfo1.OriginalName != null)
+                        {
+                        <div align="center" style="float: left; width: 100%; height: 60%; padding: 5px;">
+                            <img src="~/Uploads/@Model.PInfo1.ImageName" width="100px" height="110px" />
+                        </div>
+
+                        }
+                        else
+                        {
+                        <div align="center" style="float: left; width: 100%; height: 60%; padding: 5px; background-color: blue;">
+                            <img src="~/Images/default-user.png" width="100px" height="110px" />
+                        </div>
+                        }
+                    }
+                    <div align="center" style="float: left; width: 100%; height: 20px; margin-top: 10px;
+                        /*background-color: blueviolet; */">
+                        <a href="#" title="ChangePhoto">
+                            <label id="chngPic">
+                                Change Photo
+                            </label>
+                        </a>
+                    </div>
+                </div>
+                <div id="RightpInfoDiv" style="float: right; width: 65%; height: 160px;">
+                    <div style="float: left; width: 100%; height: 85%;">
+                        <div style="float: left; width: 50%; height: auto;">
+                            <br />
+                            <ul>
+                                <li><b>Name</b></li>
+                                <li><b>DOB</b></li>
+                                <li><b>Gender</b></li>
+                                <li><b>Contact</b></li>
+                            </ul>
+                        </div>
+                        <div style="float: left; width: 50%; height: auto;">
+                            @{string main = Model.PInfo1.DateOfBirth.ToString();
+                              string[] tmp;
+                              string date;
+
+                              tmp = main.Split(' ');
+
+                              date = tmp[0].ToString();
+
+                            }
+                            <br />
+                            <ul>
+                                <li>@Html.DisplayFor(model => model.PInfo1.FirstName)</li>
+                                <li>@Html.DisplayFor(model => date)</li>
+                                <li>@Html.DisplayFor(model => model.PInfo1.Gender)</li>
+                                <li>@Html.DisplayFor(model => model.PInfo1.Contact)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="width: 100%; height: 15%;">
+                        <a href="#" title=" More Information">
+                            <label id="ViewMore" style="float: right; margin-right: 20px;">
+                                More..</label></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="personalprofile" style="float: left; height: 53%; width: 98%; border-bottom: 1px solid rgb(218,221,226);">
+            <br />
+            <div id="A" class="myinfosubheadings">
+                <label title="A">
+                    Allergieshello</label>
+                <div style="float: right;">
+                    <img id="AllergiesAddBtn" src="~/Images/Add.png" /></div>
+            </div>
+            <div>
+                <ul class="Ulist" id="UlAllergies">
+                    @foreach (var UsrInfo in Model.al)
+                    {
+                        for (var i = 0; i < UsrInfo.Allergies.Count; i++)
+                        {
+                        <li>
+                            <label id="Name1" style="margin-right: 30px;">
+                                @Html.DisplayFor(model => UsrInfo.Allergies[i])
+                            </label>
+                        </li>
+                        }
+                        break;
+                    }
+                </ul>
+            </div>
+        </div>
+        <div style="float: left; height: 33%; width: 98%;">
+            <br />
+            <div class="myinfosubheadings">
+                <label title="A">
+                    Cancer</label>
+                <div style="float: right;">
+                    <img id="CancerAddBtn" src="~/Images/Add.png" />
+                </div>
+            </div>
+            <div>
+                <ul class="Ulist" id="UlCancer">
+                    @foreach (var UsrInfo in Model.al)
+                    {
+
+                        for (var i = 0; i < UsrInfo.Cancers.Count; i++)
+                        {
+                        <li>
+                            <label id="Name2" style="margin-right: 30px;">
+                                @Html.DisplayFor(model => UsrInfo.Cancers[i])
+                            </label>
+                        </li>
+                     
+                        }
+                        break;
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="RightTop" style="float: right; height: 500px; width: 49%; background-color: lightblue;">
+        <div style="float: right; height: 33%; width: 98%; /*background-color: white; */  border-bottom: 1px solid rgb(218,221,226);">
+            <br />
+            <div class="myinfosubheadings">
+                Asthma or Chest Problems<div style="float: right;">
+                    <img id="AsthmaAddBtn" src="~/Images/Add.png" />
+                </div>
+            </div>
+            <div>
+                <ul class="Ulist" id="ULAsthma">
+                    @foreach (var UsrInfo in Model.al)
+                    {
+                        for (var i = 0; i < UsrInfo.Asthamas.Count; i++)
+                        {
+                        <li>
+                            <label id="Name3" style="margin-right: 30px;">
+                                @Html.DisplayFor(model => UsrInfo.Asthamas[i])
+                            </label>
+                        </li>
+                        }
+                        break;
+                    }
+                </ul>
+            </div>
+        </div>
+        <div style="float: right; height: 33%; width: 98%; /*background-color: orange; */  border-bottom: 1px solid rgb(218,221,226);">
+            <br />
+            <div class="myinfosubheadings">
+                Liver Disease<div style="float: right;">
+                    <img id="LiverAddBtn" src="~/Images/Add.png" />
+                </div>
+            </div>
+            <div>
+                <ul class="Ulist" id="ULLiver">
+                    @foreach (var UsrInfo in Model.al)
+                    {
+                        for (var i = 0; i < UsrInfo.Liverproblems.Count; i++)
+                        {
+                        <li>
+                            <label id="Name4" style="margin-right: 30px;">
+                                @Html.DisplayFor(model => UsrInfo.Liverproblems[i])
+                            </label>
+                        </li>
+                        }
+                        break;
+                    }
+                </ul>
+            </div>
+        </div>
+        <div style="float: right; height: 33%; width: 98%; /*background-color: lightsalmon;
+            */">
+            <br />
+            <div class="myinfosubheadings">
+                Heart Problems<div style="float: right;">
+                    <img id="HeartAddBtn" src="~/Images/Add.png" />
+                </div>
+            </div>
+            <div>
+                <ul class="Ulist" id="ULHeart">
+                    @foreach (var UsrInfo in Model.al)
+                    {
+                        for (var i = 0; i < UsrInfo.Heartproblems.Count; i++)
+                        {
+                        <li>
+                            <label id="Name5" style="margin-right: 30px;">
+                                @Html.DisplayFor(model => UsrInfo.Heartproblems[i])
+                            </label>
+                        </li>
+                        }
+                        break;
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    <a style="float:right; margin-bottom:10px; margin-right:20px;" href="@Url.Action("PInfo2", "PersonalInfo")">
+        Next >></a></div>
+@*Poppup Div of Allergies*@
+<div id="AllergyPopup1" style="display: none; width: 350px;">
+    <form id="AllergiesForm" style="width:100%; background-color:transparent" action="@Url.Action("EditAlergiesInfo", "PersonalInfo")" method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title" />
+        </h3>
+    </div>
+    <div style="color: orange;">
+        <label id="SubTitle" />
+    </div>
+    <br />
+    Enter a search term to find the most common results.
+    <br />
+    Click 'More Results' for a more complete list.
+    <br />
+    <br />
+    <div>
+        <div>
+            <label id="AllergySearch" style="color: blue;">
+                Search
+            </label>
+            <input type="text" id="SearchName" />
+            <a href="#" title="AllergyMoreResults">
+                <label id="AllergyMoreResults">
+                    More Results</label>
+            </a>
+        </div>
+        <br />
+        <div style="border-bottom: 1px solid rgb(218,221,226);">
+            @Html.Hidden("hdSelectedItems")
+            @Html.Hidden("T")
+            @Html.HiddenFor(model => model.MInfo1.UserId)
+            <select id="Alergies" style="width: 350px; height: 200px;" multiple="true">
+            </select>
+        </div>
+        <div style="width: 100%" class="inline">
+            <input type="button" name="btnCancel" value="Cancel" style="float: right" class="graygrad" />
+            <input type="Submit" value="Save" id="btnsave" style="float: right; margin-right: 10px;"
+                class="greengrad" />
+        </div>
+        <br />
+    </div>
+    </form>
+</div>

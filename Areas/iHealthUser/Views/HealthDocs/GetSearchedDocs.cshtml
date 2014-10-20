@@ -1,0 +1,81 @@
+﻿@model IList<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.MyDocsTree>
+<script src="~/CustomScripts/documentsview.js" type="text/javascript"></script>
+@*<br />*@
+<div id="table">
+    <div>
+        <table id="thead">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">
+                        Document
+                    </th>
+                    <th style="width: 10%;">
+                        Name
+                    </th>
+                    <th style="width: 10%;">
+                        Doc type
+                    </th>
+                    <th style="width: 35%;">
+                        CFiD
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <table id="tbody">
+        <tbody>
+            @foreach (var value in Model)
+            {
+                <tr>
+                    <td style="width: 2%;">
+                        @value.objDocs.OriginalName
+                    </td>
+                    <td style="width: 4%; white-space: nowrap; overflow: hidden">
+                        @if (value.objProcedure != null)
+                        {
+                            @value.objProcedure.ProcedureName
+                        }
+                        else if (value.objMtest != null)
+                        {
+                            @value.objMtest.TestName
+                        }
+                        else if (value.objMSchedule != null)
+                        {
+                            @value.objMSchedule.Pharmacy
+                        }
+                        else if (value.objCharts != null)
+                        {
+                            @value.objCharts.ChartName
+                        }
+                    </td>
+                    <td style="width: 3%; white-space: nowrap; overflow: hidden">
+                        @if (value.objProcedure != null)
+                        {
+                            <text>Procedure</text>
+                        }
+                        else if (value.objMtest != null)
+                        {
+                            <text>MedicalTest</text>
+                        }
+                        else if (value.objMSchedule != null)
+                        {
+                            <text>MedicalSchedule</text>
+                        }
+                        else if (value.objCharts != null)
+                        {
+                            <text>Charts</text>
+                        }
+                    </td>
+                    <td style="width: 10%; white-space: nowrap; overflow: hidden">
+                        @if (value.objCase != null)
+                        {
+                            @value.objCase.CfId
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="tab" style="display: none">
+</div>

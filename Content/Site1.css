@@ -1,0 +1,604 @@
+﻿body
+{
+    font-size: .85em;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section
+{
+    display: block;
+}
+
+#background
+{
+    height: auto;
+    margin-top: 75px;
+    margin-bottom: 32px;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea
+{
+    min-height: 75px;
+}
+
+.editor-label
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field
+{
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #f00;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+.service
+{
+    margin: 0px 10px 0px 0px;
+    border-right: 2px solid #1d1d1d;
+    padding: 5px 10px 5px 0;
+    font-size: 32px;
+}
+
+.muted
+{
+    font-size: 28px;
+}
+
+.three-blocks
+{
+    position: relative;
+    height: 200px;
+}
+
+.signin
+{
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+#log-signin
+{
+    width: 80%;
+    border-radius: 1px;
+    box-shadow: 0 0 0 0;
+    border: none;
+    height: 40px;
+    background-image: none;
+    font-size: 21px;
+    background-color: #0088cc;
+    font-family: Calibri !important;
+}
+
+#log-signin:hover
+{
+    background-color: #006dcc;
+    border: 1px solid #d9d9d9;
+}
+
+#signupbtn
+{
+    width: 80%;
+    border-radius: 1px;
+    box-shadow: 0 0 0 0;
+    border: none;
+    height: 40px;
+    background-color: #62c462;
+    background-image: none;
+    font-size: 21px;
+    margin-top: 10px;
+    font-family: Calibri !important;
+}
+
+#signupbtn:hover
+{
+    border: 1px solid #d9d9d9;
+    background-color: #51a351;
+}
+
+.facebook-article
+{
+    position: absolute;
+    z-index: 9;
+    left: 31em;
+    top: -50px;
+    width: 290px;
+    height: auto;
+    box-shadow: 0px 0px 5px #888888;
+}
+
+
+.adsblock
+{
+    position: absolute;
+    z-index: 9;
+    right: 0;
+    top: -50px;
+    height: 185px;
+    box-shadow: 0px 0px 5px #888888;
+}
+
+#myCarousel
+{
+    margin-top: 50px;
+}
+
+#slide
+{
+    height: 510px;
+    width: 97%;
+    position: absolute;
+    background-image: url('img/fullscreen_overlay_pattern.png');
+    opacity: 0.4;
+    top: 0px;
+}
+
+#about
+{
+    background-image: url('img/imgmm.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    padding-bottom: 10px;
+    z-index: -2;
+    padding-top: 40px;
+}
+
+#nextabout
+{
+    background-image: url('img/e.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -2;
+    color: White !important;
+    padding: 200px 0;
+    margin-top: 30px;
+    position: relative;
+}
+
+.mesh
+{
+    position: absolute;
+    width: 100%;
+    height: 133%;
+    background-image: url('img/fullscreen_overlay_pattern.png');
+    margin-top: -200px;
+    z-index: -1;
+}
+
+.img
+{
+    background-image: url('img/12.jpg');
+    background-position: -50px 0px;
+    background-repeat: no-repeat;
+}
+
+.lead2
+{
+    margin-bottom: 20px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 30px;
+}
+
+
+.lead3
+{
+    margin-bottom: 20px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 30px;
+}
+
+.intro_img
+{
+    background-image: url('img/app-image1.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 650px;
+    margin-top: -10px;
+}
+
+.gallery_img
+{
+    background-image: url('img/app-image2.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 722px;
+}
+
+.social_head
+{
+    padding: 10px;
+}
+
+.copyright
+{
+    text-align: center;
+    color: gray;
+}
+
+
+label
+{
+    margin-bottom: 0px !important;
+    line-height: 9px !important;
+    margin-top: 3px;
+}
+
+#user_login label.error
+{
+    margin-left: 0 !important;
+}
+
+.title
+{
+    font-size: 18px;
+    margin: 30px 0;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.heading
+{
+    font-size: 17px;
+    margin: 25px 0;
+}
+
+.sideheading
+{
+    margin: 20px 0;
+    color: #303030;
+    font-size: 15px;
+}
+
+.paragraph
+{
+    color: dimgray;
+    line-height: 1.5;
+}
+
+.firsttxt
+{
+    color: #000;
+    font-size: 15px;
+}
+
+
+.firsttxt1
+{
+    color: #303030;
+    font-size: 15px;
+    font-weight: bold;
+}
+devices > li
+{
+    width: 300px;
+    height: 80px;
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    margin: 5px 0px 0px -10px;
+    background-color: rgb(242,242,242);
+}
+
+.logo_device
+{
+    margin: 11px 5px;
+    border-radius: 10px;
+    float: left;
+}
+
+.android
+{
+    width: 195px;
+    float: left;
+    margin: 5px;
+}
+
+.android_txt
+{
+    font-family: "Roboto" ,Arial,sans-serif;
+    color: #333;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.android_description
+{
+    color: gray;
+    font-size: 12px;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.android_link
+{
+    padding: 2px 25px;
+    background-color: #b3c833;
+    color: #fff;
+    font-weight: 500;
+    font-family: "Roboto" ,sans-serif;
+    border-radius: 1px;
+    font-size: 15px;
+    margin-top: 25px;
+}
+
+.android_link:hover
+{
+    text-decoration: none;
+    color: #fff;
+}
+
+.itunes
+{
+    width: 195px;
+    float: left;
+    margin: 5px;
+}
+
+.itunes_txt
+{
+    font-family: "Roboto" ,Arial,sans-serif;
+    color: #333;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    width: 110px;
+    float: left;
+    word-wrap: break-word;
+}
+
+.itunes_description
+{
+    font-size: 12px;
+    color: gray;
+    line-height: 1px;
+}
+
+.itunes_right
+{
+    width: 65px;
+    float: left;
+    margin: 23px 0px 23px 10px;
+}
+
+.itunes_link
+{
+    /*padding:5px 15px; background-color:#fff; border:2px solid rgb(29,137,255); border-radius:5px; font-weight:bold;*/
+    color: rgb(29,137,255);
+    font-family: "Roboto" ,Arial,sans-serif;
+    font-size: 24px;
+}
+
+.itunes_link:hover
+{
+    text-decoration: none;
+    color: rgb(29,137,255);
+}
+
+
+
+.close
+{
+    color: #000000;
+    float: left;
+    width: 20px;
+    line-height: 20px;
+    opacity: 0.3;
+    text-shadow: 0 1px 0 #FFFFFF;
+    filter: alpha(opacity=40);
+    margin: 28px 0 0 5px;
+    font-size: 25px;
+}
+
+.close:hover, .close:focus
+{
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.8;
+    filter: alpha(opacity=40);
+}
+
+
+.term_checkbox
+{
+    float: right;
+    width: auto;
+    margin: 3px 25px 0 0;
+    background-color: #fff;
+    padding: 2px 10px 2px 10px;
+    border-radius: 2px;
+}
+
+
+/* Resolution */
+
+@media (max-width: 750px)
+{
+
+    /*.signin {
+                    right: 0px;
+                }*/
+
+    #slide
+    {
+        height: 310px;
+        margin-left: -20px;
+        width: 90%;
+    }
+
+    .muted
+    {
+        font-size: medium;
+        text-align: left;
+    }
+
+    h3
+    {
+        line-height: 1;
+    }
+
+    .navbar-wrapper
+    {
+        margin: 0px;
+    }
+
+    .navbar-inner
+    {
+        margin: 0px;
+    }
+
+    .navbar-fixed-top
+    {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    #email_txt
+    {
+        width: 70% !important;
+    }
+
+    #password_txt
+    {
+        width: 70% !important;
+    }
+
+    /*.signin {
+                    width: 88% !important;
+                }*/
+
+    /*#log-signin {
+                    margin-right: 15px !important;
+                }
+
+                .fb-image {
+                    margin-right: 35px !important;
+                }*/
+
+    .about
+    {
+        font-size: large;
+    }
+
+
+    .lead2
+    {
+        font-size: small !important;
+        margin-top: -20px !important;
+        line-height: 1.5 !important;
+    }
+
+    .lead3
+    {
+        font-size: small !important;
+        line-height: 1.5 !important;
+    }
+
+    #nextabout
+    {
+        padding: 100px 0;
+    }
+
+    #about
+    {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .intro_img
+    {
+        background-image: url('img/unnamed.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 250px;
+    }
+
+    .gallery_img
+    {
+        background-size: contain;
+        height: 250px;
+    }
+
+    .service
+    {
+        font-size: 20px;
+        padding-left: 0px !important;
+    }
+
+    .featurette
+    {
+        padding-top: 30px; /* Vertically center images part 1: add padding above and below text. */
+    }
+
+    h2
+    {
+        margin-bottom: 45px !important;
+    }
+
+    .carousel-control
+    {
+        display: none;
+    }
+
+    .social_head
+    {
+        position: absolute;
+        top: 7px;
+        left: 130px;
+    }
+
+    .copyright
+    {
+        float: left;
+    }
+}

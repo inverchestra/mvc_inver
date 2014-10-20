@@ -1,0 +1,38 @@
+﻿@*@model IEnumerable<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UserHealthLog>*@
+@model PagedList.IPagedList<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UserHealthLog>
+
+@{
+    ViewBag.Title = "MyLogs";
+}
+
+<script src="~/CustomScripts/mylogs-script.js"></script>
+<script src="~/CustomScripts/table-paging.js"></script>
+<script src="~/CustomScripts/table-toggle.js"></script>
+
+@*<script type = "text/javascript" >
+    history.go(1);
+</script>*@
+
+
+
+@section Search{
+    <div id="search">
+        <form id="searchform" method="post" action="@Url.Action("GetSearchedLogs", "HealthLog")">
+            <div class="search_pnl">
+                <input type="text" name="searchtext1" />
+                <input type="submit" value="" title="Search" />
+            </div>
+
+        </form>
+    </div>
+}
+
+<div id="table-wrapper">
+    <div id="div1">
+        @RenderPage("~/Areas/iHealthUser/Views/Shared/_Table.cshtml", new { Values = Model })
+    </div>
+    <input id="btnCreate" type="button" value="CREATE LOG" class="createLog" title="Create new log" />
+</div>
+
+<div id="modal-div" style="display: none">
+</div>

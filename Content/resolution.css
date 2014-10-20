@@ -1,0 +1,425 @@
+﻿/* File Created: November 15, 2013 */
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) and (min-height: 600px) {
+  .container {
+    width: 850px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 1224px)
+{
+ 
+#content {
+	
+    font-size: 14px;
+    height: auto;
+    width: 700px;
+margin-left: 15px !important;
+}
+
+/*#wall {
+    height: 550px !important;
+}*/
+
+
+#contentposts {
+    height: 450px;
+    margin-top: 20px !important;
+}
+.listyle {
+    
+    font-size: 16px !important;
+    line-height: 19px !important;
+    padding: 5px 2px 5px 5px !important;
+    word-wrap:break-word;
+}
+#share {
+    height: 100px !important;
+}
+#text-box {
+	height: 60px !important;
+}
+#share textarea, #post input[type="submit"] {
+    height: 51px !important;
+    font-size: 16px;
+}
+#bottom-data {
+	height: 40px !important;
+}
+#social {
+	height: 40px !important;
+    width: 300px !important;
+}
+#share input[type="submit"] {
+	height: 40px !important;
+	width: 145px !important;
+	margin-left: 5px !important;
+}
+.checkbox {
+	 margin: -17px 0 0 110px !important;
+}
+h6 {
+	font-size: 12px !important;
+}
+
+.ActivityPane {
+	width: 50% !important;
+}
+
+#head {
+	height: 50px !important;
+}
+
+.navigation {
+    padding: 0 !important;
+}
+
+.navigation ul li a {
+    font: 14px 'Tauri',sans-serif !important;
+    padding: 50px 5px 5px !important;
+}
+
+.ActivityPane {
+    height: 30px !important;
+}
+
+.WelcomeUser {
+    height: 30px !important;
+    margin: 4px 9px 0 0 !important;
+}
+
+.icons li img {
+	width: 40px !important;
+	height: 40px !important;	
+}
+
+#sidebar-wrapper {
+	
+	margin-right: 10px !important;
+}
+
+#leftside-wrapper {
+    width: 120px !important;
+}
+
+.leftSide_bar_wrapper ul {
+	width: 97% !important;
+}
+
+.leftSide_bar_wrapper ul li {
+    height: 40px !important;
+    font-size: 16px !important;
+}
+
+}
+
+@media (min-width: 800px) and (max-width: 1000px)
+{
+    .container{
+padding-top: 65px !important;
+}
+    
+#content {
+	
+    font-size: 10px !important;
+    height: auto !important;
+    width: 490px !important;
+}
+#wall {
+    height: 270px !important;
+}
+
+#contentposts {
+    height: 200px !important;
+    margin-top: 10px !important;
+    font-size: 10px !important;
+    width: 430px !important;
+}
+.listyle {
+    
+    font-size: 12px !important;
+    line-height: 19px !important;
+    padding: 3px 2px 3px 3px !important;
+    word-wrap:break-word;
+}
+#share {
+    height: 50px !important;
+    margin-left: 53px !important;
+    width: 86% !important;
+}
+#text-box {
+	height: 30px !important;
+}
+#share textarea, #post input[type="submit"] {
+    height: 25px !important;
+    font-size: 10px !important;
+}
+#bottom-data {
+	height: 20px !important;
+}
+#social {
+	height: 20px !important;
+    width: 200px !important;
+}
+#share input[type="submit"] {
+	height: 20px !important;
+}
+.checkbox {
+	 margin: -20px 0 0 90px !important;
+}
+h6 {
+	font-size: 9px !important;
+	font-weight: lighter !important;
+}
+#adsdiv {
+	margin-left: 130px !important;
+}
+.ActivityPane {
+	width: 35% !important;
+}
+#head {
+	height: 50px !important;
+}
+.navigation {
+    padding: 0 0 0 10px !important;
+}
+.navigation ul li a {
+    font: 11px 'Tauri',sans-serif !important;
+    padding: 38px 5px 5px !important;
+}
+.ActivityPane {
+    height: 25px !important;
+}
+.WelcomeUser {
+    height: 25px !important;
+    margin: 4px 9px 0 0 !important;
+}
+#sidebar-wrapper {
+	width: 150px !important;
+}
+.icons li img {
+	width: 25px !important;
+	height: 25px !important;	
+}
+
+#calender-new li > ul {
+    background: url("../Images/timeline-dotted.png") repeat-x scroll 0 11px rgba(0, 0, 0, 0) !important;
+}
+#imgfile {
+	padding-top: 5px !important;
+}
+
+#leftside-wrapper {
+	width: 50px !important;
+}
+
+#right-ads {
+	width: 200px !important;
+	height: 200px !important;
+}
+#ad-image {
+	width: 200px !important;
+	height: 200px !important;
+}
+}
+
+@media (max-height: 768px)
+{
+   
+/* .container{
+padding-top: 75px !important;
+} */
+
+#content {
+    font-size: 14px;
+    height: auto;
+    width: 745px;
+margin-left: 15px !important;
+}
+
+
+#contentposts {
+    height: 315px !important;
+    margin-top: 20px !important;
+    font-size: 12px !important;
+   
+}
+.listyle {
+    
+    font-size: 13px !important;
+    line-height: 19px !important;
+    padding: 3px 2px 3px 3px !important;
+    word-wrap:break-word;
+}
+#share {
+    height: 70px !important;
+  
+}
+#text-box {
+	height: 45px !important;
+}
+#share textarea, #post input[type="submit"] {
+    height: 40px !important;
+    font-size: 12px !important;
+}
+#bottom-data {
+	height: 25px !important;
+}
+#social {
+	height: 25px !important;
+    width: 40% !important;
+}
+#share input[type="submit"] {
+	height: 25px !important;
+}
+.checkbox {
+	 margin: -15px 0 0 100px !important;
+}
+h6 {
+	font-size: 10px !important;
+}
+#adsdiv {
+	margin-left: 280px !important;
+}
+.ActivityPane {
+	width: 46% !important;
+}
+#head {
+	height: 50px !important;
+}
+.navigation {
+    padding: 0 0 0 0px !important;
+}
+.navigation ul li a {
+    font: 12px 'Tauri',sans-serif !important;
+    padding: 45px 10px 5px !important;
+}
+.ActivityPane {
+    height: 30px !important;
+}
+.WelcomeUser {
+    height: 30px !important;
+    margin: 9px 9px 0 0 !important;
+}
+#sidebar-wrapper {
+	width: 160px !important;
+}
+.icons li img {
+	width: 30px !important;
+	height: 30px !important;	
+}
+
+#imgfile {
+	padding-top: 15px !important;
+}
+
+#right-ads {
+	width: 250px !important;
+	height: 250px !important;
+	margin-left: 15px !important;
+}
+#ad-image {
+	width: 250px !important;
+	height: 250px !important;
+}
+.blocks_wrp {
+	width: 100% !important;
+}
+.leftSide_bar_wrapper ul {
+    width: 96% !important;
+}
+
+.leftSide_bar_wrapper ul li {
+    height: 40px !important;
+}
+
+}
+
+@media (min-width: 1000px) and (max-width: 1200px)
+{
+    #content
+    {
+        width: 550px !important;
+    }
+    #contentposts
+    {
+        width: 475px !important;
+    }
+
+
+    #timeline {
+        margin-left:0px !important;
+    }
+
+    .tlpweeks {
+        width: 550px !important;
+    }
+
+    .tlpdays {
+        width: 550px !important;
+    }
+
+    .tlweek {
+        width: 550px !important;
+    }
+
+.nav-justified > li
+{
+    width: 75px !important;
+}
+
+.vitals_add {
+    width: 83%; 
+    float: left;
+}
+
+.vitals_view {
+    width: 17%; 
+    float: left
+}
+
+    .vitals_BP {
+        margin-left:70px;
+    }
+
+    .vitals_essleft {
+    width: 42% !important; 
+}
+    .vitals_essright {
+    width: 50% !important; 
+}
+
+    .bumpie {
+        top:9em !important;
+        left:16.5em !important;
+    }
+
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+
+   
+    #timeline {
+        margin-left:0px !important;
+    }
+
+}

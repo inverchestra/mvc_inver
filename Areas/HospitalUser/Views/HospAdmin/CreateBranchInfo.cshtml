@@ -1,0 +1,40 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.Branch
+@{
+    ViewBag.title = "";
+   }
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+   
+</script>
+@Scripts.Render("~/bundles/ajaxfns")
+<div class="bluegrad" style="width: 400px;">
+    @using (Ajax.BeginForm("CreateBranchInfo", "HospAdminController", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "closeModal", OnFailure = "displayError", OnBegin = "loading" }, new { @class = "bluegrad" }))
+    {
+        @Html.ValidationSummary(true)
+        <div>
+            <div id="rhead" style="border-bottom: 1px solid rgb(218,221,226);">
+                <h3>
+                    Create Branch</h3>
+            </div>
+            <div id="rbody" class="Payment">
+                <ul>
+                    <li class="labelnormal">Branch name</li>
+                    <li class="payment_txtbx">@Html.TextBoxFor(model => model.BranchName, new { @placeholder = "Enter BranchName", title = "Enter yourBranchName", @class = "logintxts" })
+                        @Html.ValidationMessageFor(model => model.BranchName)</li>
+                    <li class="labelnormal">Address</li>
+                    <li class="payment_txtbx">@Html.TextBoxFor(model => model.Address, new { @placeholder = "Enter Address", title = "Enter Address", @class = "logintxts" })
+                        @Html.ValidationMessageFor(model => model.Address)</li>
+                  
+                    <li class="labelnormal"></li>
+                    <li class="payment_txtbx">
+                        <div style="width: 100%; float: right; margin: 0 7px 0 0;" class="inline">
+                            <input type="button" class="graygrad" value="close" onclick="$.modal.close();" />
+                            <input id="btnsubmit" type="submit" value="submit" class="greengrad" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+
+</div>

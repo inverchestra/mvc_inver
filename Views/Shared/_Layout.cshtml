@@ -1,0 +1,175 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @* <meta name="description" content="Wisdom to deliver a healthy baby" />*@
+    <meta property="og:image" content="https://www.bumpdocs.com/Content/img/Like Us.png" />
+    <meta property="og:description" content="BumpDocs,a companion that enables you to capture your emotions during 40 weeks of your pregnancy." />
+    <meta name="author" content="InnDocs" />
+    <title>@ViewBag.Title</title>
+    <link href="~/icon-bumdocs.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/campaign.css" rel="stylesheet" type="text/css" />
+    @*@Styles.Render("~/bundles/style")*@
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body data-spy="scroll" data-target=".navbar" id="home_body">
+    @*<div id="device_alert" style="margin-top:80px" >
+        <ul class="devices">
+            <li  style="display:none;"><a href="http://market.android.com/details?id=com.ebiz.eis.bumpdocs">DOWNLOAD ANDROID APP</a><span class="close" title="reject">&times;</span></li>
+            <li style="display:none;"><a href="#">DOWNLOAD IOS APP</a><span class="close" title="reject">&times;</span></li>
+            <li style="display:none;"><a href="#">DOWNLOAD WINDOWS APP</a><span class="close" title="reject">&times;</span></li>
+        </ul>
+    </div>*@
+    <div id="device_alert" style="margin-top: 80px">
+        <ul class="devices">
+            <li style="display: none;"><span class="close" title="reject">&times;</span>
+                <img src="~/picture/bumpdocs_logo.jpg" height="58" width="58" class="logo_device" />
+                <div class="android">
+                    <p class="android_txt">
+                        BumpDocs</p>
+                    <p class="android_description">
+                        Wisdom to deliver a healthy baby</p>
+                    <p class="text-right" style="margin-top: 5px">
+                        <a href="http://market.android.com/details?id=com.ebiz.eis.bumpdocs" class="android_link">
+                            FREE</a></p>
+                </div>
+            </li>
+            <li style="display: none;"><span class="close" title="reject">&times;</span>
+                <img src="~/picture/bumpdocs_logo.jpg" height="58" width="58" class="logo_device" />
+                <div class="itunes">
+                    <p class="itunes_txt">
+                        BumpDocs <span class="itunes_description">Wisdom to deliver a healthy baby- FREE</span></p>
+                    <p class="text-right itunes_right">
+                        <a href="https://itunes.apple.com/in/app/bumpdocs/id879802754?mt=8" class="itunes_link">
+                            OPEN</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-wrapper">
+        <div class="container">
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
+                        </span>
+                    </button>
+                    <a class="brand" href="#home_body">
+                        <img src="~/picture/bumpdocs_logo.jpg" height="24" width="24" class="logo_img" />BumpDocs</a>
+                    <div class="nav-collapse collapse">
+                        @* <ul class="nav">
+                            <li class=""><a href="#home_body">Home</a></li>
+                            <li><a href="#services">Features</a></li>
+                        </ul>
+                        <ul class="myulg">
+                            <li class="mylig"><a class="myag" href=" http://blog.bumpdocs.com/" target="_blank">
+                                Blog</a></li>
+                            <li class="mylig"><a class="myag" href="http://gadgets.bumpdocs.com/" target="_blank">
+                                Gadgets</a></li>
+                        </ul>
+                        <ul class="nav">
+                            <li><a href="#contact">Contact us</a></li>
+                        </ul>*@
+                        <ul class="nav">
+                            <li class=""><a href="#home_body">Home</a></li>
+                            <li><a href="#services">Features</a></li>
+                            <li><a href=" http://blog.bumpdocs.com/" target="_blank">Blog</a></li>
+                            <li><a href="http://gadgets.bumpdocs.com/" target="_blank">Gadgets</a></li>
+                            <li><a href="#contact">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <div class="text-right social_head">
+                        <a class="facebook" href="http://www.facebook.com/bumpdocs" target="_blank" title="Facebook">
+                            <img src="~/Content/img/facebook circle.png" height="26px" width="26px" /></a>
+                        <a class="linkedin" href="http://www.linkedin.com/company/1164512" title="LinkedIn"
+                            target="_blank">
+                            <img src="~/Content/img/linkedin-round.png" height="26px" width="26px" /></a>
+                        <a class="twitter" href="https://twitter.com/bumpdocs" title="Twitter" target="_blank">
+                            <img src="~/Content/img/twitter_circle.png" height="23px" width="23px" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel
+    ================================================== -->
+    @*<div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner" id="home">
+            <div class="item active">
+                <img src="../../Content/img/1.6N.jpg" alt="" />
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1 style="font-size: 80px; padding: 100px 0px 0px 350px;">
+                            BumpDocs</h1>
+                        
+                    </div>
+                </div>
+            </div>
+           
+            <div class="item">
+                <img src="../../Content/img/1.1N.jpg" alt="" />
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>
+                        </h1>
+                        <p class="lead" style="font-size: 25px">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../../Content/img/1.7N.png" alt="" />
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>
+                        </h1>
+                        <p class="lead">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>*@
+    @RenderBody()
+    <!-- /.carousel -->
+    <div id="res_modal" class="modal hide fade img">
+    </div>
+    <div id="md" class="modal hide fade">
+    </div>
+    <div id="cmp" class="modal hide fade c-mar">
+    </div>
+    <div id="fb-root">
+    </div>
+    <footer>
+        @*<p class="pull-right">
+            <a href="#home">Back to top</a>
+        </p>*@
+        <p class="copyright">
+            &copy; 2013 Inndocs Corporation
+        </p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>
+</html>

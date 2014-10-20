@@ -1,0 +1,175 @@
+﻿@using System.Web.Optimization
+@using InnDocs.iHealth.Web.UI.Models
+@model InnDocs.iHealth.Web.UI.Models.UserInformation
+@{
+    ViewBag.Title = "AdminSelect";
+    UserInformation obj = new UserInformation();
+    List<SelectListItem> Gtypes = obj.GroupTypes();
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //        $("#Groupdrop").change(function () {
+        //            var drop = $('#Groupdrop').val();
+        //            alert(drop);
+        //            $('#Groupdrop > option[value="PleaseSelect"]').remove();
+
+        //        });
+
+
+        $('#Grouptype').hide();
+        $("input[name='Groupuser']").change(function () {
+
+            $('#Grouptype').toggle();
+
+        });
+
+        $("#adminBtnContinue").click(function () {
+          //  alert("continue btn click");
+
+            $('input[type="radio"]:checked').each(function () {
+                rad = $('input[type="radio"]:checked').val();
+
+            });
+
+
+
+            var drop = $('#Groupdrop').val();
+
+            if (rad == "false") {
+
+                document.getElementsByName('GroupUser').value = false;
+
+                var val1;
+                var val2 = document.getElementsByName('GroupUser').value;
+                $.modal.close();
+                $('#ajaxtab').empty();
+                $.ajax({
+                    url: '/iHealthUser/Administration/AdminSingleRegister',
+                    type: 'GET',
+                    data: { value1: val1, value2: val2 },
+                    success: function (result) {
+                        $.modal.close();
+                        $('#ajaxtab').html(result).modal({
+                            escClose: true,
+                            closeHTML: ""
+                        });
+                    }
+                });
+
+            }
+            else {
+
+
+                if ($('#Groupdrop').val() == "") {
+                    alert("Please select one item");
+                }
+                else if ($('#Groupdrop').val() == "Family") {
+                    //                    alert("Hi Family");
+                    document.getElementsByName('GType').value = $('#Groupdrop').val();
+                    document.getElementsByName('GroupUser').value = true;
+                    var val1 = document.getElementsByName('GType').value;
+                    var val2 = document.getElementsByName('GroupUser').value;
+                    $.modal.close();
+                    $('#ajaxtab').empty();
+                    $.ajax({
+                        url: '/iHealthUser/Administration/AdminSingleRegister',
+                        type: 'GET',
+                        data: { value1: val1, value2: val2 },
+                        success: function (result) {
+                            $.modal.close();
+                            $('#ajaxtab').html(result).modal({
+                                escClose: true,
+                                closeHTML: ""
+                            });
+                        }
+                    });
+                }
+                else if ($('#Groupdrop').val() == "Hospital") {
+
+                    document.getElementsByName('GType').value = $('#Groupdrop').val();
+                    document.getElementsByName('GroupUser').value = true;
+                    var val1 = document.getElementsByName('GType').value;
+                    var val2 = document.getElementsByName('GroupUser').value;
+                    $.modal.close();
+                    $('#ajaxtab').empty();
+                    $.ajax({
+                        url: '/Home/HospitalRegister',
+                        type: 'GET',
+                        data: { value1: val1, value2: val2 },
+                        success: function (result) {
+                            $.modal.close();
+                            $('#ajaxtab').html(result).modal({
+                                escClose: true,
+                                closeHTML: ""
+                            });
+                        }
+                    });
+                }
+
+            }
+
+        });
+
+
+    });
+</script>
+<h2 style="color: #595959;
+font-family: 'Tauri',sans-serif; font-size: 1.4em;
+text-rendering: optimizelegibility;">
+Type of User </h2>
+@Scripts.Render("~/bundles/ajaxfns")
+@using (Ajax.BeginForm("", "", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "closeModal", OnFailure = "displayError", OnBegin = "loading" }, new { @class = "select" }))
+{
+@*@using (Html.BeginForm(new { @class = "reg" }))
+  {*@
+    <div id="rbody" class="registration_details">
+        <input type="hidden" name="GType" />
+        <input type="hidden" name="GroupUser" />
+        <ul style="margin-left: 20px">
+            <li class="labelnormal" style="margin-left: 3%; width: 90%;">
+                <div style="float: left; width: 30%;">
+                   @* @Html.RadioButtonFor(model => model.RegUser.IsGroupUser, false, new { @checked = "checked", @name = "Groupuser" })&nbsp;
+                    Single user*@  <input type="radio" value="false" name="Groupuser" checked="checked"  />Single User
+                </div>
+                <div style="float: right; width: 65%;">
+                   @* @Html.RadioButtonFor(model => model.RegUser.IsGroupUser, true, new { @name = "Groupuser" })&nbsp;
+                    Group user*@  <input type="radio" name="Groupuser"  value="true"  />Group User
+                </div>
+            </li>
+            <li class="labelnormal" style="margin-left: 3%; width: 90%;">
+                <div id="Grouptype" style="width: 100%; padding: 10px; color: rgb(89,89,89);
+                    font-size: 12px; font-weight: bold">
+                    <div style="float: left; width: 35%;">
+                        Group type:
+                    </div>
+                    <div style="display: inline-block; width: 60%;">
+                        @Html.DropDownListFor(model => model.GroupType, Gtypes, new { @id = "Groupdrop", @class = "Reg_Details_select" })                      
+
+                    </div>
+                </div>
+            </li>
+            <li class="labelnormal" style="width: 85%;">
+             <input type="button" value="Cancel" class="graygrad_FP" onclick="$.modal.close();" />
+            <input type="button" value="Continue" id="adminBtnContinue" class="greengrad_FP" style="margin-right:10px"/>
+            </li>
+        </ul>
+       
+    </div>
+    
+    
+}
+
+<div id="ajaxtab" style="display: none;"></div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

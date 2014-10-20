@@ -1,0 +1,181 @@
+﻿@using InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository
+@using InnDocs.iHealth.Web.UI.Models
+@model IEnumerable<InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.Analysis>
+@{
+    ViewBag.Title = "UserReports";
+}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    //    $.ajaxSetup({
+    //  cache:false;
+    //  })
+
+    function changeAction(url) {
+       
+        var Rfrom = $('#ReportForm1').val();
+        var Rto = $('#ReportTo1').val();
+
+
+        if (Rfrom == '' && Rto == '') {
+            alert("Please select From and To date");
+            $('input[tabindex=1]').focus();
+            return false;
+
+        }
+        else if (Rfrom == '') {
+            alert("Please select From date");
+            $('input[tabindex=1]').focus();
+            return false;
+
+        }
+        else if (Rto == '') {
+            alert("Please select To date");
+            $('input[tabindex=2]').focus();
+            return false;
+
+        }
+        else if (Rfrom > Rto) {
+            alert("Please select less than from date");
+            $('#ReportTo').val('');
+            $('input[tabindex=2]').focus();
+            return false;
+        }
+
+        $("#type").val(url);
+        
+        $("#SelectType").val();
+        
+        if ($("#SelectType").val() == "graph") {
+           
+            $.get('/Report/GetData', $("#ReportDate").serialize(), function (data1) {
+
+                
+                drawChart(data1, url);
+            }, 'json');
+        }
+
+        else {
+            
+            $.ajax({
+                url: $("#ReportDate").attr("action"),
+                type: "POST",
+                cache: false,
+                data: $("#ReportDate").serialize(),
+                success: function (result) {
+                    $("#chart_div").html(result)
+                }
+            })
+
+        }
+
+
+
+        return false;
+    }
+
+    google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+    function drawChart(data1, url) {
+        
+       
+        debugger;
+        var tdata = new google.visualization.DataTable();
+
+        tdata.addColumn('string', 'Date');
+        tdata.addColumn('number', 'No.Of Patients');
+
+        for (var i = 0; i < data1.length; i++) {
+            tdata.addRow([data1[i].date, data1[i].count]);
+        }
+
+        if (url == "") {
+            var options = {
+                title: "Registered Users Per Date",
+                hAxis: { title: 'DateTime', titleTextStyle: { color: 'red'} },
+                vAxis: { title: 'No.Of Patients', titleTextStyle: { color: 'red'} },
+                animation: {
+                    duration: 1000
+                }
+            };
+        }
+        else if (url == "1") {
+            var options = {
+                title: "Total Number of Inpatients Per Date",
+                hAxis: { title: 'DateTime', titleTextStyle: { color: 'red'} },
+                vAxis: { title: 'No.Of Patients', titleTextStyle: { color: 'red'} },
+                animation: {
+                    duration: 1000
+                }
+            };
+        }
+        else {
+            var options = {
+                title: "Total Number of Outpatients Per Date",
+                hAxis: { title: 'DateTime', titleTextStyle: { color: 'red'} },
+                vAxis: { title: 'No.Of Patients', titleTextStyle: { color: 'red'} },
+                animation: {
+                    duration: 1000
+                }
+            };
+        }
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(tdata, options);
+    }
+
+    
+
+</script>
+<h2 class="dvd gap_audit">
+    Reports
+</h2>
+<div style="display: block; width: 100%">
+    <div style="display: inline-block; width: 100%">
+        <div class="div_reports">
+            @using (Html.BeginForm("GetAllHospitaluserByDateToDate", "Report", FormMethod.Post, new { id = "ReportDate" }))
+            {
+                 
+                <ul class="Audit_reports_ul">
+                    <li class="align" style="width: 13%;">Report from <span style="font-weight: 600;
+                        padding: 15px 0px 0px 2px; color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+                    <li >
+                        <input type="text" name="FromDate" id="ReportForm1" tabindex="1" />
+                    </li>
+                    <li class="align">Report to<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                        color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                    <li>
+                        <input type="text" name="ToDate" id="ReportTo1" tabindex="2" />
+                    </li>
+                    <li style="margin: 5px 0 0; width: 17%;">
+                        <input type="hidden" name="Type" id="type" />
+                        @*<input type="submit" value="GetReport" id="getReport" class="getResults" style="margin-top: 0px;" />*@
+                    </li>
+                    <li>
+                        <input type="hidden" name="selectedlist" id="hdnSelectedlist" />
+                        <strong style="color: #595959; font: normal 13px 'Tauri',sans-serif;">Please Select:
+                            @Html.DropDownList("SelectType", ViewData["SelectType"] as SelectList, new { id = "SelectType"})
+                        </strong></li>
+                    <li>
+                        <input type="button" name="Getregusers" id="Reguser1" value="RegisteredUsers" class="getResults"
+                            style="margin-top: 0px;" onclick="changeAction('')" />
+                    </li>
+                    <li>
+                        <input type="button" id="Reguser2" value="InPatients" class="getResults" style="margin-top: 0px;"
+                            onclick="changeAction('1')" />
+                    </li>
+                    <li>
+                        <input type="button" id="Reguser3" value="OutPatients" class="getResults" style="margin-top: 0px;"
+                            onclick="changeAction('0')" />
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+@*<div id="eEEE">
+</div>*@
+<div id="chart_div" style="min-height: 200px">
+
+</div>

@@ -1,0 +1,188 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.Vitals.Vitals
+<script type="text/javascript">
+    $(function () {
+        $("#height,#weight,#weight1,#Systole,#Diastole").keydown(function (event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+            // Allow: Ctrl+A
+(event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+(event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+        // jaggu added
+        $("#feets,#inches").keydown(function (event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+            // Allow: Ctrl+A
+(event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+(event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 2)) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+
+
+    });
+    // var t= $("#dropdowntipo option:selected").text();
+    // alert(t);
+    // var k = document.getElementById("dropdowntipo").value();
+    // alert(k);
+    $("#dropdowntipo").change(function () {
+        var selectedid = $(this).val();
+        if (selectedid == "Pounds") {
+            $("#weight1").show();
+            $("#weight").hide();
+        }
+        else {
+            $("#weight1").hide();
+            $("#weight").show();
+        }
+    });
+
+
+
+    //    $('#btnHnWUpdate1').click(function () {
+    //       
+    //        var ht = $("#height").val();
+    //        var wt = $("#weight").val();
+    //        var wt1 = $("#weight1").val();
+    //        var feet = $("#feets").val();
+    //        var inch = $("#inches").val();
+    //        var sistole = $("#Systole").val();
+    //        var diastole = $("#Diastole").val();
+
+    //        var drpWeight = $('#dropdowntipo').val();
+
+    //        if (drpWeight == "kg") {
+
+    //            if (wt == "") {
+
+    //                alert("Enter your valid weight ");
+    //                return false;
+
+    //            }
+    //            else {
+    //                if (wt > 999 || wt < 3) {
+    //                    alert("Enter your valid weight");
+    //                    return false;
+    //                }
+    //            }
+
+    //        }
+    //        if (sistole == "") {
+    //            alert("Please enter systole value");
+    //            return false;
+    //        }
+    //        if (diastole == "") {
+    //            alert("Please enter diastole value");
+    //            return false;
+    //        }
+
+    //        if (wt != null) {
+    //            var a = $('#subscription_order_form22').serialize();
+    //            $.ajax({
+    //                type: 'post',
+    //                url: '/iHealthUser/Medwall/HeightandWeight',
+    //                data: a,
+    //                success: function (result) {
+    //                    location.reload();
+    //                }
+    //            });
+    //        }
+    $('#btnHnWUpdate1').click(function () {
+
+        var ht = $("#height").val();
+        var wt = $("#weight").val();
+        var wt1 = $("#weight1").val();
+        var feet = $("#feets").val();
+        var inch = $("#inches").val();
+        var sistole = $("#Systole").val();
+        var diastole = $("#Diastole").val();
+
+        var drpWeight = $('#dropdowntipo').val();
+
+        if (wt == "" && sistole == "" && diastole == "") {
+            alert("Enter any Of the above values ");
+            return false;
+        }
+        var a = $('#subscription_order_form22').serialize();
+        $.ajax({
+            type: 'post',
+            url: '/iHealthUser/Medwall/HeightandWeight',
+            data: a,
+            success: function (result) {
+                location.reload();
+            }
+        });
+
+
+    });
+</script>
+<div>
+    <h2>
+        Essential Info
+    </h2>
+</div>
+<div>
+    <form id="subscription_order_form22" class="" method="post" enctype="multipart/form-data">
+    <div id="rbody" class="Payment" style="width: 300px;">
+        <div style="width: 100%; margin-top: 10px">
+            <div style="width: 45%; float: left">
+                Weight
+                <select id="dropdowntipo" style="margin-left: 10px; width: 80px">
+                    <option value="kg">kgs</option>
+                    <option value="Pounds">Pounds</option>
+                </select>
+            </div>
+            <div style="width: 45%; float: left; margin-left: 17px">
+                @Html.TextBoxFor(model => model.HnW.Weight1, new { @id = "weight", @placeholder = "kgs", title = "kgs", @class = "weight-type", @style = "width:122px" })
+                @Html.TextBoxFor(model => model.HnW.Weight, new { @id = "weight1", @placeholder = "pounds", title = "Pounds", @class = "weight-type", @style = "display:none; width:122px" })
+            </div>
+        </div>
+        <div style="width: 100%; margin-top: 10px">
+            <div style="width: 45%; float: left; margin-top: 5px">
+                Blood pressure (Sys/Dis)
+            </div>
+            <div style="width: 45%; float: left; margin-left: 17px">
+                @Html.TextBoxFor(model => model.Systole, new { title = "Systole", @class = "logintxt-blood", @id = "Systole", name = "Systole", @style = "width:51px" })
+                /
+                @Html.TextBoxFor(model => model.Diastole, new { title = "Diastole", @class = "logintxt-blood", @id = "Diastole", name = "Diastole", @style = "width:51px" })
+            </div>
+        </div>
+        <div style="width: 100%; float: right; margin: 10px 0px 0 0;" class="inline">
+            <input type="button" class="graygrad" value="Close" onclick="$.modal.close();" />
+            <input id="btnHnWUpdate1" type="button" class="greengrad" value="Update" style="margin-right: 5px" />
+        </div>
+    </div>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

@@ -1,0 +1,240 @@
+﻿@model InnDocs.iHealth.Web.UI.Models.LoginAndSignUp
+@{
+    ViewBag.Title = "AllAuditReport";
+    var UsersList = ViewBag.Userslist;
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $(function () {
+
+        $.ajaxSetup({
+            cache: false,
+            async: false
+        });
+        //From here it is for intellisense
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+
+        function extractLast(term) {
+            return split(term).pop();
+        }
+
+        $('#alusers').bind('keydown', function (event) {
+            //alert("alusers");
+
+            if (event.keyCode === $.ui.keyCode.TAB &&
+                                $(this).data('autocomplete').menu.active) {
+                event.preventDefault();
+            }
+        }).autocomplete({
+            source: function (request, response) {
+                $.getJSON('/iHealthUser/Administration/Ulist', {
+                    term: extractLast(request.term)
+                }, response).done(function () { $.modal.close(); }).fail(function () { $.modal.close(); alert("failed"); });
+            },
+            //            search: function () {           
+            //                var term = extractLast(this.value);
+            //                if (term.length < 1) {
+            //                    return false;
+            //                }
+            //            },
+            focus: function () { return false; },
+            select: function (event, ui) {
+                var terms = split(this.value);
+                terms.pop();
+                terms.push(ui.item.value);
+                terms.push('');
+                this.value = terms.join(', ');
+
+                var namr = ui.item.value;
+
+
+
+                $('#viewAudits').load('/iHealthUser/Administration/UserAudits/?namr=' + encodeURIComponent(ui.item.value));
+
+                //                $.ajax({
+
+                //                    url: '/iHealthUser/Administration/UserAudits',
+
+                //                    dataType: 'json',
+                //                    type: 'POST',
+                //                    cache: false,
+                //                    async: false,
+                //                    data: { namr: namr },
+
+
+                //                    success: function (result) {
+                //                        alert(result);
+
+                //                        $("#viewAudits").html(result);
+                //                    }
+
+                //                });
+
+
+            }
+        });
+
+        //End of Intellisense
+
+        //ForUsers List
+        $("select#SelectUserId").change(function () {
+
+
+
+            var hdnUserID = $(this).val();
+            $('#hSelectedId').val(hdnUserID);
+            $.ajax({
+                url: $("#AllUsersList").attr("action"),
+                data: $("#AllUsersList").serialize(),
+                async: false,
+                cache: false,
+                success: function (data) {
+                    alert(data);
+                    $("#viewAudits").html(data);
+                }
+
+
+            });
+            //$('#AllUsersList').submit();
+        });
+
+        //for Selecting Date
+        $("#ReportForm,#ReportTo").datetimepicker({
+            changeYear: true,
+            changeMonth: true,
+            timeFormat: "hh:mm:ss TT",
+            ampm: true,
+            maxDate: new Date()
+        });
+        //For Submit Date
+        $("#ReportDate").submit(function () {
+            var Rfrom = $('#ReportForm').val();
+            var Rto = $('#ReportTo').val();
+
+
+            if (Rfrom == '' && Rto == '') {
+                alert("Please select From and To date");
+                $('input[tabindex=1]').focus();
+
+            }
+            else if (Rfrom == '') {
+                alert("Please select From date");
+                $('input[tabindex=1]').focus();
+
+            }
+            else if (Rto == '') {
+                alert("Please select To date");
+                $('input[tabindex=2]').focus();
+
+            }
+            else if (Rfrom > Rto) {
+                alert("Please select less than from date");
+                $('#ReportTo').val('');
+                $('input[tabindex=2]').focus();
+            }
+            else {
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(),
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        $.modal.close();
+                        $("#viewAudits").html(data);
+                    }
+
+                });
+            }
+            return false;
+        });
+
+
+
+    });
+</script>
+<h2 class="dvd" style="text-align: left; margin: 20px 0 0 0;">
+    Audit Report</h2>
+<div style="display: block; width: 100%">
+    <div style="display: inline-block; width: 100%">
+        <div class="div_reports">
+            @using (Html.BeginForm("DateWiseReport", "Administration", FormMethod.Post, new { id = "ReportDate" }))
+            {
+                <div>
+                    <ul class="Audit_reports_ul" style="margin: 8px 0 0 0;">
+                        <li style="width: 11%; margin-top: 9px;">User name </li>
+                        <li style="margin-top: 5px; width: 50%;">
+                            <input type="text" id="alusers" name="alusers" class="create-logtxts" title="Probable users"   />
+                        </li>
+                        @*<li style="margin: 8px 0 0 0; width: 9%;">
+                            @Html.Hidden("hdnfrmDate")
+                            @Html.Hidden("hdntoDate")
+                            <input type="submit" value="Search" id="getReport" class="getResults" style="margin-top: 0px;" />
+                        </li>*@ @* <li style="margin: 8px 0 0 0; width: 17%;">
+                            <input type="button" value="Advance Search" id="btnAdvSearch" class="getResults" style="margin-top: 0px;" />
+                        </li>*@
+                    </ul>
+                </div>
+                <div style="">
+                    <ul>
+                        <li style="margin: 8px 0 0 0; width: 11%;">Report: From </li>
+                        <li style="margin: 2px 0 0 -12px; width: 17%;">
+                            <input type="text" name="AHistory.frmDate" id="ReportForm" placeholder="MM/DD/YYYY" />
+                        </li>
+                        <li style="margin: 8px 0 0 0; width: 17%;">To </li>
+                        <li style="margin: 2px 0 0 -124px; width: 17%;">
+                            <input type="text" name="AHistory.toDate" id="ReportTo" placeholder="MM/DD/YYYY" />
+                        </li>
+                        <li style="margin: 5px 0 0 65px; width: 9%;">
+                            @Html.Hidden("hdnfrmDate")
+                            @Html.Hidden("hdntoDate")
+                            <input type="submit" value="Advance Search" id="getReport" class="getResults" style="margin-top: 0px;" />
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+    <table id="thead">
+        <thead>
+            <tr>
+                <th style="width: 15%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    User name
+                </th>
+                <th style="width: 15%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    Module
+                </th>
+                <th style="width: 17%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    Audit event
+                </th>
+                <th style="width: 12%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    Capture mode
+                </th>
+                <th style="width: 17%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    Audit date
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div id="auditdiv" style="display: block; height: 360px; overflow: auto;">
+        @RenderPage("~/Areas/iHealthUser/Views/Administration/Audit.cshtml", new { Aud = Model.Audits })
+    </div>
+</div>
+<div id="eEEE">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>
+

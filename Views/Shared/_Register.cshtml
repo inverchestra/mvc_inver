@@ -1,0 +1,99 @@
+﻿@model InnDocs.iHealth.Web.UI.Models.LoginAndSignUp
+@{
+
+    List<SelectListItem> Countries = Page.Value.CountryList;
+    List<SelectListItem> SubTypes = Page.Value.StypeList;
+
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<form id="register-form" action="@Url.Action("Register", "Home")">
+<div id="register" style="height: 500px; overflow-y: scroll; overflow-x: hidden">
+    <div id="rhead">
+        <h3>
+            Registration Details</h3>
+    </div>
+    <div id="rbody">
+        <input type="text" id="RUserName" name="RegUser.RUserName" placeholder="User name"
+            title=" Enter user name" class="logintxts" required />
+        <input type="email" id="EmailId" name="RegUser.EmailId" placeholder="Email address"
+            title="Enter valid email address" class="logintxts" required />
+        <input type="password" id="Password" name="RegUser.Password" placeholder="Password"
+            title="Enter password" class="logintxts" required />
+        <input type="password" id="ReenterPassword" name="RegUser.Password" placeholder="Re-enter password"
+            title="Enter password" class="logintxts" required />
+        <input type="text" id="DOB" name="RegUser.DOB" placeholder="Your date of birth in MM/DD/YYYY"
+            title="Enter MM/DD/YYYY" class="logintxts" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d"
+            required />
+        <div style="float: left; padding-left: 10px; height: 40px;">
+            Gender: &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            <input type="radio" name="RegUser.Gender" value="Male" />&nbsp; Male &nbsp;&nbsp;
+            <input type="radio" name="RegUser.Gender" value="Female" checked="checked" />&nbsp;
+            Female
+        </div>
+        <input type="tel" id="PhoneNo" name="RegUser.PhoneNo" placeholder="Phone number"
+            title="Enter phone number" class="logintxts" required />
+        <input type="text" id="RAddress" name="RegUser.Address" placeholder="Address" title=" Enter Address"
+            class="logintxts" />
+        <div style="display: inline-block; width: 100%; padding: 10px; color: rgb(89,89,89);
+            font-size: 12px; font-weight: bold; display: inline-block">
+            <div style="float: left; width: 20%;">
+                Country
+            </div>
+            <div style="width: 77%; display: inline-block">
+                @Html.DropDownList("RegUser.Country", Countries, new { @class = "logintxts" })
+            </div>
+        </div>
+        <input type="text" id="Pincode" name="RegUser.Pincode" placeholder="Pin/Zip Code"
+            title="Enter area Pin/Zip Code" class="logintxts" required />
+        <div style="display: inline-block; width: 100%; padding: 10px; color: rgb(89,89,89);
+            font-size: 12px; font-weight: bold">
+            <div style="float: right; width: 40%;">
+                <input type="radio" name="RegUser.IsGroupUser" value="true" />Group user
+            </div>
+            <div style="float: left; width: 40%;">
+                <input type="radio" name="RegUser.IsGroupUser" value="false" checked="checked" />Single
+                user
+            </div>
+        </div>
+        <div style="display: inline-block; width: 100%; padding: 10px; color: rgb(89,89,89);
+            font-size: 12px; font-weight: bold; display: inline-block">
+            <div style="float: left; width: 20%;">
+                SubScription type:
+            </div>
+            <div style="width: 40%; display: inline-block">
+                @Html.DropDownList("RegUser.SubscriptionType", SubTypes, new { @class = "logintxts" })
+            </div>
+        </div>
+        <div id="chktryIt" style="width: 100%; height: 35px; margin-left: 10px;">
+            <input type="checkbox" name="RegUser.TryIt" id="idTryIt" value="true" />
+            @* @Html.CheckBoxFor(model => Model.IHealthUser.IsUsingModeratorCredentials, new { id = "rbtusngModerator"})*@
+            Try It for 15Days
+        </div>
+        <div id="chkpromocode" style="width: 100%; height: 35px; margin-left: 10px;">
+            <input type="checkbox" id="promocode" />
+            @* @Html.CheckBoxFor(model => Model.IHealthUser.IsUsingModeratorCredentials, new { id = "rbtusngModerator"})*@
+            Promotional code
+            <input type="text" id="tbPromoCode" name="RegUser.PromoCodeValue" placeholder="Enter promotional code"
+                title="Enter promotional code" style="width: 50%; height: 23px; display: none;
+                margin: 5px 10px; padding: 3px; border: 1px solid rgba(15,91,169,0.5);" />
+        </div>
+        <div style="width: 100%; display: inline-block">
+            <input id="btnSubmit" type="submit" value="Submit" />
+            <input id="btnCancel" type="button" value="Cancel" />
+        </div>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>
+
+</form>

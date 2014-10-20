@@ -1,0 +1,52 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.DepartToBranch
+@{
+    ViewBag.Title = "AssignDepertment";
+    IEnumerable<SelectListItem> UserCasesList = ViewBag.UserCaseslist;
+
+}
+<h2>
+    AssignDepertment</h2>
+<div class="bluegrad" style="width: 400px;">
+    @* @using (Ajax.BeginForm("CreateBranchInfo", "HospAdmin", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "closeModal", OnFailure = "displayError", OnBegin = "loading" }, new { @class = "bluegrad" }))
+{
+<form id="frmproc" enctype="multipart/form-data" class="crtproc">
+@Html.ValidationSummary(true)*@
+    <form id="subscription_order_form" class="" method="post">
+    <div>
+        <div id="rhead" style="border-bottom: 1px solid rgb(218,221,226);">
+        </div>
+        <input type="hidden" name="BranchID" value="@UserCasesList.Where(x => x.Selected == true).FirstOrDefault().Value.ToString()" />
+        <div id="rbody" class="Payment">
+            <ul>
+                <li class="labelnormal">Branch name</li>
+                <li style="width: 100px;">@Html.DropDownList("CurrentID", (IEnumerable<SelectListItem>)UserCasesList, "Please select", new { id = "BranchId" })</li>
+                <li class="labelnormal">Department name</li>
+                <li id="a" style="width: 232px;">
+                    <select id="dep" name="dep" multiple="multiple">
+                        @if (Model.rdlist == null || Model.rdlist.Count == 0)
+                        {
+                            <option disabled="disabled">--No Departments--</option>
+                        }
+                        else
+                        {
+                            foreach (var value in Model.rdlist)
+                            {
+                            <option value="@value.Id" selected="@value.IsChecked" >@value.name</option>
+                            }
+                        }
+                    </select>
+                </li>
+                <li>@*<input type="hidden" id="hdnbranchId" value="@Model.BranchID" name="BranchId" />
+<input type="hidden" value="@Model.DepartmentID" name="DeptId" />*@</li>
+                <li class="payment_txtbx">
+                    <div style="width: 100%; float: right; margin: 0 7px 0 0;" class="inline">
+                        <input type="button" class="graygrad" value="close" onclick="$.modal.close();" />
+                        <input type="button" value="Sumbit" name="btnassign" id="savebranch" class="greengrad" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+    @*}*@
+</div>

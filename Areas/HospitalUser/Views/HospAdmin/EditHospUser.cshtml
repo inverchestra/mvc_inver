@@ -1,0 +1,101 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.HospitalUserInfo
+@{
+    ViewBag.Title = "Edit USer";
+}
+@Scripts.Render("~/bundles/PerAccUser")
+<div id="EditUserDiv" style="width: 400px;" class="bluegrad">
+    @using (Ajax.BeginForm("EditUser", "AccountSettings", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "closeModal", OnFailure = "displayError", OnBegin = "loading" }))
+    {
+        @Html.ValidationSummary(true);
+        <div style="height: 40px;">
+            <h4 class="PMoreInfo_btm">
+                User details</h4>
+        </div>
+        <div style="width: auto;">
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+            <ul>
+                <li style="width: 100%" class="inline">
+                    <div class="tldiv inline">
+                        <h6>
+                            First name:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                                font-size: medium;">*</span></h6>
+                    </div>
+                    <div class="trdiv inline">
+                        @*<input type="text" name="FirstName" value="@Model.FirstName" class="create-logtxts" />*@
+                        @Html.TextBoxFor(model => Model.FirstName, new { title = "First name", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => Model.FirstName)
+                    </div>
+                </li>
+                <li style="width: 100%" class="inline">
+                    <div class="tldiv inline">
+                        <h6>
+                            Last name:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                                font-size: medium;">*</span></h6>
+                    </div>
+                    <div class="trdiv inline">
+                        @*<input type="text" name="LastName" value="@Model.LastName" class="create-logtxts" />*@
+                        @Html.TextBoxFor(model => Model.LastName, new { title = "Last name", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => Model.LastName)
+                    </div>
+                </li>
+                <li style="width: 100%" class="inline">
+                    <div class="tldiv inline">
+                        <h6>
+                            Relationship:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                                font-size: medium;">*</span></h6>
+                    </div>
+                    <div class="trdiv inline">
+                        @*<input type="text" name="Relationship" value="@Model.Relationship" class="create-logtxts" />*@
+                        @Html.TextBoxFor(model => Model.Relationship, new { title = "Relationship", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => Model.Relationship)
+                    </div>
+                </li>
+                <li style="width: 100%" class="inline">
+                    <div class="tldiv inline">
+                        <h6>
+                            Gender<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                                font-size: medium;">*</span>
+                        </h6>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="chk" style="width: 100%; height: 35px; margin-left: 10px;">
+            @Html.CheckBoxFor(model => Model.IsUsingModeratorCredentials, new { id = "rbtusngModerator", @checked = Model.IsUsingModeratorCredentials })
+            Login with moderator credentials
+        </div>
+        <div id="pwd" style="width: 100%">
+            <ul>
+                <li style="width: 100%" class="inline">
+                    <div id="EMailDiv" class="tldiv inline">
+                        <h6>
+                            Mail id<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                                font-size: medium;">*</span></h6>
+                    </div>
+                    <div class="trdiv inline">
+                        @Html.TextBoxFor(model => Model.Email, new { title = "Mail id", id = "one", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => Model.Email)
+                    </div>
+                </li>
+                <li style="width: 100%" class="inline">
+                    <div id="PwdDiv" class="tldiv inline">
+                        <h6>
+                            Password<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                                font-size: medium;">*</span></h6>
+                    </div>
+                    <div class="trdiv inline">
+                        @Html.PasswordFor(model => Model.Password, new { title = "Password", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => Model.Password)
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div style="width: 100%" class="inline">
+            <button id="btnCancel" style="float: right;" class="graygrad">
+                Cancel</button>
+            <input type="submit" id="btnSubmit" value="Update" style="float: right; margin-right: 10px;"
+                class="greengrad" />
+        </div>
+      
+    }
+</div>

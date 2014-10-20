@@ -1,0 +1,128 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.Vitals.Vitals
+<script type="text/javascript">
+    $(function () {
+        $('#btnUSTSubmit').click(function () {
+
+            var a = $('#subscription_order_form_ust').serialize();
+
+
+
+            if ($('#CPC').val() != "" || $('#VC').val() != "" || $('#Eb').val() != "" || $('#Hs').val() != "" || $('#NP').val() != "" || $('#CM').val() != "" || $('#CL').val() != "" || $('#EFI').val() != "" || $('#DRP').val() != "" || $('#SFH').val() != "" || $('#T').val() != "" || $('#SG').val() != "" || $('#CC').val() != "" || $('#CH').val() != "" || $('#TV').val() != "" || $('#MA').val() != "" || $('#NT').val() != "") {
+
+                $.ajax({
+
+                    url: '/iHealthUser/Medwall/USTObservations',
+                    type: 'POST',
+                    data: a,
+                    success: function (data) {
+
+                        $.modal.close();
+                        SetData(data);
+                    }
+                });
+            }
+            else {
+                alert("Please enter atleast one field");
+
+            }
+
+        });
+        function SetData(data) {
+            $("#tabs-6").html(data);
+        }
+    });
+</script>
+<div style="width: 350px">
+    <h2>
+        Ultra Sound Test Observations</h2>
+    <form id="subscription_order_form_ust" class="" method="post" enctype="multipart/form-data">
+    <div class="PinfoViewInfo">
+        <ul>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Choroid plexus cyst</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.ChoroidPlexusCyst, new { title = "ChoroidPlexusCyst", @id = "CPC", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Ventriculomegaly</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.Ventriculomegaly, new { title = "Ventriculomegaly", @id = "VC", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Echogenic bowel</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.EchogenicBowel, new { title = "EchogenicBowel", @id = "Eb", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Head shape</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.HeadShape, new { title = "HeadShape", @id = "Hs", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Nuchal pad</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.NuchalPad, new { title = "NuchalPad", @id = "NP", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Cysterna magna</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.CysternaMagna, new { title = "CysternaMagna", @id = "CM", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Cleft lip</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.CleftLip, new { title = "CleftLip", @id = "CL", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Echogenic foci in heart</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.EchogenicFociInHeart, new { title = "EchogenicFociInHeart", @id = "EFI", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Dilated renal pelvis</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.DilatedRenalPelvis, new { title = "DilatedRenalPelvis", @id = "DRP", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Short femur/humerus</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.ShortFemurOrHumerus, new { title = "ShortFemurOrHumerus", @id = "SFH", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Talipes</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.Talipes, new { title = "Talipes", @id = "T", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Sandal gap</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.SandalGap, new { title = "SandalGap", @id = "SG", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Clinodactyly</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.Clinodactyly, new { title = "Clinodactyly", @id = "CC", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Clenched hand</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.ClenchedHand, new { title = "ClenchedHand", @id = "CH", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Two-vessel cord</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.TwoVesselCord, new { title = "TwoVesselCord", @id = "TV", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Maternal age</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.MaternalAge, new { title = "MaternalAge", @id = "MA", @class = "logintxts" })
+            </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Nuchal translucency</li>
+            <li class="Faminfo_gap_value">
+                @Html.TextBoxFor(model => model.UST.NuchalTranslucency, new { title = "NuchalTranslucency", @id = "NT", @class = "logintxts" })
+            </li>
+            <li style="width: 100%" class="inline">
+                <input type="button" name="btnCancel" class="graygrad" value="Close" onclick="$.modal.close();" />
+                <input id="btnUSTSubmit" type="button" class="greengrad" value="Submit" style="margin-right: 10px" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

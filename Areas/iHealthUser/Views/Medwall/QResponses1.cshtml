@@ -1,0 +1,156 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Questions
+@{
+    ViewBag.title = "";
+}
+<script type="text/javascript">
+
+    $(function () {
+        $("#response3").click(function () {
+            var id = $(this).parents('div').find("input[name='QuestionId']").val();
+            alert(id);
+            var ans = $("#textanswer").val();
+            alert(ans);
+            var res = "yes";
+            alert(res)
+            $.ajax({
+                url: '/iHealthUser/Medwall/Qrespo',
+                type: "POST",
+                async: false,
+                closeOnEscape: true,
+                data: { ans: ans, id: id, res: res },
+                success: function (result) {
+                    if (result != "0") {
+                        $.modal.close();
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                    setTimeout(function () {
+                        location.reload();
+                    }, 30);
+
+                }
+            });
+
+
+        });
+        $("#response1").click(function () {
+            var id = $(this).parents('div').find("input[name='QuestionId']").val();
+            alert(id);
+            var ans = $("#textanswer").val();
+            alert(ans);
+            var res = "no";
+            alert(res)
+            $.ajax({
+                url: '/iHealthUser/Medwall/Qrespo',
+                type: "POST",
+                async: false,
+                closeOnEscape: true,
+                data: { ans: ans, id: id, res: res },
+                success: function (result) {
+                    if (result != "0") {
+                        $.modal.close();
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                    setTimeout(function () {
+                        location.reload();
+                    }, 30);
+
+                }
+            });
+
+
+        });
+        $("#response2").click(function () {
+            var id = $(this).parents('div').find("input[name='QuestionId']").val();
+            alert(id);
+            var ans = $("#textanswer").val();
+            alert(ans);
+            var res = "Skip";
+            alert(res)
+            $.ajax({
+                url: '/iHealthUser/Medwall/Qrespo',
+                type: "POST",
+                async: false,
+                closeOnEscape: true,
+                data: { ans: ans, id: id, res: res },
+                success: function (result) {
+                    if (result != "0") {
+                        $.modal.close();
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+//                    setTimeout(function () {
+//                        location.reload();
+//                    }, 30);
+
+                }
+            });
+
+
+        });
+    });
+</script>
+<div>
+    @if (Model != null)
+    {
+        <p style="background-color: #eeeeee; padding: 5px; color: gray; font-size: 18px;
+            font-weight: bold; margin: 0 0 10px">
+            Symptom of the day</p>
+
+        
+       <div class="listyle" style="background-color: #f9f9f9; height: auto; margin-bottom: 0px">
+            <p style="font-size: 13px; font-weight: 600; margin: 0 0 5px;">
+                S: @Model.Question</p>
+            <div style="margin:0 0 10px; display:inline-block">
+                <input type="hidden" value="@Model.QuestionId" name="QuestionId" />
+                <input type="hidden" value="@Model.ResponseType" name="responsetype" />
+                <input type="button" id="response3" value="Yes" class="response" style="float: left; margin-left:5px; margin-right:30px" />
+                <input type="button" id="response1" value="No" class="response" style="float: left; margin-right:30px" />
+                <input type="button" id="response2" value="Skip'" class="response" style="float: left; margin-right:30px" />
+            </div>
+            <div>
+                @*<label style="float: left; padding-top: 5px; color: Gray">
+                        
+                    </label>*@
+                    <span>Comment</span>
+                <input type="text" name="BranchName" title="Enter your answer" tabindex='1' placeholder="Enter your answer here"
+                    id="textanswer" class="logintxts" />
+            </div>
+        </div>
+          
+
+       
+            <div id="input" style="display: none">
+                <input type="text" id="res" />
+                <input type="button" id="btnsubmit" value="Ok" />
+                <input type="button" id="btncancel" value="Cancel" />
+            </div>
+        
+
+
+        
+    }
+    else
+    {
+        <h5 style="background-color: #f9f9f9; padding: 5px; color: gray; text-align: center">
+            No Question !</h5>
+    }
+</div>
+<div id="quest" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

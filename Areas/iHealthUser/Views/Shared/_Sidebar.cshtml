@@ -1,0 +1,62 @@
+﻿@{ InnDocs.iHealth.Web.UI.Models.UserInformation user = (InnDocs.iHealth.Web.UI.Models.UserInformation)HttpContext.Current.Session["LoginUser"];
+   InnDocs.iHealth.Web.UI.Models.SingleRegisterModel Domainuser = (InnDocs.iHealth.Web.UI.Models.SingleRegisterModel)HttpContext.Current.Session["RegUser"]; }
+@{
+    ViewBag.title = "";
+}
+<div id="Side_bar_wrapper">
+    <ul>
+        @if (user.EmailId == "admin@inndocs.com")
+        {
+            <li><a href="#" class="Side_bar_Icons Paccount" id="btncreateuser">Signup User</a>
+            </li>
+        }
+        else
+        {
+@* <li><a href="@Url.Action("Index", "AccountSettings")" class="Side_bar_Icons Paccount">Account Information</a> </li>
+             if (user.Password != null)
+            {
+            <li><a href="#" class="Side_bar_Icons ChangePW" id="chngpwd">Change password</a>
+                <input type="hidden" id="hdnUserID" value="@user.UserId" />
+            </li>
+            }
+            <li><a class="Side_bar_Icons DwnScanner" id = "dlScanSetup" href="@Url.Action("DownloadScan", "AccountSettings")">Download scanner setup</a> </li>
+            <li>
+                <a href="@Url.Action("PaymentManagement", "AccountSettings")" class="Side_bar_Icons Paccount">Payment Management</a>
+            </li>*@
+            
+            <li><a href="@Url.Action("Index", "AccountSettings")" class="Side_bar_Icons Paccount" title="Account Information">
+                <img src="~/Images/Useraccount.png" width="35px" height="35px" /></a>
+            </li>
+            if (user.Password != null)
+            {
+            <li><a href="#" class="Side_bar_Icons ChangePW" id="chngpwd" title="Change Password">
+                <img src="~/Images/change password2.png" width="35px" height="35px" /></a>
+                <input type="hidden" id="hdnUserID" value="@user.UserId" />
+            </li>
+            }
+            if (Domainuser.UserPlan == "PaidUser")
+            {
+            <li><a class="Side_bar_Icons DwnScanner" id = "dlScanSetup" href="@Url.Action("DownloadScan", "AccountSettings")" title="Scanner Setup">
+                <img src="~/Images/scanner setup2.png" width="35px" height="35px" /></a>
+            </li>
+            }
+            <li><a href="@Url.Action("PaymentManagement", "AccountSettings")" class="Side_bar_Icons Paccount" title="Payment Management">
+                <img src="~/Images/payment2.png" width="35px" height="35px" /></a>
+            </li>
+        }
+        @*  @if (user.GroupType == "Hospital")
+        {
+            <li><a href="@Url.Action("HospitalInfo", "AccountSettings")" class="Side_bar_Icons ChangePW" id="hospinfo">
+                Association Information</a>
+                <input type="hidden" id="hospUserID" value="@user.UserId" />
+            </li>
+            
+            <li><a href="@Url.Action("DoctorInfo", "AccountSettings")" class="Side_bar_Icons ChangePW" id="hospitalinfo">
+                Doctor Information</a>
+                <input type="hidden" id="doctorid" value="@user.UserId" />
+            </li>
+  
+                
+        }*@
+    </ul>
+</div>

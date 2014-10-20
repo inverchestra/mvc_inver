@@ -1,0 +1,654 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    ViewBag.Title = "CaseView";
+    int i = 1;
+}
+@*<script src="~/CustomScripts/cases-new.js" type="text/javascript"></script>
+<script src="~/CustomScripts/Case-View.js" type="text/javascript"></script>*@
+<script src="~/CustomScripts/documentsview.js"></script>
+@*<script src="~/Scripts/ui.dropdownchecklist-1.4-min.js" type="text/javascript"></script>*@
+@*<link href="~/Content/ui.dropdownchecklist.standalone.css" rel="stylesheet" type="text/css" />*@
+<script type="text/javascript">
+    $(function () {
+
+
+        $('.nav_UV > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('.nav_UV li ul').slideUp();
+                $(this).next().slideToggle();
+                $('.nav_UV li a').removeClass('active');
+                $(this).addClass('active');
+            }
+
+
+        });
+        $('.nav_UV1 > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('.nav_UV1 li ul').slideUp();
+                $(this).next().slideToggle();
+                $('.nav_UV1 li a').removeClass('active');
+                $(this).addClass('active');
+            }
+
+        });
+
+        $("#relatedToCases,#relatedToLogs").dropdownchecklist({ maxDropHeight: 150 }, { emptyText: "Please select ...", width: 150 }
+);
+//        $('ul.accordion').accordion({ collapsible: true, heightStyle: "content" });
+    });
+</script>
+<fieldset style="border: 1px solid #B1C8D2; background-color: #F8F9F9; width: 750px"
+    id="">
+    <legend>
+        <h3>
+            Case View
+        </h3>
+    </legend>
+    <div >
+        <div style="display: inline-block" class="newcase_L">
+            <ul id="menus">
+                <li><a href="#tabs1">Case Info</a></li>
+                <li><a href="#tabs2">Procedures</a></li>
+                <li><a href="#tabs3">Medical Tests</a></li>
+                <li><a href="#tabs4">Medications</a></li>
+                <li><a href="#tabs5">Visits</a></li>
+                <li><a href="#tabs6">Charts</a></li>
+            </ul>
+        </div>
+        <div class="newcase_right" style="width: 82%">
+            <div id="tabs1" style="width: 100%; display: inline-block">
+                <div class="dvd_btm" style="width: 100%; height: 358px; overflow-y: scroll; overflow-x: hidden;
+                    overflow: auto;">
+                    <div id="cases">
+                        <h3 class="dvd1">
+                            Case Information</h3>
+                        <ul>
+                            <li class="labelnormal">Case ID:</li>
+                            <li class="labelbold">@Model.CfId
+                            </li>
+                            <li class="labelnormal">Case name:</li>
+                            <li class="labelbold">@Model.CaseName
+                            </li>
+                            <li class="labelnormal">Case description:</li>
+                            <li class="labelbold">
+                                @if (Model.CaseDescription == null)
+                                {
+                                    <br />
+                                    <span></span>
+                                }
+                                else
+                                { 
+                                    @Model.CaseDescription
+                                }
+                            </li>
+                            <li class="labelnormal">Type of problem</li>
+                            <li class="labelbold">@Model.TypeOfProblem
+                            </li>
+                            <li class="labelnormal">Patient Type</li>
+                            <li class="labelbold">
+                                @if (Model.PatientType == false)
+                                {
+                                    
+                              
+                                    <text>Out Patient</text>
+
+                                }
+                                else if (Model.PatientType == true)
+                                {
+                                    <text>In Patient</text>
+                                }
+                            </li>
+                            <li class="labelnormal">Related cases </li>
+                            <li class="labelbold">
+                            @*prashanth*@
+                               @* <select id="relatedToCases" name="relatedToCases" multiple="multiple" style="width: 200px;">
+                                    @foreach (var value in Model.lstresultCaselist)
+                                    {
+                                        if (value.IsChecked)
+                                        {
+                                        <option value="@value.Id">@value.name</option>
+                                        }
+                                    }
+                                </select>
+                                <input type="button" id="btnCaseView" class="view" title="View Case" value="" name="Case" />*@
+                                   @*prashanth*@
+                            </li>
+                            <li class="labelnormal">Related logs </li>
+                            <li class="labelbold">
+                              @*prashanth*@
+                               @* <select id="relatedToLogs" name="relatedToLogs" multiple="multiple" style="width: 200px">
+                                    @foreach (var value in Model.lstresultLoglist)
+                                    {
+                                        if (value.IsChecked)
+                                        {
+                                        <option value="@value.Id">@value.name </option>
+                                        }
+                                    }
+                                </select>
+                                <input type="button" id="btnCaseLogView" value="" class="view" title="View Log" name="view" />*@
+                                  @*prashanth*@
+                            </li>
+                            <li class="labelnormal">Custom health log description </li>
+                            <li class="labelbold">
+                                @if (Model.CustHealthlogDesc == null)
+                                {
+                                    <span></span>
+                                    
+                                }
+                                else if (Model.PatientType == true)
+                                {
+                                    @Model.CustHealthlogDesc                                    
+                                }
+                                <br />
+                            </li>
+                            <li class="labelnormal" style="width: 100%; text-align: center;"><i style="border-bottom: 1px solid;
+                                padding: 5px;">Hospital and Doctor Information </i></li>
+                            <li style="padding-left: 50px; width: 100%;">
+                                @if (Model.HospitalInfos == null || Model.HospitalInfos.Count == 0)
+                                {
+                                    <br />
+                                    <span>no Hospital and Doctor Information for this Case</span>
+                                }
+                                else
+                                {
+
+                                    foreach (var HandDInfoList in Model.HospitalInfos)
+                                    {
+                                        try
+                                        {
+                                             
+                                    <ul id="HandDInfoList[@i]" class="HspInfo">
+                                        <li class="labelnormal">Hospital name: </li>
+                                        <li class="labelbold">
+                                            @if (HandDInfoList.HospitalName == null || HandDInfoList.HospitalName == "")
+                                            {
+                                                <text>no name</text>
+                                            }
+                                            else
+                                            {
+                                                @HandDInfoList.HospitalName
+                                            }
+                                        </li>
+                                        <li class="labelnormal">Email address: </li>
+                                        <li class="labelbold">@HandDInfoList.HospEmail
+                                        </li>
+                                        <li class="labelnormal">Phone number: </li>
+                                        <li class="labelbold">@HandDInfoList.HospPhno
+                                        </li>
+                                        <li class="labelnormal">Address: </li>
+                                        <li class="labelbold">@HandDInfoList.HospAddress
+                                        </li>
+                                    </ul>
+
+                                        }
+                                        finally { i++; }
+                                    }
+
+                                }
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @*Procedures*@
+            <div id="tabs2" style="width: 100%">
+                <h3 class="dvd1">
+                    Procedures Information</h3>
+                <div id="Procedures-div">
+                    @if (Model.lstProcedure.Count == 0)
+                    {
+                        <br />
+                        <span class="results">You have no Procedures for this Case</span>
+                    }
+                    else
+                    {
+                        <ul class="nav_UV">
+                            @foreach (var proceduresList in Model.lstProcedure)
+                            {
+                                try
+                                {
+                                <li><a href="#procList[@i]" onclick="return false;">@proceduresList.DateOfService
+                                    | @proceduresList.ProcedureName</a>
+                                    <ul id="procList[@i]" style="border: none">
+                                        <li class="labelChart">@*<div class="tldiv">*@ Procedure name: @*</div>
+                                            <div class="trdiv">
+                                            *@ </li>
+                                        <li class="labelChartB">
+                                            @if (proceduresList.ProcedureName == null || proceduresList.ProcedureName == "")
+                                            {
+                                                <text>no name</text>
+                                            }
+                                            else
+                                            {
+                                                @proceduresList.ProcedureName
+                                            }
+                                            @*
+                </div>
+                *@ </li>
+                                        <li class="labelChart">@*
+                                            <div class="tldiv">
+                                            *@ Date of service: </li>
+                                        @*
+            </div>
+            <div class="trdiv">
+                *@
+                                        <li class="labelChartB">
+                                            @proceduresList.DateOfService
+                                            @*
+            </div>
+            *@ </li>
+                                        <li class="labelChart">@*<div class="tldiv">
+                                            *@ Providerorfacility: </li>
+                                        @*
+        </div>
+        <div class="trdiv">
+            *@
+                                        <li class="labelChartB">
+                                            @proceduresList.ProviderOrFacility
+                                            @*
+        </div>
+        *@ </li>
+                                        <li class="labelChart">@*<div class="tldiv">
+                                            *@ Surgeon: </li>
+                                        @*
+    </div>
+    <div class="trdiv">
+        *@
+                                        <li class="labelChartB">
+                                            @proceduresList.Surgeon
+                                            @*
+    </div>
+    *@ </li>
+                                        <li class="labelChart">@*<div class="tldiv">
+                                            *@ Notes: </li>
+                                        @*</div>
+                                            <div class="trdiv">
+                                                *@
+                                        <li class="labelChartB">&nbsp;@proceduresList.Notes
+                                            @*
+                                            </div>
+    *@ </li>
+                                        <li class="labelChart">@*<div class="tldiv">
+                                            *@ Documents: </li>
+                                        @*</div>
+                                            <div class="trdiv">
+                                                *@
+                                        <li class="labelChartB">
+                                            @foreach (var documents in proceduresList.lstDocuments)
+                                            {
+                                                @Html.ActionLink(documents.OriginalName, "ViewDocument", "HealthRecord", new { id = documents.Id, @class = "anchor", @style = "background: none repeat scroll 0 0 transparent !important; border: medium none;color: black;font: 12px segoe ui;margin: 0;padding: 0;text-decoration: underline;" })
+                                            }
+                                            @*
+                                            </div>
+    *@ </li>
+                                    </ul>
+                                </li>
+                                }
+                                finally { i++; }
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+            @*Medical Tests*@
+            <div id="tabs3" style="width: 100%">
+                <h3 class="dvd1">
+                    Medical Test Information</h3>
+                <div id="MedicalTest-div">
+                    @if (Model.lstMedicalTest.Count == 0)
+                    {
+                        
+                        <span class="results">You have no MedialTests for this Case</span>
+                    }
+                    else
+                    {
+                        <ul class="nav_UV">
+                            @foreach (var medicalTest in Model.lstMedicalTest)
+                            {
+                                try
+                                {
+                                <li><a href="#medicalTest[@i]" onclick="return false;">@medicalTest.DateOfTest
+                                    | @medicalTest.TestName </a>
+                                    <ul id="medicalTest[@i]" style="border: none">
+                                        @*<div class="tldiv">
+                                            *@
+                                        <li class="labelChart">Testname: </li>
+                                        @*
+                                        </div>
+                                        <div class="trdiv">
+                                            *@
+                                        <li class="labelChartB">
+                                            @if (medicalTest.TestName == null || medicalTest.TestName == "")
+                                            {
+                                                <text>no name</text>
+                                            }
+                                            else
+                                            {
+                                                @medicalTest.TestName
+                                            }
+                                        </li>
+                                        @*
+                                        </div>
+                                        *@ @*<div class="tldiv">
+                                            *@
+                                        <li class="labelChart">Date of test: </li>
+                                        @*
+                                        </div>
+                                        <div class="trdiv">
+                                            *@
+                                        <li class="labelChartB">
+                                            @medicalTest.DateOfTest
+                                            @*
+                                        </div>
+                                    *@ </li>
+                                        @*<div class="tldiv">
+                                  *@
+                                        <li class="labelChart">Documents: </li>
+                                        @*
+                              </div>
+                              <div class="trdiv">
+                                  *@
+                                        <li class="labelChartB">
+                                            @foreach (var documents in medicalTest.lstDocuments)
+                                            {
+@*  <a href="#procList[@i]">@documents.OriginalName</a>*@
+                                                @Html.ActionLink(documents.OriginalName, "ViewDocument", "HealthRecord", new { id = documents.Id, @class = "anchor", @style = "background: none repeat scroll 0 0 transparent !important; border: medium none;color: black;font: 12px segoe ui;margin: 0;padding: 0;text-decoration: underline;width: 40px;" })
+                                            }
+                                            @* 
+                              </div>
+                              *@ </li>
+                                    </ul>
+                                </li>
+                                }
+                                finally { i++; }
+                            }
+                        </ul>
+                    }
+                    @*
+                </div>
+                *@
+                </div>
+            </div>
+            @*Medications*@
+            <div id="tabs4" style="width: 100%">
+                <h3 class="dvd1">
+                    Medications Information</h3>
+                <div id="MedicalSchedule-div">
+                    @if (Model.lstMedicalSchedule.Count == 0)
+                    {
+                        
+                        <span class="results">You have no Medications for this Case</span>
+                    }
+                    else
+                    {
+                        <ul class="nav_UV">
+                            @foreach (var medicalScheduleList in Model.lstMedicalSchedule)
+                            {
+                                try
+                                {
+                                <li><a href="#medicalScheduleList[@i]" onclick="return false;">@medicalScheduleList.StartDate
+                                </a>
+                                    <ul id="medicalScheduleList[@i]" style="border: none">
+                                        <li class="labelChart">Date prescribed: </li>
+                                        <li class="labelChartB">@medicalScheduleList.StartDate
+                                        </li>
+                                        <li class="labelChart">Dispensed: </li>
+                                        <li class="labelChartB">@medicalScheduleList.EndDate
+                                        </li>
+                                        <li class="labelChart">Pharmacy: </li>
+                                        <li class="labelChartB">@medicalScheduleList.PharmacyName
+                                        </li>
+                                        <li class="labelChart">Schedule: </li>
+                                        @*
+                                        <div id="Schedule-div">
+                                            *@
+                                        <li style="width: 95%; padding: 7px 20px;">
+                                            @if (medicalScheduleList.lstSchedule == null)
+                                            {
+                                                <br />
+                                                <span>You have no Schedule for this Case</span>
+                                            }
+                                            else
+                                            {
+                                                <ul class="nav_UV1">
+                                                    @foreach (var scheduleList in medicalScheduleList.lstSchedule)
+                                                    {
+                                                        try
+                                                        {
+                                                        <li><a href="#scheduleList[@i]"><span style="text-overflow: ellipsis; white-space: nowrap;
+                                                            overflow: hidden;">@scheduleList.MedicineName
+                                                        </span></a>
+                                                            <ul id="scheduleList[@i]" style="border: none; ">
+                                                                <li class="labelChart">Medicine Name: </li>
+                                                                <li class="labelChartB">
+                                                                    @if (scheduleList.MedicineName == null || scheduleList.MedicineName == "")
+                                                                    {
+                                                                        <text>no name</text>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @scheduleList.MedicineName
+                                                                    }
+                                                                </li>
+                                                                <li class="labelChart">Type of medicine: </li>
+                                                                <li class="labelChartB">@scheduleList.TypeOfMedicine
+                                                                </li>
+                                                                <li class="labelChart">Dosage quantity: </li>
+                                                                <li class="labelChartB">@scheduleList.DosageTaken
+                                                                </li>
+                                                                <li class="labelChart">Frequency taken: </li>
+                                                                <li class="labelChartB">@scheduleList.FrequencyTaken
+                                                                </li>
+                                                                <li class="labelChart">Quantity: </li>
+                                                                <li class="labelChartB">@scheduleList.TotalQuantity
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        }
+                                                        finally { i++; }
+                                                    }
+                                                </ul>
+                                            }
+                                            @*
+                                        </div>
+                                    *@ </li>
+                                        <li class="labelChart">Documents: </li>
+                                        <li class="labelChartB">
+                                            @if (medicalScheduleList.lstDocuments == null || medicalScheduleList.lstDocuments.Count == 0)
+                                            {
+                                                <text>--No Documents--</text>
+                                            }
+                                            else
+                                            {
+                                                foreach (var documents in medicalScheduleList.lstDocuments)
+                                                {
+        
+                                                @Html.ActionLink(documents.OriginalName, "ViewDocument", "HealthRecord", new { id = documents.Id, @class = "anchor", @style = "background: none repeat scroll 0 0 transparent !important; border: medium none;color: black;font: 12px segoe ui;margin: 0;padding: 0;text-decoration: underline;width: 40px;" })
+                                                }
+                                            }
+                                        </li>
+                                    </ul>
+                                </li>
+@*<div class="trdiv">
+                               @foreach (var documents in medicalScheduleList.lstDocuments)
+                                    {
+
+                                        @Html.ActionLink(documents.OriginalName, "ViewDocument", "HealthRecord", new { id = documents.Id, @class = "anchor", @style="background: none repeat scroll 0 0 transparent !important; border: medium none;color: black;font: 12px segoe ui;margin: 0;padding: 0;text-decoration: underline;width: 40px;" })
+                                    }
+                           </div>*@
+
+                                }
+                                finally { i++; }
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+            @* Visits*@
+            <div id="tabs5" style="width: 100%">
+                <h3 class="dvd1">
+                    Visits Information</h3>
+                <div id="Visits-div">
+                    @if (Model.lstVisits.Count == 0)
+                    {
+                       
+                        <span class="results">You have no Visits for this Case</span>
+                    }
+                    else
+                    {
+                        <ul class="nav_UV">
+                            @foreach (var visitsList in Model.lstVisits)
+                            {
+                                try
+                                {
+                                <li><a href="#visitsList[@i]" onclick="return false;">@visitsList.NextVisitDate </a>
+                                    <ul id="visitsList[@i]" style="border: none">
+                                        <li class="labelChart">Visit date </li>
+                                        <li class="labelChartB">@visitsList.NextVisitDate
+                                        </li>
+                                        <li class="labelChart">Reason </li>
+                                        <li class="labelChartB">@visitsList.Reason
+                                        </li>
+                                        @*<li class="labelChart">Diet Prescription  </li>
+                                        <li class="labelChartB">@visitsList.Reason
+                                        </li>*@
+                                        <li class="labelChart">Diet prescription </li>
+                                        <li class="labelChartB">
+                                            @if (visitsList.DietPresc == null)
+                                            {
+                                                <span></span>
+                                                <br />
+                                            }
+                                            else
+                                            {
+                                                @visitsList.DietPresc
+                                            }
+                                        </li>
+                                        <li class="labelChart">Doctor's log </li>
+                                        <li class="labelChartB">@visitsList.DoctorsLog
+                                        </li>
+                                        <li class="labelChart">Precautions </li>
+                                        <li class="labelChartB">
+                                            @if (visitsList.Precautions == null)
+                                            {
+                                                <span></span>
+                                                <br />
+                                            }
+                                            else
+                                            {
+                                                @visitsList.Precautions
+                                            }
+                                        </li>
+                                        <li class="labelChart" style="width: 100% !important; text-align: center;"><i style="border-bottom: 1px solid;
+                                            padding: 5px; font: italic 14px segoe ui;">Nurse readings </i></li>
+                                        @if (visitsList.NurseReadingsInfo == null)
+                                        {
+                                            <span>No Nurse readings given</span>
+                                            <br />
+                                        }
+                                        else
+                                        {
+                                            <li class="labelChart">Height </li>
+                                            <li class="labelChartB">@visitsList.NurseReadingsInfo.Height <i>cms</i> </li>
+                                            <li class="labelChart">Weight </li>
+                                            <li class="labelChartB">@visitsList.NurseReadingsInfo.Weight <i>kg</i> </li>
+                                            <li class="labelChart">Temperature </li>
+                                            <li class="labelChartB">@visitsList.NurseReadingsInfo.Temparature <i>degF</i> </li>
+                                            <li class="labelChart">BP </li>
+                                            <li class="labelChartB">@visitsList.NurseReadingsInfo.Sistole &nbsp;/&nbsp; @visitsList.NurseReadingsInfo.Diastole
+                                            </li>
+                                            <li class="labelChart">Respiration </li>
+                                            <li class="labelChartB">@visitsList.NurseReadingsInfo.Respiratoryrate <i>rpm</i>
+                                            </li>
+                                            <li class="labelChart">Pulse Rate </li>
+                                            <li class="labelChartB">@visitsList.NurseReadingsInfo.PulseRate <i>pm</i> </li>
+                                        }
+                                        <li style="width: 100% !important; text-align: center;"><i style="border-bottom: 1px solid;
+                                            padding: 5px; font: italic 14px segoe ui;">Consulted Doctor</i> </li>
+                                        <li class="labelChart">Doctor name </li>
+                                        <li class="labelChartB">Dr. @visitsList.DoctorName
+                                        </li>
+                                        <li class="labelChart">Contact number</li>
+                                        <li class="labelChartB">@visitsList.DoctorPhoneNo</li>
+                                        <li class="labelChart">Email Id</li>
+                                        <li class="labelChartB">@visitsList.DoctorEmail</li>
+                                    </ul>
+                                </li>
+                                }
+                                finally { i++; }
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+            @*Charts*@
+            <div id="tabs6">
+                <h3 class="dvd1">
+                    Charts information</h3>
+                <div id="Chatrs-div">
+                    @if (Model.lstChart.Count == 0)
+                    {
+ 
+                        <span class="results">You have no Charts for this Case</span>
+                    }
+                    else
+                    {
+                        <ul class="nav_UV">
+                            @foreach (var chart in Model.lstChart)
+                            {
+                                try
+                                {
+                                <li><a href="#chart[@i]" onclick="return false;">@chart.ChartDate
+                                    | @chart.ChartName </a>
+                                    <ul id="chart[@i]" style="border: none">
+                                        <li class="labelChart">Chart name:</li>
+                                        <li class="labelChartB">
+                                            @if (chart.ChartName == null || chart.ChartName == "")
+                                            {
+                                                <text>no name</text>
+                                            }
+                                            else
+                                            {
+                                                @chart.ChartName
+                                            }
+                                        </li>
+                                        <li class="labelChart">Date of chart: </li>
+                                        <li class="labelChartB">@chart.ChartDate
+                                        </li>
+                                        <li class="labelChart">Documents: </li>
+                                        <li class="labelChartB">
+                                            @if (chart.lstDocuments == null || chart.lstDocuments.Count == 0)
+                                            {
+                                                <text>--No Documents--</text>
+                                            }
+                                            else
+                                            {
+                                                foreach (var documents in chart.lstDocuments)
+                                                {<a id="@documents.Id" class="anchor" style="background: none repeat scroll 0 0 transparent !important; border: medium none; color: black; font: 12px segoe ui; margin: 0; padding: 0; text-decoration: underline; width: 40px;">@documents.OriginalName</a>
+                                                <h5>
+                                                </h5>
+                                                }
+                                            }
+                                        </li>
+                                    </ul>
+                                </li>
+                                }
+                                finally { i++; }
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+            <div id="modal-div" style="display: none;">
+            </div>
+            <div id="tab" style="display: none">
+            </div>
+        </div>
+    </div>
+    <div style="width: 98%" class="inline">
+        <input type="button" class="graygrad" style="float: right; margin-left: 5px;" onclick="$.modal.close()"
+            value="Close" />
+        @*        <a class="graygrad" style="float: right; margin-left: 5px;" href="/iHealthUser/Cases/Cases">
+            Close</a>*@
+    </div>
+</fieldset>

@@ -1,0 +1,19 @@
+﻿@helper Rightpanel(string ImageName, string EDDdate)
+    {
+    <link rel="stylesheet" href="../../../../Content/progress.css">
+@* <script type="text/javascript" src="../../../../Scripts/jui.js"></script>*@
+    <script type="text/javascript" src="../../../../Scripts/jui1.js"></script>
+    <div id="right-panel">
+        <label style="color: Gray; font-size: medium; margin-left: 35px">
+            Your baby this week !</label>
+        <img class="week-pic" src="" alt="" width="220" height="220" style="margin-top: 8px;
+            border-radius: 20px; box-shadow: 0 0 3px 1px rgba(125, 125, 125, 0.44); background-color: Gray" />
+        <div id="progressbar" style="margin-top: 10px">
+        </div>
+        <div>
+            <ul style="margin-top: 5px; color: dimgray">
+                <li>&nbsp;EDD Date :</li><li>@EDDdate </li>
+            </ul>
+        </div>
+    </div>
+}

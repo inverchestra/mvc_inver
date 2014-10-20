@@ -1,0 +1,80 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UserHealthLog
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+
+@Scripts.Render("~/bundles/ajaxfun")
+<div id="create" style="width: 400px;">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div style="border-bottom: 1px solid rgb(218,221,226); float: left; width: 100%;">
+            <h2>
+                Create Log</h2>
+        </div>
+        <div class="HLog">
+            <ul style="margin: 12px 0 0 10px;">
+                <li class="labelnormal">Log name<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                <li>@Html.TextBoxFor(model => model.logName, new { title = "Name of the Log", tabindex = "1", style = "width: 174px;" })
+                    @Html.ValidationMessageFor(model => model.logName)</li>
+                <li class="labelnormal">First observed<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+                <li>@Html.TextBoxFor(model => model.FirstObserved, new { placeholder = "MM/DD/YYYY", tabindex = "2", title = "Date you observed", id = "date", pattern = @"(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d", style = "width: 174px;" })
+                    @Html.ValidationMessageFor(model => model.FirstObserved)</li>
+                <li class="labelnormal">Log description:</li>
+                <li>
+                    @Html.TextAreaFor(model => model.logDescription, new { title = "Describe your Log", tabindex = "3", style = "width: 173px" })
+                </li>
+                <li class="labelnormal"  >Related logs </li>
+                <li style="width: 232px;">
+                    <select id="s3" name="s3" multiple="multiple" tabindex="4">
+                        @if (Model.lstLogs == null||Model.lstLogs.Count==0)
+                        {
+                            <option disabled="disabled">--No Logs--</option>
+                        }
+                        else
+                        {
+
+                            foreach (var value in Model.lstLogs)
+                            {
+                            <option value="@value.logId">@value.logName </option>  
+                            }
+                        }
+                    </select>
+                    <input type="button" id="btnCaseLogView" value="" title="View" class="view_CV" name="view" style="margin:7px 47px 0 0" />
+                </li>
+                <li class="labelnormal">Symptom<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+                <li>@* <textarea name="symptoms[0].Name" title="Name the symptom" style="height: 40px" required></textarea></li>*@
+                    @Html.TextAreaFor(model => model.symptoms[0].Name, new { title = "Enter the symptom ", tabindex = "5", style = "width: 173px" })
+                    @Html.ValidationMessageFor(model => model.symptoms[0].Name)</li>
+                <li class="labelnormal">Symptom description<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                    color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+                <li>
+                    @Html.TextAreaFor(model => model.symptoms[0].Description, new { title = "Symptom Description", tabindex = "6", rows = "", cols = "", style = "height: 40px; width: 173px" })
+                    @Html.ValidationMessageFor(model => model.symptoms[0].Description)
+                    @*<textarea name="symptoms[0].Description" rows="" cols="" title="Describe your symptom" style="height: 40px; width: 173px"></textarea>*@
+                </li>
+                <li class="labelnormal">Reasons </li>
+                <li>
+                    <textarea id="reasons" name="symptoms[0].Reasons" rows="" tabindex="7", cols="" title="Probable Reason"
+                        style="height: 40px; width: 173px"></textarea>
+                </li>
+                <li class="labelnormal">Medicines </li>
+                <li>
+                    <textarea name="symptoms[0].Medicines" title="Did you take any medication ?" tabindex="8", rows=""
+                        cols="" style="height: 40px; width: 173px"></textarea>
+                    <input type="hidden" name="symptoms[0].DateTime" value="@DateTime.Now" />
+                </li>
+                <li style="width: 100%;">
+                    <div style="width: 89%" class="inline">
+                        <input type="button" id="btnCancel" value="Cancel" style="float: right" tabindex="10" class="graygrad" />
+                        <input type="submit" id="btnSubmit" value="Save" style="float: right;tabindex="9" margin-right: 10px;"
+                            class="greengrad" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="modal-div1" class="slide" style="width: auto;">
+        </div>
+    }
+</div>

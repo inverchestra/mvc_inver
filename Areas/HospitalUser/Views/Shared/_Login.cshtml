@@ -1,0 +1,16 @@
+﻿@*@{ InnDocs.iHealth.Web.UI.Models.UserInformation user = (InnDocs.iHealth.Web.UI.Models.UserInformation)HttpContext.Current.Session["LoginUser"]; } *@
+@{ string UserName = (string)HttpContext.Current.Session["LoginName"]; } 
+@if (Request.IsAuthenticated)
+{ 
+    <div class="welcome_message">
+    <label> Welcome</label> 
+   @* <label>@user.LoginName</label>*@
+        @Html.ActionLink(UserName, "DashBoard", "DashBoard") 
+  @*  @Html.ActionLink(@user.LoginName, "DashBoard", "DashBoard") *@
+      
+ 
+    </div> 
+<a href="@Url.Action("LogOut", "HospAdmin")" class="logout"> </a>
+}
+
+ 

@@ -1,0 +1,48 @@
+﻿@helper Weeks()
+    {
+    <div class="tlpweeks" role="navigation" style="">
+        <div class="leftcap">
+        </div>
+        <div class="container" style="padding: 0">
+            <div id="tlweeks" class="tlweek">
+                <input type="hidden" id="week" value="18">
+                <ul id="weeks" class="nav navbar-nav" style="height: 35px; overflow: hidden;">
+                    @for (int i = 1; i <= 40; i++)
+                    {
+                        <li style="width: 100px;"><a href="#" data-rel="@i" style="text-align:center; height:20px;padding:10px 5px ">
+                            Week @i</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="rightcap">
+        </div>
+    </div>
+}
+@helper Days()
+    {
+    <div class="tlpdays" role="navigation" style="">
+        <input type="hidden" id="day" value="1">
+        <ul id="days" class="nav nav-justified" style="height: 20px; overflow: hidden; margin-top: 0px">
+            @for (int i = 1; i <= 7; i++)
+            {
+                <li style="height: 20px;"><a href="#" data-rel="@i" style="height: 20px; padding:5px 15px !important; line-height:0.5">
+                    Day @i</a></li>
+            }
+        </ul>
+    </div>
+}
+@helper Trimester()
+    {
+    <div class="trimester">
+        <h4>
+            1st Trimester
+        </h4>
+    </div>
+}
+@helper Alert()
+    {
+    <div class="alert">
+        <span></span>
+    </div>
+}

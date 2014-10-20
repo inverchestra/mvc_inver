@@ -1,0 +1,350 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    int i = 0;
+}
+<script type="text/javascript">
+    $(function () {
+
+        $('#nav > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('#nav li ul').slideUp();
+                $(this).next().slideToggle();
+                $('#nav li a').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+               
+
+
+        $('img.btneditvisit').click(function (e) {
+            e.stopPropagation()
+            $.ajax({
+                url: '/iHealthuser/Cases/UpdateVisitView',
+                type: 'GET',
+                async: false,
+                data: { vstId: $(this).parents('li').find('input[name="Visits.visitId"]').val() },
+                cache: false,
+                success: function (result) {
+                    $('#modal-Vupdate').html(result).modal({
+                        closeHTML: "",
+                        onShow: function () {
+                            $('#cvisitDate2').datetimepicker({
+                                changeYear: true,
+                                changeMonth: true
+                            });
+                            $('#nextdatevisit2').datepicker({
+                                changeYear: true,
+                                changeMonth: true
+                            });
+                            $('input[name="btncanel"]').click(function () {
+                                $.modal.close();
+                            });
+
+                            $('input[name="btnVisitUpdate"]').click(function () {
+                                if ($("#cvisitDate2").val() == "") {
+                                    alert("Please  enter current visit date");
+                                    $('input[tabindex=1]').focus();
+                                    //  return false;
+                                }
+
+                                else if ($("#reasonid").val() == "") {
+                                    alert("Please enter reason");
+                                    $('input[tabindex=2]').focus();
+                                }
+                                else {
+                                    $.ajax({
+                                        url: '/iHealthuser/Cases/UpdateVisits',
+                                        type: "POST",
+                                        async: false,
+                                        cache: false,
+                                        data: new FormData($(this).parents('#frmUVisitId').get(0)),
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (data) {
+                                            alert("Your modifications are updates successfully");
+                                            $(data).accordion({ collapsible: true });
+                                            $('#vstlst').html(data);
+                                            $.modal.close();
+                                        }
+                                    });
+                                }
+                                return false;
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+
+
+        $('img[name="delVisit"]').click(function (e) {
+            e.stopPropagation();
+            var id = $(this).parents('li').find('input[name="Visits.visitId"]').val();
+            var CaseId = $(this).parents('li').find('input[name="Visits.CaseId"]').val();
+            var d = $(this).parents('li');
+            var response = confirm("Please confirm if you really want to delete");
+            if (response) {
+                $.ajax({
+                    url: "/ihealthuser/Cases/DeleteVisit",
+                    type: 'POST',
+                    async: false,
+                    cache: false,
+                    data: $(this).parents("#frmEditvisit").serialize(),
+                    success: function (data) {
+                        //                        if (success == '1020') {
+                        //                            alert("Deleted Successfully");
+                        //                            $(d).remove();
+                        //                            $('ul.accordion').accordion('destroy').accordion({
+                        //                                collapsable: true
+                        //                            });
+                        //                        }
+                        //                        else {
+                        //                            alert("Not Deleted, Error in Server Code");
+                        //                        }
+                        alert("Deleted Successfully");
+                        $(d).remove();
+                        $(data).accordion({ collapsible: true });
+                        $('#vstlst').html(data);
+                        $.modal.close();
+                    }
+                });
+            }
+            return false;
+        });
+
+    });
+</script>
+<div id="medicalTests">
+    <form id="frmEditvisit" enctype="multipart/form-data">
+    <input type="hidden" name="CaseId" id="CaseId" value="@Model.CaseId" />
+    @if (Model.lstVisits.Count == 0)
+    {
+        <br />
+        <span class="results">You have no Visits for this Case</span>
+    }
+    else
+    {
+        <ul id="nav">
+            @foreach (var visitsList in Model.lstVisits)
+            {
+                try
+                {
+                <li><a href="#viistList[@i]"><span style="-ms-text-overflow: ellipsis; -o-text-overflow: ellipsis;
+                    text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block;
+                    width: 350px">@visitsList.CVisitDate1
+                    | @visitsList.Reason </span>
+                    <img src="~/Images/edit.png" alt="Edit" class="btneditvisit" style="float: right;" />
+                    <img src="~/Images/delete.png" name="delVisit" class="delVisit" alt="Delete lVisit"
+                        style="float: right;" />
+                    <input type="hidden" name="Visits.CaseId" value="@visitsList.CaseId" />
+                    <input type="hidden" name="Visits.visitId" value="@visitsList.visitId" />
+                </a>
+                    <ul id="cvisitsList[@i]" style="border: none">
+                        <li class="labelChart">Visit date: </li>
+                        <li class="labelChartB">
+                        @if(visitsList.CurrentVisitDate==null)
+                        {
+                            <span></span>
+                            <br />
+                        }
+                        else
+                        {
+                            @visitsList.CurrentVisitDate
+                        }
+                        </li>
+                        <li class="labelChart">Reason: </li>
+                        <li class="labelChartB">
+                            @if (visitsList.Reason == null)
+                            {
+                                <span></span>
+                                <br />
+                            }
+                            else
+                            {
+                                @visitsList.Reason
+                            }
+                        </li>
+                        <li class="labelChart">Diet prescription: </li>
+                        <li class="labelChartB">
+                            @if (visitsList.DietPresc == null)
+                            {
+                                <span></span>
+                                <br />
+                            }
+                            else
+                            {
+                                @visitsList.DietPresc
+                            }
+                        </li>
+                        <li class="labelChart">Doctor's comments: </li>
+                        <li class="labelChartB">
+                            @if (visitsList.DoctorsLog == null)
+                            {
+                                <span></span>
+                                <br />
+                            }
+                            else
+                            {
+                                @visitsList.DoctorsLog
+                            }
+                        </li>
+                        <li class="labelChart">Precautions: </li>
+                        <li class="labelChartB">
+                            @if (visitsList.Precautions == null)
+                            {
+                                <br />
+                                <span></span>
+                            }
+                            else
+                            {
+                                @visitsList.Precautions
+                                <br />
+                            }
+                        </li>
+                        <li class="labelChart">Next Visit date: </li>
+                        <li class="labelChartB">
+                        @if(visitsList.NextVisitDate==null)
+                        {
+                            <span></span>
+                            <br />
+                        }
+                        else
+                        {
+                            @visitsList.NextVisitDate
+                        }
+                        </li>
+
+                        <li style="width: 100%; padding-left: 10px;">Nurse Readings : </li>
+                        <li style="width: 100%; padding-left: 10px;">
+                            @if (visitsList.NurseReadingsInfo == null)
+                            {
+                                <span>No Nurse readings given</span>
+                                <br />
+                            }
+                            else
+                            {
+                                <div style="width: 100%">
+                                    <div style="width: 100%;">
+                                        <div style="width: 45%; float: left">
+                                            <div style="float: left; width: 50%;">
+                                                Height:
+                                            </div>
+                                            <div style="width: 50%; display: inline-block">
+                                                @visitsList.NurseReadingsInfo.Height <i>Cms</i>
+                                            </div>
+                                        </div>
+                                        <div style="width: 45%; float: right">
+                                            <div style="float: left; width: 50%;">
+                                                Weight:
+                                            </div>
+                                            <div style="width: 50%; display: inline-block">
+                                                @visitsList.NurseReadingsInfo.Weight <i>Kgs</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <div style="width: 45%; float: left">
+                                            <div style="float: left; width: 50%;">
+                                                Temperature:
+                                            </div>
+                                            <div style="width: 50%; display: inline-block">
+                                                @visitsList.NurseReadingsInfo.Temparature <i>'F</i>
+                                            </div>
+                                        </div>
+                                        <div style="width: 45%; float: right">
+                                            <div style="float: left; width: 50%;">
+                                                BP:
+                                            </div>
+                                            <div style="width: 50%; display: inline-block">
+                                                @visitsList.NurseReadingsInfo.Sistole &nbsp;/&nbsp; @visitsList.NurseReadingsInfo.Diastole
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width: 100%; float: left;">
+                                        <div style="width: 45%; float: left">
+                                            <div style="float: left; width: 50%;">
+                                                Respiration:
+                                            </div>
+                                            <div style="width: 50%; display: inline-block">
+                                                @visitsList.NurseReadingsInfo.Respiratoryrate <i>per min</i>
+                                            </div>
+                                        </div>
+                                        <div style="width: 45%; float: right">
+                                            <div style="float: left; width: 50%;">
+                                                Pulse rate:
+                                            </div>
+                                            <div style="width: 50%; display: inline-block">
+                                                @visitsList.NurseReadingsInfo.PulseRate <i>pm</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            }
+                        </li>
+                        <li style="width: 100%; padding-left: 10px;">Consulted Doctor details </li>
+                        <li style="width: 100%; padding-left: 10px;">
+                            <div style="width: 100%">
+                                <div style="width: 100%">
+                                    <div style="width: 45%; float: left">
+                                        <div style="float: left; width: 50%;">
+                                            Doctor name:
+                                        </div>
+                                        <div style="width: 50%; display: inline-block">
+                                            <span>Dr.</span>@visitsList.DoctorName
+                                        </div>
+                                    </div>
+                                    <div style="width: 45%; float: right">
+                                        <div style="float: left; width: 50%;">
+                                            Contact number:
+                                        </div>
+                                        <div style="width: 50%; display: inline-block">
+                                            @visitsList.DoctorPhoneNo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="width: 100%">
+                                    <div style="width: 45%; float: left">
+                                        <div style="float: left; width: 50%;">
+                                            Email id:
+                                        </div>
+                                        <div style="width: 50%; display: inline-block">
+                                            @visitsList.DoctorEmail
+                                        </div>
+                                    </div>
+                                    <div style="width: 45%; float: right">
+                                        <div style="float: left; width: 50%;">
+                                        </div>
+                                        <div style="width: 50%; display: inline-block">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                }
+                finally { i++; }
+            }
+        </ul>
+    }
+    </form>
+</div>
+<div id="modal-Vupdate" style="display: none">
+    `
+</div>
+<div id="tab" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

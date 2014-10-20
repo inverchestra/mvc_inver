@@ -1,0 +1,752 @@
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+E:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.csprojResolveAssemblyReference.cache
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+D:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.csprojResolveAssemblyReference.cache
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+C:\Users\mani\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.csprojResolveAssemblyReference.cache
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+C:\Users\Manikandhar\Desktop\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+E:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.csprojResolveAssemblyReference.cache
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+E:\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+E:\jagadeesh\jagadeesh\jagadeesh\jagadeesh-updated\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+G:\Dileep\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+D:\New folder\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+C:\jagadeesh\Bumpdocs\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+G:\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+C:\jagadeesh\13-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Owin.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\UpdateBumpdocs\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Owin.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+D:\jagadeesh\Bumpdocs 27-06-2014\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Owin.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+E:\VVV\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Owin.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+E:\VVV\After chat changes\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\InnDocs.iHealth.Web.UI.pdb
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Web.Infrastructure.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Owin.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Facebook.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.Owin.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\Newtonsoft.Json.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.Formatting.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Net.Http.WebRequest.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Helpers.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Http.WebHost.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Mvc.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.Razor.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Deployment.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\bin\System.Web.WebPages.Razor.xml
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\ResolveAssemblyReference.cache
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.dll
+E:\VVV\New Amazon server code\Latest Updated BumpdocsUI\InnDocs.iHealth.Web.UI\obj\Debug\InnDocs.iHealth.Web.UI.pdb

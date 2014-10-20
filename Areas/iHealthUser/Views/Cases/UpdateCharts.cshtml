@@ -1,0 +1,61 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<div id="UpdateCharts" class="bluegrad" style="width: 485px">
+    <h2 class="h3border">
+        UpdateCharts</h2>
+    <form id="frmUChartId" enctype="multipart/form-data" class="crtproc">
+    <input type="hidden" name="Charts.CaseId" value="@Model.Charts.CaseId" />
+    <input type="hidden" name="Charts.ChartId" value="@Model.Charts.ChartId" />
+    <ul style="display: inline-block; padding: 13px 13px">
+        <li class="labelnormal">Chart name:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+        <li>
+            <input type="text" name="Charts.ChartName" value="@Model.Charts.ChartName" tabindex='1' title="Name of chart" id="EditChartName" class="create-logtxts" />
+        </li>
+        <li class="labelnormal">Date of chart:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+        <li>
+            <input type="text" name="Charts.ChartDate" id="dateOfChart2" value="@Model.Charts.ChartDate" tabindex='2' placeholder="MM/DD/YYYY" title="Date you Chart"  class="create-logtxts" id="EditChartDate" />
+        </li>
+        <li class="labelnormal">Chart type:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+        <li>
+            <input type="text" name="Charts.ChartType" class="create-logtxts" tabindex='3' value="@Model.Charts.ChartType" title="Type of the chart" id="editctype" />
+        </li>
+        <li class="labelnormal">Chart details:</li>
+        <li>
+            <input type="text" name="Charts.ChartDetails" class="create-logtxts" value="@Model.Charts.ChartDetails" title="Details of the chart" tabindex='4' />
+        </li>
+        <li class="labelnormal">Comments:</li>
+        <li>
+            <input type="text" name="Charts.Comments" class="create-logtxts" value="@Model.Charts.Comments" title="Comments for the Chart" tabindex='5' />
+        </li>
+        <li class="labelnormal">Add document:</li>
+        <li>
+            <input type="file" name="MTfiles" multiple="multiple" class="create-logtxts" tabindex='6' />
+        </li>
+        <li style="float: right">
+            <input type="hidden" name="Charts.CaseId" value="@Model.Charts.CaseId" id="ccid2" />
+            <input type="hidden" name="Charts.ChartId" value="@Model.Charts.ChartId"id="cid2" />
+            <div style="width: 82%" class="inline">
+                <input type="button" name="btnUpdateChatClose" value="Cancel" style="float: right;" tabindex='7'
+                    class="graygrad" onclick="$.modal.close()" />
+                <input type="button" name="btnCTUpdate" value="Update" style="float: right; margin-right: 10px;" tabindex='8'
+                    class="greengrad" />@*changed submit to button*@
+            </div>
+        </li>
+    </ul>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

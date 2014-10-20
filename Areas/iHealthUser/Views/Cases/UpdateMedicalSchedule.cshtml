@@ -1,0 +1,434 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    int i = 0;
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+
+        $("#idfrequencyTaken1").change(function () {
+
+            var selectedid1 = $(this).val();
+
+            if (selectedid1 == "0") {
+                $("#FQ11,#FQ12,#FQ13,#FQ14,#FQ15,#FQ16,#FQ17,#FQ18,#lblstarttime1").hide();
+            }
+            else if (selectedid1 == "1") {
+                $('#date21').timepicker();
+                $("#FQ11,#lblstarttime1").show();
+                $("#FQ12,#FQ13,#FQ14,#FQ15,#FQ16,#FQ17,#FQ18").hide();
+            }
+            else if (selectedid1 == "2") {
+                $('#date22,#date23').timepicker();
+
+                $("#FQ11,#FQ13,#FQ14,#FQ15,#FQ16,#FQ17,#FQ18").hide();
+                $("#FQ12,#lblstarttime1").show();
+            }
+            else if (selectedid1 == "3") {
+                $('#date24,#date25,#date26').timepicker();
+
+                $("#FQ11,#FQ12,#FQ14,#FQ15,#FQ16,#FQ17,#FQ18").hide();
+                $("#FQ13,#lblstarttime1").show();
+            }
+            else if (selectedid1 == "4") {
+                $('#date27,#date28,#date29,#date30').timepicker();
+
+                $("#FQ11,#FQ12,#FQ13,#FQ15,#FQ16,#FQ17,#FQ18").hide();
+                $("#FQ14,#lblstarttime1").show();
+            }
+            else if (selectedid1 == "5") {
+
+                $('#date31').datetimepicker();
+
+                $("#FQ11,#FQ12,#FQ13,#FQ14,#FQ16,#FQ17,#FQ18").hide();
+                $("#FQ15,#lblstarttime1").show();
+
+            }
+            else if (selectedid1 == "6") {
+
+                $('#date32,#date33').datetimepicker();
+
+                $("#FQ11,#FQ12,#FQ13,#FQ14,#FQ15,#FQ17,#FQ18").hide();
+                $("#FQ16,#lblstarttime1").show();
+            }
+            else if (selectedid1 == "7") {
+
+                $('#date34,#date35,#date36').datetimepicker();
+
+                $("#FQ11,#FQ12,#FQ13,#FQ14,#FQ15,#FQ16,#FQ18").hide();
+                $("#FQ17,#lblstarttime1").show();
+            }
+            else if (selectedid1 == "8") {
+
+                $('#date37,#date38,#date39,#date40').datetimepicker();
+
+                $("#FQ11,#FQ12,#FQ13,#FQ14,#FQ15,#FQ16,#FQ17").hide();
+                $("#FQ18,#lblstarttime1").show();
+            }
+        });
+    });
+
+
+    $("#iddosagetaken1").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+        // Allow: Ctrl+A
+    (event.keyCode == 65 && event.ctrlKey === true) ||
+        // Allow: home, end, left, right
+    (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 2)) {
+                event.preventDefault();
+            }
+        }
+    });
+
+    $("#idquantity1").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+        // Allow: Ctrl+A
+    (event.keyCode == 65 && event.ctrlKey === true) ||
+        // Allow: home, end, left, right
+    (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 4)) {
+                event.preventDefault();
+            }
+        }
+    });  
+</script>
+@*<div id="UpdateMSchedules" class="bluegrad">*@
+<form id="frmUMSchedule" enctype="multipart/form-data">
+<div style="width: 630px; height: 379px !important;">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            Prescription:</h3>
+    </div>
+    <br />
+    <input type="hidden" name="MedicalSchdule.CaseId" value="@Model.MedicalSchdule.CaseId" />
+    <input type="hidden" name="MedicalSchdule.MedicalScheduleId" value="@Model.MedicalSchdule.MedicalScheduleId" />
+    <input type="hidden" name="MedicalSchdule.PrescriptionNo" value="@Model.MedicalSchdule.PrescriptionNo" />
+    @*<div id="presccontnr" style="width: 100%">
+            <div id="presctop" class="inline">*@
+    <div class="crtproc" style="width: 96%;">
+        <ul>
+            <li class="h3border" style="width: 100%; height: 18px; margin-bottom: 10px;">
+                <h6>
+                    Presciprtion period</h6>
+            </li>
+            <li class="labelnormal">Prescription number: </li>
+            <li>
+                @Model.MedicalSchdule.PrescriptionNo
+            </li>
+            <li class="labelnormal">Start date:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li>
+                <input type="text" name="MedicalSchdule.StartDate" id="datePrescribed2" tabindex="1" value="@Model.MedicalSchdule.DatePrescribed1" class="crt" />
+            </li>
+            <li class="labelnormal">End date:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+            <li>
+                <input type="text" name="MedicalSchdule.EndDate" id="dateDispensed2" tabindex="2" value="@Model.MedicalSchdule.DateDispensed1" class="crt" />
+            </li>
+            <li class="labelnormal">Prescription description: </li>
+            <li>
+                <input type="text" name="MedicalSchdule.PrescriptionDescription" value="@Model.MedicalSchdule.PrescriptionDescription" title="Enter prescription description" class="crt" tabindex="3" />
+            </li>
+            <li class="labelnormal">Pharmacy name: </li>
+            <li>
+                <input type="text" name="MedicalSchdule.PharmacyName" value="@Model.MedicalSchdule.PharmacyName" title="Enter the pharmcy name" class="crt" tabindex="4" />
+            </li>
+            <li class="labelnormal" style="width: 100%;">
+                <div id="prescbtm" class="inline" style="width: 100%">
+                    <div style="border-bottom: 1px solid rgb(218,221,226);">
+                        <img id="addmed1" src="~/Images/add.png" alt="add" class="inline" style="float: right"
+                            tabindex="5" />
+                        <h4>
+                            Medicines:</h4>
+                    </div>
+                    <div id="medlist1" style="width: 100%; height: 150px; max-height: 200px; overflow-y: scroll;
+                        overflow-x: hidden" class="inline Medlist">
+                        @if (Model.MedicalSchdule.lstSchedule.Count == 0 || Model.MedicalSchdule.lstSchedule == null)
+                        {
+                            <text>--No medicines--</text>
+                        }
+                        else
+                        {
+                            foreach (var item in Model.MedicalSchdule.lstSchedule)
+                            {
+                                try
+                                {
+@*<div class="med" style="padding: 3px; margin-top: 2px;">
+    <input type="text" name="ScheduleInfo[@i].MedicineName" title="Name of the Medicine"
+        placeholder="Medicine" class="crt" style="width: 90px; margin: 0 5px 0 0;" value="@item.MedicineName" />
+    <div style="padding-top: 2px" class="crt inline">
+        <input type="text" name="ScheduleInfo[@i].DosageTaken" style="margin: 0 5px 0 0;
+            border: 1px solid #BED0DF; width: 48px;" placeholder="Quantity" value="@item.DosageTaken" />
+        @Html.DropDownList("ScheduleInfo[" + i + "].TypeOfMedicine", new SelectList(Model.MedType.AsEnumerable(),
+        "Text", "Value", item.TypeOfMedicine), new { style = "border: none; width: 80px;"
+        }) @Html.DropDownList("ScheduleInfo[" + i + "].FrequencyTaken", new SelectList(Model.FreqType.AsEnumerable(),
+        "Text", "value", item.FrequencyTaken), new { style = "border: none; width: 80px;"
+        })
+    </div>
+    <input type="text" name="ScheduleInfo[@i].TotalQuantity" title="Total quantity" placeholder="Quantity"
+        class="crt" value="@item.TotalQuantity" style="width: 55px; margin: 0 5px 0 0;
+        border: 1px solid #BED0DF;" />
+    <label for="notify" title="Alert me!" style="padding-top: 3px; font-weight: bolder;
+        color: rgb(89,89,89);">
+        @Html.CheckBox("ScheduleInfo[" + i + "].IsNotify", item.IsNotify, new { id = "notify"
+        + i })
+    </label>
+    <input type="text" name="ScheduleInfo[@i].Starttime" value="@item.Starttime" title="Starting time"
+        style="width: 62px; display: none;" class="crt" placeholder="Start Time" />
+    <div class="x inline" id="medi[@i]">
+        <img alt="Delete" src="../../Images/delete.png" name="imgmed" />
+    </div>
+                                        </div>*@
+                        
+                                    if (@item.Starttime != null)
+                                    {
+                                        if (@item.IsNotify == true)
+                                        {
+                            <div class="med" style="padding: 3px; margin-top: 2px;">
+                                <input type="text" value="@item.MedicineName" name="ScheduleInfo[@i].MedicineName" class="crt" style="width: 90px; margin: 0 5px 0 0;" readonly /><div
+                                    style="padding-top: 2px" class="crt inline">
+                                    <input type="text" name="ScheduleInfo[@i].DosageTaken" value="@item.DosageTaken" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 30px;" readonly /></div>
+                                <div style="padding-top: 2px" class="crt inline">
+                                    <input type="text" name="ScheduleInfo[@i].TypeOfMedicine" value="@item.TypeOfMedicine" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 80px;" readonly /><input type="text" name="ScheduleInfo[@i].FrequencyTaken" value="@item.FrequencyTaken" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 80px;" readonly /></div>
+                                <input type="text" value="@item.TotalQuantity" name="ScheduleInfo[@i].TotalQuantity" class="crt" style="width: 30px; margin: 0 5px;" readonly /><input type="text" name="ScheduleInfo[@i].Reason" value="@item.Reason" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 30px;display:none;" readonly /><label
+                                    for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[@i].IsNotify" id="notify+i" value="true" type="checkbox" checked/>&nbsp;<h6
+                                        class="inline" style="margin: 0 5px;">
+                                        Notify</h6>
+                                </label>
+                                <input type="text" name="ScheduleInfo[@i].Starttime" value="@item.Starttime" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[@i]">
+                                    <img alt="Delete" src="/Images/delete.png" name="imgmed" /></div>
+                            </div>
+                                        }
+                                        else
+                                        {
+                            <div class="med" style="padding: 3px; margin-top: 2px;">
+                                <input type="text" value="@item.MedicineName" name="ScheduleInfo[@i].MedicineName" class="crt" style="width: 90px; margin: 0 5px 0 0;" readonly /><div
+                                    style="padding-top: 2px" class="crt inline">
+                                    <input type="text" name="ScheduleInfo[@i].DosageTaken" value="@item.DosageTaken" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 30px;" readonly /></div>
+                                <div style="padding-top: 2px" class="crt inline">
+                                    <input type="text" name="ScheduleInfo[@i].TypeOfMedicine" value="@item.TypeOfMedicine" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 80px;" readonly /><input type="text" name="ScheduleInfo[@i].FrequencyTaken" value="@item.FrequencyTaken" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 80px;" readonly /></div>
+                                <input type="text" value="@item.TotalQuantity" name="ScheduleInfo[@i].TotalQuantity" class="crt" style="width: 30px; margin: 0 5px;" readonly /><input type="text" name="ScheduleInfo[@i].Reason" value="@item.Reason" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 30px;display:none;" readonly /><label
+                                    for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[@i].IsNotify" id="notify+i" value="true" type="checkbox" />&nbsp;<h6
+                                        class="inline" style="margin: 0 5px;">
+                                        Notify</h6>
+                                </label>
+                                <input type="text" name="ScheduleInfo[@i].Starttime" value="@item.Starttime" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[@i]">
+                                    <img alt="Delete" src="/Images/delete.png" name="imgmed" /></div>
+                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                            <div class="med" style="padding: 3px; margin-top: 2px;">
+                                <input type="text" value="@item.MedicineName" name="ScheduleInfo[@i].MedicineName" class="crt" style="width: 90px; margin: 0 5px 0 0;" readonly /><div
+                                    style="padding-top: 2px" class="crt inline">
+                                    <input type="text" name="ScheduleInfo[@i].DosageTaken" value="@item.DosageTaken" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 30px;" readonly /></div>
+                                <div style="padding-top: 2px" class="crt inline">
+                                    <input type="text" name="ScheduleInfo[@i].TypeOfMedicine" value="@item.TypeOfMedicine" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 80px;" readonly /><input type="text" name="ScheduleInfo[@i].FrequencyTaken" value="@item.FrequencyTaken" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 80px;" readonly /></div>
+                                <input type="text" value="@item.TotalQuantity" name="ScheduleInfo[@i].TotalQuantity" class="crt" style="width: 30px; margin: 0 5px;" readonly /><input type="text" name="ScheduleInfo[@i].Reason" value="@item.Reason" style="border: 1px solid #BED0DF; margin: 0 5px 0 5px; width: 30px;display:none;" readonly /><label
+                                    for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);
+                                    display: none"><input name="ScheduleInfo[@i].IsNotify" id="notify+i" value="false" type="checkbox" />&nbsp;<h6
+                                        class="inline" style="margin: 0 5px; display: none">
+                                        Notify</h6>
+                                </label>
+                                <input type="text" name="ScheduleInfo[@i].Starttime" value="@item.Starttime" title="Starting time" style="width: 62px; display:none" class="crt" readonly /><div class="x inline" id="medi[@i]">
+                                    <img alt="Delete" src="/Images/delete.png" name="imgmed" /></div>
+                            </div>
+@*</div>*@
+                                    }
+                                }
+                                finally { i++; }
+                            }
+                        }
+                    </div>
+                </div>
+            </li>
+            <li>
+                <br />
+                <div class="tldiv" style="width: 35%">
+                    <h6>
+                        Documents:</h6>
+                </div>
+                <div class="trdiv" style="width: 55%">
+                    <input type="file" name="msfiles" title="Select the Document" multiple="multiple"
+                        tabindex="6" />
+                </div>
+            </li>
+            <li style="width: 100%;">
+                <div style="width: 100%" class="inline">
+                    <input type="button" id="btnCancel" value="Cancel" style="float: right; margin-right: 10px;"
+                        tabindex="7" class="graygrad" onclick="$.modal.close()" />
+                    <input type="button" id="btnMSUpdate" value="Save" style="float: right;" class="greengrad"
+                        tabindex="8" />
+                </div>
+            </li>
+        </ul>
+    </div>
+    @*</div>*@ @*</div>*@
+</div>
+</form>
+<div id="schedule1" class="slide">
+    @*<form id="frmschmed" enctype="multipart/form-data">*@ @*<div id="iderror" style="display: none; padding-left: 200px;">
+            <label style="width: 150px; height: 40px; color: Red; font-family: Arial; font-size: medium;">
+                <br />
+                Please enter all fields</label>
+        </div>*@
+    <ul style="padding: 13px 13px">
+        <li>Medicine name:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+            font-size: medium;">*</span> </li>
+        <li>
+            <input type="text" id="idMedicineName1" tabindex="26" title="Enter Name of the Medicine"
+                class="create-logtxts" style="width: 200px;" />
+        </li>
+        <li>Dosage taken:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+            font-size: medium;">*</span> </li>
+        <li>@*<input type="text" id="iddosagetaken1" tabindex="27" title="Enter How much quantity you need to take"
+                style="width: 40px;" />*@
+            <select id="iddosagetaken" style="width: 55px;" tabindex="27">
+                <option value=""></option>
+                <option value="1/2">1/2</option>
+                @for (int k = 1; k <= 20; k++)
+                {
+                    <option value="@k">@k</option>
+                }
+            </select>
+            <select id="iddtaken1" style="width: 155px;" tabindex="28">
+                <option value="tablet(s)">tablet(s)</option>
+                <option value="drop(s)">drop(s)</option>
+                <option value="capsule(s)">capsule(S)</option>
+                <option value="tsp(s)">tsps(s)</option>
+                <option value="tbsp(s)">tbsp(s)</option>
+                <option value="puff(s)">puff(s)</option>
+                <option value="application(s)">application(s)</option>
+            </select>
+        </li>
+        <li>Frequency taken:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+            font-size: medium;">*</span> </li>
+        <li>
+            <select id="idfrequencyTaken1" style="width: 212px;" tabindex="29">
+                <option value="0">as needed</option>
+                <option value="1">Every 1hr</option>
+                <option value="1">Every 2hrs</option>
+                <option value="1">Every 3hrs</option>
+                <option value="1">Every 4hrs</option>
+                <option value="1">Every morning</option>
+                <option value="1">Every evening</option>
+                <option value="1">Once a day</option>
+                <option value="2">2times a day</option>
+                <option value="3">3times a day</option>
+                <option value="4">4times a day</option>
+                <option value="5">once a week</option>
+                <option value="6">twice a week</option>
+                <option value="7">thrice a week</option>
+                <option value="8">4 times a week</option>
+                <option value="1">before bed</option>
+                <option value="2">before meals</option>
+                <option value="2">after meals</option>
+                <option value="2">with meals</option>
+            </select>
+        </li>
+        <li>Reason: </li>
+        <li>
+            <input type="text" id="idreason1" title="Enter reason" class="create-logtxts" tabindex="30"
+                style="width: 200px;" />
+        </li>
+        <li>Total quantity: </li>
+        <li>
+            <input type="text" id="idquantity1" tabindex="31" title="Enter Medicine Quantity"
+                class="create-logtxts" style="width: 200px;" />
+        </li>
+        <li>
+            <div id="lblstarttime" style="display: none">
+                Start time:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                    font-size: medium;">*</span>
+            </div>
+        </li>
+        <li>
+            <div id="FQ11" style="display: none">
+                <input type="text" id="date21" tabindex="6" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ12" style="display: none">
+                <input type="text" id="date22" tabindex="7" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date23" tabindex="8" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ13" style="display: none">
+                <input type="text" id="date24" tabindex="9" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date25" tabindex="10" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date26" tabindex="11" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ14" style="display: none">
+                <input type="text" id="date27" tabindex="12" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date28" tabindex="13" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date29" tabindex="14" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date30" tabindex="15" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ15" style="display: none">
+                <input type="text" id="date31" tabindex="16" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ16" style="display: none">
+                <input type="text" id="date32" tabindex="17" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date33" tabindex="18" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ17" style="display: none">
+                <input type="text" id="date34" tabindex="19" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date35" tabindex="20" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date36" tabindex="21" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ18" style="display: none">
+                <input type="text" id="date37" tabindex="22" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date38" tabindex="23" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date39" tabindex="24" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date40" tabindex="25" title="Enter the Date" style="width: 120px;" />
+            </div>
+        </li>
+    </ul>
+    @*<div style="float: right">
+            <input type="button" id="schedulsave" value="Save" class="greengrad" />
+            <input type="button" name="slidecancel" value="Cancel" class="graygrad" />
+        </div>*@
+    <div style="width: 100%" class="inline">
+        <input type="button" name="btnslidecancel1" value="Cancel" style="float: right" class="graygrad"
+            tabindex="32" />
+        <input type="button" id="btnschedulsave1" value="Save" style="float: right; margin-right: 10px;"
+            tabindex="33" class="greengrad" />
+    </div>
+    @*</form>*@
+</div>
+@*</div>*@ 
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

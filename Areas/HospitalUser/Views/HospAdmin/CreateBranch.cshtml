@@ -1,0 +1,41 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.Branch
+@{
+    ViewBag.title = "";
+}
+@Scripts.Render("~/bundles/Branch")
+<div class="bluegrad" style="width: 400px;">
+    <form id="subscription_order_form" class="" method="post" enctype="multipart/form-data">
+    <div>
+        <div id="rhead" style="border-bottom: 1px solid rgb(218,221,226);">
+            <h3>
+                Create Branch</h3>
+        </div>
+        <div id="rbody" class="Payment">
+            <ul>
+                <li class="labelnormal">Branch name</li>
+                <li class="payment_txtbx">
+                    <input type="text" name="branchinfo.BranchName" title="Name of the branch" tabindex='1'
+                        placeholder="Enter BranchName" id="textbranchname" class="logintxts" />
+                </li>
+                <li class="labelnormal">Branch Address</li>
+                <li class="payment_txtbx">
+                    <input type="text" name="branchinfo.BranchAddress" title="Name of the branch address"
+                        tabindex='2' placeholder="Enter Address" id="textbranchaddress" class="logintxts" />
+                </li>
+                <li class="labelnormal">Branch Details</li>
+                <li class="payment_txtbx">
+                    <input type="text" name="branchinfo.BranchDetails" title="Name of the branch details"
+                        tabindex='3' placeholder="Enter details" id="textbranchdetails" class="logintxts" />
+                </li>
+                <li class="labelnormal"></li>
+                <li class="payment_txtbx">
+                    <div style="width: 100%; float: right; margin: 0 7px 0 0;" class="inline">
+                        <input type="button" class="graygrad" value="close" onclick="$.modal.close();" />
+                        <input type="button" value="Sumbit" name="savebranch1" id="savebranch" class="greengrad" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+</div>

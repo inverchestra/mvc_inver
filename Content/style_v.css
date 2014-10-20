@@ -1,0 +1,112 @@
+
+.pink
+{
+    background: url('../Images/timeline-dots.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.indent {
+color: #fff;
+ text-indent: 0px !important;
+}
+.blue
+{
+color: #0000FF;
+}
+.indent-week
+{
+color: #0000FF;
+}
+
+
+.green
+{
+    color:Green;
+}
+.indent-day
+{
+    color:Green;
+}
+
+
+#weektimeline {
+	width: 510px;
+	height: 45px;
+	padding-top: 2px;
+	margin-left: 53px;
+}
+
+#dcal
+{
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+    width: 440px;
+    float: left;
+	
+   /* background: url('../Images/timeline-dotted.png') center repeat-x;*/
+   
+}
+/*#calender
+{
+    height: auto;
+    overflow: hidden;
+     
+}*/
+
+
+#calender-new>li
+{
+     font-size: 11px;
+    width: auto;
+    height: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    text-align: center;
+    overflow: hidden;
+	
+}
+
+#calender-new li>ul {
+background: url('../Images/timeline-dotted.png') 0 12px repeat-x;	
+height: 20px;
+width: 410px;
+}
+
+#calender-new li>ul>li
+{
+     font-size: 13px;
+    width: 23px;
+    height: 25px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    text-align: center;
+    background: url('../Images/timeline-dots.png') no-repeat scroll -25px 0 transparent;
+    overflow: hidden;
+    list-style:none;
+}
+
+#calender-new li>a
+{
+    
+    text-indent: -9999em;
+    text-align: center;
+    display: inline-block;
+    padding-top: 3px;
+	
+	
+}
+
+
+#calender-new li>ul>li:hover
+{
+    background-position: 0 0;
+}
+
+#calender-new li>ul>li:hover a
+{
+    color: #000;
+    text-indent: 0px;
+    text-decoration: none;
+}

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases>
+@{
+    ViewBag.Title = "AllCases";
+    
+}
+@*<script type="text/javascript"  src="~/CustomScripts/mylogs-script.js"></script>*@
+<script  type="text/javascript" src="~/CustomScripts/table-paging.js"></script>
+<script src="~/CustomScripts/cases.js" type="text/javascript"></script>
+<script  type="text/javascript" src="~/CustomScripts/table-toggle.js"></script>
+<script  type="text/javascript" src="~/Scripts/ui.dropdownchecklist-1.4-min.js" ></script>
+
+
+<div id="table-wrapper">
+    <div id="div2">
+        @RenderPage("~/Areas/iHealthUser/Views/Shared/_TableCase.cshtml", new { Values = Model })
+    </div>
+    <table>
+        <tfoot>
+            <tr>
+                <td>
+                    <input id="btnDownload" type="button" value="DOWNLOAD TO PDF" disabled="disabled" />
+                    <input id="btnCreate" type="button" class="createLog" value="CREATE CASE" />
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div id="tab" style="display: none">
+</div>
+<div id="tab1" class="slide" style="width: 600px">
+</div>

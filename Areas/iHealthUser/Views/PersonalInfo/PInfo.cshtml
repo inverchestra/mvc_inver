@@ -1,0 +1,3026 @@
+﻿@using InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models
+@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.MedicalAndPersonal
+@{
+    ViewBag.Title = "MyInfo";
+    PersonalInformation obj = new PersonalInformation();
+
+    List<SelectListItem> duedatetypes = obj.duedatetypes();
+
+}
+@*<h2>PInfo</h2>*@
+<link href="https://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="../../../../Content/Myinfo-resolution.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#content').css({ 'width': '1000px', 'background': 'none', 'border': 'none', 'padding': '0' });
+    });
+
+    //      $(document).ready(function () {
+    $(function () {
+
+        $("#contact,#emergency,#work,#mobile").keydown(function (event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+            // Allow: Ctrl+A
+    (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+    (event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 10)) {
+                    event.preventDefault();
+                }
+            }
+        });
+        $("#zipcode").keydown(function (event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+            // Allow: Ctrl+A
+    (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+    (event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 6)) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+
+        $('#state,#city').keydown(function (e) {
+            if (e.ctrlKey || e.altKey || e.entrKey) {
+                e.preventDefault();
+            } else {
+                var key = e.keyCode;
+                if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        $('#btnDone').click(function () {
+
+            var x = document.getElementById("contact").value;
+            if (x.length == "") {
+            }
+            else if (x.length < 10) {
+                alert("Please enter valid contact number.");
+                return false;
+            }
+
+            var y = document.getElementById("emergency").value;
+            if (y.length == "") {
+            }
+            else if (y.length < 10) {
+                alert("Please enter valid emergency contact number");
+                return false;
+            }
+
+            var z = document.getElementById("zipcode").value;
+            if (z.length == "") {
+            }
+            else if (z.length < 6) {
+                alert("Please enter valid zip-code");
+                return false;
+            }
+        });
+
+        $("#btnsave1").click(function () {
+
+            document.getElementById("hdSelectedItems").value = "";
+            var T = document.getElementById("T");
+
+            T.value = document.getElementById("Title11").innerHTML;
+            //  var k=$('#Title[data-name="Allergy"]').text();
+            T.value += ",";
+            T.value += "PInfo";
+            //alert(T);
+            var Tvalue = T.value;
+
+            var hdSelectedItems = document.getElementById("hdSelectedItems");
+            hdSelectedItems.value = document.getElementById("searchtxt").value;
+            //alert(hdSelectedItems.value);
+            var sendRes = hdSelectedItems.value;
+            if (!sendRes == "" && sendRes != null) {
+
+                $.ajax({
+                    //                    url: '/iHealthUser/PersonalInfo/EditAlergiesInfo',
+                    url: '@Url.Action("EditAlergiesInfo", "PersonalInfo", new { id = "CancerForm" })',
+                    data: { hdSelectedItems: sendRes, T: Tvalue },
+                    type: 'post',
+                    async: false,
+                    cache: false,
+                    dataType: 'json',
+                    success: function () {
+                        //$("#viewAudits").html(data);
+                    }
+
+                });
+            }
+            else {
+                alert("Please enter any value");
+                return false;
+            }
+
+        });
+        $("#btnsave").click(function () {
+
+            document.getElementById("hdSelectedItems").value = "";
+            var T = document.getElementById("T");
+
+            T.value = document.getElementById("Title").innerHTML;
+            T.value += ",";
+            T.value += "PInfo";
+            // alert(T);
+            var Tvalue = T.value;
+
+            var hdSelectedItems = document.getElementById("hdSelectedItems");
+            hdSelectedItems.value = document.getElementById("searchtxt1").value;
+            //  alert(hdSelectedItems.value);
+            var sendRes = hdSelectedItems.value;
+            if (!sendRes == "" && sendRes != null) {
+                $.ajax({
+                    url: '/iHealthUser/PersonalInfo/EditAlergiesInfo',
+                    data: { hdSelectedItems: sendRes, T: Tvalue },
+                    type: 'post',
+                    async: false,
+                    cache: false,
+                    dataType: 'json',
+                    success: function () {
+                        //$("#viewAudits").html(data);
+                    }
+
+                });
+            } //add jagadeesh
+
+            else {
+                alert("Please enter any value");
+                return false;
+            }
+        });
+
+        $('#InsuranceAddBtn').click(function () {
+
+            var result = $(this).attr('Id');
+            var result1;
+            //updated by ck
+            if (result == "InsuranceAddBtn") {
+
+                $('#txtValue6').keydown(function (e) {
+                    if (e.shiftKey || e.ctrlKey || e.altKey) {
+                        e.preventDefault();
+                    } else {
+                        var key = e.keyCode;
+                        if (!((key == 8) || (key == 32) || (key == 46) || (key == 9) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+                $('#txtValue7').keydown(function (e) {
+                    if (e.ctrlKey || e.altKey || e.entrKey) {
+                        e.preventDefault();
+                    } else {
+                        var key = e.keyCode;
+                        if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+
+                document.getElementById("Title5").innerHTML = "Add Insurance Info";
+
+                document.getElementById("lblValue5").innerHTML = "Policy number";
+
+                document.getElementById("lblValue6").innerHTML = "Insurance provider name";
+
+                result1 = "Insurance";
+                var showResult = $('#PopupBlockUI3');
+            }
+
+            $.post('/iHealthUser/PersonalInfo/GetBMIInfoItems', { data: result1 }, function (success) {
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+                        $('#txtValue6').val(success.Value1);
+                        $('#txtValue7').val(success.Value2);
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+
+            }, "json");
+
+        });
+
+        $('#datetime1').keydown(function (event) {
+            event.preventDefault();
+        });
+        $('#DOB1').keydown(function (event) {
+            event.preventDefault();
+        });
+        $('#EmergencyAddBtn').click(function () {
+
+            $('#txtPriContactPerName').keydown(function (e) {
+                if (e.ctrlKey || e.altKey || e.entrKey) {
+                    e.preventDefault();
+                } else {
+                    var key = e.keyCode;
+                    if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                        e.preventDefault();
+                    }
+                }
+            });
+
+            $('#txtPriContactNo').keydown(function (event) {
+                var $th = $(this);
+
+                if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 10)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+            $('#txtSecContactPerName').keydown(function (e) {
+                if (e.ctrlKey || e.altKey || e.entrKey) {
+                    e.preventDefault();
+                } else {
+                    var key = e.keyCode;
+                    if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                        e.preventDefault();
+                    }
+                }
+            });
+            $('#txtSecContactNo').keydown(function (event) {
+                var $th = $(this);
+
+                if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 10)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+
+
+
+
+            $("#EmergencyInfo").modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $("input[name = 'btnCancel']").click(function () {
+                        $.modal.close();
+                    });
+                }
+
+            });
+        });
+
+        $('#btnAddEmergencyInfo').click(function () {
+            var PriContactPerName, PriContactNo, SecContactPerName, SecondaryContactNo;
+            PriContactPerName = $('#txtPriContactPerName').val();
+            PriContactNo = $('#txtPriContactNo').val();
+            SecContactPerName = $('#txtSecContactPerName').val();
+            SecondaryContactNo = $('#txtSecContactNo').val();
+
+            if (PriContactNo.length == "") {
+            }
+            if (PriContactNo == "0000000000") {
+                alert("Please enter valid primary contact number");
+                return false;
+            }
+            else if (PriContactNo.length < 10) {
+                alert("Please enter valid primary contact number");
+                return false;
+            }
+
+            if (SecondaryContactNo.length == "") {
+            }
+            if (SecondaryContactNo == "0000000000") {
+                alert("Please enter valid primary contact number");
+                return false;
+            }
+            else if (SecondaryContactNo.length < 10) {
+                alert("Please enter valid secondary contact number");
+                return false;
+            }
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddEmergencyInfo',
+                type: 'POST',
+                cache: false,
+                async: false,
+                data: { PrimaryContactPersonName: PriContactPerName, PrimaryContactNumber: PriContactNo, SecondaryContactPersonName: SecContactPerName, SecondaryContactNumber: SecondaryContactNo },
+                success: function (result) {
+                    if (result == 1010)
+                        location.reload();
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+                    }
+                }
+            });
+
+        });
+
+        $('#VaccinationAddBtn,#AllergiesAddBtn').click(function () {
+
+            $('#searchtxt').keyup(function (event) {
+                var th = $(this).val();
+
+                if (th.length == 1) {
+                    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+                        return true;
+                    else {
+                        $(this).val('');
+                        alert("First letter should be alphabet");
+                    }
+                }
+            });
+
+            var result = $(this).attr('Id');
+
+            var result1;
+            if (result == "AllergiesAddBtn") {
+                $('#Title11').prop('data-name', "Allergy");
+                document.getElementById("Title11").innerHTML = "Allergy";
+                document.getElementById("SubTitle11").innerHTML = " Start typing to add the allergy (or allergies) from the list.";
+                result1 = "Allergies";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "VaccinationAddBtn") {
+                document.getElementById("Title11").innerHTML = "Vaccination and Immunization";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add the vaccine and immunization from the list.";
+                result1 = "Vaccination";
+                var showResult = $('#ThyroidPopup1');
+            }
+            $.post('/iHealthUser/PersonalInfo/GetListItems', { data: result1 }, function (success) { ////// For Datacenter
+                var data = [];
+
+                for (i = 0; i < success.length; i++) {
+
+                    data[i] = success[i].Text;
+                }
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+                        function split(val) {
+                            return val.split(/,\s*/);
+                        }
+
+                        function extractLast(term) {
+
+                            return split(term).pop();
+                        }
+
+                        $('#searchtxt').bind('keydown', function (event) {
+
+                            if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).data('autocomplete').menu.active) {
+
+                                event.preventDefault();
+                            }
+                        }).autocomplete({
+                            source: function (request, response) {
+                                $.getJSON('/iHealthUser/PersonalInfo/LookUpReasons?name=' + result1, {
+                                    term: extractLast(request.term)
+                                }, response);
+                            },
+                            search: function () {
+                                var term = extractLast(this.value);
+                                if (term.length < 1) {
+                                    return false;
+                                }
+                            },
+                            focus: function () { return false; },
+                            select: function (event, ui) {
+                                var terms = split(this.value);
+                                var vals = this.value.split(',');
+                                terms.pop();
+
+                                $.each(vals, function (key, val) {
+
+                                    if (ui.item.value.trim() == val.trim()) {
+                                        ui.item.value = '';
+                                    }
+                                });
+                                if (ui.item.value != '') {
+                                    terms.push(ui.item.value);
+
+                                    terms.push('');
+
+                                    this.value = terms.join(', ');
+                                } else {
+                                    this.value = terms + ', ';
+                                }
+
+                                return false;
+                            }
+                        });
+
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+            }, "json");
+
+        });
+
+        $('#btnAddEyeInfo').click(function () {
+
+            var value1, value2, type, value3, value4;
+
+            value1 = $('#txtValue3').val();
+            value3 = $('#txtValue4').val();
+            value4 = $('#txtValue5').val();
+
+
+            if ((value3 == "" && value4 == "") || (value3 != "" && value4 != "")) {
+            }
+            else {
+                if (value3 == "") {
+                    alert("please enter Leftsight value");
+                    return false;
+                }
+                else {
+                    alert("please enter Rightsight value");
+                    return false;
+                }
+
+            }
+            if (value3 == "" && value4 == "") {
+                value2 = "";
+            }
+            else {
+                value2 = value3 + "/" + value4;
+            }
+
+            type = document.getElementById("Title3").innerHTML;
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddBMI',
+                type: 'POST',
+                data: { value1: value1, value2: value2, type: type },
+                success: function (success) {
+                    if (success == '1010') {
+                        location.reload();
+                    }
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+
+                    }
+                }
+            });
+        });
+
+        $('#btnAddHairInfo').click(function () {
+
+            var value1, value2, type, value3, value4;
+
+            value1 = $('#txtValue8').val();
+            value2 = $('#txtValue9').val();
+
+
+
+            if ((value1 == "" && value2 == "") || (value1 != "" && value2 != "")) {
+            }
+            else {
+                if (value2 == "") {
+                    alert("Please enter Hair type ");
+                    return false;
+                }
+
+
+            }
+
+            type = document.getElementById("Title4").innerHTML;
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddBMI',
+                type: 'POST',
+                data: { value1: value1, value2: value2, type: type },
+                success: function (success) {
+                    if (success == '1010') {
+                        location.reload();
+                    }
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+
+                    }
+                }
+            });
+        });
+
+        $('#btnAddskinInfo').click(function () {
+
+            var value1, value2, type;
+            value1 = $('#txtValue10').val();
+            value2 = $('#txtValue11').val();
+
+
+
+            if ((value1 == "" && value2 == "") || (value1 != "" && value2 != "")) {
+            }
+            else {
+                if (value2 == "") {
+                    alert("Please enter Skin type ");
+                    return false;
+                }
+
+
+            }
+
+            type = document.getElementById("Title6").innerHTML;
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddBMI',
+                type: 'POST',
+                data: { value1: value1, value2: value2, type: type },
+                success: function (success) {
+                    if (success == '1010') {
+                        location.reload();
+                    }
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+
+                    }
+                }
+            });
+        });
+
+        $('#GeneticAddBtn,#GenitalAddBtn,#ArthritisAddBtn').click(function () {
+            $('#searchtxt').keyup(function (event) {
+                var th = $(this).val();
+
+                if (th.length == 1) {
+                    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+                        return true;
+                    else {
+                        $(this).val('');
+                        alert("First letter should be alphabet");
+                    }
+                }
+            });
+            var result = $(this).attr('Id');
+            var result1;
+            if (result == "GeneticAddBtn") {
+                document.getElementById("Title11").innerHTML = "Genetic disorder";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add genetic disorder from the list.";
+                result1 = "Genetic";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "GenitalAddBtn") {
+                document.getElementById("Title11").innerHTML = "Genital infections";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add type genital infection from the list.";
+                result1 = "Genital";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "ArthritisAddBtn") {
+                document.getElementById("Title11").innerHTML = "Arthritis";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add the type of arthritis from the list.";
+                result1 = "Arthritis";
+                var showResult = $('#ThyroidPopup1');
+            }
+            $.post('/iHealthUser/PersonalInfo/GetListItems', { data: result1 }, function (success) {
+                var data = [];
+
+                for (i = 0; i < success.length; i++) {
+
+                    data[i] = success[i].Text;
+                }
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+
+                        function split(val) {
+                            return val.split(/,\s*/);
+                        }
+
+                        function extractLast(term) {
+
+                            return split(term).pop();
+                        }
+
+                        $('#searchtxt').bind('keydown', function (event) {
+
+                            if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).data('autocomplete').menu.active) {
+
+                                event.preventDefault();
+                            }
+                        }).autocomplete({
+                            source: function (request, response) {
+                                $.getJSON('/iHealthUser/PersonalInfo/LookUpReasons?name=' + result1, {
+                                    term: extractLast(request.term)
+                                }, response);
+                            },
+                            search: function () {
+                                var term = extractLast(this.value);
+                                if (term.length < 1) {
+                                    return false;
+                                }
+                            },
+                            focus: function () { return false; },
+                            select: function (event, ui) {
+                                var terms = split(this.value);
+
+                                var vals = this.value.split(',');
+                                terms.pop();
+
+                                $.each(vals, function (key, val) {
+
+                                    if (ui.item.value.trim() == val.trim()) {
+                                        ui.item.value = '';
+                                    }
+                                });
+                                if (ui.item.value != '') {
+                                    terms.push(ui.item.value);
+
+                                    terms.push('');
+
+                                    this.value = terms.join(', ');
+                                } else {
+                                    this.value = terms + ', ';
+                                }
+
+                                return false;
+                            }
+                        });
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+                });
+            }, "json");
+        });
+
+        $('#CancerAddBtn,#AsthmaAddBtn,#LiverAddBtn,#HeartAddBtn,#ThyroidAddBtn,#ChronicAddBtn').click(function () {
+            $('#searchtxt').keyup(function (event) {
+                var th = $(this).val();
+
+                if (th.length == 1) {
+                    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+                        return true;
+                    else {
+                        $(this).val('');
+                        alert("First letter should be alphabet");
+                    }
+                }
+            });
+            var result = $(this).attr('Id');
+
+            var result1;
+            if (result == "CancerAddBtn") {
+                document.getElementById("Title11").innerHTML = "Cancer";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add the type of cancer from the list.";
+                result1 = "Cancer";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "AsthmaAddBtn") {
+                document.getElementById("Title11").innerHTML = "Asthma";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add the type of asthama from the list.";
+                result1 = "Asthma";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "LiverAddBtn") {
+                document.getElementById("Title11").innerHTML = "Liver disease";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add the type of liver disease from the list.";
+                result1 = "Liver";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "HeartAddBtn") {
+                document.getElementById("Title11").innerHTML = "Heart problem";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add the type of heart problem from the list.";
+                result1 = "Heart";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "ThyroidAddBtn") {
+                document.getElementById("Title11").innerHTML = "Thyroid Problems";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add the type of thyroid problem from the list.";
+                result1 = "Thyroid";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "ChronicAddBtn") {
+                document.getElementById("Title11").innerHTML = "Chronic Diseases";
+                document.getElementById("SubTitle11").innerHTML = "Start typing to add chronic disease from the list.";
+                result1 = "Chronic";
+                var showResult = $('#ThyroidPopup1');
+            }
+
+            $.post('/iHealthUser/PersonalInfo/GetListItems', { data: result1 }, function (success) {
+                var data = [];
+
+                for (i = 0; i < success.length; i++) {
+
+                    data[i] = success[i].Text;
+                }
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+
+                        function split(val) {
+                            return val.split(/,\s*/);
+                        }
+
+                        function extractLast(term) {
+
+                            return split(term).pop();
+                        }
+
+                        $('#searchtxt').bind('keydown', function (event) {
+
+                            if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).data('autocomplete').menu.active) {
+
+                                event.preventDefault();
+                            }
+                        }).autocomplete({
+                            source: function (request, response) {
+                                $.getJSON('/iHealthUser/PersonalInfo/LookUpReasons?name=' + result1, {
+                                    term: extractLast(request.term)
+                                }, response);
+                            },
+                            search: function () {
+                                var term = extractLast(this.value);
+                                if (term.length < 1) {
+                                    return false;
+                                }
+                            },
+                            focus: function () { return false; },
+                            select: function (event, ui) {
+                                var terms = split(this.value);
+
+
+
+                                var vals = this.value.split(',');
+                                terms.pop();
+
+                                $.each(vals, function (key, val) {
+
+                                    if (ui.item.value.trim() == val.trim()) {
+                                        ui.item.value = '';
+                                    }
+                                });
+                                if (ui.item.value != '') {
+                                    terms.push(ui.item.value);
+
+                                    terms.push('');
+
+                                    this.value = terms.join(', ');
+                                } else {
+                                    this.value = terms + ', ';
+                                }
+
+                                return false;
+                            }
+                        });
+
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+            }, "json");
+
+        });
+
+        $('#SkinInfoAddBtn,#HairInfoAddBtn').click(function () {
+            $('#txtValue1').keydown(function (e) {
+                if (e.ctrlKey || e.altKey || e.entrKey) {
+                    e.preventDefault();
+                } else {
+                    var key = e.keyCode;
+                    if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                        e.preventDefault();
+                    }
+                }
+            });
+            $('#txtValue2').keydown(function (e) {
+
+
+                if (e.ctrlKey || e.altKey || e.entrKey) {
+                    e.preventDefault();
+                } else {
+                    var key = e.keyCode;
+                    if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                        e.preventDefault();
+                    }
+                }
+            });
+
+            var result = $(this).attr('Id');
+            var result1;
+            if (result == "SkinInfoAddBtn") {
+                document.getElementById("Title6").innerHTML = "Skin Information";
+                document.getElementById("lblValue9").innerHTML = "Skin color";
+                document.getElementById("lblValue10").innerHTML = "Skin type";
+                result1 = "Skin";
+                var showResult = $('#PopupBlockUI4');
+            }
+            else if (result == "HairInfoAddBtn") {
+                document.getElementById("Title4").innerHTML = "Hair Information";
+                document.getElementById("lblValue7").innerHTML = "Hair color";
+                document.getElementById("lblValue8").innerHTML = "Hair type";
+                result1 = "Hair";
+                var showResult = $('#PopupBlockUI2');
+            }
+
+
+            $.post('/iHealthUser/PersonalInfo/GetBMIInfoItems', { data: result1 }, function (success) {
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+                        $('#txtValue1').val(success.Value1);
+                        $('#txtValue2').val(success.Value2);
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+                });
+
+            }, "json");
+        });
+
+        $('#EyeInfoAddBtn').click(function () {
+
+            var result = $(this).attr('Id');
+            var result1;
+            if (result == "EyeInfoAddBtn") {
+                $('#txtValue3').keydown(function (e) {
+                    if (e.ctrlKey || e.altKey || e.entrKey) {
+                        e.preventDefault();
+                    } else {
+                        var key = e.keyCode;
+                        if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+
+                $('#txtValue4').keydown(function (event) {
+                    var $th = $(this);
+
+                    if (event.keyCode == 110 || event.keyCode == 173 || event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+
+                        return;
+                    }
+                    else {
+
+                        if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 4)) {
+                            event.preventDefault();
+                        }
+                    }
+                });
+
+                $('#txtValue5').keydown(function (event) {
+                    var $th = $(this);
+
+                    if (event.keyCode == 110 || event.keyCode == 173 || event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                    // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                    // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                        // let it happen, don't do anything
+                        return;
+                    }
+                    else {
+                        // Ensure that it is a number and stop the keypress
+                        if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 4)) {
+                            event.preventDefault();
+                        }
+                    }
+                });
+                document.getElementById("Title3").innerHTML = "Irish Information";
+                document.getElementById("lblValue3").innerHTML = "Eye color";
+                document.getElementById("lblValue4").innerHTML = "Eye sight(L/R)";
+                result1 = "Eye";
+                var showResult = $('#PopupBlockUI1');
+            }
+
+
+            $.post('/iHealthUser/PersonalInfo/GetBMIInfoItems', { data: result1 }, function (success) {
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+
+            }, "json");
+
+        });
+
+        $('#BMIInfoAddBtn').click(function () {
+            var result = $(this).attr('Id');
+            var result1;
+            if (result == "BMIInfoAddBtn") {
+                $('#txtValue1').keydown(function (event) {
+                    var $th = $(this);
+
+                    if (event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                    // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                    // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                        // let it happen, don't do anything
+                        return;
+                    }
+                    else {
+                        // Ensure that it is a number and stop the keypress
+                        if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                            event.preventDefault();
+                        }
+                    }
+
+
+                });
+                $('#txtValue2').keydown(function (event) {
+                    var $th = $(this);
+
+                    if (event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                    // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                    // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                        // let it happen, don't do anything
+                        return;
+                    }
+                    else {
+                        // Ensure that it is a number and stop the keypress
+                        if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                            event.preventDefault();
+                        }
+                    }
+                });
+                document.getElementById("Title").innerHTML = "BMI Information";
+                document.getElementById("lblValue1").innerHTML = "Height(cms)";
+                document.getElementById("lblValue2").innerHTML = "Weight(pounds)";
+                result1 = "BMI";
+                var showResult = $('#PopupBlockUI');
+            }
+            $.post('/iHealthUser/PersonalInfo/GetBMIInfoItems', { data: result1 }, function (success) {
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+                        $('#txtValue1').val(success.Value1);
+                        $('#txtValue2').val(success.Value2);
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+
+            }, "json");
+        });
+
+        $('#btnUpdate').click(function () {
+            var viewid = document.getElementById("viewid");
+
+            viewid.value = document.getElementById("viewid").value;
+            viewid.value += ",";
+            viewid.value += "PInfo";
+            document.getElementById("button").value = "btnUpdate";
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            var reaction = document.getElementById("Reaction").value;
+            var severity = document.getElementById("Severity").val;
+            var provider = document.getElementById("Provider").val;
+            var notes = document.getElementById("Notes").val;
+
+            if (jQuery.browser.safari) {
+                $.ajax({
+                    url: '@Url.Action("UpdateAlergiesInfo", "PersonalInfo", new { id = "UpdateInfoform" })',
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($(this).get(0)),
+                    async: false,
+                    success: function (data) {
+                        location.reload();
+                    }
+                });
+                return false;
+            }
+            else {
+                $.post($(this).attr("action"), { data1: tbVieInfoName, data2: button, data3: reaction, data4: severity, data5: provider, data6: notes, data7: viewid }, {}, "json");
+            }
+        });
+
+        $('#btnRemove').click(function () {
+
+            document.getElementById("button").value = "btnRemove";
+
+            var viewid = document.getElementById("viewid");
+
+            viewid.value = document.getElementById("viewid").value;
+            viewid.value += ",";
+            viewid.value += "PInfo";
+
+
+
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            if (jQuery.browser.safari) {
+                $.ajax({
+                    url: '@Url.Action("UpdateAlergiesInfo", "PersonalInfo", new { id = "UpdateInfoform" })',
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($(this).get(0)),
+                    async: false,
+                    success: function (data) {
+                        location.reload();
+                    }
+                });
+                return false;
+            }
+            else {
+                $.post($(this).attr("action"), { data1: tbVieInfoName, data2: button, data3: viewid }, {}, "json");
+            }
+        });
+
+        $("#ViewMore").click(function () {
+            $('#PMoreInfo').modal({
+
+                closeHTML: "",
+                onShow: function () {
+                    $('#btnCancelMore').click(function () {
+                        $.modal.close();
+                    });
+                }
+            });
+        });
+
+        $("#btnEddEdit").click(function () {
+            $('#EDDInfo').modal({
+
+                closeHTML: "",
+                onShow: function () {
+                    $('#btnCancelMore').click(function () {
+                        $.modal.close();
+                    });
+                    $("#datetime1").datepicker({ dateFormat: 'dd M yy', minDate: -280, maxDate: new Date() });
+                    $("#duedatedrop1").change(function () {
+                        var selection = $("#duedatedrop1").val();
+
+                        if (selection == "I know my due date") {
+                            $("#datetime1").datepicker("destroy");
+                            $("#datetime1").datepicker({ dateFormat: 'dd M yy', minDate: -0, maxDate: +280 });
+                        }
+                        else if (selection == "Date of conception") {
+                            $("#datetime1").datepicker("destroy");
+                            $("#datetime1").datepicker({ dateFormat: 'dd M yy', minDate: -280, maxDate: +0 });
+                        }
+                        else {
+                            $("#datetime1").datepicker("destroy");
+                            $("#datetime1").datepicker({ dateFormat: 'dd M yy', minDate: -280, maxDate: +0 });
+                        }
+                    });
+                }
+            });
+        });
+        $('#btnDoneEdd').click(function () {
+            var value = $("#datetime1").val();
+            if (value == "") {
+                alert("please enter valid date");
+                return false;
+            }
+            if (window.confirm("This change changes the gestational timeline. Do you still want to continue")) {
+                return true;
+            }
+            else return false;
+
+        });
+
+        $('#fileUploadForm').submit(function (e) {
+            if ($('#fileUpload').val() == "") {
+                alert("Please select image file");
+                return false;
+            }
+
+            else {
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($(this).get(0)),
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        location.reload();
+                    }
+                });
+                return false;
+            }
+        });
+
+
+        $("#chngPic").click(function () {
+
+
+            $("#dialog").modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $('INPUT[type="file"]').change(function () {
+                        //var ext = this.value.match(/\.(.+)$/)[1];
+                        var ext = file.substr((file.lastIndexOf('.') + 1)); //ck added 
+                        var text = ext.toUpperCase();
+
+                        switch (text) {
+                            case 'JPG':
+                            case 'JPEG':
+                            case 'PNG':
+                            case 'GIF':
+                                $('#uploadButton').attr('disabled', false);
+                                break;
+                            default:
+                                alert('Invalid image format.');
+                                this.value = '';
+                        }
+                    });
+
+                    $("input[name = 'btnCancel']").click(function () {
+                        $.modal.close();
+                    });
+                }
+            });
+        });
+
+        $("#btnEdit").click(function () {
+            $.modal.close();
+            $('#edit').modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $('#DOB1').datepicker({
+                        dateFormat: 'dd M yy',
+                        changeYear: true,
+                        changeMonth: true,
+                        maxDate: new Date()
+                    });
+                    $('#btnCancelEdit').click(function () {
+                        $.modal.close();
+                    });
+
+
+                    $("#datetime").datepicker({ dateFormat: 'dd M yy', minDate: -280, maxDate: new Date() });
+
+
+
+
+                    $("#duedatedrop").change(function () {
+                        var selection = $("#duedatedrop").val();
+
+                        if (selection == "I know my due date") {
+
+                            $("#datetime").datepicker("destroy");
+
+                            $("#datetime").datepicker({ dateFormat: 'dd M yy', minDate: -0, maxDate: +280 });
+
+                        }
+                        else if (selection == "Date of conception") {
+
+                            $("#datetime").datepicker("destroy");
+                            $("#datetime").datepicker({ dateFormat: 'dd M yy', minDate: -280, maxDate: +0 });
+
+                        }
+                        else {
+                            $("#datetime").datepicker("destroy");
+                            $("#datetime").datepicker({ dateFormat: 'dd M yy', minDate: -280, maxDate: +0 });
+                        }
+                    });
+                }
+            });
+
+            $.post('/iHealthUser/PersonalInfo/GetListItems', { data: result1 }, function (success) {
+                var data = [];
+
+                for (i = 0; i < success.length; i++) {
+
+                    data[i] = success[i].Text;
+                }
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+
+                        function split(val) {
+                            return val.split(/,\s*/);
+                        }
+
+                        function extractLast(term) {
+
+                            return split(term).pop();
+                        }
+
+                        $('#searchtxt').bind('keydown', function (event) {
+
+                            if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).data('autocomplete').menu.active) {
+
+                                event.preventDefault();
+                            }
+                        }).autocomplete({
+                            source: function (request, response) {
+                                $.getJSON('/iHealth/iHealthUser/PersonalInfo/LookUpReasons?name=' + result1, {
+                                    term: extractLast(request.term)
+                                }, response);
+                            },
+                            search: function () {
+                                var term = extractLast(this.value);
+                                if (term.length < 1) {
+                                    return false;
+                                }
+                            },
+                            focus: function () { return false; },
+                            select: function (event, ui) {
+                                var terms = split(this.value);
+                                terms.pop();
+                                terms.push(ui.item.value);
+                                terms.push('');
+                                this.value = terms.join(', ');
+                                return false;
+                            }
+                        });
+
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+            }, "json");
+
+        });
+
+        $('#FamilyAddBtn ').click(function () {
+            $('input:radio[name="FBloodPressure"][value="@Model.MInfo1.FBloodPressure"]').prop('checked', true);
+            $('input:radio[name="FDiabetis"][value="@Model.MInfo1.FDiabetis"]').prop('checked', true);
+            $('input:radio[name="FHeartDiseases"][value="@Model.MInfo1.FHeartDiseases"]').prop('checked', true);
+            $('input:radio[name="FAcne"][value="@Model.MInfo1.FAcne"]').prop('checked', true);
+            $('input:radio[name="FBladness"][value="@Model.MInfo1.FBladness"]').prop('checked', true);
+            $('input:radio[name="FLungDiseases"][value="@Model.MInfo1.FLungDiseases"]').prop('checked', true);
+            $('input:radio[name="FCancer"][value="@Model.MInfo1.FCancer"]').prop('checked', true);
+
+            $("#FamilyInfo").modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    e.container.css({ 'height': 'auto' });
+
+                    $("input[name = 'btnCancel']").click(function () {
+                        $.modal.close();
+                    });
+                }
+
+            });
+
+
+
+        });
+
+        $('#btnAddBMIInfo1').click(function () {
+
+            var value1, value2, type;
+
+            value1 = $('#txtValue6').val();
+            value2 = $('#txtValue7').val();
+            type = document.getElementById("Title5").innerHTML;
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddBMI',
+                type: 'POST',
+                data: { value1: value1, value2: value2, type: type },
+                success: function (success) {
+                    if (success == '1010') {
+                        location.reload();
+                    }
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+
+                    }
+                }
+            });
+        });
+
+        $('#btnAddBMIInfo').click(function () {
+
+            var value1, value2, type;
+
+            value1 = $('#txtValue1').val();
+            value2 = $('#txtValue2').val();
+
+
+            if (value1 == "")
+            { }
+            else {
+
+                if (value1 > 250 || value1 < 15) {
+                    alert("Valid height required.");
+                    return false;
+                }
+
+            }
+            if (value2 == "")
+            { }
+            else {
+
+                if (value2 > 999 || value2 < 3) {
+                    alert("Valid weight required.");
+                    return false;
+                }
+
+            }
+
+            type = document.getElementById("Title").innerHTML;
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddBMI',
+                type: 'POST',
+                data: { value1: value1, value2: value2, type: type },
+                success: function (success) {
+                    if (success == '1010') {
+                        location.reload(true);
+                    }
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        $('#BloodInfoAddBtn').click(function () {
+
+            $('#txtsistole').keydown(function (event) {
+                var $th = $(this);
+
+                if (event.keyCode == 191 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 3)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+            $('#txtdiastole').keydown(function (event) {
+                var $th = $(this);
+
+                if (event.keyCode == 191 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 3)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+            $('#txtBldSugarLvl').keydown(function (event) {
+                var $th = $(this);
+
+                if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 3)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+            $("#BloodInfo").modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $("input[name = 'btnCancel']").click(function () {
+                        $.modal.close();
+                    });
+                }
+
+            });
+        });
+
+
+        $('#btnAddBloodInfo').click(function () {
+            var BldPressure, BldSugarLvl, BldGrp, sistole, diastole;
+            sistole = $('#txtsistole').val();
+            diastole = $('#txtdiastole').val();
+            BldSugarLvl = $('#txtBldSugarLvl').val();
+            BldGrp = $('#txtBldGrp').val();
+
+            if ((sistole == "" && diastole == "") || (sistole != "" && diastole != "")) {
+            }
+            else {
+                if (sistole == "") {
+                    alert("Enter systole value(digits before '/').");
+                    return false;
+                }
+                else {
+                    alert("Enter diastole value(digits after '/').");
+                    return false;
+                }
+
+            }
+
+            if (sistole == "")
+            { }
+            else if (sistole > 250 || sistole < 70) {
+                alert("Enter your valid systole value.");
+                return false;
+            }
+
+            if (diastole == "")
+            { }
+            else if (diastole < 40 || diastole > 90) {
+                alert("Enter your valid diastole value.");
+                return false;
+            }
+
+            if (sistole == "" && diastole == "") {
+                BldPressure = "";
+            }
+            else {
+                BldPressure = sistole + "/" + diastole;
+            }
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddBloodInfo',
+                type: 'POST',
+                data: { BloodPressure: BldPressure, BloodSugarLevel: BldSugarLvl, BloodGroup: BldGrp },
+                success: function (success) {
+                    if (success == '1010') {
+                        location.reload();
+                    }
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+                    }
+                }
+            });
+        });
+
+        $(".Ulist li ").click(function () {
+            $('#tbVieInfoName').val($(this).text().trim());
+
+            var Result = ['Reaction', 'Severity', 'Provider', 'Notes'];
+
+            var reaction = document.getElementById("Reaction").val;
+            var severity = document.getElementById("Severity").val;
+            var provider = document.getElementById("Provider").val;
+            var notes = document.getElementById("Notes").val;
+
+            var g = $(this).parent().attr("id");
+            document.getElementById("viewid").value = g.substring(2);
+
+            var viewid = document.getElementById("viewid").value;
+
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            $.post('/iHealthUser/PersonalInfo/GetRelated', { data: tbVieInfoName, data1: viewid }, function (Result) {
+                $('#ViewAllInfo').modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+
+                        $('#Reaction').val(Result.Reaction);
+                        $('#Severity').val(Result.Severity);
+                        $('#Provider').val(Result.Provider);
+                        $('#Notes').val(Result.Notes);
+                        $("input[name= 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+                });
+            }, "json");
+        });
+
+
+        $('.Ulist').css({ overflow: 'auto', paddingBottom: '0px', height: '70px' });
+        $(".Ulist li").hover(function () {
+            $(this).css("background", "gray");
+            $(this).css("color", "white");
+        },
+        function () {
+            $(this).css("background", "");
+            $(this).css("color", "dimgray");
+        });
+    });
+
+    //AD for Image Upload and View
+    function preview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview_image')
+                .attr('src', e.target.result)
+                .width(400)
+                .height(400);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
+<style type="text/css">
+    .ui-widget-content
+    {
+        height: 200px !important;
+        overflow-y: auto;
+        position: relative;
+        width: 306px !important;
+    }
+</style>
+@section LeftPanel {
+    <div class="left-pane">
+        <div class="left-tabs">
+            <ul>
+             <li><a href="@Url.Action("Index", "Chat")">Chat</a></li>
+             
+                <li><a href="@Url.Action("Index", "Medwall")">Timeline</a></li>
+                <li><a href="@Url.Action("VitalsNew", "Medwall")">Vitals</a></li>
+                <li><a href="@Url.Action("GetWeeks", "Medwall")">Albums</a></li>
+                <li><a href="@Url.Action("PInfo", "PersonalInfo")" class="pink-a">My<span style="color: #CA2D70">-</span>Info</a></li>
+                
+               @* <li><a href="@Url.Action("VitalsNew", "Medwall")">Vitals</a></li>
+                <li><a href="@Url.Action("Index", "Medwall")">Timeline</a></li>
+                <li><a href="@Url.Action("GetWeeks", "Medwall")">Albums</a></li>
+                <li><a href="@Url.Action("PInfo", "PersonalInfo")" class="pink-a">My<span style="color: #CA2D70">-</span>Info</a></li>
+                 <li><a href="@Url.Action("Index", "Chat")">Network</a></li>*@
+            </ul>
+        </div>
+        <div id="tablequestions">
+        </div>
+    </div>
+}
+<div id="dialog" title="Upload files" style="display: none; width: 232px;">
+    @*<form id="fileUploadForm" style="width:100%; background-color:transparent" action="@Url.Action("Upload", "PersonalInfo")" method="post" enctype = "multipart/form-data" >*@
+    @using (Html.BeginForm("Upload", "PersonalInfo", FormMethod.Post, new { id = "fileUploadForm", enctype = "multipart/form-data" }))
+    {
+        <p>
+            <input type="file" id="fileUpload" name="fileUpload" />
+        </p>
+        <p style="float: left; margin: 6px 0 0; width: 97%;">
+            <input type="button" name="btnCancel" value="Cancel" class="graygrad" style="float: right;
+                margin-left: 5px;" />
+            <input type="submit" id="btnupload" value="Upload" class="greengrad" style="float: right;" />
+        </p>
+    }
+    @*</form>*@
+</div>
+@*AD code for Edit Personal Info Details*@
+<div id="edit" style="display: none; width: 340px; height: 500px; overflow-y: auto;">
+    <form id="EditInfoform" action="@Url.Action("EditPersonalInfo", "PersonalInfo")" method="post">
+    <div id="PEdit" class="PEdit">
+        <h2 class="popup_header">
+            Edit Details</h2>
+        <ul>
+            <li class="labelnormal">First name </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.FirstName)
+            </li>
+            <li class="labelnormal">Last name </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.LastName)
+            </li>
+            <li class="labelnormal">Date of birth </li>
+            <li class="labelbold">@*@Html.TextBoxFor(model => model.PInfo1.DateOfBirth)*@
+                @Html.TextBoxFor(model => model.PInfo1.dateofbir, new { id = "DOB1" }) @*sandeep added , new {id="DOB" }*@
+            </li>
+            <li class="labelnormal">Gender </li>
+            <li class="labelbold">
+                @Html.LabelFor(m => m.PInfo1.Gender, "female", Model.PInfo1.Gender == "Female")
+            </li>
+            <li class="labelnormal">Country </li>
+            <li class="labelbold">
+                @Html.DropDownList("PInfo1.Country", Model.CountryList, new { id = "country" })
+            </li>
+            <li class="labelnormal">State </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.state, new { id = "state" })
+            </li>
+            <li class="labelnormal">City </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.City, new { id = "city" })
+            </li>
+            <li class="labelnormal">Contact number </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.Contact, new { id = "contact", @readonly = "readonly" })
+            </li>
+            <li class="labelnormal">Emergency number </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.Emergency, new { id = "emergency" })
+            </li>
+            <li class="labelnormal">Religion </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.Religion)
+            </li>
+            <li class="labelnormal">Address </li>
+            <li class="labelbold">
+                @Html.TextAreaFor(model => model.PInfo1.Address)
+            </li>
+            <li class="labelnormal">Street </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.Street)
+            </li>
+            <li class="labelnormal">Town </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.Town)
+            </li>
+            <li class="labelnormal">Zip code </li>
+            <li class="labelbold">
+                @Html.TextBoxFor(model => model.PInfo1.ZipCode, new { id = "zipcode" })
+                @Html.HiddenFor(model => model.PInfo1.CreatedBy)
+                @Html.HiddenFor(model => model.PInfo1.DomainID)
+            </li>
+            <li style="width: 100%;">
+                <input type="button" id="btnCancelEdit" value="Cancel" style="float: right;" class="graygrad" />
+                <input type="Submit" value="Done" id="btnDone" style="float: right; margin-right: 10px;"
+                    class="greengrad" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+<div id="PMoreInfo" style="display: none; width: 320px;">
+    <div style="border-bottom: 1px solid rgb(218,221,226); float: left; width: 100%;">
+        -
+        <h2>
+            Personal profile</h2>
+    </div>
+    <div id="PInfo" class="PInfo">
+        <div style="margin-left: 15px; display: inline-block;">
+            <ul>
+                <li class="labelnormal">First name </li>
+                <li class="labelbold">
+                    @Html.DisplayFor(model => model.PInfo1.FirstName)
+                </li>
+                <li class="labelnormal">Last name </li>
+                <li class="labelbold">
+                    @Html.DisplayFor(model => model.PInfo1.LastName)
+                </li>
+                <li class="labelnormal">Date of birth </li>
+                <li class="labelbold">
+                    @Html.DisplayFor(model => model.PInfo1.dateofbir)
+                </li>
+                <li class="labelnormal">Gender</li>
+                <li class="labelbold">
+                    @Html.Label("female")
+                </li>
+                <li class="labelnormal">Country </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.Country)
+                </li>
+                <li class="labelnormal">State </li>
+                <li class="labelbold">
+                    @Html.DisplayFor(model => model.PInfo1.state)
+                </li>
+                <li class="labelnormal">City </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.City)
+                </li>
+                <li class="labelnormal">Contact </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.Contact)
+                </li>
+                <li class="labelnormal">Emergency number </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.Emergency)
+                </li>
+                <li class="labelnormal">Religion </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.Religion)
+                </li>
+                <li class="labelnormal">Address </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.Address)
+                </li>
+                <li class="labelnormal">Street </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.Street)
+                </li>
+                <li class="labelnormal">Town </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.Town)
+                </li>
+                <li class="labelnormal">Zip code </li>
+                <li class="labelbold">@Html.DisplayFor(model => model.PInfo1.ZipCode)
+                </li>
+            </ul>
+            <div style="width: 100%" class="inline">
+                <input type="button" id="btnCancelMore" value="Cancel" class="graygrad" style="float: right" />
+                <input type="button" value="Edit" id="btnEdit" style="float: right; margin-right: 10px;"
+                    class="greengrad" />
+            </div>
+        </div>
+    </div>
+</div>
+<div id="EDDInfo" style="display: none; width: 320px;">
+    <div style="border-bottom: 1px solid rgb(218,221,226); float: left; width: 100%;">
+        <h2>
+            Edit estimated due date
+        </h2>
+    </div>
+    @{string code = Model.PInfo1.EDDDate.ToString();
+      string[] tmpe;
+      string duedate;
+
+      tmpe = code.Split(' ');
+
+      duedate = tmpe[0].ToString();
+
+    }
+    <div>
+        @using (Html.BeginForm("EddChange2", "PersonalInfo", FormMethod.Post))
+        {
+            <ul>
+                <li class="labelnormal" style="width: 100%">What is your due date? choose one method
+                    :</li>
+                <li class="labelbold">
+                    @Html.DropDownListFor(model => model.PInfo1.duemethod, duedatetypes, new { @id = "duedatedrop1", @class = "Reg_Details_select1", @Style = "width:250px; margin-top:10px" })
+                </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.PInfo1.duedat, new { id = "datetime1", @placeholder = "MM/DD/YYYY", title = "MM/DD/YYYY", @class = "logintxts1", @Style = "width:240px; margin-top:5px", pattern = @"(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d" })
+                    @Html.ValidationMessageFor(model => model.PInfo1.duedat)
+                </li>
+                <li style="width: 100%;">
+                    <input type="button" name="cancel" tabindex="8" value="Cancel" style="float: right"
+                        class="graygrad" onclick="$.modal.close()" />
+                    <input type="submit" value="Done" id="btnDoneEdd" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                </li>
+            </ul>
+        }
+    </div>
+</div>
+<div id="ViewAllInfo" style="display: none; width: 350px;">
+    <form id="UpdateInfoform" action="@Url.Action("UpdateAlergiesInfo", "PersonalInfo")" method="post">
+    <div class="popup_header">
+        <h2>
+            View Information</h2>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li style="display: none;">
+                <input type="hidden" id="viewid" name="viewid" />
+            </li>
+            <li style="display: none;">
+                <input type="hidden" id="button" name="button" />
+            </li>
+            <li id="AName" class="labelnormal">Name </li>
+            <li class="labelbold">
+                <input type="text" id="tbVieInfoName" name="tbVieInfoName" readonly style="background-color: transparent"
+                    class="pli" value="" />
+            </li>
+            <li class="labelnormal" id="AReact">Reaction </li>
+            <li class="labelbold">
+                <input type="text" id="Reaction" name="Reaction" class="pli" value="" />
+            </li>
+            <li id="ASiv" class="labelnormal">Severity </li>
+            <li class="labelbold">
+                <input type="text" name="Severity" id="Severity" class="pli" /></li>
+            <li id="AProv" class="labelnormal">Provider or facility </li>
+            <li class="labelbold">
+                <input type="text" id="Provider" name="Provider" class="pli" /></li>
+            <li id="ANotes" class="labelnormal">Notes</li>
+            <li class="labelbold">
+                <textarea style="width: 150px; float: left;" rows="4" cols="16" id="Notes" name="Notes"
+                    class="pli"> </textarea></li>
+            <li class="popup_btn_wrap">
+                <input type="button" name="btnCancel" value="Cancel" class="graygrad btn_space" />
+                <input type="submit" id="btnRemove" value="Remove" class="greengrad btn_space" />
+                <input type="submit" value="Update" id="btnUpdate" class="greengrad btn_space" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@* AD Code for View Allergies  Info End here*@
+<div id="MainContainer">
+    <div class="blocks_wrp">
+        <div id="left-pinfo" style="width: 28%; float: left">
+            <div class="PInfo_blocks" style="margin-left: 5px; margin-top: 0; border-radius: 0;
+                width: 85%; border: 1px solid #d5d5d5">
+                <h2>
+                    Personal profile
+                </h2>
+                @{
+                    if (Model.PInfo1.ImageName == "" || Model.PInfo1.ImageName == null)
+                    {
+                       
+                    <img src="~/Images/default_female.png" alt="" width="110" height="110" style="border-radius: 55px;
+                        box-shadow: 0 0 3px 1px rgba(125, 125, 125, 0.44);" />
+                         
+                    }
+                    else
+                    {
+                         
+                    <img src="@(HttpContext.Current.Session["userimage"])" width="110px" height="110px" style="border-radius: 55px;box-shadow: 0 0 3px 1px rgba(125, 125, 125, 0.44);"/>
+                        
+                    }
+                }
+                <div class="changeImage">
+                    <a href="#" id="chngPic" onclick="return false;" title="Change picture">Change picture
+                    </a>
+                </div>
+                <span>
+                    @{string main = Model.PInfo1.DateOfBirth.ToString();
+                      string[] tmp;
+                      string date;
+
+                      tmp = main.Split(' ');
+
+                      date = tmp[0].ToString();
+
+                    }
+                    <label>
+                        Name</label>
+                    <label>@Html.DisplayFor(model => model.PInfo1.FirstName)</label>
+                    <label>
+                        DOB</label>
+                    <label>@Html.DisplayFor(model => model.PInfo1.dateofbir)</label>
+                    <label>
+                        Gender</label>
+                    <label>@Html.Label("female")</label>
+                    <label>
+                        Contact</label>
+                    <label>@Html.DisplayFor(model => model.PInfo1.Contact)</label>
+                    <label>
+                        EDD</label>
+                    <label>
+                        @Html.DisplayFor(model => model.PInfo1.duedat)<span><a id="btnEddEdit" class="viewmoreedit" title="Edit"
+                            onclick="return false;" href="#">Edit</a></span>
+                    </label>
+                    <a id="ViewMore" href="#" onclick="return false;" class="viewmore">View more.. </a>
+            </div>
+            <div class="PInfo_Multiline" style="width: 85%; border: 1px solid #ccc">
+                <h2 style="border-bottom: 1px solid #d5d5d5">
+                    Emergency Info<a href="#" onclick="return false;" class="edit" id="EmergencyAddBtn"
+                        title="Edit"></a></h2>
+                <ul>
+                    <h6 style="text-align: center">
+                        Primary Contact Number</h6>
+                    <li style="width: 60%">Contact person </li>
+                    <li style="width: 40%">
+                        @Html.DisplayFor(model => model.MInfo1.PrimaryContactPersonName)
+                    </li>
+                    <li style="width: 60%">Contact number</li>
+                    <li style="width: 40%">
+                        @Html.DisplayFor(model => model.MInfo1.PrimaryContactNumber)
+                    </li>
+                    <h6 style="text-align: center; padding-top: 50px">
+                        Secondary Contact Number</h6>
+                    <li style="width: 60%">Contact person</li>
+                    <li style="width: 40%">
+                        @Html.DisplayFor(model => model.MInfo1.SecondaryContactPersonName)
+                    </li>
+                    <li style="width: 60%">Contact number</li>
+                    <li style="width: 40%">
+                        @Html.DisplayFor(model => model.MInfo1.SecondaryContactNumber, new { id = "secContactNo" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="right-pinfo" style="width: 71%; margin-bottom: 40px; float: left; background-color: #fff;
+            border: 1px solid #d5d5d5">
+            <div style="width: 55%; float: left">
+                <div class="pinfo_blood">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        BMI History <a href="#" onclick="return false;" class="edit" id="BMIInfoAddBtn" title="Edit">
+                        </a>
+                    </h2>
+                    <ul>
+                        <li class="pinfo_bloodleft">Height(Cms) </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.BMIHeight)
+                        </li>
+                        <li class="pinfo_bloodleft">Weight(Pounds) </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.BMIWeight)
+                        </li>
+                        <li class="pinfo_bloodleft">BMI value:</li>
+                        <li class="pinfo_bloodright">
+                            @if (Model.MInfo1.BMIValue == 0)
+                            {
+                                @Html.DisplayFor(model => model.MInfo1.BMIValue)
+                            }
+                            else if (Model.MInfo1.BMIValue < 18.5)
+                            {
+                                @Html.DisplayFor(model => model.MInfo1.BMIValue)<label style="margin-left: 10px;
+                                    background-color: #FFFF00; color: Black">Underweight</label>
+
+                            }
+                            else if (Model.MInfo1.BMIValue >= 18.5 && Model.MInfo1.BMIValue < 25)
+                            {
+                                @Html.DisplayFor(model => model.MInfo1.BMIValue)<label style="margin-left: 10px;
+                                    background-color: #2EFE2E; color: Black;">Normalweight</label>
+                            }
+                            else if (Model.MInfo1.BMIValue >= 25 && Model.MInfo1.BMIValue < 30)
+                            {
+                                @Html.DisplayFor(model => model.MInfo1.BMIValue)<label style="margin-left: 10px;
+                                    background-color: Orange; color: Black;">Overweight</label>
+                            }
+                            else if (Model.MInfo1.BMIValue >= 30)
+                            {
+                                @Html.DisplayFor(model => model.MInfo1.BMIValue)<label style="background-color: #FF0000;
+                                    margin-left: 10px; color: Black;">HeavilyOverweight</label>
+                            }
+                        </li>
+                    </ul>
+                </div>
+                <div class="pinfo_blood">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Blood Info <a href="#" onclick="return false;" class="edit" id="BloodInfoAddBtn"
+                            title="Edit"></a>
+                    </h2>
+                    <ul>
+                        <li class="pinfo_bloodleft" style="background-color: transparent; font-weight: normal;">
+                            Blood pressure(Sys/Dis) </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.BloodPressure, new { @class = "valid" })
+                        </li>
+                        <li class="pinfo_bloodleft">Blood sugar level </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.BloodSugarLevel, new { @class = "valid" })
+                        </li>
+                        <li class="pinfo_bloodleft">Blood group </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.BloodGroup, new { @class = "valid" })
+                        </li>
+                    </ul>
+                </div>
+                <div class="pinfo_blood">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Eye Info <a href="#" onclick="return false;" class="edit" id="EyeInfoAddBtn" title="Edit">
+                        </a>
+                    </h2>
+                    <ul>
+                        <li class="pinfo_bloodleft" style="background-color: transparent; font-weight: normal;">
+                            Eye color </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.EyeColor)
+                        </li>
+                        <li class="pinfo_bloodleft">Eye sight(L/R) </li>
+                        <li class="pinfo_bloodright">@Html.DisplayFor(model => model.MInfo1.EyeSight)
+                        </li>
+                    </ul>
+                </div>
+                <div class="pinfo_blood">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Hair Info <a href="#" onclick="return false;" class="edit" id="HairInfoAddBtn" title="Edit">
+                        </a>
+                    </h2>
+                    <ul>
+                        <li class="pinfo_bloodleft">Hair color </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.HairColor)
+                        </li>
+                        <li class="pinfo_bloodleft">Hair type</li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.HairType)
+                        </li>
+                    </ul>
+                </div>
+                <div class="pinfo_blood">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Skin Info<a href="#" onclick="return false;" class="edit" id="SkinInfoAddBtn" title="Edit"></a></h2>
+                    <ul>
+                        <li class="pinfo_bloodleft" style="background-color: transparent; font-weight: normal;">
+                            Skin color </li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.SkinColor)
+                        </li>
+                        <li class="pinfo_bloodleft">Skin type</li>
+                        <li class="pinfo_bloodright">
+                            @Html.DisplayFor(model => model.MInfo1.SkinType)
+                        </li>
+                    </ul>
+                </div>
+                <div class="PInfo_minHgt">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Vaccination and Immunization <a href="#" onclick="return false;" class="addmore"
+                            title="Add" id="VaccinationAddBtn"></a>
+                    </h2>
+                    <ul class="Ulist" id="ULVaccinationImmunization">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.Vaccination.Count; i++)
+                            {
+                            <li>
+                                <label id="Name2" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.Vaccination[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_Multiline">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Family Health History<a href="#" onclick="return false;" class="edit" id="FamilyAddBtn"
+                            title="Edit"></a></h2>
+                    <ul>
+                        <li style="width: 70%">Blood Pressure </li>
+                        <li>
+                            @{ var BloodPressure = Model.MInfo1.FBloodPressure ? "Yes" : "No";}
+                            <label title="Height">@BloodPressure</label>
+                        </li>
+                        <li style="width: 70%">Diabetes </li>
+                        <li style="width: 30%">
+                            @{ var Diabetis = Model.MInfo1.FDiabetis ? "Yes" : "No";}
+                            <label title="Height">@Diabetis
+                            </label>
+                        </li>
+                        <li style="width: 70%">Cancer </li>
+                        <li>
+                            @{ var Cancer = Model.MInfo1.FCancer ? "Yes" : "No";}
+                            <label title="Height">@Cancer</label>
+                        </li>
+                        <li style="width: 70%">Heart diseases </li>
+                        <li>
+                            @{ var HeartDiseases = Model.MInfo1.FHeartDiseases ? "Yes" : "No";}
+                            <label title="Height">@HeartDiseases</label>
+                        </li>
+                        <li style="width: 70%">Lung diseases </li>
+                        <li>
+                            @{ var LungDiseases = Model.MInfo1.FLungDiseases ? "Yes" : "No";}
+                            <label title="Height">@LungDiseases</label>
+                        </li>
+                        <li style="width: 70%">Baldness </li>
+                        <li>
+                            @{ var Baldness = Model.MInfo1.FBladness ? "Yes" : "No";}
+                            <label title="Height">@Baldness</label>
+                        </li>
+                        <li style="width: 70%">Acne </li>
+                        <li>
+                            @{ var Acne = Model.MInfo1.FAcne ? "Yes" : "No";}
+                            <label title="Height">@Acne</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="PInfo_Multiline">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Insurance Info <a href="#" onclick="return false;" class="edit" id="InsuranceAddBtn"
+                            title="Edit"></a>
+                    </h2>
+                    <ul>
+                        <li style="width: 70%">Policy number</li>
+                        <li>
+                            @Html.DisplayFor(model => model.MInfo1.PolicyNumber)
+                        </li>
+                        <li style="width: 70%">Insurance provider name </li>
+                        <li>@Html.DisplayFor(model => model.MInfo1.InsuranceProviderName)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="width: 45%; float: left">
+                <div class="PInfo_Blk">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Allergies <a href="#" onclick="return false;" class="addmore" id="AllergiesAddBtn"
+                            title="Add"></a>
+                    </h2>
+                    <ul class="Ulist" id="UlAllergies">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.Allergies.Count; i++)
+                            {
+                            <li>
+                                <label id="Name1" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.Allergies[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_Blk">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Arthritis <a href="#" onclick="return false;" class="addmore" id="ArthritisAddBtn"
+                            title="Add"></a>
+                    </h2>
+                    <ul class="Ulist" id="ULArthritis">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.Arthritis.Count; i++)
+                            {
+                            <li>
+                                <label id="Name1" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.Arthritis[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_Blk">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Genetic disorders <a href="#" onclick="return false;" class="addmore" id="GeneticAddBtn"
+                            title="Add"></a>
+                    </h2>
+                    <ul class="Ulist" id="ULGeneticDisorders">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.GeneticDisorders.Count; i++)
+                            {
+                            <li>
+                                <label id="Name1" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.GeneticDisorders[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_Blk">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Genetic infections <a href="#" onclick="return false;" class="addmore" id="GenitalAddBtn"
+                            title="Add"></a>
+                    </h2>
+                    <ul class="Ulist" id="ULGenitalInfections">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.GenitalInfections.Count; i++)
+                            {
+                            <li>
+                                <label id="Name1" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.GenitalInfections[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_blocks">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Asthma or chest problems <a href="#" onclick="return false;" class="addmore" id="AsthmaAddBtn"
+                            title="Add"></a>
+                    </h2>
+                    <ul class="Ulist" id="ULAsthma">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.Asthamas.Count; i++)
+                            {
+                            <li>
+                                <label id="Name3" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.Asthamas[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_blocks">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Liver disease <a href="#" onclick="return false;" id="LiverAddBtn" class="addmore"
+                            title="Add"></a>
+                    </h2>
+                    <ul class="Ulist" id="ULLiver">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.Liverproblems.Count; i++)
+                            {
+                            <li>
+                                <label id="Name4" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.Liverproblems[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_blocks">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Cancer <a href="#" onclick="return false;" class="addmore" id="CancerAddBtn" title="Add">
+                        </a>
+                    </h2>
+                    <ul class="Ulist" id="UlCancer">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+
+                            for (var i = 0; i < UsrInfo.Cancers.Count; i++)
+                            {
+                            <li>
+                                <label id="Name2" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.Cancers[i])
+                                </label>
+                            </li>
+                     
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_blocks">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Heart problems <a href="#" onclick="return false;" id="HeartAddBtn" class="addmore"
+                            title="Add"></a>
+                    </h2>
+                    <ul class="Ulist" id="ULHeart">
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.Heartproblems.Count; i++)
+                            {
+                            <li>
+                                <label id="Name5" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.Heartproblems[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+                <div class="PInfo_blocks">
+                    <h2 style="border-bottom: 1px solid #d5d5d5">
+                        Thyroid problems <a href="#" onclick="return false;" class="addmore" id="ThyroidAddBtn"
+                            title="Add"></a>
+                    </h2>
+                    <ul class = "Ulist" id = "ULThyroid" @*style = "overflow:auto;  padding-bottom:10px; height:70%; max-width:98%;"*@>
+                        @foreach (var UsrInfo in Model.al)
+                        {
+                            for (var i = 0; i < UsrInfo.ThyroidProblems.Count; i++)
+                            {
+                            <li>
+                                <label id="Name1" style="margin-right: 30px;">
+                                    @Html.DisplayFor(model => UsrInfo.ThyroidProblems[i])
+                                </label>
+                            </li>
+                            }
+                            break;
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Poppup Div of Allergies*@
+<div id="AllergyPopup1" style="display: none; width: 350px;">
+    <form id="AllergiesForm" style="width:100%; background-color:transparent" action="@Url.Action("EditAlergiesInfo", "PersonalInfo")" >
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title87" />
+        </h3>
+    </div>
+    <br />
+    <div style="color: whitesmoke;">
+        <label id="SubTitle" />
+    </div>
+    <br />
+    Enter a search term to find the most common results.
+    <br />
+    <div>
+        <label id="AllergySearch" style="color: blue; font-weight: bolder;">
+            Search/Add
+        </label>
+        <input type="text" id="searchtxt1" style="width: 300px;" required />
+    </div>
+    <br />
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        @Html.Hidden("hdSelectedItems")
+        @Html.Hidden("T")
+        @Html.HiddenFor(model => model.MInfo1.UserId)
+    </div>
+    <div style="width: 100%" class="inline">
+        <input type="Submit" value="Save" id="btnsave" style="float: right; margin-right: 10px;"
+            class="greengrad" />
+        <input type="button" name="btnCancel" value="Cancel" class="greengrad" style="float: right" />
+    </div>
+    <br />
+    </form>
+</div>
+@*Poppup Div of Thyroid Problems*@
+<div id="ThyroidPopup1" style="width: 312px; display: none;">
+    <form id="CancerForm" style="width: 100%; background-color: transparent">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title11" />
+        </h3>
+    </div>
+    <div class="subtitle">
+        <label id="SubTitle11" />
+    </div>
+    <div class="Vaccination">
+        <label id="ThyroidSearch">
+            Search/Add
+        </label>
+        <input type="text" id="searchtxt" style="width: 300px;" />
+        <div style="border-bottom: 1px solid rgb(218,221,226); float: left;">
+            @Html.Hidden("hdSelectedItems")
+            @Html.Hidden("T")
+            @Html.HiddenFor(model => model.MInfo1.UserId)
+        </div>
+        <div style="width: 100%" class="inline">
+            <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+            <input type="Submit" value="Save" id="btnsave1" style="float: right; margin-right: 10px;"
+                class="greengrad" />
+        </div>
+    </div>
+    </form>
+</div>
+@*Poppup Div of Thyroid Problems*@ @*BMI Popup *@
+<div>
+    <div id="PopupBlockUI" style="display: none; width: 257px;">
+        <form id="BMIInfoForm" style="width: 100%; background-color: transparent" action=""
+        method="post">
+        <div style="border-bottom: 1px solid rgb(218,221,226);">
+            <h3>
+                <label id="Title" />
+            </h3>
+        </div>
+        <div class="PinfoViewInfo">
+            <ul>
+                <li class="PinfoViewInfo_lbl">
+                    <label id="lblValue1" />
+                </li>
+                <li>
+                    <input type="text" id="txtValue1" />
+                </li>
+                <li class="PinfoViewInfo_lbl">
+                    <label id="lblValue2" />
+                </li>
+                <li>
+                    <input type="text" id="txtValue2" />
+                </li>
+                <li style="width: 95%; margin: 0 -8px 0 0; float: right;" class="inline">
+                    <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+                    <input type="button" id="btnAddBMIInfo" value="Save" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                </li>
+            </ul>
+        </div>
+        </form>
+    </div>
+</div>
+<div>
+    <div id="BloodInfo" style="display: none; width: 350px;">
+        <form id="BloodInfoForm" style="width: 100%; background-color: transparent" action=""
+        method="post">
+        <div style="border-bottom: 1px solid rgb(218,221,226);">
+            <h3>
+                Add Blood Info</h3>
+        </div>
+        <div class="PinfoViewInfo">
+            <ul style="margin: 10px 0 0 0;">
+                <li class="PinfoViewInfo_lbl">Blood pressure(Sys/Dis) </li>
+                <li>
+                    @Html.TextBoxFor(model => model.MInfo1.Systole, new { id = "txtsistole", @class = "valid", style = "width:55px" })<span
+                        style="font-weight: 600; padding: 15px 0px 0px 2px; color: Black; font-size: medium;">/</span>
+                    @Html.TextBoxFor(model => model.MInfo1.Diastole, new { id = "txtdiastole", @class = "valid", style = "width:55px" })
+                </li>
+                <li class="PinfoViewInfo_lbl">Blood sugar level </li>
+                <li class="PinfoViewInfo_lbl">
+                    @Html.TextBoxFor(model => model.MInfo1.BloodSugarLevel, new { id = "txtBldSugarLvl", @class = "valid" })
+                </li>
+                <li class="PinfoViewInfo_lbl">Blood group </li>
+                <li>@* @Html.TextBoxFor(model => model.MInfo1.BloodGroup, new { id = "txtBldGrp", @class = "valid" })*@
+                    <select id="txtBldGrp" style="width: 140px;">
+                        <option value="">please select</option>
+                        @if (@Model.MInfo1.BloodGroup == "A +ve")
+                        {
+                            <option selected="selected" value="A +ve">A +ve</option>
+                        }
+                        else
+                        {
+                            <option value="A +ve">A +ve</option>
+                        }
+                        @if (@Model.MInfo1.BloodGroup == "A -ve")
+                        {
+                            <option selected="selected" value="A -ve">A -ve</option>
+                        }
+                        else
+                        {
+                            <option value="A -ve">A -ve</option>
+                        }
+                        @if (@Model.MInfo1.BloodGroup == "B +ve")
+                        {
+                            <option value="B +ve" selected="selected">B +ve</option>
+                        }
+                        else
+                        { 
+                            <option value="B +ve">B +ve</option> 
+                        }
+                        @if (@Model.MInfo1.BloodGroup == "B -ve")
+                        {
+                            <option value="B -ve" selected="selected">B +ve</option>
+                        }
+                        else
+                        { 
+                            <option value="B -ve">B -ve</option> 
+                        }
+                        @if (@Model.MInfo1.BloodGroup == "AB +ve")
+                        {
+                            <option value="AB +ve" selected="selected">AB +ve</option>
+                        }
+                        else
+                        { 
+                            <option value="AB +ve">AB +ve</option> 
+                        }
+                        @if (@Model.MInfo1.BloodGroup == "AB -ve")
+                        {
+                            <option value="AB -ve" selected="selected">AB -ve</option>
+                        }
+                        else
+                        { 
+                            <option value="AB -ve">AB -ve</option> 
+                        }
+                        @if (@Model.MInfo1.BloodGroup == "O +ve")
+                        {
+                            <option value="O +ve" selected="selected">O +ve</option>
+                        }
+                        else
+                        { 
+                            <option value="O +ve">O +ve</option> 
+                        }
+                        @if (@Model.MInfo1.BloodGroup == "O -ve")
+                        {
+                            <option value="O -ve" selected="selected">O -ve</option>
+                        }
+                        else
+                        { 
+                            <option value="O -ve">O -ve</option> 
+                        }
+                    </select>
+                </li>
+                <li style="width: 83%;" class="inline">
+                    <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+                    <input type="button" value="Save" id="btnAddBloodInfo" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                </li>
+            </ul>
+        </div>
+        </form>
+    </div>
+</div>
+@*Blood Popup*@ @* Family Info popup *@
+<div id="FamilyInfo" style="display: none; width: 300px; height: auto;">
+    <form id="FamilyInfoForm" style="width:100%; background-color:transparent" action = "@Url.Action("UpdateFamilyInfo", "PersonalInfo")" method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            Family health history</h3>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Blood Pressure </li>
+            <li class="Faminfo_gap_value">
+                <input type="radio" name="FBloodPressure" value="True" />
+                Yes &nbsp;&nbsp;
+                <input type="radio" name="FBloodPressure" value="False" />
+                No </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Diabetes </li>
+            <li class="Faminfo_gap_value">
+                <input type="radio" name="FDiabetis" value="True" />
+                Yes &nbsp;&nbsp;
+                <input type="radio" name="FDiabetis" value="False" />
+                No </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Cancer </li>
+            <li class="Faminfo_gap_value">
+                <input type="radio" name="FCancer" value="True" />
+                Yes &nbsp;&nbsp;
+                <input type="radio" name="FCancer" value="False" />
+                No </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Heart diseases </li>
+            <li class="Faminfo_gap_value">
+                <input type="radio" name="FHeartDiseases" value="True" />
+                Yes &nbsp;&nbsp;
+                <input type="radio" name="FHeartDiseases" value="False" />
+                No </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Lung diseases </li>
+            <li class="Faminfo_gap_value">
+                <input type="radio" name="FLungDiseases" value="True" />
+                Yes &nbsp;&nbsp;
+                <input type="radio" name="FLungDiseases" value="False" />
+                No </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Baldness </li>
+            <li class="Faminfo_gap_value">
+                <input type="radio" name="FBladness" value="True" />
+                Yes &nbsp;&nbsp;
+                <input type="radio" name="FBladness" value="False" />
+                No </li>
+            <li class="PinfoViewInfo_lbl Faminfo_gap">Acne </li>
+            <li class="Faminfo_gap_value">
+                <input type="radio" name="FAcne" value="True" />
+                Yes &nbsp;&nbsp;
+                <input type="radio" name="FAcne" value="False" />
+                No </li>
+            <li style="width: 100%" class="inline">
+                <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad"
+                    onclick="$.modal.close();" />
+                <input type="submit" id="btnUpdate" value="Update" style="float: right; margin-right: 10px;"
+                    class="greengrad" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@* Family Info popup *@ @* Eye info*@
+<div id="PopupBlockUI1" style="display: none; width: 253px; padding: 10px 20px;">
+    <form id="EYEInfoForm" style="width: 100%; background-color: transparent" action=""
+    method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title3" />
+        </h3>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue3" />
+            </li>
+            <li>
+                <select id="txtValue3" style="width: 110px;">
+                    <option value="">please select</option>
+                    @if (@Model.MInfo1.EyeColor == "Black")
+                    {
+                        <option selected="selected" value="Black">Black</option>
+                    }
+                    else
+                    {
+                        <option value="Black">Black</option>
+                    }
+                    @if (@Model.MInfo1.EyeColor == "Blue")
+                    {
+                        <option selected="selected" value="Blue">Blue</option>
+                    }
+                    else
+                    {
+                        <option value="Blue">Blue</option>
+                    }
+                    @if (@Model.MInfo1.EyeColor == "Brown")
+                    {
+                        <option value="Brown" selected="selected">Brown</option>
+                    }
+                    else
+                    { 
+                        <option value="Brown">Brown</option> 
+                    }
+                    @if (@Model.MInfo1.EyeColor == "Gray")
+                    {
+                        <option value="Gray" selected="selected">Gray</option>
+                    }
+                    else
+                    { 
+                        <option value="Gray">Gray</option> 
+                    }
+                    @if (@Model.MInfo1.EyeColor == "Green")
+                    {
+                        <option value="Green" selected="selected">Green</option>
+                    }
+                    else
+                    { 
+                        <option value="Green">Green</option> 
+                    }
+                    @if (@Model.MInfo1.EyeColor == "Hazel")
+                    {
+                        <option value="Hazel" selected="selected">Hazel</option>
+                    }
+                    else
+                    { 
+                        <option value="Hazel">Hazel</option> 
+                    }
+                    @if (@Model.MInfo1.EyeColor == "Violet")
+                    {
+                        <option value="Violet" selected="selected">Violet</option>
+                    }
+                    else
+                    { 
+                        <option value="Violet">Violet</option> 
+                    }
+                </select>
+            </li>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue4" />
+            </li>
+            <li>
+                <input type="text" id="txtValue4" style="width:38px;" value="@Model.MInfo1.LeftEye" /><span
+                    style="font-weight: 600; padding: 15px 0px 0px 2px; color: Black; font-size: medium;">/</span>
+                <input type="text" id="txtValue5" style="width:39px;" value="@Model.MInfo1.RightEye"/>
+            </li>
+            <li style="width: 88%" class="inline">
+                <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+                <input type="button" id="btnAddEyeInfo" value="Save" style="float: right; margin-right: 10px;"
+                    class="greengrad" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@*Hair info*@
+<div id="PopupBlockUI2" style="display: none; width: 253px; padding: 10px 20px;">
+    <form id="HairInfoForm" style="width: 100%; background-color: transparent" action=""
+    method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title4" />
+        </h3>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue7" />
+            </li>
+            <li>
+                <select id="txtValue8" style="width: 110px;">
+                    <option value="">please select</option>
+                    @if (@Model.MInfo1.HairColor == "Black")
+                    {
+                        <option selected="selected" value="Black">Black</option>
+                    }
+                    else
+                    {
+                        <option value="Black">Black</option>
+                    }
+                    @if (@Model.MInfo1.HairColor == "Blue")
+                    {
+                        <option selected="selected" value="Blue">Blue</option>
+                    }
+                    else
+                    {
+                        <option value="Blue">Blue</option>
+                    }
+                    @if (@Model.MInfo1.HairColor == "Blonde")
+                    {
+                        <option value="Blonde" selected="selected">Blonde</option>
+                    }
+                    else
+                    { 
+                        <option value="Blonde">Blonde</option> 
+                    }
+                    @if (@Model.MInfo1.HairColor == "Grey")
+                    {
+                        <option value="Grey" selected="selected">Grey</option>
+                    }
+                    else
+                    { 
+                        <option value="Grey">Grey</option> 
+                    }
+                    @if (@Model.MInfo1.HairColor == "Auburn")
+                    {
+                        <option value="Auburn" selected="selected">Auburn</option>
+                    }
+                    else
+                    { 
+                        <option value="Auburn">Auburn</option> 
+                    }
+                    @if (@Model.MInfo1.HairColor == "Chestnut")
+                    {
+                        <option value="Chestnut" selected="selected">Chestnut</option>
+                    }
+                    else
+                    { 
+                        <option value="Chestnut">Chestnut</option> 
+                    }
+                    @if (@Model.MInfo1.HairColor == "Red")
+                    {
+                        <option value="Red" selected="selected">Red</option>
+                    }
+                    else
+                    { 
+                        <option value="Red">Red</option> 
+                    }
+                    @if (@Model.MInfo1.HairColor == "White")
+                    {
+                        <option value="White" selected="selected">White</option>
+                    }
+                    else
+                    { 
+                        <option value="White">White</option> 
+                    }
+                    @if (@Model.MInfo1.HairColor == "Copper")
+                    {
+                        <option value="Copper" selected="selected">Copper</option>
+                    }
+                    else
+                    { 
+                        <option value="Copper">Copper</option> 
+                    }
+                </select>
+            </li>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue8" />
+            </li>
+            <li>
+                <input type="text" id="txtValue9" style="width:96px;" value="@Model.MInfo1.HairType" />
+            </li>
+            <li style="width: 88%" class="inline">
+                <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+                <input type="button" id="btnAddHairInfo" value="Save" style="float: right; margin-right: 10px;"
+                    class="greengrad" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@* Skin info*@
+<div id="PopupBlockUI4" style="display: none; width: 253px; padding: 10px 20px;">
+    <form id="EyeInfoForm" style="width: 100%; background-color: transparent" action=""
+    method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title6" />
+        </h3>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue9" />
+            </li>
+            <li>
+                <select id="txtValue10" style="width: 110px;">
+                    <option value="">please select</option>
+                    @if (@Model.MInfo1.SkinColor == "Red")
+                    {
+                        <option selected="selected" value="Red">Red</option>
+                    }
+                    else
+                    {
+                        <option value="Red">Red</option>
+                    }
+                    @if (@Model.MInfo1.SkinColor == "Black")
+                    {
+                        <option selected="selected" value="Black">Black</option>
+                    }
+                    else
+                    {
+                        <option value="Black">Black</option>
+                    }
+                    @if (@Model.MInfo1.SkinColor == "White")
+                    {
+                        <option value="White" selected="selected">White</option>
+                    }
+                    else
+                    { 
+                        <option value="White">White</option> 
+                    }
+                    @if (@Model.MInfo1.SkinColor == "Brown")
+                    {
+                        <option value="Brown" selected="selected">Brown</option>
+                    }
+                    else
+                    { 
+                        <option value="Brown">Brown</option> 
+                    }
+                    @if (@Model.MInfo1.SkinColor == "Yellow")
+                    {
+                        <option value="Yellow" selected="selected">Yellow</option>
+                    }
+                    else
+                    { 
+                        <option value="Auburn">Yellow</option> 
+                    }
+                </select>
+            </li>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue10" />
+            </li>
+            <li>
+                <input type="text" id="txtValue11" style="width:96px;" value="@Model.MInfo1.SkinType" />
+            </li>
+            <li style="width: 88%" class="inline">
+                <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+                <input type="button" id="btnAddskinInfo" value="Save" style="float: right; margin-right: 10px;"
+                    class="greengrad" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@* Genitic*@
+<div id="ThyroidPopup" style="width: 315px; display: none;">
+    <form id="CancerForm1" style="width:100%; background-color:transparent" action="@Url.Action("EditAlergiesInfo", "PersonalInfo")" method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title2" />
+        </h3>
+    </div>
+    <div class="subtitle">
+        <label id="SubTitle1" />
+    </div>
+    <div>
+        <div class="Vaccination">
+            <label id="ThyroidSearch1">
+                Search/Add
+            </label>
+            <input type="text" id="searchtxt2" style="width: 300px;" />
+        </div>
+        <div style="float: left; border-bottom: 1px solid rgb(218,221,226);">
+            @Html.Hidden("hdSelectedItems")
+            @Html.Hidden("T")
+            @Html.HiddenFor(model => model.MInfo1.UserId)
+        </div>
+        <div class="inline" style="width: 100%">
+            <input type="button" name="btnCancel" value="Cancel" class="graygrad" style="float: right" />
+            <input type="Submit" value="Save" id="btnsave2" class="greengrad" style="float: right;
+                margin-right: 10px;" />
+        </div>
+    </div>
+    </form>
+</div>
+<div id="PopupBlockUI3" style="display: none; width: 331px;">
+    <form id="BMIInfoForm2" style="width: 100%; background-color: transparent" action=""
+    method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title5" />
+        </h3>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue5" />
+            </li>
+            <li>
+                <input type="text" id="txtValue6" />
+            </li>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue6" />
+            </li>
+            <li>
+                <input type="text" id="txtValue7" />
+            </li>
+            <li class="inline" style="width: 85%">
+                <input type="button" name="btnCancel" value="Cancel" class="graygrad" style="float: right;" />
+                <input type="button" id="btnAddBMIInfo1" value="Save" class="greengrad" style="float: right;
+                    margin-right: 5px;" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@*Emergency Info Popup *@
+<div>
+    <div id="EmergencyInfo" style="display: none; width: 300px;">
+        <form id="EmergencyInfoForm" style="width: 100%; background-color: transparent" action=""
+        method="post">
+        <div style="border-bottom: 1px solid rgb(218,221,226);">
+            <h3>
+                Add emergency info</h3>
+        </div>
+        <div class="PinfoViewInfo">
+            <ul>
+                <li style="width: 100%;" class="lbl_title">Primary emergency </li>
+                <li class="labelnormal">Person name </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.PrimaryContactPersonName, new { id = "txtPriContactPerName" })
+                </li>
+                <li class="labelnormal">Contact number </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.PrimaryContactNumber, new { id = "txtPriContactNo" })
+                </li>
+                <li style="width: 100%;" class="lbl_title">Secondary emergency </li>
+                <li class="labelnormal">Person name </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.SecondaryContactPersonName, new { id = "txtSecContactPerName" })
+                </li>
+                <li class="labelnormal">Contact number </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.SecondaryContactNumber, new { id = "txtSecContactNo" })
+                </li>
+                <li style="width: 100%" class="inline">
+                    <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+                    <input type="button" id="btnAddEmergencyInfo" value="Save" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                </li>
+            </ul>
+        </div>
+        </form>
+    </div>
+</div>
+@*Emergency Info Popup *@
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

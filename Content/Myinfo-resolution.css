@@ -1,0 +1,8 @@
+﻿   
+    @media (min-width: 1000px) and (max-width: 1200px)
+{
+    #content
+    {
+        width: 790px !important;
+    }
+    }

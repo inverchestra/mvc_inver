@@ -1,0 +1,155 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.HospitalInformation
+@{
+    ViewBag.Title = "HospitalInfo";
+}
+<script src="../../../../CustomScripts/HospAdmin.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function SaveDept(BranchId) {
+        var a = $('#subscription_order_form').serialize();
+        // alert(a);
+        $.ajax({
+            url: '/HospitalUser/HospAdmin/AssignDepertment',
+            type: 'POST',
+            cache: false,
+            data: a,
+            success: function (result) {
+                if (result == "1010") {
+                    $('#ajaxtab').html("<h6 style='padding: 10px;width:200px;word-wrap:break-word'>" + "Updated Successfully" + "</h6>").modal({
+                        closeHTML: "",
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                        }
+                    });
+                    var DeptId = $('#dep').val();
+                    setTimeout(function () {
+                        location.reload();
+                    }, 3000);
+                } else {
+                    // alert("cs: " + result);
+                    $('input[name="BranchID"]').val(BranchId);
+                    result1 = $.map(result, function (key, value) {
+                        //alert("<option value='" + key.Id + "' selected=" + key.IsChecked + " >" + key.name + "</option>");
+                        var i = key.IsChecked;
+                        if (i) {
+                            return "<option value='" + key.Id + "' selected='" + key.IsChecked + "'>" + key.name + "</option>";
+                        }
+                        else {
+                            return "<option value='" + key.Id + "'>" + key.name + "</option>";
+                            // return "<option value='" + key.Id + "' selected='" + key.IsChecked + "'>" + key.name + "</option>";
+                        }
+                    });
+
+                    $("#dep").dropdownchecklist("destroy");
+                    $("#dep").html('');
+                    $("#dep").html(result1.join(''));
+                    $('#dep').click();
+                    $("#dep").dropdownchecklist({ maxDropHeight: 150 }, { emptyText: "Click to see", width: 150 });
+
+                   // alert("refreshed");
+
+                }
+            }
+        });
+    }
+
+    function AssignDepartment() {
+        $.ajax({
+            url: '/HospitalUser/HospAdmin/AssignDepertment',
+            cache: false,
+            success: function (result) {
+                $('#ajaxtab').html(result).modal({
+                    closeHTML: '',
+                    escClose: true,
+                    onShow: function (e) {
+                        $("#dep").dropdownchecklist({ maxDropHeight: 150 }, { emptyText: "Click to see", width: 150 });
+                        $("#BranchId").change(function () {
+                            // alert("hi");
+                            var BranchId = $('#BranchId').val();
+                            // alert(BranchId);
+
+                            SaveDept(BranchId);
+                        });
+
+                        $("input[name='btnassign']").click(function () {
+                            // alert("assign");
+                            var branchid = $("#BranchId").val();
+                            var deptid = $("#DeptId").val();
+                            var CaseId = $("#BranchId").val();
+                            $("#hdnbranchId").val(CaseId);
+                            // alert(branchid);
+                            SaveDept(BranchId);
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    $(function () {
+        $("#btnAssignDepartment").click(function () {
+           // alert("dept");
+            var usrid = $("#id").val();
+            // alert("userid" + usrid);
+            AssignDepartment();
+        });
+    });
+
+    // $(function () {
+    // $('#btnAssignDoctor').click(function () {
+    // alert("Hi");
+    // //s.preventDefault();
+    // $.ajax({
+    // url: '/HospitalUser/HospAdmin/AssignDoctor',
+    // type: 'GET',
+    // success: function (result) {
+    // $('#ajaxtab').html(result).modal({
+    // closeHTML: '',
+    // escClose: true,
+    // onShow: function (e) {
+    // e.container.css({ 'height': 'auto' });
+    // $("#doctors").dropdownchecklist({ maxDropHeight: 150 }, { emptyText: "Click to see", width: 150 });
+    // $('#btnCancel').click(function () {
+    // $.modal.close();
+    // return false;
+    // });
+    // }
+
+    // });
+    // }
+    // });
+    // });
+    // });
+</script>
+@Scripts.Render("~/bundles/ajaxfns")
+<h2>
+    HospitalInfo</h2>
+<div class="PAccount">
+    <ul>
+        <li class="labelPA">Hospital name </li>
+        <li class="ValuePA">
+            <label id="lblhospName" style="border: none; font-size: 15px" class="create-logtxts">@Model.HospitalName</label>
+            <input type="text" id="h1" title="Hospital name" name="Hospitalname" style="display: none"
+                class="create-logtxts" />
+        </li>
+        <li class="labelPA">MainBranch </li>
+        <li class="ValuePA">
+            <label id="lblmainbranch" style="border: none; font-size: 15px" class="create-logtxts">@Model.MainBranch</label>
+            <input type="text" id="h2" title="Main Branch" name="MainBranch" style="display: none"
+                class="create-logtxts" />
+        </li>
+        <li class="labelPA">Address </li>
+        <li class="ValuePA">
+            <label id="lblAddress" style="border: none; font-size: 15px" class="create-logtxts">@Model.Address</label>
+            <input type="text" id="h3" title="MainBranch" name="MainBranch" style="display: none"
+                class="create-logtxts" />
+        </li>
+    </ul>
+</div>
+<div style="width: 100%; display: inline-block">
+    <input type="button" name="btnAssignDepartment" id="btnAssignDepartment" value="Assign DepartMent"
+        title="Click to Submit" class="greengrad" style="margin-right: 25px; width: 150px" />
+    <input type="button" name="btnAssignDoctor" id="btnAssignDoctor" value="Assign Doctor"
+        title="Click to Submit" class="greengrad" style="margin-right: 25px; width: 110px" />
+</div>
+<div id="modal-div-branch">
+</div>

@@ -1,0 +1,1082 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    int i = 1;
+}
+<script src="~/CustomScripts/documentsview.js" type="text/javascript"></script>
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $(function () {
+
+
+        $('.nav_UV > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('.nav_UV li ul').slideUp();
+                $(this).next().slideToggle();
+                $('.nav_UV li a').removeClass('active');
+                $(this).addClass('active');
+            }
+
+
+        });
+        $('.nav_UV1 > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('.nav_UV1 li ul').slideUp();
+                $(this).next().slideToggle();
+                $('.nav_UV1 li a').removeClass('active');
+                $(this).addClass('active');
+            }
+
+        });
+
+        $('img.btneditmSchedule').click(function (e) {
+            e.stopPropagation()
+            $.ajax({
+
+                url: '/iHealthUser/Cases/UpdateMScheduleView',
+                type: 'GET',
+                async: false,
+                data: { mscId: $(this).parents('li').find('input[name="MedicalSchdule.MedicalScheduleId"]').val() },
+                cache: false,
+                success: function (result) {
+                    $('#modal-MSupdate').html(result).modal({
+                        closeHTML: '',
+                        onShow: function () {
+
+
+                            $("#datePrescribed2").datepicker({
+                                changeYear: true,
+                                changeMonth: true
+                                //                                onSelect: function (selected) {
+                                //                                    $("#dateDispensed2").datepicker("option", "minDate", selected)
+                                //                                }
+                            });
+                            $("#dateDispensed2").datepicker({
+                                changeYear: true,
+                                changeMonth: true
+                                //                                onSelect: function (selected) {
+                                //                                    $("#datePrescribed2").datepicker("option", "maxDate", selected)
+                                //                                }
+                            });
+
+
+                            //                            var notify = $('input[id*="notify"]:checked');
+                            //                            alert($('input[id*="notify"]:checked').length);
+                            //                            notify.each(function (j, f) {
+                            //                                $(this).parents('div.med').find('input[name*="Starttime"]').toggle();
+                            //                                $(this).parents('div.med').find('input[name*="Starttime"]').timepicker();
+                            //                            });
+
+                            //                            $('input[id*="notify"]').bind('change', function () {
+                            //                                $(this).parents('div.med').find('input[name*="Starttime"]').val('');
+                            //                                $(this).parents('div.med').find('input[name*="Starttime"]').toggle();
+                            //                                $(this).parents('div.med').find('input[name*="Starttime"]').timepicker();
+                            //                            });
+
+
+                            $('img#addmed1').click(function () {
+                                var pdate11 = document.getElementById("datePrescribed2").value;
+                                var pdate12 = document.getElementById("dateDispensed2").value;
+                                var ustartdate = new Date($('#datePrescribed2').val());
+                                var uenddate = new Date($('#dateDispensed2').val());
+
+                                if (pdate11 == '') {
+                                    alert("Please select start date");
+                                    $('input[tabindex=1]').focus();
+                                    return false;
+                                }
+                                else if (pdate12 == '') {
+                                    alert("Please select end date");
+                                    $('input[tabindex=2]').focus();
+                                    return false;
+                                }
+                                else if (ustartdate > uenddate) {
+                                    alert("Please select greater than start date");
+                                    $('#pdate2').val("");
+                                    $('input[tabindex=2]').focus();
+                                    return false;
+                                }
+                                else {
+                                    $("#idMedicineName1,#iddosagetaken1,#iddtaken1,#idquantity1,#idfrequencyTaken1,#idquantity1,#idreason1").val("");
+                                    $("#date11,#date12,#date13,#date14,#date15,#date16,#date17,#date18,#date19,#date20,#date21,#date22,#date23,#date24,#date25,#date26,#date27,#date28,#date29,#date30").val("");
+                                    $("#FQ11,#FQ12,#FQ13,#FQ14,#FQ15,#FQ16,#FQ17,#FQ18,#lblstarttime1").hide();
+
+                                    $('div#schedule1').show('slide', { direction: 'down' }, 600);
+                                }
+                            });
+
+
+
+                            //                                $('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" name="ScheduleInfo[' + med + '].MedicineName" title="Name of the Medicine" placeholder="Medicine" class="crt" style="width: 90px; margin:0 5px 0 0;" /><div style="padding-top: 2px;background-color:none !important; margin:0 5px 0 0;" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" style="width: 48px; border: 1px solid #BED0DF;" placeholder="Quantity" /><select name="ScheduleInfo[' + med + '].TypeOfMedicine" style="width: 80px; border: 1px solid #BED0DF; margin:0 5px;"><option value="tablet(s)">tablet(s)</option><option value="drop(s)">drop(s)</option><option value="capsule(s)">capsule(s)</option><option value="tsp(s)">tsps(s)</option><option value="tbsp(s)">tbsp(s)</option><option value="puff(s)">puff(s)</option><option value="application(s)">application(s)</option></select><select name="ScheduleInfo[' + med + '].FrequencyTaken" id="frequencyTaken" style="width: 80px; margin:0 5px; border: 1px solid #BED0DF;"><option value="as needed">as needed</option><option value="Every 1hr">Every 1hr</option><option value="Every 2hrs">Every 2hrs</option><option value="Every 3hrs">Every 3hrs</option><option value="Every 4hrs">Every 4hrs</option><option value="Every morning">Every morning</option><option value="Every evening">Every evening</option><option value="once a day">once a day</option><option value="twice a day">twice a day</option><option value="thrice a day">thrice a day</option><option value="four times a day">four times a day</option><option value="once a week">once a week</option><option value="twice a week">twice a week</option><option value="thrice a week">thrice a week</option><option value="four times a week">four times a week</option><option value="before bed">before bed</option><option value="before meals">before meals</option><option value="after meals">after meals</option><option value="with meals">with meals</option></select></div><input type="text" name="ScheduleInfo[' + med + '].TotalQuantity" title="Total quantity" placeholder="Quantity" class="crt" style="width: 55px; margin:0 5px;" /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" title="Starting time" style="width: 62px; display:none;" class="crt" placeholder="Start Time" /><div class="x inline" id="medi[' + med + ']"><img alt="Delete" src="../../Images/delete.png" name="imgmed' + med + '"/></div></div>');
+
+                            //                                $('img[name*="imgmed"]').bind('click', function () {
+
+                            //                                    if (!med <= 0) {
+                            //                                        med = med - 1;
+                            //                                    }
+
+                            //                                    var object = $(this).parents('div.med').nextAll('div.med');
+
+                            //                                    object.each(function (i, e) {
+                            //                                        var elements = $(e).find('[name*="ScheduleInfo"]');
+                            //                                        elements.each(function (j, f) {
+                            //                                            var ind = parseInt($(this).attr('name').replace(/\D/g, ''), 10) - 1;
+                            //                                            $(this).attr('name', $(this).attr('name').replace($(this).attr('name').replace(/\D/g, ''), ind));
+                            //                                        });
+                            //                                    });
+
+                            //                                    $(this).parents('div.med').remove();
+                            //                                });
+
+                            //                                //                                $('input#notify' + med).bind('change', function () {
+                            //                                //                                    $(this).parents('div.med').find('input[name*="Starttime"]').val('');
+                            //                                //                                    $(this).parents('div.med').find('input[name*="Starttime"]').toggle();
+                            //                                //                                    $(this).parents('div.med').find('input[name*="Starttime"]').timepicker();
+                            //                                //                                });
+
+                            //                                med = med + 1;
+                            //                            });
+                            var med = $('div.med').length;
+                            $('img[name*="imgmed"]').bind('click', function () {
+                                var response = confirm("Are you sure you want to delete?");
+                                if (response) {
+                                    if (!med <= 0) {
+                                        med = med - 1;
+                                    }
+
+                                    var object = $(this).parents('div.med').nextAll('div.med');
+
+                                    object.each(function (i, e) {
+                                        var elements = $(e).find('[name*="ScheduleInfo"]');
+                                        elements.each(function (j, f) {
+                                            var ind = parseInt($(this).attr('name').replace(/\D/g, ''), 10) - 1;
+                                            $(this).attr('name', $(this).attr('name').replace($(this).attr('name').replace(/\D/g, ''), ind));
+                                        });
+                                    });
+
+                                    $(this).parents('div.med').remove();
+                                    alert("Schedule deleted successfully");
+                                }
+                                else {
+                                    return false;
+                                }
+
+                            });
+                            //                            alert(med);
+                            $("#btnschedulsave1").click(function () {
+                                //                                alert("hi");
+
+                                var dosagetaken1 = document.getElementById("iddosagetaken").value;
+                                var MedicineName1 = document.getElementById("idMedicineName1").value;
+                                var quantity1 = document.getElementById("idquantity1").value;
+                                var frequencytaken1 = document.getElementById("idfrequencyTaken1").value;
+                                var tdate21 = document.getElementById("date21").value;
+                                var tdate22 = document.getElementById("date22").value;
+                                var tdate23 = document.getElementById("date23").value;
+                                var tdate24 = document.getElementById("date24").value;
+                                var tdate25 = document.getElementById("date25").value;
+                                var tdate26 = document.getElementById("date26").value;
+                                var tdate27 = document.getElementById("date27").value;
+                                var tdate28 = document.getElementById("date28").value;
+                                var tdate29 = document.getElementById("date29").value;
+                                var tdate30 = document.getElementById("date30").value;
+                                var tdate31 = document.getElementById("date31").value;
+                                var tdate32 = document.getElementById("date32").value;
+                                var tdate33 = document.getElementById("date33").value;
+                                var tdate34 = document.getElementById("date34").value;
+                                var tdate35 = document.getElementById("date35").value;
+                                var tdate36 = document.getElementById("date36").value;
+                                var tdate37 = document.getElementById("date37").value;
+                                var tdate38 = document.getElementById("date38").value;
+                                var tdate39 = document.getElementById("date39").value;
+                                var tdate40 = document.getElementById("date40").value;
+                                var ustartdate1 = new Date($('#datePrescribed2').val());
+                                var uenddate1 = new Date($('#dateDispensed2').val()).setHours(23, 59, 00, 00); // sandeep changed
+                                var selectdate31 = new Date($('#date31').val());
+                                var selectdate32 = new Date($('#date32').val());
+                                var selectdate33 = new Date($('#date33').val());
+                                var selectdate34 = new Date($('#date34').val());
+                                var selectdate35 = new Date($('#date35').val());
+                                var selectdate36 = new Date($('#date36').val());
+                                var selectdate37 = new Date($('#date37').val());
+                                var selectdate38 = new Date($('#date38').val());
+                                var selectdate39 = new Date($('#date39').val());
+                                var selectdate40 = new Date($('#date40').val());
+
+                                var timeregexp1 = /([01][0-9]|[02][0-3]):[0-5][0-9]/; // sandeep added
+
+                                if (MedicineName1 == "") {
+                                    alert("Please enter MedicineName");
+                                    $('input[tabindex=3]').focus();
+                                    return false;
+                                }
+                                if (dosagetaken1 == "") {
+                                    alert("Please enter dosage taken");
+                                    $('input[tabindex=4]').focus();
+                                    return false;
+                                }
+                                if (quantity1 == "") {
+                                    // sandeep commented
+                                    //                                    alert("Please enter total quantity");
+                                    //                                    $('input[tabindex=5]').focus();
+                                    //                                    return false;
+                                }
+                                else if (quantity1 > 1000) {
+                                    alert("Doesnot take morethan 1000 tables at a time");
+                                    $('input[tabindex=5]').focus();
+                                    return false;
+                                }
+                                if (frequencytaken1 == "0") {
+                                }
+                                else if (frequencytaken1 == "1") {
+                                    if (tdate21 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=6]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date21').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date21').val("");
+                                            $('input[tabindex=6]').focus();
+                                            return false;
+                                        }
+                                    }
+
+                                    if ($("#idfrequencyTaken1 option:selected").text() == "Every morning") {
+                                        if (tdate21 < "12:00") {
+                                        }
+                                        else {
+                                            alert("you are not given correct time please give correct time");
+                                            $('#date21').val("");
+                                            $('input[tabindex=6]').focus();
+                                            return false;
+                                        }
+
+                                    }
+                                } else if (frequencytaken1 == "2") {
+                                    if (tdate22 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=7]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date22').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date22').val("");
+                                            $('input[tabindex=7]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate23 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=8]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date23').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date23').val("");
+                                            $('input[tabindex=8]').focus();
+                                            return false;
+                                        }
+                                    }
+
+                                    if ($("#idfrequencyTaken1 option:selected").text() == "before meals") {
+                                        if (tdate22 <= "12:00") {
+                                        }
+                                        else {
+                                            alert("you are not given correct time please give correct time");
+                                            $('#date22').val("");
+                                            $('input[tabindex=7]').focus();
+                                            return false;
+                                        }
+                                        if (tdate23 >= "20:00") {
+                                        }
+                                        else {
+                                            alert("you are not given correct time please give correct time");
+                                            $('#date23').val("");
+                                            $('input[tabindex=8]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if ($("#idfrequencyTaken1 option:selected").text() == "after meals" || $("#idfrequencyTaken1 option:selected").text() == "with meals") {
+                                        if (tdate22 >= "12:00" && tdate22 <= "15:00") {
+                                        }
+                                        else {
+                                            alert("you are not given correct time please give correct time");
+                                            $('#date22').val("");
+                                            $('input[tabindex=7]').focus();
+                                            return false;
+                                        }
+                                        if (tdate23 >= "20:00" && tdate23 <= "22:00") {
+                                        }
+                                        else {
+                                            alert("you are not given correct time please give correct time");
+                                            $('#date23').val("");
+                                            $('input[tabindex=8]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate22 < tdate23) {
+                                    }
+                                    else {
+                                        alert("Please enter greater than above time");
+                                        $('#date23').val("");
+                                        $('input[tabindex=8]').focus();
+                                        return false;
+                                    }
+                                }
+                                else if (frequencytaken1 == "3") {
+                                    if (tdate24 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=9]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date24').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date24').val("");
+                                            $('input[tabindex=9]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate25 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=10]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date25').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date25').val("");
+                                            $('input[tabindex=10]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate26 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=11]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date26').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date26').val("");
+                                            $('input[tabindex=11]').focus();
+                                            return false;
+                                        }
+                                    }
+
+                                    if (tdate24 < tdate25) {
+                                    }
+                                    else {
+                                        alert("Please enter greater than above time");
+                                        $('#date25').val("");
+                                        $('input[tabindex=10]').focus();
+                                        return false;
+                                    }
+                                    if (tdate25 < tdate26) {
+                                    }
+                                    else {
+                                        alert("Please enter greater than above time");
+                                        $('#date26').val("");
+                                        $('input[tabindex=11]').focus();
+                                        return false;
+                                    }
+                                }
+                                else if (frequencytaken1 == "4") {
+                                    if (tdate27 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=12]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date27').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date27').val("");
+                                            $('input[tabindex=12]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate28 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=13]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date28').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date28').val("");
+                                            $('input[tabindex=13]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate29 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=14]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date29').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date29').val("");
+                                            $('input[tabindex=14]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate30 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=15]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        var correct = ($('#date30').val().search(timeregexp1) >= 0) ? true : false;
+                                        if (correct) {
+                                        }
+                                        else {
+                                            alert("please enter correct time formate");
+                                            $('#date30').val("");
+                                            $('input[tabindex=15]').focus();
+                                            return false;
+                                        }
+                                    }
+
+                                    if (tdate27 < tdate28) {
+                                    }
+                                    else {
+                                        alert("Please enter greater than above time");
+                                        $('#date28').val("");
+                                        $('input[tabindex=13]').focus();
+                                        return false;
+                                    }
+
+                                    if (tdate28 < tdate29) {
+                                    }
+                                    else {
+                                        alert("Please enter greater than above time");
+                                        $('#date29').val("");
+                                        $('input[tabindex=14]').focus();
+                                        return false;
+                                    }
+                                    if (tdate29 < tdate30) {
+                                    }
+                                    else {
+                                        alert("Please enter greater than above time");
+                                        $('#date30').val("");
+                                        $('input[tabindex=15]').focus();
+                                        return false;
+                                    }
+                                }
+                                else if (frequencytaken1 == "5") {
+                                    if (tdate31 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=16]').focus();
+                                        return false;
+                                    }
+                                    else {
+
+                                        if ((selectdate31 >= ustartdate1) && (selectdate31 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date31').val("");
+                                            $('input[tabindex=16]').focus();
+                                            return false;
+                                        }
+                                    }
+
+                                } else if (frequencytaken1 == "6") {
+                                    if (tdate32 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=17]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate32 >= ustartdate1) && (selectdate32 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date32').val("");
+                                            $('input[tabindex=17]').focus();
+                                            return false;
+                                        }
+                                    }
+
+                                    if (tdate33 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=18]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate33 >= ustartdate1) && (selectdate33 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date33').val("");
+                                            $('input[tabindex=18]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (selectdate32 < selectdate33) {
+
+                                    }
+                                    else if (selectdate32 > selectdate33) {
+                                        alert("Please select greater than the above date");
+                                        $('#date33').val("");
+                                        $('input[tabindex=18]').focus();
+                                        return false;
+
+                                    }
+                                    else {
+                                        alert("Please dont select same date");
+                                        $('#date33').val("");
+                                        $('input[tabindex=18]').focus();
+                                        return false;
+                                    }
+                                }
+                                else if (frequencytaken1 == "7") {
+                                    if (tdate34 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=19]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate34 >= ustartdate1) && (selectdate34 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date34').val("");
+                                            $('input[tabindex=19]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate35 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=20]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate35 >= ustartdate1) && (selectdate35 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date35').val("");
+                                            $('input[tabindex=20]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate36 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=21]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate36 >= ustartdate1) && (selectdate36 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date36').val("");
+                                            $('input[tabindex=21]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (selectdate34 < selectdate35) {
+
+                                    }
+                                    else if (selectdate34 > selectdate35) {
+                                        alert("Please select greater than the above date");
+                                        $('#date35').val("");
+                                        $('input[tabindex=20]').focus();
+                                        return false;
+
+                                    }
+                                    else {
+                                        alert("Please dont select same date");
+                                        $('#date35').val("");
+                                        $('input[tabindex=20]').focus();
+                                        return false;
+                                    }
+
+                                    if (selectdate35 < selectdate36) {
+                                    }
+                                    else if (selectdate35 > selectdate36) {
+                                        alert("Please select greater than the above date");
+                                        $('#date36').val("");
+                                        $('input[tabindex=21]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        alert("Please dont select same date");
+                                        $('#date36').val("");
+                                        $('input[tabindex=21]').focus();
+                                        return false;
+                                    }
+                                }
+                                else if (frequencytaken1 == "8") {
+                                    if (tdate37 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=22]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate37 >= ustartdate1) && (selectdate37 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date37').val("");
+                                            $('input[tabindex=22]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate38 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=23]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate38 >= ustartdate1) && (selectdate38 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date38').val("");
+                                            $('input[tabindex=23]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate39 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=24]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate39 >= ustartdate1) && (selectdate39 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date39').val("");
+                                            $('input[tabindex=24]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (tdate40 == "") {
+                                        alert("Please enter date");
+                                        $('input[tabindex=25]').focus();
+                                        return false;
+                                    }
+                                    else {
+                                        if ((selectdate40 >= ustartdate1) && (selectdate40 <= uenddate1)) {
+
+                                        }
+                                        else {
+                                            alert("Please select date between start and end date");
+                                            $('#date40').val("");
+                                            $('input[tabindex=25]').focus();
+                                            return false;
+                                        }
+                                    }
+                                    if (selectdate37 < selectdate38) {
+
+                                    }
+                                    else if (selectdate37 > selectdate38) {
+                                        alert("Please select greater than the above date");
+                                        $('#date38').val("");
+                                        $('input[tabindex=23]').focus();
+                                        return false;
+
+                                    }
+                                    else {
+                                        alert("Please dont select same date");
+                                        $('#date38').val("");
+                                        $('input[tabindex=23]').focus();
+                                        return false;
+                                    }
+
+                                    if (selectdate38 < selectdate39) {
+
+                                    }
+                                    else if (selectdate38 > selectdate39) {
+                                        alert("Please select greater than the above date");
+                                        $('#date39').val("");
+                                        $('input[tabindex=24]').focus();
+                                        return false;
+
+                                    }
+                                    else {
+                                        alert("Please dont select same date");
+                                        $('#date39').val("");
+                                        $('input[tabindex=24]').focus();
+                                        return false;
+                                    }
+
+                                    if (selectdate39 < selectdate40) {
+
+                                    }
+                                    else if (selectdate39 > selectdate40) {
+                                        alert("Please select greater than the above date");
+                                        $('#date40').val("");
+                                        $('input[tabindex=25]').focus();
+                                        return false;
+
+                                    }
+                                    else {
+                                        alert("Please dont select same date");
+                                        $('#date40').val("");
+                                        $('input[tabindex=25]').focus();
+                                        return false;
+                                    }
+                                }
+
+
+                                if (frequencytaken1 == "0") {
+
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="" title="Starting time" style="width: 62px;display:none" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);display:none"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;display:none">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="" title="Starting time" style="width: 62px;display:none" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+
+                                }
+                                else if (frequencytaken1 == "1") {
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date1').val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date21').val() + '"  title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+                                else if (frequencytaken1 == "2") {
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date2').val() + "," + $('#date3').val() + '" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px; display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date22').val() + "," + $('#date23').val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+                                else if (frequencytaken1 == "3") {
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date4').val() + "," + $('#date5').val() + "," + $("#date6").val() + '" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date24').val() + "," + $('#date25').val() + "," + $("#date26").val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+                                else if (frequencytaken1 == "4") {
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date7').val() + "," + $('#date8').val() + "," + $("#date9").val() + "," + $("#date10").val() + '" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date27').val() + "," + $('#date28').val() + "," + $("#date29").val() + "," + $("#date30").val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+                                else if (frequencytaken1 == "5") {
+
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date11').val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date31').val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+                                else if (frequencytaken1 == "6") {
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date12').val() + "," + $('#date13').val() + '" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date32').val() + "," + $('#date33').val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+                                else if (frequencytaken1 == "7") {
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date14').val() + "," + $('#date15').val() + "," + $("#date16").val() + '" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date34').val() + "," + $('#date35').val() + "," + $("#date36").val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+                                else if (frequencytaken1 == "8") {
+                                    //$('#medlist').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddosagetaken').val() + "  " + $('#dtaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $('#frequencyTaken').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 55px; margin:0 5px;" readonly /><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date17').val() + "," + $('#date18').val() + "," + $("#date19").val() + "," + $("#date20").val() + '" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                    $('#medlist1').append('<div class="med" style="padding: 3px; margin-top: 2px;"><input type="text" value="' + $('#idMedicineName1').val() + '" name="ScheduleInfo[' + med + '].MedicineName" class="crt" style="width: 90px;  margin:0 5px 0 0;" readonly /><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].DosageTaken" value="' + $('#iddosagetaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;" readonly ></div><div style="padding-top: 2px" class="crt inline"><input type="text" name="ScheduleInfo[' + med + '].TypeOfMedicine" value="' + $('#iddtaken1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly ><input type="text" name="ScheduleInfo[' + med + '].FrequencyTaken" value="' + $("#idfrequencyTaken1 option:selected").text() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 80px;" readonly /></div><input type="text" value="' + $('#idquantity1').val() + '" name="ScheduleInfo[' + med + '].TotalQuantity" class="crt" style="width: 30px; margin:0 5px;" readonly /><input type="text" name="ScheduleInfo[' + med + '].Reason" value="' + $('#idreason1').val() + '" style="border: 1px solid #BED0DF; margin:0 5px 0 5px; width: 30px;display:none" readonly ><label for="notify" title="Alert me!" style="padding-top: 3px; color: rgb(89,89,89);"><input name="ScheduleInfo[' + med + '].IsNotify" id="notify' + med + '" type="checkbox" value="true" />&nbsp;<h6 class="inline" style="margin:0 5px;">Notify</h6></label><input type="text" name="ScheduleInfo[' + med + '].Starttime" value="' + $('#date37').val() + "," + $('#date38').val() + "," + $("#date39").val() + "," + $("#date40").val() + '" title="Starting time" style="width: 62px;" class="crt" readonly /><div class="x inline" id="medi[' + med + ']"><img alt="x" src="/Images/delete.png" name="imgmed' + med + '"/></div></div>');
+                                }
+
+                                $('img[name*="imgmed' + med + '"]').bind('click', function () {
+                                    var response = confirm("Are you sure you want to delete?");
+                                    if (response) {
+                                        if (!med <= 0) {
+                                            med = med - 1;
+                                        }
+
+                                        var object = $(this).parents('div.med').nextAll('div.med');
+
+                                        object.each(function (i, e) {
+                                            var elements = $(e).find('[name*="ScheduleInfo"]');
+                                            elements.each(function (j, f) {
+                                                var ind = parseInt($(this).attr('name').replace(/\D/g, ''), 10) - 1;
+                                                $(this).attr('name', $(this).attr('name').replace($(this).attr('name').replace(/\D/g, ''), ind));
+                                            });
+                                        });
+
+                                        $(this).parents('div.med').remove();
+                                        alert("Schedule deleted successfully");
+                                    }
+                                    else {
+                                        return false;
+                                    }
+
+                                });
+                                alert("Schedule saved successfully");
+                                med = med + 1;
+
+                                //                            $("#idMedicineName,#iddosagetaken,#dtaken,#idquantity,#frequencyTaken,#idquantity,#hdnFrequenyTaken,#date1,#date2,#date3,#date4,#date5,#date6,#date7,#date8,#date9,#date10,#date11,#date12,#date13,#date14,#date15,#date16,#date17,#date18,#date19,#date20").val("");
+                                //                            $("#FQ1,#FQ2,#FQ3,#FQ4,#FQ5,#FQ6,#FQ7,#FQ8").hide();
+
+                                $(this).parents('div#schedule1').hide('slide', { direction: 'down' }, 600);
+                            });
+
+                            $('input[name="btnslidecancel1"]').click(function () {
+                                $(this).parents('div#schedule1').hide('slide', { direction: 'down' }, 600);
+                            });
+
+
+                            $('#btnMSUpdate').click(function () {
+                                var startdate = document.getElementById("datePrescribed2").value;
+                                var enddate = document.getElementById("dateDispensed2").value;
+                                var startdate1 = new Date($('#datePrescribed2').val());
+                                var enddate1 = new Date($('#dateDispensed2').val());
+
+                                if (startdate == '') {
+                                    alert("Please select start date");
+                                    $('input[tabindex=1]').focus();
+                                    return false;
+                                }
+                                else if (enddate == '') {
+                                    alert("Please select end date");
+                                    $('input[tabindex=2]').focus();
+                                    return false;
+                                }
+                                else if (startdate1 > enddate1) {
+                                    alert("Please select greater than start date");
+                                    $('#dateDispensed2').val("");
+                                    $('input[tabindex=2]').focus();
+                                    return false;
+                                }
+
+                                if (med == 0) {
+                                    alert("Please create atleast one medical schedule");
+                                    return false;
+                                }
+                                $.ajax({
+                                    url: '/iHealthUser/Cases/UpdateMedicalSchedule',
+                                    type: "POST",
+                                    async: false,
+                                    cache: false,
+                                    data: new FormData($(this).parents('#frmUMSchedule').get(0)),
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        alert("Your modifications are updated successfully");
+                                        $(data).accordion({ collapsible: true });
+                                        //                                        alert($('#mslst').length);
+                                        $('#mslst').html(data);
+                                        $.modal.close();
+                                    }
+                                });
+                                return false;
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+        $('img[name="delMedication"]').click(function (e) {
+            e.stopPropagation();
+            var id = $(this).parents('li').find('input[name="MedicalSchdule.MedicalScheduleId"]').val();
+            var d = $(this).parents('li');
+            var response = confirm("Are you sure you want to delete?");
+            if (response) {
+                $.ajax({
+                    url: "/iHealthUser/Cases/DeleteMedication",
+                    type: 'POST',
+                    async: false,
+                    cache: false,
+                    data: { id: id },
+                    success: function (success) {
+                        if (success == '1020') {
+                            alert("Deleted Successfully");
+                            $(d).remove();
+                            $('ul.accordion').accordion('destroy').accordion({
+                                collapsable: true
+                            });
+                        }
+                        else {
+                            alert("Not Deleted, Error in Server Code");
+                        }
+                    }
+
+                });
+            }
+            return false; //Dileep
+        });
+    });
+
+</script>
+<div id="mSchedules">
+    <form id="frmEditmSchedule" enctype="multipart/form-data">
+    <input type="hidden" name="CaseId" id="CaseId" value="@Model.CaseId" />
+    @if (Model.lstMedicalSchedule.Count == 0)
+    {
+        
+        <span class="results">You have no Medical Schedules for this Case</span>
+    }
+    else
+    {
+        <ul class="nav_UV">
+            @foreach (var msList in Model.lstMedicalSchedule)
+            {
+                try
+                {
+                <li><a href="#msList[@i]"><span style="-ms-text-overflow: ellipsis; -o-text-overflow: ellipsis;
+                    text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block;
+                    width: 300px">@msList.DatePrescribed1
+                    | @msList.DateDispensed1</span>
+                    <img src="~/Images/edit.png" alt="Edit" class="btneditmSchedule" style="float: right;" />
+                    <img src="~/Images/delete.png" name="delMedication" class="delMedication" alt="Delete"
+                        style="float: right;" />
+                    <input type="hidden" name="MedicalSchdule.CaseId" value="@msList.CaseId" />
+                    <input type="hidden" name="MedicalSchdule.MedicalScheduleId" value="@msList.MedicalScheduleId" />
+                </a>
+                    <ul id="msList[@i]" style="border: none">
+                        <li class="labelChart">Date prescribed: </li>
+                        <li class="labelChartB">@msList.DatePrescribed1
+                        </li>
+                        <li class="labelChart">Date dispensed: </li>
+                        <li class="labelChartB">@msList.DateDispensed1
+                        </li>
+                        <li class="labelChart">Prescription description: </li>
+                        <li class="labelChartB">
+                            @if (msList.PrescriptionDescription == null)
+                            {
+                                <br />
+                            }
+                            else
+                            {
+                                @msList.PrescriptionDescription
+                            }
+                        </li>
+                        <li class="labelChart">Pharmacy name: </li>
+                        <li class="labelChartB">
+                            @if (msList.PharmacyName == null)
+                            {
+                                <br />
+                            }
+                            else
+                            {
+                                @msList.PharmacyName
+                            }
+                        </li>
+                        <li class="labelChart">Schedule: </li>
+                        <li class="labelChartB">
+                            @if (msList.lstSchedule == null)
+                            {
+                                <span>You have no schedule information</span>
+                                <br />
+                            }
+
+                            else
+                            {
+                                foreach (var item in msList.lstSchedule)
+                                {
+                                    try
+                                    {
+                                <ul class="nav_UV1">
+                                    <li><a href="#medicalTest[@i]"><span style="-ms-text-overflow: ellipsis; -o-text-overflow: ellipsis;
+                                        text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block;">@item.MedicineName</span></a>
+                                        <ul id="medicalTest[@i]" style="border: none" class="MedicationInfo">
+                                            <li>Medicine name: </li>
+                                            <li>@item.MedicineName
+                                            </li>
+                                            <li>Dosage taken: </li>
+                                            <li>@item.DosageTaken&nbsp;&nbsp;@item.TypeOfMedicine
+                                            </li>
+                                            <li>Frequency taken: </li>
+                                            <li>@item.FrequencyTaken
+                                            </li>
+                                            <li class="labelChart">Total quantity: </li>
+                                            <li class="labelChartB">@item.TotalQuantity
+                                            </li>
+                                            <li>Starting time: </li>
+                                            <li>
+                                                @if (item.Starttime == null)
+                                                {
+                                                    <span>Take medication as you need</span>
+                                                    <br />
+                                                }
+                                                else
+                                                {
+                                                    @item.Starttime
+                                                }
+                                            </li>
+                                            <li class="labelChart">Reason: </li>
+                                            <li class="labelChartB">
+                                                @if (item.Reason == null)
+                                                {
+                                                    <span></span>
+                                                    <br />
+                                                }
+                                                else
+                                                {
+                                                    @item.Reason
+                                                }
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                    }
+                                    finally { i++; }
+                                }
+                            }
+                            <br />
+                        </li>
+                        <li class="labelChart">Documents: </li>
+                        <li class="labelChartB">
+                            @if (msList.lstDocuments == null)
+                            {
+                                <text>--No Documents--</text>
+                            }
+                            else
+                            {
+                                foreach (var documents in msList.lstDocuments)
+                                {<a id="@documents.Id" class="anchor">@documents.OriginalName</a>}
+                            }
+                        </li>
+                    </ul>
+                </li>
+                }
+                finally { i++; }
+            }
+        </ul>
+    }
+    </form>
+</div>
+<div id="modal-MSupdate" style="display: none">
+</div>
+<div id="tab" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

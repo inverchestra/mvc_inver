@@ -1,0 +1,284 @@
+﻿@model  InnDocs.iHealth.Web.UI.Models.LoginAndSignUp
+@{
+    ViewBag.Title = "Time Zone";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+    });
+</script>
+<h2>
+    TimeZone Settings</h2>
+<div>
+    <select name="DropDownTimezone" id="DropDownTimezone">
+        @if (@Model.Timezone == "GMT-12.00")
+        {
+            <option selected="selected" value="GMT-12.00">(GMT -12:00) Eniwetok, Kwajalein</option>
+        }
+        else
+        { 
+            <option value="GMT-12.00">(GMT -12:00) Eniwetok, Kwajalein</option>
+        }
+        @if (@Model.Timezone == "GMT-11.00")
+        {
+            <option selected="selected" value="GMT-11.00">(GMT -11:00) Midway Island, Samoa</option>
+
+        }
+        else
+        {
+            <option value="GMT-11.00">(GMT -11:00) Midway Island, Samoa</option>
+        }
+        @if (@Model.Timezone == "GMT-10.00")
+        { 
+            <option selected="selected" value="GMT-10.00">(GMT -10:00) Hawaii</option>
+        }
+        else
+        {
+            <option value="GMT-10.00">(GMT -10:00) Hawaii</option>
+        }
+        @if (@Model.Timezone == "GMT-09.00")
+        {
+            <option selected="selected" value="GMT-09.00">(GMT -9:00) Alaska</option>
+        }
+        else
+        {
+            <option value="GMT-09.00">(GMT -9:00) Alaska</option>
+        }
+        @if (@Model.Timezone == "GMT-08.00")
+        {
+            <option selected="selected" value="GMT-08.00">(GMT -8:00) Pacific Time (US &amp; Canada)</option> 
+        }
+        else
+        {
+            <option value="GMT-08.00">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+        }
+        @if (@Model.Timezone == "GMT-07.00")
+        {
+            <option selected="selected" value="GMT-07.00">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+        }
+        else
+        {
+            <option value="GMT-07.00">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+        }
+        @if (@Model.Timezone == "GMT-06.00")
+        {
+            <option selected="selected" value="GMT-06.00">(GMT -6:00) Central Time (US &amp; Canada),
+                Mexico City</option> 
+        }
+        else
+        {
+            <option value="GMT-06.00">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+        }
+        @if (@Model.Timezone == "GMT-05.00")
+        {
+            <option selected="selected" value="GMT-05.00">(GMT -5:00) Eastern Time (US &amp; Canada),
+                Bogota, Lima</option>
+        }
+        else
+        {
+            <option selected="selected" value="GMT-05.00">(GMT -5:00) Eastern Time (US &amp; Canada),
+                Bogota, Lima</option>
+        }
+        @if (@Model.Timezone == "GMT-04.00")
+        {
+            <option selected="selected" value="GMT-04.00">(GMT -4:00) Atlantic Time (Canada), Caracas,
+                La Paz</option>
+        }
+        else
+        {
+            <option value="GMT-04.00">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+        }
+        @if (@Model.Timezone == "GMT-03.30")
+        {
+            <option selected="selected" value="GMT-03.30">(GMT -3:30) Newfoundland</option>
+        }
+        else
+        {
+            <option value="GMT-03.30">(GMT -3:30) Newfoundland</option>
+        }
+        @if (@Model.Timezone == "GMT-03.00")
+        {
+            <option selected="selected" value="GMT-03.00">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+        }
+        else
+        {
+            <option value="GMT-03.00">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+        }
+        @if (@Model.Timezone == "GMT-02.00")
+        {
+            <option selected="selected" value="GMT-02.00">(GMT -2:00) Mid-Atlantic</option>
+        }
+        else
+        {
+            <option value="GMT-02.00">(GMT -2:00) Mid-Atlantic</option>
+        }
+        @if (@Model.Timezone == "GMT-01.00")
+        {
+            <option selected="selected" value="GMT-01.00">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
+        }
+        else
+        {
+            <option value="GMT-01.00">(GMT -1:00 hour) Azores, Cape Verde Islands</option> 
+        }
+        @if (@Model.Timezone == "GMT 00.00")
+        {
+            <option selected="selected" value="GMT 00.00">(GMT) Western Europe Time, London, Lisbon,
+                Casablanca</option>
+        }
+        else
+        {
+            <option value="GMT 00.00">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+        }
+        @if (@Model.Timezone == "GMT +01.00")
+        {
+            <option selected="selected" value="GMT +01.00">(GMT +1:00 hour) Brussels, Copenhagen,
+                Madrid, Paris</option>
+        }
+        else
+        {
+            <option value="GMT +01.00">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
+        }
+        @if (@Model.Timezone == "GMT +02.00")
+        {
+            <option selected="selected" value="GMT +02.00">(GMT +2:00) Kaliningrad, South Africa</option>
+        }
+        else
+        {
+            <option value="GMT +02.00">(GMT +2:00) Kaliningrad, South Africa</option>
+        }
+        @if (@Model.Timezone == "GMT +03.00")
+        {
+            <option selected="selected" value="GMT +03.00">(GMT +3:00) Baghdad, Riyadh, Moscow,
+                St. Petersburg</option>
+        }
+        else
+        {
+            <option value="GMT +03.00">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+        }
+        @if (@Model.Timezone == "GMT +3.30")
+        {
+            <option selected="selected" value="GMT +3.30">(GMT +3:30) Tehran</option>
+        }
+        else
+        {
+            <option value="GMT +3.30">(GMT +3:30) Tehran</option>
+        }
+        @if (@Model.Timezone == "GMT +04.00")
+        {
+            <option selected="selected" value="GMT +04.00">(GMT +4:00) Abu Dhabi, Muscat, Baku,
+                Tbilisi</option>
+        }
+        else
+        {
+            <option value="GMT +04.00">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+        }
+        @if (@Model.Timezone == "GMT +04.30")
+        {
+            <option selected="selected" value="GMT +04.30">(GMT +4:30) Kabul</option>
+        }
+        else
+        {
+            <option value="GMT +04.30">(GMT +4:30) Kabul</option>
+        }
+        @if (@Model.Timezone == "GMT +05.00")
+        {
+            <option selected="selected" value="GMT +05.00">(GMT +5:00) Ekaterinburg, Islamabad,
+                Karachi, Tashkent</option>
+        }
+        else
+        {
+            <option value="GMT +05.00">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+        }
+        @if (@Model.Timezone == "GMT +05.30")
+        {
+            <option selected="selected" value="GMT +05.30">(GMT +5:30) Bombay, Calcutta, Madras,
+                New Delhi</option>
+        }
+        else
+        {
+            <option value="GMT +05.30">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+        }
+        @if (@Model.Timezone == "GMT +05.45")
+        {
+            <option value="GMT +05.45">(GMT +5:45) Kathmandu</option>
+        }
+        else
+        {
+            <option value="GMT +05.45">(GMT +5:45) Kathmandu</option>
+        }
+        @if (@Model.Timezone == "GMT +06.00")
+        {
+            <option selected="selected" value="GMT +06.00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+        }
+        else
+        {
+            <option value="GMT +06.00">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+        }
+        @if (@Model.Timezone == "GMT +07.00")
+        {
+            <option selected="selected" value="GMT +07.00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+        }
+        else
+        {
+            <option value="GMT +07.00">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+        }
+        @if (@Model.Timezone == "GMT +08.00")
+        {
+            <option value="GMT +08.00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+        }
+        else
+        {
+            <option value="GMT +08.00">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+        }
+        @if (Model.Timezone == "GMT +09.00")
+        {
+            <option value="GMT +09.00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+        }
+        else
+        {
+            <option value="GMT +09.00">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+        }
+        @if (@Model.Timezone == "GMT +09.30")
+        {
+            <option selected="selected" value="GMT +09.30">(GMT +9:30) Adelaide, Darwin</option>
+        }
+        else
+        {
+            <option value="GMT +09.50">(GMT +9:30) Adelaide, Darwin</option>
+        }
+        @if (@Model.Timezone == "GMT +10.00")
+        {
+            <option selected="selected" value="GMT +10.00">(GMT +10:00) Eastern Australia, Guam,
+                Vladivostok</option>
+        }
+        else
+        {
+            <option value="GMT +10.00">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+        }
+        @if (@Model.Timezone == "GMT +11.00")
+        {
+            <option selected="selected" value="GMT +11.00">(GMT +11:00) Magadan, Solomon Islands,
+                New Caledonia</option>
+        }
+        else
+        {
+            <option value="GMT +11.00">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+        }
+        @if (@Model.Timezone == "GMT +12.00")
+        {
+            <option selected="selected" value="GMT +12.00">(GMT +12:00) Auckland, Wellington, Fiji,
+                Kamchatka</option>
+        }
+        else
+        {
+            <option value="GMT +12.00">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+        }
+    </select>
+    
+    <div style="width: 100%" class="inline">
+        <input type="button" name="cancel" value="Cancel" style="float: right" class="graygrad" />
+        <input type="submit" id="timezone" name="save" value="Ok" style="float: right; margin-right: 10px;"
+            class="greengrad" />
+    </div>
+</div>

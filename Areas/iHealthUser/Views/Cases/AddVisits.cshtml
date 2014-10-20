@@ -1,0 +1,275 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+
+        $('img#imgad2').click(function () {
+            $('div#DoctorInfo').show('slide', { direction: 'down' }, 600);
+        });
+        $('input[name="cancel1"]').click(function () {
+            $(this).parents('div.slide').hide('slide', { direction: 'down' }, 600);
+        });
+        var l = 0;
+        $('#DoctorInfoSave').click(function () {
+
+            var list1 = '<ul id="e' + l + '"><li><div class="tldiv" style="width: 35%"><h6>Doctor Name</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="Visits.DoctorName" onfocus="this.blur();" class="al" value="' + $(this).parents('div#DoctorInfo').find('input[name="DoctorName"]').val() + '" /></div></li><li><div class="tldiv" style="width: 35%"><h6>Doctor Phno</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="Visits.DoctorPhoneNo" onfocus="this.blur();" class="al" value="' + $(this).parents('div#DoctorInfo').find('input[name="DoctorPhno"]').val() + '" /></div></li><li><div class="tldiv" style="width: 35%"><h6>Doctor Email</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="Visits.DoctorEmail" onfocus="this.blur();" class="al" value="' + $(this).parents('div#DoctorInfo').find('input[name="DoctorEmail"]').val() + '" /></div></li></ul>';
+            $("<li/>").appendTo('#DoctorInfos').html(list1);
+            $('div#DoctorInfo').hide('slide', { direction: 'down' }, 600);
+            $("#imgad2").hide();
+        });
+
+        $('img#imgadd1').click(function () {
+            $('div#NRInfo').show('slide', { direction: 'down' }, 600);
+        });
+        $('input[name="cancel1"]').click(function () {
+            $(this).parents('div.slide').hide('slide', { direction: 'down' }, 600);
+        });
+        var k = 0;
+        $('#NRInfoSave').click(function () {
+
+            var list1 = '<ul id="e' + k + '"><li><div class="tldiv" style="width: 35%"><h6>Height</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="visits.NurseReadingsInfo.Height" onfocus="this.blur();" class="al" value="' + $(this).parents('div#NRInfo').find('input[name="Height"]').val() + '" /></li></div><div class="tldiv" style="width: 35%"><h6>Weight</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="visits.NurseReadingsInfo.Weight" onfocus="this.blur();" class="al" value="' + $(this).parents('div#NRInfo').find('input[name="Weight"]').val() + '" /></div></li><li><div class="tldiv" style="width: 35%"><h6>Temperature</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="visits.NurseReadingsInfo.Temparature" onfocus="this.blur();" class="al" value="' + $(this).parents('div#NRInfo').find('input[name="Temparature"]').val() + '" /></div></li><li><div class="tldiv" style="width: 35%"><h6>BloodPressure</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="visits.NurseReadingsInfo.Weight" onfocus="this.blur();" class="al" value="' + $(this).parents('div#NRInfo').find('input[name="Sistole"]').val() + "/" + $('#Diastole').val() + '"/></div></li><li><div class="tldiv" style="width: 35%"><h6>Respiratoryrate</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="visits.NurseReadingsInfo.Respiratoryrate" onfocus="this.blur();" class="al" value="' + $(this).parents('div#NRInfo').find('input[name="Respiratoryrate"]').val() + '" /></div></li><li><div class="tldiv" style="width: 35%"><h6>PulseRate</h6></div><div class="trdiv" style="width: 55%"><input type="text" name="visits.NurseReadingsInfo.PulseRate" onfocus="this.blur();" class="al" value="' + $(this).parents('div#NRInfo').find('input[name="PulseRate"]').val() + '" /></div><input type="hidden" name="visits.NurseReadingsInfo.Sistole" value="' + $(this).parents('div#NRInfo').find('input[name="Sistole"]').val() + '"/> <input type="hidden" value="' + $(this).parents('div#NRInfo').find('input[name="Diastole"]').val() + '" name="visits.NurseReadingsInfo.Diastole"/> </li></ul>';
+
+            $("<li/>").appendTo('#NRInfos').html(list1);
+            $('div#NRInfo').hide('slide', { direction: 'down' }, 600);
+            $("#imgadd1").hide();
+
+        });
+
+        $('img#imgad2').click(function () {
+            $('div#doctorinfo').show('slide', { direction: 'down' }, 600);
+        });
+
+    });
+</script>
+<div id="visit" class="bluegrad" style="width: 440px; height: 500px; overflow-y: scroll;
+    overflow-x: hidden">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            Visit</h3>
+    </div>
+    <form id="frmvst" enctype="multipart/form-data">
+    <input type="hidden" name="CaseId" value="@Model.CaseId" />
+    <ul style="display: inline-block; padding: 13px 13px">
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Visit date</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="text" name="Visits.CurrentVisitDate" id="cvisitDate1" placeholder="MM/DD/YYYY"
+                    title="Test Service Date" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d"
+                    class="create-logtxts" />
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Reason</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="text" name="Visits.Reason" title="Reason to visit" class="create-logtxts" />
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6 style="margin-top: 10px;">
+                    Diet prescription</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <textarea id="DietPrescription" cols="20" rows="20" name="Visits.DietPresc" class="create-logtxts"
+                    title="DietPrescription" style="height: 40px;"></textarea>
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6 style="margin-top: 10px;">
+                    Doctors comments</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <textarea id="DoctorsLog" name="Visits.DoctorsLog" cols="20" rows="20" class="create-logtxts"
+                    title="Describe DoctorsComments" style="height: 40px"></textarea>
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6 style="margin-top: 10px;">
+                    Precautions</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <textarea name="Visits.Precautions" class="create-logtxts" cols="20" rows="20" title="Precautions"
+                    style="height: 40px"></textarea>
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Nurse readings</h6>
+            </div>
+            <div class="trdiv" style="width: 55%;">
+                <div style="float: right">
+                    <img id="imgadd1" src="~/Images/add.png" title="Add NurseReadings" width="20" height="20"
+                        alt="add" />
+                </div>
+                <div style="float: left; width: 50px">
+                    <ul id="NRInfos" style="width: 200px">
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Doctor information</h6>
+            </div>
+            <div class="trdiv" style="width: 55%;">
+                <div style="float: right">
+                    <img id="imgad2" src="~/Images/add.png" title="Add DoctorInfo" width="20" height="20"
+                        alt="add" />
+                </div>
+                <div style="float: left; width: 50px">
+                    <ul id="DoctorInfos" style="width: 200px">
+                    </ul>
+                </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 35%">
+                <h6>
+                    Next visit date</h6>
+            </div>
+            <div class="trdiv" style="width: 55%">
+                <input type="text" name="Visits.NextVisitDate" id="cvisitDate2" placeholder="MM/DD/YYYY"
+                    title="NextVisit Date" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d"
+                    class="create-logtxts" required />
+            </div>
+        </li>
+        <li>
+            <div class="tldiv" style="width: 55%">
+                <h6>
+                    Do you want to be notified?</h6>
+            </div>
+            <input type="radio" name="Visits.IsNotify" value="true" required />&nbsp;Yes
+            <input type="radio" name="Visits.IsNotify" value="false" checked="checked" />&nbsp;No
+        </li>
+        <li>
+            <div style="float: right">
+            <input type="button" name="cancel" value="Cancel" style="float: right;" class="graygrad" />
+                <input type="button" id="btnVstSave" value="Save" style="float: right; margin-right: 10px;" class="greengrad" />
+                
+            </div>
+        </li>
+    </ul>
+    </form>
+    <div id="DoctorInfo" class="slide">
+        <ul style="display: inline-block; padding: 13px 13px">
+            <li>
+                <div class="tldiv">
+                    Doctor name:
+                </div>
+                <div class="trdiv">
+                    <input type="text" name="DoctorName" title="Enter the Doctorname" class="create-logtxts"
+                        required />
+                </div>
+            </li>
+            <li>
+                <div class="tldiv">
+                    Doctor phone number:
+                </div>
+                <div class="trdiv">
+                    <input type="text" name="DoctorPhno" title="Enter the phno" class="create-logtxts" />
+                </div>
+            </li>
+            <li>
+                <div class="tldiv">
+                    Doctor email:
+                </div>
+                <div class="trdiv">
+                    <input type="text" name="DoctorEmail" title="Enter DoctorEmail" class="create-logtxts" />
+                </div>
+            </li>
+        </ul>
+        <div style="float: right">
+           
+            <input type="button" name="cancel1" value="Cancel"  style="float: right;" class="graygrad" />
+             <input type="button" id="DoctorInfoSave" value="Save" style="float: right; margin-right: 10px;" class="greengrad" />
+        </div>
+    </div>
+    <div id="NRInfo" class="slide">
+        <ul style="display: inline-block; padding: 13px 13px">
+            <li>
+                <div class="tldiv">
+                    Height:
+                </div>
+                <div class="trdiv">
+                    <input type="text" id="Heightfeet" title="Enter the Height" name="Height" class="create-logtxts"
+                        placeholder="Height" required style="width: 100px;" />Cms
+                </div>
+            </li>
+            <li>
+                <div class="tldiv">
+                    Weight:
+                </div>
+                <div class="trdiv">
+                    <input type="text" id="Weight" name="Weight" title="Enter the Weight" class="create-logtxts"
+                        placeholder="Weight" style="width: 100px;" />Kgs
+                </div>
+            </li>
+            <li>
+                <div class="tldiv">
+                    Temperature:
+                </div>
+                <div class="trdiv">
+                    <input type="text" id="Temperature" name="Temparature" title="Enter the Tempeature value"
+                        class="create-logtxts" placeholder="'F" style="width: 100px;">
+                </div>
+            </li>
+            <li>
+                <div class="tldiv">
+                    Blood pressure:
+                </div>
+                <div class="trdiv">
+                    <input type="text" id="Sistole" name="Sistole" title="Enter the Sistole value" placeholder="Systole"
+                        class="create-logtxts" style="width: 100px;" />/
+                    <input type="text" id="Diastole" name="Diastole" title="Enter the Diastole value"
+                        placeholder="Diastole" class="create-logtxts" style="width: 85px;" />
+                </div>
+            </li>
+            <li>
+                <div class="tldiv">
+                    Respiratory rate:
+                </div>
+                <div class="trdiv">
+                    <input type="text" id="Respiratoryrate" name="Respiratoryrate" title="Enter the Respirate value "
+                        placeholder="Respirate" class="create-logtxts" style="width: 100px;" />Per min
+                </div>
+            </li>
+            <li>
+                <div class="tldiv">
+                    Pulse rate:
+                </div>
+                <div class="trdiv">
+                    <input type="text" id="PulseRate" name="PulseRate" title="Enter the pulserate value"
+                        class="create-logtxts" placeholder="pulserate" style="width: 100px;" />Per min
+                </div>
+            </li>
+        </ul>
+        <div style="width: 100%" class="inline">
+           
+            <input type="button" id="NRInfoSave" value="Save" style="float: right; margin-right: 10px;"
+                class="greengrad" />
+                 <input type="button" name="cancel1" value="Cancel" style="float: right" class="graygrad" />
+        </div>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>
+

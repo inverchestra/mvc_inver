@@ -1,0 +1,41 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.Departments
+@{
+    ViewBag.title = "";
+   }
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+
+@Scripts.Render("~/bundles/CreateDepartment")
+<div class="bluegrad" style="width: 400px;">
+  
+    <form id="subscription_order_form" class=""  method="post" action=""> 
+        @Html.ValidationSummary(true)
+        <div>
+            <div id="rhead" style="border-bottom: 1px solid rgb(218,221,226);">
+                <h3>
+                    Create Department</h3>
+            </div>
+            <div id="rbody" class="Payment">
+                <ul>
+                    <li class="labelnormal">Department name</li>
+                    <li class="payment_txtbx">@Html.TextBoxFor(model => model.DepartmentName, new { id="deptname", tabindex="1",@placeholder = "Enter DepartmentName", title = "Enter your DepartmentName", @class = "logintxts" })
+                        @Html.ValidationMessageFor(model => model.DepartmentName)</li>
+                    <li class="labelnormal">Department Specialization</li>
+                    <li class="payment_txtbx">@Html.TextBoxFor(model => model.DeptSpecialization, new { id = "deptspl", tabindex = "2", @placeholder = "Enter DepartmentSpecialization", title = "Enter DepartmentSpecialization", @class = "logintxts" })
+                        @Html.ValidationMessageFor(model => model.DeptSpecialization)</li>
+                          <li class="labelnormal">Department Details</li>
+                    <li class="payment_txtbx">@Html.TextBoxFor(model => model.DeptDetails, new { id = "deptdetails", tabindex = "3", @placeholder = "Enter Department Details", title = "Enter Department Details", @class = "logintxts" })
+                        @Html.ValidationMessageFor(model => model.DeptDetails)</li>
+                  
+                    <li class="labelnormal"></li>
+                    <li class="payment_txtbx">
+                        <div style="width: 100%; float: right; margin: 0 7px 0 0;" class="inline">
+                            <input type="button" class="graygrad" value="close" onclick="$.modal.close();" />
+                            <input id="btnsubmit" type="button" value="submit" class="greengrad" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </form>
+
+</div>

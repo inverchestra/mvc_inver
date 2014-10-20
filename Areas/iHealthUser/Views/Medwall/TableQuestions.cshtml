@@ -1,0 +1,99 @@
+﻿@model IEnumerable<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Questions>
+@{
+    ViewBag.title = "";
+}
+<script type="text/javascript">
+
+
+    $(function () {
+        $('input[name="response"]').click(function () {
+            var id = $(this).parents('li').find("input[name='QuestionId']").val();
+            alert(id)
+            $.ajax({
+                url: '/iHealthUser/Medwall/QResponses1',
+                type: 'GET',
+                async: false,
+                data: { qid: id },
+                success: function (result) {
+                    $.modal.close();
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        position: ["2%", "30%"],
+                        onShow: function (e) {
+
+                            e.container.css({ 'height': 'auto', 'margin-top': '0px !important', 'width': '400px' });
+                        }
+                    });
+                }
+            });
+        });
+
+    });
+
+</script>
+<div>
+    <ul id="ques" style="border: 1px solid #d5d5d5; margin-top: 30px">
+        @if (Model != null && Model.Count() > 0)
+        {
+            <li>
+                <h5 style="background-color: #eeeeee; padding: 5px; color: gray">
+                    Question of the day</h5>
+            </li>
+
+            foreach (var post in Model)
+            {
+            <li class="listyle" style="background-color: #f9f9f9; height: auto; margin-bottom: 0px">
+                Q: @post.Question
+                <div>
+                    <input type="hidden" value="@post.QuestionId" name="QuestionId" />
+                    <input type="hidden" value="@post.ResponseType" name="responsetype" />
+                    @if (post.ResponseStatus == "Skip")
+                    {
+
+                        <input type="button" id="response" name="response" value="Response" class="response" style="float: right" />
+                    }
+                </div>
+                <div>
+                    <label style="float: left; padding-top: 5px; color: Gray">
+                        A: @post.Response
+                    </label>
+                </div>
+            </li>
+          
+
+            <li>
+                <div id="input" style="display: none">
+                    <input type="text" id="res" />
+                    <input type="button" id="btnsubmit" value="Ok" />
+                    <input type="button" id="btncancel" value="Cancel" />
+                </div>
+            </li>
+
+
+            }
+        }
+        else
+        {
+            <h5 style="background-color: #f9f9f9; padding: 5px; color: gray; text-align: center">
+                No Question !</h5>
+        }
+    </ul>
+    <a href="@Url.Action("ShowAllQuestions", "Medwall")"  style="color: rgb(202, 45, 112); float:right; margin-top:5px">
+        View more</a> <a href="@Url.Action("UnreadQuestions", "Medwall")"  style="color:Green; float:left; margin-top:5px">
+            Unread questions</a>
+</div>
+<div id="quest" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

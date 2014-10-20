@@ -1,0 +1,79 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+<script type="text/javascript">
+    $('#Printdocument').click(function () {
+        var check1 = '', check2, check3;
+
+
+        //        $('input[name="option1"]').has(':selected').each(function () {
+        //            check1 = $(this).val() + "," + check1;
+        //        });
+        //        alert(check1);
+
+        var Id = $('#CaseId').val();
+        var values = "";
+
+        $('.checkboxclass').each(function () {
+            var $this = $(this);
+            if ($this.is(':checked')) {
+                // values.push($this.val());
+                values = values + $this.val() + ",";
+               // alert(values);
+            }
+        });
+        $.ajax({
+            url: "/iHealthUser/Cases/PrintDownload",
+            type: "GET",
+            async: false,
+            cache: false,
+            data: { Id: Id, strRelatedCases: values },
+            success: function (result) {
+                $.modal.close();
+                $.ajax({
+                    url: "/iHealthUser/Cases/ViewPrintDown",
+                    type: "GET",
+                    async: false,
+                    cache: false,
+                    data: { path: result },
+                    success: function (responce) {
+                        $('#modal-div').html(responce).modal({
+                        });
+                    }
+                });
+            }
+
+
+
+
+        });
+    });
+</script>
+<div style="width: 200px; height: 200px; display: inline-block; padding: 10px 10px">
+    <h2>
+        Which you want to print</h2>
+    <br />
+    <br />
+    <div>
+        <input type="hidden" id="CaseId" name="caseId" value="@Model.CaseId" />
+        <input type="checkbox" id="relcase" name="option1" class="checkboxclass" value="Relatedcases"
+            checked>
+        Related cases<br>
+        <input type="checkbox" id="rellog" name="option1" class="checkboxclass" value="Relatedlogs">
+        Related logs<br>
+        <input type="checkbox" id="casedoc" name="option1" class="checkboxclass" value="Casedocuments">
+        Case documents<br>
+        <input type="button" id="Printdocument" value="print" />
+        <input type="button" id="Cancelprint" value="cancel" onclick="$.modal.close()"/>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

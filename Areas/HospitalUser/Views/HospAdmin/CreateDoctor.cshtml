@@ -1,0 +1,85 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.AddUser
+@{
+    ViewBag.Title = "Add doctor";
+    }
+@Scripts.Render("~/bundles/PerAccUser")
+
+<script type="text/javascript">
+    $('#SubUserDOB').datepicker({
+        yearRange: "-110:+0",
+        changeYear: true,
+        changeMonth: true,
+        maxDate: new Date()
+        //minDate: dateToday()
+    });
+</script>
+<div id="AddUserDiv" class="bluegrad" style="width: 400px;">
+   
+    @using (Ajax.BeginForm("CreateDoctor", "HospAdmin", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "closeModal", OnFailure = "displayError", OnBegin = "loading" }))
+    {
+       @Html.ValidationSummary(true);
+        <div style="height: 40px;">
+            <h4 class="PMoreInfo_btm">
+                Doctor details</h4>
+        </div>
+        <div style="width: 100%">
+            @Html.HiddenFor(model => Model.UserId)
+            <ul>
+                <li style="width: 100%" class="inline">                       
+                        
+                        @Html.TextBoxFor(model => Model.FirstName, new { @placeholder = "First name", title = "First name", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                  
+                </li>
+                <li style="width: 100%" class="inline">
+                        @Html.TextBoxFor(model => Model.LastName, new { @placeholder = "Last name", title = "Last name", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => model.LastName)
+                </li>
+              
+                <li style="width: 100%" class="inline">
+                        @Html.TextBoxFor(model => Model.DOB, new { @placeholder = "Your date of birth", title = "MM/DD/YYYY", @class = "create-logtxts", pattern = @"(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d", id = "SubUserDOB" })
+                        @Html.ValidationMessageFor(model => model.DOB)
+                    
+                </li>
+                <li style="width: 100%;margin:9px 0 0 0;" class="inline">
+                
+                        &nbsp<input type="radio" name="Gender" value="Male" checked />&nbsp&nbsp Male &nbsp<input
+                            type="radio" name="Gender" value="FeMale" />&nbsp&nbsp Female
+                
+
+                </li>
+            </ul>
+        </div>
+        
+        <div id="chk" style="width: 100%; height: 25px;margin:6px 0 0 0;">
+            @Html.CheckBoxFor(model => Model.IsUsingModeratorCredentials, new { id = "rbtusngModerator", @checked = Model.IsUsingModeratorCredentials })
+            @Html.ValidationMessageFor(model => model.IsUsingModeratorCredentials)
+            Login with moderator credentials
+        </div>
+        <div id="pwd" style="width: 100%">
+            <ul>
+                <li style="width: 100%" class="inline">
+                        @Html.TextBoxFor(model => Model.EmailId, new { @placeholder = "Mail id/PhoneNo", title = "Mail id/Phone No", id = "EmailId", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => model.EmailId)
+                  
+                </li>
+                <li style="width: 100%" class="inline">
+                        @Html.PasswordFor(model => Model.Password, new { @placeholder = "Password", title = "Password", id = "Password", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => model.Password)
+              
+                </li>
+                <li style="width: 100%" class="inline">
+                        @Html.PasswordFor(model => Model.ConfirmPassword, new { @placeholder = "Confirm password", title = "Confirm password", id = "txtConfirmPassword", @class = "create-logtxts" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                 
+                </li>
+            </ul>
+        </div>
+        <div style="width: 100%" class="inline">
+            <button id="btnCancel" style="float: right;" class="graygrad" onclick="$.modal.close();">
+                Cancel</button>
+            <input type="submit" id="btnSubmit" style="float: right; margin-right: 10px;" class="greengrad"
+                value="Create" />
+        </div>
+    }
+</div>

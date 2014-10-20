@@ -1,0 +1,45 @@
+﻿<div id="head">
+    <div class="header_wrapper">
+        <div class="ActivityPane">
+            <span class="WelcomeUser">@Html.Partial("_Login") </span>@* <div class="SwitchUser"> @Html.Partial("_UserAccounts")
+</div>*@
+        </div>
+        <!--logo -->
+        <a href="@Url.Action("PInfo", "PersonalInfo")" class="logo" title="Home" ></a>
+        <!--navigation starts-->
+        <div class="navigation">
+            <ul>
+                <li><a href="@Url.Action("MyPatients", "Doctor")" class="MyInfo">My Patients </a>
+                </li>
+            </ul>
+        </div>
+        <!--navigation end-->
+    </div>
+    @*<div id="top-head">
+
+<div>
+<div id="login" style="float: right; margin-right: 25px; color: white; font-weight: bold">
+
+</div>
+<div id="dropdown" style="float: right; margin-right: 25px; color: white; font-weight: bold">
+
+</div>
+</div>
+<div id="thcontent" style="float: right; margin-right: 25px; color: white; font-weight: bold">
+</div>
+</div>*@
+    <div id="mid-head">
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

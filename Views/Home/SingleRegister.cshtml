@@ -1,0 +1,148 @@
+﻿@using System.Web.Optimization
+@using InnDocs.iHealth.Web.UI.Models
+@model InnDocs.iHealth.Web.UI.Models.SingleRegisterModel
+@{
+   
+    SingleRegisterModel obj = new SingleRegisterModel();
+    List<SelectListItem> Countries = obj.Countries();
+    List<SelectListItem> Stypes = obj.Stypes();
+    
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $('#Regdate').datepicker({
+        yearRange: "-110:+0",
+        changeYear: true,
+        changeMonth: true,
+        maxDate: new Date()
+        //minDate: dateToday()
+    });
+
+    //    $("#Phno").keydown(function (event) {
+    //        // Allow: backspace, delete, tab, escape, and enter
+    //        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+    //        // Allow: Ctrl+A
+    //    (event.keyCode == 65 && event.ctrlKey === true) ||
+    //        // Allow: home, end, left, right
+    //    (event.keyCode >= 35 && event.keyCode <= 39)) {
+    //            // let it happen, don't do anything
+    //            return;
+    //        }
+    //        else {
+    //            // Ensure that it is a number and stop the keypress
+    //            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 10)) {
+    //                event.preventDefault();
+    //            }
+    //        }
+    //    });
+
+    $("#zipcode").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+        // Allow: Ctrl+A
+    (event.keyCode == 65 && event.ctrlKey === true) ||
+        // Allow: home, end, left, right
+    (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 6)) {
+                event.preventDefault();
+            }
+        }
+    });
+
+
+
+</script>
+@Scripts.Render("~/bundles/ajaxfns")
+@using (Ajax.BeginForm("SingleRegister", "Home", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "closeModal", OnFailure = "displayError", OnBegin = "loading" }, new { @class = "reg" }))
+{
+    @Html.ValidationSummary(true)
+
+    
+    <div id="register" style="padding: 4px;">
+        <div id="rhead" style="border-bottom: 1px solid rgb(218,221,226);">
+            <h3>
+                Register now! It just takes a minute
+            </h3>
+        </div>
+        <div id="rbody" class="registration_details">
+            <input type="hidden" name="GroupType" value="@ViewData["GroupType"]" />
+            <input type="hidden" name="IsGroupUser" value="@ViewData["IsGroupUser"]" />
+            <ul style="margin-left: -10px">
+                <li>
+                    @Html.TextBoxFor(model => model.RUserName, new { @placeholder = "Name", title = "Username", @class = "logintxts" })
+                    @Html.ValidationMessageFor(model => model.RUserName)
+                </li>
+                <li>
+                    @Html.TextBoxFor(model => model.EmailId, new { @placeholder = "Email address ", title = "Your valid Email address", @class = "logintxts" })
+                    @Html.ValidationMessageFor(model => model.EmailId)
+                </li>
+                @*<li>
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @placeholder = "Phone Number", title = "Your valid Phone Number", @class = "logintxts" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                </li>*@
+                <li>
+                    @Html.PasswordFor(model => model.Password, new { @placeholder = "Password", title = "Password", @class = "logintxts" })
+                    @Html.ValidationMessageFor(model => model.Password)
+                </li>
+                <li>@Html.PasswordFor(model => model.ConfirmPassword, new { @placeholder = "Re-enter password", title = "confirm password", @class = "logintxts" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                </li>
+                @* <li>
+                    @Html.TextBoxFor(model => model.DOB, new { @placeholder = "Your date of birth", title = "MM/DD/YYYY", @class = "logintxts", pattern = @"(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d", id = "Regdate" })
+                    @Html.ValidationMessageFor(model => model.DOB)
+                </li>*@ @* <li>@Html.TextBoxFor(model => model.PhoneNumber, new { @placeholder = "Phone number", title = "Your phone number", @class = "logintxts", id = "Phno" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)</li>*@ @* <li class="labelnormal" style="margin-left: 3%; width: 90%;">@Html.RadioButtonFor(model => model.Gender, "male", new { @checked = "checked" })&nbsp;
+                    Male &nbsp;&nbsp;
+                    @Html.RadioButtonFor(model => model.Gender, "female")&nbsp; Female</li>
+                <li style="margin: 0 0 0 10px;">@Html.DropDownListFor(model => model.Country, Countries, new { @class = "Reg_Details_select" })</li>
+                <li>@Html.TextBoxFor(model => model.Pincode, new { @placeholder = "Pin/Zip Code", title = "Your area Pin/Zip Code", @class = "logintxts", id = "zipcode" })
+                    @Html.ValidationMessageFor(model => model.Pincode)
+                    </li>
+            
+                <li class="labelnormal" style="margin-left: 3%; width: 90%; font-size: 14px; color: #01466d">
+                    Subscription type:</li>
+                <li style="margin: 0 0 0 10px;">@Html.DropDownListFor(model => model.SubscriptionType, Stypes, new { @class = "Reg_Details_select" })</li>
+             
+                <li class="labelnormal" style="margin-left: 3%; width: 90%;" onchange = "change()", id = "tryit">@Html.CheckBoxFor(model => model.TryIt)
+                    &nbsp; Try it</li>
+                <li class="labelnormal" style="margin-left: 3%; width: 90%;">
+                    <div id="id1" style="display: inline-block; width: 100%; padding: 0px; color: rgb(89,89,89);
+                        font-size: 12px;">
+                        <div style="float: left; width: 40%;">
+                            <input type="checkbox" onchange="change1()" />&nbsp; Promotional code
+                        </div>
+                        <div id="id2" style="display: inline-block; width: 50%; margin: -10px 0 0 0; height: 28px;">
+                        @Html.TextBoxFor(model => model.PromoCodeValue, new { @placeholder = "Promotional code",id="RegUser_PromoCodeValue", @class = "logintxts", style = "display:none" })
+
+                        </div>
+                    </div>
+                </li>*@
+                <li style="width: 97%; margin: 10px 0 0 0;">
+                    <input type="button" value="Cancel" class="graygrad_FP" onclick="$.modal.close();" />
+                    <input id="btnSubmit" type="submit" class="greengrad_FP" value="Bump In" style="margin-right: 10px" />
+                </li>
+                <li></li>
+            </ul>
+            <div style="width: 100%; display: inline-block">
+            </div>
+        </div>
+    </div>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-47299480-1', 'bumpdocs.com');
+        ga('send', 'pageview');
+
+</script>
+
+}

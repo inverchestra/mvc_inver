@@ -1,0 +1,584 @@
+﻿*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    font-family: 'Segoe UI Symbol' , 'Segoe UI' ,Tahoma, 'Helvetica' ,sans-serif;
+    font-size: 0.7em; /* background-position: top left;     background-attachment: fixed;     background-image: url('../Images/background3.jpg');     background-repeat: repeat-x;*/
+}
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header, footer
+{
+    width: 100%;
+    position: fixed;
+    left: 0;
+    color: white;
+}
+
+header
+{
+    top: 0;
+    background-color: rgb(74,85,91);
+}
+
+footer
+{
+    width: 100%;
+    height: 50px;
+    float: left;
+    position: fixed;
+    border: 0;
+    z-index: 9999;
+    bottom: 0;
+    background: url('../Images/Footer_bg.jpg') repeat-x;
+}
+
+#head-wrapper
+{
+    height: 75px;
+    width: 100%;
+    background-color: rgb(74,85,91);
+}
+
+#container
+{
+    margin: 80px auto;
+    width: 1024px;
+    height: 100%;
+    overflow: hidden;
+}
+
+#content
+{
+    width: 60%;
+    border-radius: 8px;
+    font-size: 100%;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: rgb(69,69,69);
+    line-height: 22px;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word; /*background: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%,          rgba(0, 0, 0, 0.01) 50%, transparent 50%, rgba(255, 255, 255, 0.5) 100%) repeat scroll 0% 0% transparent;     background: -webkit-linear-gradient(left, rgba(255,255,255,0.4) 0%,         rgba(255,255,255,0.01) 50%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.4) 100%);*/
+}
+
+#sidebar-wrapper
+{
+    float: right;
+    width: 320px;
+    margin-top: 40px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgb(212,222,223);
+    -webkit-box-shadow: 0px 0px 4px 4px rgba(128,128,128,0.8);
+    box-shadow: 0px 0px 4px 4px rgba(128,128,128,0.8);
+    overflow: hidden;
+}
+
+#logindiv
+{
+    width: 100%;
+    height: auto;
+    background-color: rgb(243,243,243);
+    border-radius: 5px;
+}
+
+#logindiv h5
+{
+    margin-left: 10px;
+    color: rgb(89,89,89);
+    width: 30%;
+}
+
+#logindiv a img
+{
+    width: 22px;
+    height: 22px;
+    float: right;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    margin-right: 6px;
+}
+
+#btnLogin
+{
+    /* border-radius: 25px;     border: 1px solid rgb(164,164,164);*/
+    color: rgb(130,130,130); /* background-color: rgb(227,227,227);*/
+    height: 28px;
+    width: 100px;
+    float: right;
+    font-weight: bolder;
+    margin-right: 10px;
+}
+
+#btnFacebook
+{
+    border: 1px solid rgb(12,77,137);
+    background-color: rgb(15,91,169);
+    height: 28px;
+    width: 150px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    float: left;
+    margin: 10px;
+}
+
+#btnTwitter
+{
+    border: 1px solid rgb(73,163,188);
+    background-color: rgb(92,194,217);
+    height: 28px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100px;
+    float: right;
+    margin: 10px;
+}
+
+#btnSignup
+{
+    border: 1px solid rgb(73,163,188);
+    background-color: rgb(86,193,225);
+    color: white;
+    width: 100px;
+    height: 28px;
+    font-weight: bolder;
+    padding-bottom: 3px;
+    position: inherit;
+    margin: 15px 115px;
+    border-radius: 7px;
+}
+
+#loginhead
+{
+    border-bottom: 1px solid rgb(218,221,226);
+    padding: 10px 10px;
+}
+
+div#reg-wrapper
+{
+    display: none;
+    width: 400px;
+    height: auto;
+}
+
+div#register
+{
+    padding: 13px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+div#ForgotDiv
+{
+    background: rgb(255,255,255);
+    padding: 8px 8px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+div#register #rbody
+{
+    width: 100%;
+    display: inline-block;
+}
+
+div#register input[type="submit"], input[type="button"]
+{
+    /* border: none;        height: 25px;     float: right;     background-color: rgba(0,183,27,0.6);       font-weight: bolder;     border-radius: 4px;*/
+    margin: 5px 0 0 0;
+}
+
+
+
+a
+{
+    text-decoration: none;
+}
+
+a img
+{
+    border: none; /* -webkit-box-shadow: 0 0 4px 4px rgba(128, 128, 128,0.4) inset;         box-shadow: 0 0 4px 4px rgba(128, 128, 128,0.4) inset;*/
+}
+
+h1, h2, h3, h4, h5
+{
+    font-weight: bolder;
+    color: rgb(89,89,89);
+    text-rendering: optimizeLegibility;
+}
+
+h1
+{
+    font-size: 2.2em;
+    font-family: 'Helvetica Normal';
+}
+
+h2
+{
+    font-size: 2em;
+}
+
+h3
+{
+    font-size: 1.8em;
+}
+
+h4
+{
+    font-size: 1.6em;
+}
+
+h5
+{
+    font-size: 1.2em;
+    padding: 0;
+}
+
+h6
+{
+    font-size: 1em;
+}
+
+#rightcorner
+{
+    float: right;
+    margin-top: 1%;
+    margin-right: 2%;
+}
+
+div#fright
+{
+    padding-right: 2%;
+    float: right;
+    width: 35%;
+    color: white;
+    margin-top: 5px;
+}
+
+div#fleft, div#fleft h6
+{
+    float: left;
+    padding-left: 2%;
+    width: 60%;
+    color: white;
+    margin-top: 5px;
+}
+
+div#fclear
+{
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    clear: both;
+    position: fixed;
+}
+
+div#rightcorner a, div#fleft a, div#fright a
+{
+    text-decoration: none;
+    color: white;
+    border: none;
+    -webkit-text-fill-color: rgb(255,255,255);
+}
+
+div#fright h5
+{
+    color: rgb(255,221,0);
+}
+
+div#fright a img
+{
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    float: right;
+    margin: 2px 2px;
+}
+
+.image
+{
+    height: 70px;
+    float: left;
+    margin-left: 2%;
+}
+
+.logintxts
+{
+    width: 90%;
+    height: 23px;
+    margin: 5px 10px 10px;
+    padding: 3px;
+    border: 1px solid rgba(15,91,169,0.5);
+}
+
+.logintxts:focus
+{
+    -webkit-box-shadow: 0 0 3px 3px rgba(0,122,205,0.5);
+    box-shadow: 0 0 3px 3px rgba(0,122,205,0.5);
+}
+
+.reg
+{
+    width: 400px;
+    height: 350px;
+    overflow: hidden;
+    overflow-x: hidden;
+}
+
+
+.error, .input-validation-error
+{
+    border: rgb(255,34,25);
+    -webkit-box-shadow: 0 0 3px 3px rgba(255,112,104,0.8);
+    box-shadow: 0 0 3px 3px rgba(255,112,104,0.8);
+}
+
+.field-validation-error
+{
+    font: italic 13px bold;
+    margin-left: 10px;
+    color: rgb(255,0,0);
+    padding-left: 10px;
+}
+
+.img
+{
+    background: 5px 5px url('../Images/45.gif') no-repeat;
+}
+
+/* For ContactUs and Feedback */
+.tab_static
+{
+    width: auto;
+    height: 23px;
+    float: left;
+    margin: 0 2px 0 0;
+    padding: 3px 5px;
+    font: 14px 'segoe ui';
+    color: Black;
+    background-color: #ECECEC;
+    border: 1px solid #DEDEDE;
+}
+
+.Current
+{
+    width: auto;
+    height: 23px;
+    float: left;
+    margin: 0 2px 0 0;
+    padding: 3px 5px;
+    font: 14px 'segoe ui';
+    color: White;
+    background-color: #1D7AB7;
+    border: 1px solid #044773;
+}
+
+.tabs
+{
+    border-bottom: 1px dotted #C4C4C4;
+    float: left;
+    height: auto;
+    margin: 10px 0 7px;
+    padding: 0 0 7px;
+    width: 100%;
+}
+
+#Contact h3, #divfeedback h3
+{
+    font: 19px 'Tauri' ,sans-serif;
+    color: Black;
+}
+
+.greengrad, .graygrad
+{
+    /*height: 23px;*/
+    width: 63px;
+    height: 24px;
+    margin-top: 10px;
+    padding: 3px 8px;
+    border: none;
+    font: 600 13px 'Tauri' ,sans-serif;
+    cursor: pointer;
+    font-size: 13px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+
+
+.forgot_PW_title
+{
+    font-family: 'Tauri' ,sans-serif;
+    font-size: 1.4em;
+    color: #595959;
+}
+
+.content_FP
+{
+    font: 14px 'segoe ui';
+    color: black;
+    margin: 5px 0;
+    float: left;
+}
+.content_txt_wrapper
+{
+    width: 100%;
+    height: auto;
+    float: left;
+    margin: 10px 0;
+    position: relative;
+}
+.content_txt_wrapper input[type="text"]
+{
+    background: url("../Images/textbx_bg.jpg") repeat-x scroll 0 -8px transparent;
+    border: 1px solid #BED0DF;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font: 12px 'Tauri' ,sans-serif;
+    height: 17px;
+    margin: 2px 0;
+    padding: 3px 5px;
+    outline: none;
+    width: 290px;
+}
+
+
+.captach_div
+{
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 2% 0 0 13%;
+    float: left;
+    background-color: #fff;
+    border: 1px solid #9E9E9E;
+    box-shadow: 0 1px 2px #616161;
+}
+
+.captach_div > input[type="text"]
+{
+    background: url("../Images/textbx_bg.jpg") repeat-x scroll 0 -8px transparent;
+    border: 1px solid #BED0DF;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font: 12px 'Tauri' ,sans-serif;
+    height: 17px;
+    margin: 2px 0;
+    width: 186px;
+    padding: 3px 5px;
+}
+
+
+
+
+#simplemodal-container
+{
+    background-image: -ms-linear-gradient(top, #eeeeee 0%, #ffffff 100%);
+    background-image: -moz-linear-gradient(top, #eeeeee 0%, #ffffff 100%);
+    background-image: -o-linear-gradient(top, #eeeeee 0%, #ffffff 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eeeeee), color-stop(1, #ffffff));
+    background-image: -webkit-linear-gradient(top, #eeeeee 0%, #ffffff 100%);
+    background-image: linear-gradient(to bottom, #eeeeee 0%, #ffffff 100%);
+    padding: 10px;
+}
+
+.buttons_wrap
+{
+    width: 261px;
+    height: auto;
+    float: left;
+    margin: 20px 0 0 0;
+}
+
+
+.registration_details
+{
+    width: 100%;
+    height: auto;
+    float: left;
+    padding-left: 8px;
+    position: relative;
+}
+.registration_details ul
+{
+    width: 100%;
+    height: auto;
+    float: left;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.registration_details ul li
+{
+    width: 100%;
+    height: auto;
+    float: left;
+    padding: 5px;
+    margin: 0;
+}
+
+
+
+.Reg_Details_select
+{
+    width: 92%;
+    height: 23px;
+    border: 1px solid rgba(15,91,169,0.5);
+}
+.select
+{
+    width: 400px;
+    height: 150px;
+    overflow: hidden;
+}
+.logintxts1
+{
+    width: 23%;
+    height: 23px;
+    margin: 5px 10px;
+    padding: 3px;
+    border: 1px solid rgba(15,91,169,0.5);
+}
+.logintxts1:focus
+{
+    -webkit-box-shadow: 0 0 3px 3px rgba(0,122,205,0.5);
+    box-shadow: 0 0 3px 3px rgba(0,122,205,0.5);
+}
+.Reg_Details_select1
+{
+    width: 24%;
+    height: 23px;
+    border: 1px solid rgba(15,91,169,0.5);
+}
+
+#changepwd
+{
+    width: 400px;
+    height: auto;
+	padding: 30px;
+    position: absolute;
+	margin: 200px 470px;
+	-moz-box-shadow: 0 0 10px 0 rgba(128,128, 128, 0.5);
+	-webkit-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5);
+	-o-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5);
+	box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5);
+}

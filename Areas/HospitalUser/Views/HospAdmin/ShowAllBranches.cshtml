@@ -1,0 +1,25 @@
+﻿@model PagedList.IPagedList<InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.Branch>
+@{
+    ViewBag.Title = "ShowAllBranches";
+}
+@Scripts.Render("~/bundles/Branch")
+<h2>
+    Branch Information</h2>
+<div style="width: 100%; display: inline-block">
+    <ul>
+        <li>
+            <input type="button" name="btncreatebranch" value="CreateBranch" title="Click to Create"
+                class="greengrad" style="float: right; margin-right: 25px; width: 110px" /></li>
+    
+    </ul>
+</div>
+<div class="PAccount">
+
+   
+    @if (Model != null )
+    {
+        <div id="branchdiv" style="display: block; height: 360px; overflow: auto;">
+            @RenderPage("~/Areas/HospitalUser/Views/HospAdmin/TableBranches.cshtml", new { Values = Model })
+        </div>
+    }
+</div>

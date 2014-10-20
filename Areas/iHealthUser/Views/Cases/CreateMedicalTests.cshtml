@@ -1,0 +1,89 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    // $('#dateOfMtest1').datepicker({
+    // changeYear: true,
+    // changeMonth: true
+    // });
+    $('#dateOfMtest1').datetimepicker();
+    $('#dateofmtestnotify1').datepicker({
+        changeYear: true,
+        changeMonth: true
+    });
+
+    $("#dateofmtestnotify1").hide();
+
+    $("input[type='radio']").change(function () {
+
+        if ($(this).val() == "true") {
+            $("#dateofmtestnotify1").show();
+
+        }
+
+        else {
+            $("#dateofmtestnotify1").hide();
+        }
+
+    });
+</script>
+<div id="medicaltests" class="bluegrad" style="width: 493px;">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            Medical Test</h3>
+    </div>
+    <form id="frmmt" enctype="multipart/form-data" class="crtproc">
+    <ul style="display: inline-block; padding: 13px 13px">
+        <li class="labelnormal">Test name:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+        <li>
+            <input type="text" name="MedicalTests.TestName" id="tstnameid" tabindex='1' class="create-logtxts"
+                title="Name of the test" />
+            <input type="hidden" name="CaseId" id="CaseId" value="@Model.CaseId" />
+        </li>
+        <li class="labelnormal">Date of test:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+            color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+        <li>
+            <input type="text" id="dateOfMtest1" name="MedicalTests.DateOfTest" placeholder="MM/DD/YYYY"
+                tabindex='2' title="Test Service Date" class="create-logtxts" />
+        </li>
+        <li class="labelnormal">Do you want to be notified? </li>
+        <li>
+            <input type="radio" id="r1" name="MedicalTests.IsNotify" value="true" required />&nbsp;Yes
+            <input type="radio" id="r2" name="MedicalTests.IsNotify" value="false" checked="checked" />&nbsp;No
+            <input type="text" id="dateofmtestnotify1" name="MedicalTests.NotifyDate" placeholder="MM/DD/YYYY"
+                title="Notify date" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.]\d\d\d\d"
+                class="create-logtxts inline" style="width: 133px" tabindex='3' />
+        </li>
+        <li class="labelnormal">Diagnostic center: </li>
+        <li>
+            <input type="text" id="diagnostic" name="MedicalTests.DC" class="create-logtxts"
+                title="Name of the diagnostic center" tabindex='4' />
+        </li>
+        <li class="labelnormal">Test documents: </li>
+        <li>
+            <input type="file" name="MTfiles" title="Select the Document" multiple="multiple"
+                tabindex='5' />
+        </li>
+        <li style="width: 100%" class="inline">
+            <div style="width: 90%;">
+                <input type="button" name="cancel" value="Cancel" style="float: right" class="graygrad" tabindex='6'
+                    onclick="$.modal.close()" />
+                <input type="submit" id="btnMTSave" name="save" value="Save" style="float: right; 
+                    margin-right: 10px;" tabindex='7' class="greengrad" />
+            </div>
+        </li>
+    </ul>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

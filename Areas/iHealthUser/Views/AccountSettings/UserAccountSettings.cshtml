@@ -1,0 +1,781 @@
+﻿@model InnDocs.iHealth.Web.UI.Models.LoginAndSignUp
+@{
+    ViewBag.Title = "Accountsettings";
+}
+<script type="text/javascript">
+    $(function () {
+
+
+        $("#btnfiltertext").click(function () {
+            var uId = $("#hdnUserID").val();
+            // alert("btnPay clicked");
+            // alert(uId);
+
+            $.ajax({
+                url: '/iHealthUser/AccountSettings/UpdateFilterText', //Update Payment Related
+                type: 'POST',
+                data: $(this).parents('#frmfilters').serialize(),
+                success: function (result) {
+                    if (result != "0") {
+                        alert("Update Filter information successfully");
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                   
+                       
+                    
+                }
+            });
+
+        });
+
+        $('#DropDownTimezone').change(function (e) {
+            
+            var Timezone = $("#DropDownTimezone").val();
+            alert(Timezone);
+            $.ajax({
+                url: '/iHealthUser/AccountSettings/UpdatetimeZone', //Update Payment Related
+                type: 'POST',
+                data: { Timezone: Timezone },
+                success: function (result) {
+                    if (data != "0") {
+                        alert("Update Timezone information successfully");
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                }
+            });
+        });
+        $('#btntimezone').click(function () {
+            $.ajax({
+                url: '/iHealthUser/AccountSettings/TimeZone',
+                type: 'GET',
+
+                success: function (result) {
+                    $.modal.close();
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        position: ["12%", "28%"],
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto', 'top': '0px !important' });
+                        }
+
+                    });
+                }
+            });
+        });
+
+
+        $('#btnnotifyzone').click(function () {
+            $.ajax({
+                url: '/iHealthUser/AccountSettings/NotiFicationTime',
+                type: 'GET',
+
+                success: function (result) {
+                    $.modal.close();
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        position: ["15%", "28%"],
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto%', 'width': 'auto', 'top': '0px !important' });
+                        }
+
+                    });
+                }
+            });
+        });
+        $("#accountSettingsSubscribe").click(function () {
+            var uId = $("#uid").val();
+            // alert("btnPay clicked");
+            // alert(uId);
+
+            $.ajax({
+                url: '/iHealthUser/OnlinePaymentUpdate/UpdatePayment',
+                type: 'GET',
+                // data: { UID: uId },
+                success: function (result) {
+                    //$.modal.close();
+                    // alert(result);
+                    $('#ajaxtab').html(result).modal({
+                        escClose: true,
+                        closeHTML: "",
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                        }
+                    });
+                }
+            });
+
+            $('#btnCancel').click(function () {
+                $.modal.close();
+                return false;
+            });
+        });
+    });
+
+</script>
+@*<script src="~/CustomScripts/edit-user.js" type="text/javascript"></script>*@
+@Scripts.Render("~/bundles/AccountInfo") @*sandeep added*@
+<form style="width:100%; background-color:transparent" id="frmfilters" action="@Url.Action("SubmitDetails", "AccountSettings")" method="post">
+<div>
+    <div class="PAccount">
+        <input type="hidden" id="hdnUserID" value="@Model.IHealthUser.UserId" name="IHealthUser.UserId"/>
+        <input type="hidden" id="hdpreferedBy" value="@Model.IHealthUser.PreferredBy" />
+        <input type="hidden" id="hdtipmail" value="@Model.IHealthUser.Tipsendingmail.ToString()" />
+        <input type="hidden" id="hddailymail" value="@Model.IHealthUser.Dailysendingmail.ToString()" />
+        <input type="hidden" id="hddailysms" value="@Model.IHealthUser.Dailysendingsms.ToString()" />
+        @*<ul>
+            <li class="labelPA">First name </li>
+            <li class="ValuePA">
+                <label id="lblFirstName1" style="border: none; font-size: 15px" class="create-logtxts">@Model.PInfo.FirstName</label>
+                <input type="text" id="txt11" title="First Name" name="IHealthUser.FirstName" style="display: none"
+                    class="create-logtxts" />
+            </li>
+            <li class="labelPA">Email id </li>
+            <li class="ValuePA">
+                <label id="lblEmailId1" style="border: none; font-size: 15px" class="create-logtxts">@Model.IHealthUser.EmailId</label>
+                <input type="text" id="txt44" name="IHealthUser.EmailId" style="display: none" class="create-logtxts"
+                    readonly />
+            </li>
+        </ul>*@
+        @if (Model.IHealthUser.IsModerator)
+        {
+            <ul>
+                <li class="labelPA" style="width: 30%">First name </li>
+                <li class="ValuePA" style="width: 70%">
+                    <label id="lblFirstName">@Model.PInfo.FirstName</label>
+                    @*<input type="text" id="txt11" title="First Name" name="IHealthUser.FirstName" style="display: none"
+                    class="create-logtxts" />*@ </li>
+                <li class="labelPA" style="width: 30%">Email id </li>
+                <li class="ValuePA" style="width: 70%">
+                    @if (Model.IHealthUser.EmailId != null && Model.IHealthUser.IsVerified)
+                    {
+                        <label id="lblEmailId">@Model.IHealthUser.EmailId</label>
+                       
+                        <div style="float: right">
+                            <input type="checkbox" id="emailcheck" />
+                            <label>
+                                Use for Communtication</label></div> 
+                       
+@*<input type="text" id="txt44" name="IHealthUser.PhoneNo" style="display: none" class="create-logtxts" readonly />*@
+                    }
+                    else if (Model.IHealthUser.EmailId != null && !Model.IHealthUser.IsVerified)
+                    {
+                        <label id="lblEmailId">@Model.IHealthUser.EmailId</label>
+                        <input type="button" id="btnEmailVerify" class="greengrad" style="height: 23px; width: auto;
+                            margin: 0px 0px 0px 2px; font: 600 11px 'Tauri',sans-serif;" value="Verify Code" />
+                        <input type="button" id="btnResendConfirmMail" class="greengrad" style="height: 23px;
+                            width: auto; margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Resend confirm mail" />
+                    }
+                    else
+                    {
+                        <label id="lblEmailId">
+                            NA</label>
+                        <input type="button" id="btnAddEmail" class="greengrad" style="height: 23px; width: auto;
+                            margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Add email" />
+                    }
+                    @*<label id="lblEmailId1" style="border: none; font-size: 15px" class="create-logtxts">@Model.IHealthUser.EmailId</label>*@
+                    @*<input type="text" id="txt44" name="IHealthUser.EmailId" style="display: none" class="create-logtxts"
+                    readonly />*@ </li>
+                <li class="labelPA" style="width: 30%">Contact number </li>
+                <li class="ValuePA" style="width: 70%">
+                    @if (Model.IHealthUser.PhoneNo != 0 && Model.IHealthUser.IsPhnVerified)
+                    {
+                        <label id="lblPhoneNo">@Model.IHealthUser.PhoneNo</label>
+                        
+                             <input type="button" id="btnEditMobile" class="greengrad" style="height: 23px; width: auto;
+                            margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Edit Mobile Number" />
+                       if (Model.IHealthUser.EmailId != null && Model.IHealthUser.IsVerified)
+                        {
+                              <input type="button" id="btnDeleteMobile" class="greengrad" style="height: 23px; width: auto;
+                            margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Delete Mobile Number" />
+                        }
+                        <div style="float: right">
+                            <input type="checkbox" id="phonecheck" />
+                            <label style="color: #696969">
+                                Use for Communtication</label></div> 
+                       
+@*<input type="text" id="txt44" name="IHealthUser.PhoneNo" style="display: none" class="create-logtxts"
+                    readonly />*@
+                    }
+                    else if (Model.IHealthUser.PhoneNo != null && !Model.IHealthUser.IsPhnVerified)
+                    {
+                        <label id="lblPhoneNo">@Model.IHealthUser.PhoneNo</label>
+                        <input type="button" id="btnVerify" class="greengrad" style="height: 23px; width: auto;
+                            margin: -2px 93px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Verify Code" />
+                        <input type="button" id="btnResendOTA" class="greengrad" style="height: 23px; width: auto;
+                            margin: -2px -167px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Resend Code" />
+                    }
+                   @* else if(Model.IHealthUser.EmailId!=null && Model.IHealthUser.PhoneNo!=null)
+                    {
+                         <label id="lblPhoneNo">@Model.IHealthUser.PhoneNo</label>
+                        
+                             <input type="button" id="btnEditMobile" class="greengrad" style="height: 23px; width: auto;
+                            margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Edit Mobile" />
+                          <input type="button" id="btnDeleteMobile" class="greengrad" style="height: 23px; width: auto;
+                            margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Delete Mobile" />
+                        <div style="float: right">
+                            <input type="checkbox" id="phonecheck" />
+                            <label style="color: #696969">
+                                Use for Communtication</label></div> 
+                    }*@
+                    else
+                    {
+                        <label id="lblPhoneNo">
+                            NA</label>
+                        <input type="button" id="btnAddMobile" class="greengrad" style="height: 23px; width: auto;
+                            margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" value="Add Mobile Number" />
+                    }
+                </li>
+                @* <li class="labelPA" style="width: 30%">User plan </li>
+                <li class="ValuePA" style="width: 70%">
+                    <label id="lblUserPlan">@Model.SingleRegUser.UserPlan</label>
+                    @if (@Model.SingleRegUser.UserPlan == "Free User")
+                    {
+                        <input type="button" id="accountSettingsSubscribe" value="Subscribe Now" class="greengrad"
+                            style="height: 23px; width: auto; margin: 0px 0px 0px 0px; font: 600 11px 'Tauri',sans-serif;" />
+                    }
+                    else
+                    {
+                    }
+                </li>*@ @*<li class="labelPA" style="width: 30%">User type </li>
+                <li class="ValuePA" style="width: 70%">
+                    <label id="lblUserType">
+                        Single User</label>
+                </li>*@
+                @if (@Model.IHealthUser.EmailId != null && @Model.IHealthUser.IsVerified == true)
+                {
+                    <li class="labelPA" style="width: 30%">Send daily tip to my email id </li>
+                    <li class="ValuePA" style="width: 70%">
+                        <input type="checkbox" id="tipsendingmail" />
+                    </li>
+                }
+                @if (@Model.IHealthUser.EmailId != null && @Model.IHealthUser.IsVerified == true)
+                {
+                    <li class="labelPA" style="width: 30%">Send daily reminder to my email id</li>
+                    <li class="ValuePA" style="width: 70%">
+                        <input type="checkbox" id="dailyendingmail" />
+                    </li>
+                }
+                @if (@Model.IHealthUser.PhoneNo != null && @Model.IHealthUser.IsPhnVerified == true)
+                {
+                    <li class="labelPA" style="width: 30%">Send daily reminder as sms</li>
+                    <li class="ValuePA" style="width: 70%">
+                        <input type="checkbox" id="dailyendingsms" />
+                    </li>
+                }
+@*  <li class="labelPA" style="width: 250px;">Expiry date </li>
+                <li class="ValuePA" style="width: 467px;">
+                    <label id="lblExpiryDate">@Model.SingleRegUser.ExpireOn1</label>
+                    @*<input type="text" id="txt7" name="RegUser.ExpireOn" style="display: none" class="create-logtxts"
+                    readonly /> </li>*@ @*<li>
+                    <div style="float: right">
+                        <input type="checkbox" id="tipsendingmail" name="@Model.IHealthUser.Tipsendingmail" />
+                        <label>
+                            Tips Communtication</label></div>
+                </li>
+                <li>
+                    <div style="float: right">
+                        <input type="checkbox" id="dailyendingmail" />
+                        <label>
+                            daily Communtication</label></div>
+                </li>*@
+                <li class="labelPA" style="width: 30%">Timeline information </li>
+                <li class="ValuePA" style="width: 70%">
+                    <input type="button" id="btndownloadmed" value="Download" class="greengrad" style="float: left;
+                        margin: 0 5px 5px 5px; width: 75px" />
+                </li>
+                <li class="labelPA" style="width: 30%; height: 69px">Interests </li>
+                <li class="ValuePA" style="width: 70%; color: Gray; height: auto !important">
+                    <p>
+                        @Html.CheckBoxFor(model => model.Outdoorsports) Outdoor sports &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.CheckBoxFor(model => model.Gardening)
+                        Gardening &nbsp;@Html.CheckBoxFor(model => model.Animalcare) Animal care &nbsp;
+                        @Html.CheckBoxFor(model => model.Yoga) Yoga
+                    </p>
+                    <p>
+                        @Html.CheckBoxFor(model => model.Adventuresports) Adventure sports &nbsp; @Html.CheckBoxFor(model => model.Swimming)
+                        Swimming &nbsp; @Html.CheckBoxFor(model => model.Modeling) Modeling &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        @Html.CheckBoxFor(model => model.Pets) Pets
+                    </p>
+                    <p>
+                        @Html.CheckBoxFor(model => model.Interiordesigning) Interior designing &nbsp; @Html.CheckBoxFor(model => model.Travelling)
+                        Travelling &nbsp; @Html.CheckBoxFor(model => model.Arts) Arts
+                    </p>
+                </li>
+                <li class="labelPA" style="width: 30%; height: 46px !important">Filters</li>
+                <li class="ValuePA" style="width: 70%; color: Gray; height: auto !important; border-top: 1px solid #fff;">
+                    <p>
+                        @Html.CheckBoxFor(model => model.Latepregnancy) Late pregnancy &nbsp;&nbsp; @Html.CheckBoxFor(model => model.Diabetes)
+                        Diabetes &nbsp;&nbsp; @Html.CheckBoxFor(model => model.Thyroid) Thyroid &nbsp; @Html.CheckBoxFor(model => model.Twins)
+                        Twins
+                    </p>
+                    <p>
+                        @Html.CheckBoxFor(model => model.Earlypregnancy) Early pregnancy &nbsp; @Html.CheckBoxFor(model => model.Tripplets)
+                        Tripplets &nbsp; &nbsp;@Html.CheckBoxFor(model => model.Asthma) Asthma &nbsp; @Html.CheckBoxFor(model => model.Hypertension)
+                        Hypertension
+                    </p>
+                </li>
+                <li class="labelPA" style="width: 30%">Privacy</li>
+                <li class="ValuePA" style="width: 70%; color: Gray; border-top: 1px solid #fff; border-bottom: 1px solid #d5d5d5">
+                    <label class="radio" style="width: 15%; float: left">
+                        @Html.CheckBoxFor(model => model.Privacy)
+                        Yes
+                    </label>
+                    @*<label class="radio" style="width: 15%; float: left">
+                            @Html.RadioButtonFor(model => model.Privacy, false) No
+                        </label>*@
+                    <input type="button" id="btnfiltertext" value="Update filters" class="greengrad" style="float: right;
+                        width: 100px; margin: 0" />
+                </li>
+                <li class="labelPA" style="width: 30%">TimeZoneSettings </li>
+                <li class="ValuePA" style="width: 70%">@*<label id="lbltimeZone">@Model.Timezone</label>*@
+                    <select name="DropDownTimezone" id="DropDownTimezone">
+                        @if (@Model.Timezone == "GMT-12:00")
+                        {
+                            <option selected="selected" value="GMT-12:00">(GMT-12:00) Eniwetok, Kwajalein</option>
+                        }
+                        else
+                        { 
+                            <option value="GMT-12:00">(GMT-12:00) Eniwetok, Kwajalein</option>
+                        }
+                        @if (@Model.Timezone == "GMT-11:00")
+                        {
+                            <option selected="selected" value="GMT-11:00">(GMT-11:00) Midway Island, Samoa</option>
+
+                        }
+                        else
+                        {
+                            <option value="GMT-11:00">(GMT-11:00) Midway Island, Samoa</option>
+                        }
+                        @if (@Model.Timezone == "GMT-10:00")
+                        { 
+                            <option selected="selected" value="GMT-10:00">(GMT-10:00) Hawaii</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-10:00">(GMT -10:00) Hawaii</option>
+                        }
+                        @if (@Model.Timezone == "GMT-09:00")
+                        {
+                            <option selected="selected" value="GMT-09:00">(GMT-9:00) Alaska</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-09:00">(GMT-9:00) Alaska</option>
+                        }
+                        @if (@Model.Timezone == "GMT-08:00")
+                        {
+                            <option selected="selected" value="GMT-08:00">(GMT-8:00) Pacific Time (US &amp; Canada)</option> 
+                        }
+                        else
+                        {
+                            <option value="GMT-08.00">(GMT 8:00) Pacific Time (US &amp; Canada)</option>
+                        }
+                        @if (@Model.Timezone == "GMT-07:00")
+                        {
+                            <option selected="selected" value="GMT-07:00">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-07:00">(GMT-7:00) Mountain Time (US &amp; Canada)</option>
+                        }
+                        @if (@Model.Timezone == "GMT-06:00")
+                        {
+                            <option selected="selected" value="GMT-06:00">(GMT-6:00) Central Time (US &amp; Canada),
+                                Mexico City</option> 
+                        }
+                        else
+                        {
+                            <option value="GMT-06:00">(GMT-6:00) Central Time (US &amp; Canada), Mexico City</option>
+                        }
+                        @if (@Model.Timezone == "GMT-05:00")
+                        {
+                            <option selected="selected" value="GMT-05:00">(GMT-5:00) Eastern Time (US &amp; Canada),
+                                Bogota, Lima</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-05:00">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+                        }
+                        @if (@Model.Timezone == "GMT-04:00")
+                        {
+                            <option selected="selected" value="GMT-04:00">(GMT-4:00) Atlantic Time (Canada), Caracas,
+                                La Paz</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-04:00">(GMT-4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+                        }
+                        @if (@Model.Timezone == "GMT-03:30")
+                        {
+                            <option selected="selected" value="GMT-03:30">(GMT-3:30) Newfoundland</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-03:30">(GMT-3:30) Newfoundland</option>
+                        }
+                        @if (@Model.Timezone == "GMT-03:00")
+                        {
+                            <option selected="selected" value="GMT-03:00">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-03:00">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+                        }
+                        @if (@Model.Timezone == "GMT-02:00")
+                        {
+                            <option selected="selected" value="GMT-02:00">(GMT-2:00) Mid-Atlantic</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-02:00">(GMT -2:00) Mid-Atlantic</option>
+                        }
+                        @if (@Model.Timezone == "GMT-01:00")
+                        {
+                            <option selected="selected" value="GMT-01:00">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
+                        }
+                        else
+                        {
+                            <option value="GMT-01:00">(GMT-1:00 hour) Azores, Cape Verde Islands</option> 
+                        }
+                        @if (@Model.Timezone == "GMT 00:00")
+                        {
+                            <option selected="selected" value="GMT 00:00">(GMT) Western Europe Time, London, Lisbon,
+                                Casablanca</option>
+                        }
+                        else
+                        {
+                            <option value="GMT 00:00">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+                        }
+                        @if (@Model.Timezone == "GMT+01:00")
+                        {
+                            <option selected="selected" value="GMT +01:00">(GMT +1:00 hour) Brussels, Copenhagen,
+                                Madrid, Paris</option>
+                        }
+                        else
+                        {
+                            <option value="GMT +01:00">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
+                        }
+                        @if (@Model.Timezone == "GMT+02:00")
+                        {
+                            <option selected="selected" value="GMT+02:00">(GMT+2:00) Kaliningrad, South Africa</option>
+                        }
+                        else
+                        {
+                            <option value="GMT +02:00">(GMT+2:00) Kaliningrad, South Africa</option>
+                        }
+                        @if (@Model.Timezone == "GMT+03:00")
+                        {
+                            <option selected="selected" value="GMT+03:00">(GMT+3:00) Baghdad, Riyadh, Moscow, St.
+                                Petersburg</option>
+                        }
+                        else
+                        {
+                            <option value="GMT +03:00">(GMT+3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+                        }
+                        @if (@Model.Timezone == "GMT+3:30")
+                        {
+                            <option selected="selected" value="GMT +03:30">(GMT+3:30) Tehran</option>
+                        }
+                        else
+                        {
+                            <option value="GMT +03:30">(GMT+03:30) Tehran</option>
+                        }
+                        @if (@Model.Timezone == "GMT+04:00")
+                        {
+                            <option selected="selected" value="GMT+04:00">(GMT+4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+04:00">(GMT+4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                        }
+                        @if (@Model.Timezone == "GMT+04:30")
+                        {
+                            <option selected="selected" value="GMT+04:30">(GMT+4:30) Kabul</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+04:30">(GMT+4:30) Kabul</option>
+                        }
+                        @if (@Model.Timezone == "GMT+05:00")
+                        {
+                            <option selected="selected" value="GMT+05:00">(GMT+5:00) Ekaterinburg, Islamabad, Karachi,
+                                Tashkent</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+05:00">(GMT+5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+                        }
+                        @if (@Model.Timezone == "GMT+05:30")
+                        {
+                            <option selected="selected" value="GMT +05:30">(GMT+5:30) Bombay, Calcutta, Madras,
+                                New Delhi</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+05:30">(GMT+5:30) Bombay, Calcutta, Madras, New Delhi</option>
+                        }
+                        @if (@Model.Timezone == "GMT+05:45")
+                        {
+                            <option value="GMT +05:45">(GMT+5:45) Kathmandu</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+05:45">(GMT+5:45) Kathmandu</option>
+                        }
+                        @if (@Model.Timezone == "GMT +06:00")
+                        {
+                            <option selected="selected" value="GMT+06.00">(GMT+6:00) Almaty, Dhaka, Colombo</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+06:00">(GMT+6:00) Almaty, Dhaka, Colombo</option>
+                        }
+                        @if (@Model.Timezone == "GMT+07:00")
+                        {
+                            <option selected="selected" value="GMT+07:00">(GMT+7:00) Bangkok, Hanoi, Jakarta</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+07:00">(GMT+7:00) Bangkok, Hanoi, Jakarta</option>
+                        }
+                        @if (@Model.Timezone == "GMT+08:00")
+                        {
+                            <option value="GMT +08:00">(GMT+8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                        }
+                        else
+                        {
+                            <option value="GMT +08:00">(GMT+8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                        }
+                        @if (Model.Timezone == "GMT+09:00")
+                        {
+                            <option value="GMT+09:00">(GMT+9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+09:00">(GMT+9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                        }
+                        @if (@Model.Timezone == "GMT+09:30")
+                        {
+                            <option selected="selected" value="GMT+09:30">(GMT+9:30) Adelaide, Darwin</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+09:50">(GMT+9:30) Adelaide, Darwin</option>
+                        }
+                        @if (@Model.Timezone == "GMT+10:00")
+                        {
+                            <option selected="selected" value="GMT+10:00">(GMT+10:00) Eastern Australia, Guam, Vladivostok</option>
+                        }
+                        else
+                        {
+                            <option value="GMT+10:00">(GMT+10:00) Eastern Australia, Guam, Vladivostok</option>
+                        }
+                        @if (@Model.Timezone == "GMT+11:00")
+                        {
+                            <option selected="selected" value="GMT+11:00">(GMT+11:00) Magadan, Solomon Islands,
+                                New Caledonia</option>
+                        }
+                        else
+                        {
+                            <option value="GMT +11:00">(GMT+11:00) Magadan, Solomon Islands, New Caledonia</option>
+                        }
+                        @if (@Model.Timezone == "GMT+12:00")
+                        {
+                            <option selected="selected" value="GMT +12:00">(GMT+12:00) Auckland, Wellington, Fiji,
+                                Kamchatka</option>
+                        }
+                        else
+                        {
+                            <option value="GMT +12:00">(GMT+12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+                        }
+                    </select>
+                    @*<input type="button" id="btntimezone" value="Change timezone" class="greengrad" style="float: right;
+                        margin: 0 5px 5px 5px; width: 75px" />*@ </li>
+                <li class="labelPA" style="width: 30%">NotificationTime </li>
+                <li class="ValuePA" style="width: 70%"><label id="lblnotiZone">@Model.Notificationtime</label>
+                    <input type="button" id="btnnotifyzone" value="ChangeNotifation" class="greengrad"
+                        style="float: right; margin: 0 5px 5px 5px; width: 130px" />
+                    @*<div class="input-group clockpicker">
+                        <input type="text" class="form-control" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                    </div>*@
+                </li>
+            </ul>
+@*<input type="button" id="btnEditModerator" value="Edit" class="greengrad" style="float: right;" />*@
+        }
+@*<div style="width: 100%; display: inline-block">*@
+        else
+        {
+            <ul>
+                <li class="labelPA" style="width: 30%">First name </li>
+                <li class="ValuePA" style="width: 70%">
+                    <label id="lblFirstName">@Model.PInfo.FirstName</label>
+                    @*<input type="text" id="txt11" title="First Name" name="IHealthUser.FirstName" style="display: none"
+                    class="create-logtxts" />*@ </li>
+                <li class="labelPA" style="width: 30%">Email id </li>
+                <li class="ValuePA" style="width: 70%">
+                    @if (Model.IHealthUser.EmailId != null && Model.IHealthUser.IsVerified)
+                    {
+                        <label id="lblEmailId">@Model.IHealthUser.EmailId</label>
+@*<input type="text" id="txt44" name="IHealthUser.PhoneNo" style="display: none" class="create-logtxts" readonly />*@
+                    }
+                    else if (Model.IHealthUser.EmailId != null && !Model.IHealthUser.IsVerified)
+                    {
+                        <label id="lblEmailId">@Model.IHealthUser.EmailId</label><input type="button" id="btnResendConfirmMail"
+                            class="greengrad" style="height: 23px; width: auto; margin: 0px 0px 0px 0px;
+                            font: 600 11px 'Tauri',sans-serif;" value="Resend" />                       
+                    }
+                    else
+                    {
+                        <label id="lblEmailId">
+                            NA</label>
+                    }
+                    @*<label id="lblEmailId1" style="border: none; font-size: 15px" class="create-logtxts">@Model.IHealthUser.EmailId</label>*@
+                    @*<input type="text" id="txt44" name="IHealthUser.EmailId" style="display: none" class="create-logtxts"
+                    readonly />*@ </li>
+                <li class="labelPA" style="width: 30%">Contact number </li>
+                <li class="ValuePA" style="width: 70%">
+                    @if (Model.IHealthUser.PhoneNo != null && Model.IHealthUser.IsPhnVerified)
+                    {
+                        <label id="lblPhoneNo">@Model.IHealthUser.PhoneNo</label>
+@*<input type="text" id="txt44" name="IHealthUser.PhoneNo" style="display: none" class="create-logtxts"
+                    readonly />*@
+                    }
+                    else if (Model.IHealthUser.PhoneNo != null && !Model.IHealthUser.IsPhnVerified)
+                    {
+                        <label id="lblPhoneNo">@Model.IHealthUser.PhoneNo</label><input type="button" id="btnVerify"
+                            class="greengrad" style="height: 23px; width: auto; margin: -2px 93px 0px 0px;
+                            font: 600 11px 'Tauri',sans-serif;" value="Verify Code" /><input type="button" id="btnResendOTA"
+                                class="greengrad" style="height: 23px; width: auto; margin: -2px -167px 0px 0px;
+                                font: 600 11px 'Tauri',sans-serif;" value="Resend Code" />
+                    }
+                    else
+                    {
+                        <label id="lblPhoneNo">
+                            NA</label>
+                    }
+                </li>
+            </ul>
+@*<input type="button" id="btnEditModerator" value="Edit" class="greengrad" style="float: right;" />*@
+        }
+    </div>
+    @*<input type="button" id="btnEditModerator" value="Edit" class="greengrad" style="float: right;" />*@
+    @*sandeep added*@
+    <div style="width: 100%; display: inline-block">
+        <button id="btnClose1" class="graygrad" style="float: right; display: none;" onclick="$.modal.close();">
+            Cancel</button>
+        <input type="submit" id="btnUpdate1" value="Submit" title="Click to Submit" class="greengrad"
+            style="float: right; display: none; margin-right: 12px" />
+    </div>
+</div>
+</form>
+<div>
+    <br />
+    <div>
+        <div>
+            <h5 style="margin-left: 15px;">
+                Doula users</h5>
+        </div>
+        @{ var Count = @Model.DoulaUser.Count;
+        }
+        @{if (Count < 2)
+          {
+            <div style="margin: -37px 24px 38px 0;">
+                <a id="addDoula" style="width: 126px;" class="greengrad">Add Doula</a> <a id="deleteDoula"
+                    style="width: 126px;" class="greengrad">Delete Doula</a>
+            </div>
+          }
+
+          else
+          {
+            <div style="margin: -37px 24px 38px 0;">
+                <a id="Disable" class="greengrad">Add Doula</a> <a id="deleteDoula" style="width: 126px;"
+                    class="greengrad">Delete Doula</a>
+            </div>
+          }
+        }
+    </div>
+    <div id="table">
+        <table id="thead">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">
+                    </th>
+                    <th style="width: 20%;">
+                        Doula Name
+                    </th>
+                    <th style="width: 30%;">
+                        Email
+                    </th>
+                    <th style="width: 15%;">
+                        Type
+                    </th>
+                    <th style="width: 15%;">
+                        Date Added
+                    </th>
+                    @*<th style="width: 15%;">
+                        Status
+                    </th>*@
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                @foreach (var UsrInfo in Model.DoulaUser)
+                {                    
+                    <tr>
+                        <td style="width: 5%; padding-left: 18px">
+                            <input type="checkbox" />
+                        </td>
+                        <td style="width: 20%; padding-left: 18px" @*class="w20"*@>@UsrInfo.FirstName
+                        </td>
+                        <td style="width: 30%; padding-left: 18px" @*class="w20"*@>@UsrInfo.Email
+                        </td>
+                        <td style="width: 15%; padding-left: 18px" @*class="w20"*@>@UsrInfo.DoulaType
+                        </td>
+                        <td style="width: 15%; padding-left: 18px" @*class="w20"*@>@UsrInfo.CreatedOn.Value.ToShortDateString()
+                        </td>
+                        <td style="width: 15%; padding-left: 18px">
+                            <input type="button" name="viewDoulaUser" title="view" readonly="readonly" class="edit"
+                                onfocus="this.blur();" value="" />
+                            @*@if (!UsrInfo.IsVerified)
+                            {
+                                <input type="button" name="chgpwd" title="change password" readonly="readonly" class="ChngPW"
+                                    onfocus="this.blur()" value="" />
+                                <label id="lblStatus" title="Pending">
+                                    Pending</label>                                
+                            }
+                            else
+                            {
+                                <label id="lblStatus" title="Verified">
+                                    Verified</label>
+                            }*@
+                            <input type="hidden" value="@UsrInfo.DoulaUserId"/>
+                        </td>
+                    </tr>                       
+                }
+            </tbody>
+        </table>
+        <div style="height: 30px;">
+            <label id="label">
+            </label>
+        </div>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

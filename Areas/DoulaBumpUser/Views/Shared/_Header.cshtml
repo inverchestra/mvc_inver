@@ -1,0 +1,161 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $("#UserId").change(function () {
+            var hdnUserId = $(this).val();
+            $('#hdSelectedID').val(hdnUserId);
+            $('#HealthUsersList').submit();
+        });
+    });
+</script>
+<div id="head">
+    <div class="navbar navbar-fixed-top" style="position: relative; margin-bottom: 0px;">
+        <a class="brand" href="@Url.Action("DoulaPInfo", "DoulaPersonal")">BumpDocs</a>
+        <div class="navigation">
+            <ul>
+                @{ InnDocs.iHealth.Web.UI.Models.UserInformation user = (InnDocs.iHealth.Web.UI.Models.UserInformation)HttpContext.Current.Session["LoginUser"]; }
+                @{if (user.EmailId == "admin@inndocs.com")
+                  {
+             
+@*<li><a href="@Url.Action("UserAdministration", "Administration")" class="administration">
+                        Administration </a></li>
+                  } else {
+                    <li><a href="@Url.Action("PInfo", "PersonalInfo")" class="MyInfo" style="color:gray">
+                        MyInfo </a></li>
+                    <li><a href="@Url.Action("Index", "Medwall")" class="HealthLog" style="color:gray">MedWall
+                    </a></li>
+                    <li><a href="@Url.Action("Cases", "Cases")" class="HealthRecords" style="color:gray">
+                        HealthRecord </a></li>
+                    <li><a href="@Url.Action("MyDocs", "MyDocs")" class="HealthTracker" style="color:gray">
+                        HealthDocs </a></li>*@
+                  }
+                }
+            </ul>
+        </div>
+        <div style="float: right; width: 400px; margin: 12px 150px 0 0">
+            @using (Html.BeginForm("ChangeUser", "DoulaBump", FormMethod.Post, new { id = "HealthUsersList" }))
+            {
+                @Html.Hidden("hdSelectedID") 
+                <strong style="color: #808080; font-size: 15px; font-weight: normal;">Change User: @Html.DropDownList("UserDetails", (IEnumerable<SelectListItem>)Session["UsersList"],  new { id = "UserId", style = "width:140px" })
+                </strong>
+            }
+        </div>
+        <div style="float: right; width: auto; margin: 12px 20px 0 0;">
+            @{
+                string AccessingName = (string)HttpContext.Current.Session["LoginName"];
+            }
+            <strong style="color: #808080; font-size: 14px; font-weight: normal;">You are accessing:<b
+                style="color: #CA2D70;"> @AccessingName's</b> account </strong>
+        </div>
+        <div id="user" class="ActivityPane" style="position: absolute; z-index: 5; right: 10px;
+            width: auto !important">
+            <span class="WelcomeUser">@*@Html.Partial("_Login")*@
+                @{ 
+                    string UserName = (string)HttpContext.Current.Session["LoginName"];
+                    string image = (string)HttpContext.Current.Session["userimage"];
+                }
+                <div class="welcome_message">
+                    @UserName
+                </div>
+                <img src="@image" alt="" width="32" height="32" style="background-color: #d5d5d5; border-radius: 16px;
+        display: block; float: right;box-shadow: 0 0 3px 1px rgba(125, 125, 125, 0.44);" />
+            </span>
+            <div class="aria" id="aria">
+                <ul id='list'>
+                    <li><a href="@Url.Action("LogOut", "DoulaBump")" title="Sign out">Sign out</a></li>
+                    @*  <li><a href="@Url.Action("Index", "AccountSettings")" title="Account Information">Account</a></li>*@
+                    @if (user.Password != null)
+                    {
+                        <li><a href="#" id="doulachngpwd" title="Change Password">Change passowrd</a></li>
+                    }
+                    
+@*<li><a href="@Url.Action("DownloadScan", "AccountSettings")" title="Scanner Setup">Download
+                        Scan setup</a></li>
+                    <li><a href="@Url.Action("PaymentManagement", "AccountSettings")">Payment</a></li>*@
+                </ul>
+            </div>
+            <span class="ContactUs">Contact us</span>
+            <form id="frmWizard" action="">
+            <div class="wizard" style="display: none" id="wizard">
+                <div id="step1" style="padding: 10px 5px 5px 5px">
+                    <a class="close" style="margin: 0; position: absolute; right: 17px; font-size: 21px;
+                        color: #303030" onclick="$('#wizard').css('display', 'none');">&times;</a>
+                    <h1 style="padding: 0 0 0 7px; font-size: 13px">
+                        Please write your message</h1>
+                    @*<input type="button" value="close" name="btnclose" />*@
+                    <textarea id="txtmessage" name="Description" placeholder="Give feedback or ask for help"
+                        style="resize: none; width: 245px; height: 195px; margin: 10px 0 10px 6px; border: 1px solid #d5d5d5;
+                        border-radius: 3px"></textarea>
+                    @* <input type="text" id="txtmessage" name="Description" />*@
+                    <label style="padding: 10px 0 0 10px; color: gray">
+                        <input type="checkbox" />
+                        <span>Include a screenshot of this page</span></label>
+                    <input type="button" value="Next" class="addbutton" style="margin: -5px 8px 10px 0" />
+                    <div class="arrow">
+                    </div>
+                </div>
+                <div id="step2">
+                    @* <input type="button" value="close" name="btnclose" />*@ <a class="close" style="margin: 10px 0 0;
+                        font-size: 21px; color: #303030; position: absolute; right: 17px" onclick="$('#wizard').css('display', 'none');">
+                        &times;</a>
+                    <h3 style="padding: 10px 0 0 10px; font-size: 13px">
+                        Additional details</h3>
+                    <div style="height: 188px; padding: 10px 10px 0 10px">
+                        <div style="padding: 5px; font-size: 14px; color: gray">
+                            Type</div>
+                        <select id="drp1" name="Type" style="width: 100%; border: 1px solid #D5D5D5; border-radius: 5px;
+                            font: 12px 'Tauri',sans-serif; height: 30px; padding: 5px; background: none">
+                            <option selected="selected" value="">Select one</option>
+                            <option value="Praise">Praise</option>
+                            <option value="Support Request">Support Request</option>
+                            <option value="Bug Report">Bug Report</option>
+                            <option value="Sales Request">Sales Request</option>
+                            <option value="Feedback">Feedback</option>
+                        </select>
+                        <div style="padding: 15px 0 5px 5px; font-size: 14px; color: gray">
+                            How are you feeling</div>
+                        <select id="drp2" name="UserFeeling" style="width: 100%; border: 1px solid #D5D5D5;
+                            border-radius: 5px; font: 12px 'Tauri',sans-serif; height: 30px; padding: 5px;
+                            background: none">
+                            <option selected="selected" value="">Select one</option>
+                            <option value="Excited!">Excited!</option>
+                            <option value="Happy">Happy</option>
+                            <option value="Confused">Confused</option>
+                            <option value="Worried">Worried</option>
+                            <option value="Frustrated">Frustrated</option>
+                            <option value="Angry">Angry</option>
+                        </select>
+                    </div>
+                    <div style="padding: 15px; box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, 0.3);">
+                        <input type="button" value="back" class="prev" />
+                        <input type="submit" value="Send message" id="btnContactSubmit" class="addbutton"
+                            style="margin: 0px -5px 5px 5px" />
+                    </div>
+                    <div class="arrow">
+                    </div>
+                </div>
+            </div>
+            <div id="resultDiv" class="resultDiv" style="display: none">
+                <div style="height: 221px; padding: 10px 10px 0 10px">
+                    <h1 style="color: #696969; font-size: 24px; padding: 50px 0 5px; text-align: center;
+                        font-weight: normal">
+                    </h1>
+                    <p style="font-size: 13px; text-align: center; color: #808080; padding: 5px">
+                    </p>
+                    <p style="font-size: 15px; text-align: center; color: #696969">
+                    </p>
+                </div>
+                <div style="padding: 15px; box-shadow: 0 -2px 2px -2px rgba(0, 0, 0, 0.3);">
+                    <input type="button" value="Close" name="btnresclose" class="addbutton" style="margin: 0px 5px 5px 5px" />
+                </div>
+                <div class="arrow">
+                </div>
+            </div>
+            </form>
+        </div>
+        @*        <div id="sidebar-wrapper">
+            @RenderPage("~/Areas/iHealthUser/Views/Shared/_Sidebar.cshtml")
+        </div>*@
+    </div>
+    <div id="mid-head">
+    </div>
+</div>

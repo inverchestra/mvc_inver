@@ -1,0 +1,75 @@
+﻿@model InnDocs.iHealth.Web.UI.Models.UserInformation
+@{
+ViewBag.Title = "ConfirmSubAccount";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //                var userid = window.location.href.substr(window.location.href.lastIndexOf("=") + 1);
+        //                
+        //                $("#UserId").val(userid);
+        //                var grouptype = wind.location.href.substr(window.location.href.lastIndexOf("=") + 1);
+        //              
+        //                $("#GroupType").val(grouptype);
+
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+        var userid = getUrlVars()["userid"];
+        var grouptype = getUrlVars()["gtype"];
+        $("#UserId").val(userid);
+        $("#GroupType").val(grouptype);
+
+        $('#btnconfirm').click(function () {
+            // alert("Hi");
+            // alert(userid);
+            $.ajax({
+                url: '/ConfirmAccount/ConfirmSubUserAccount',
+                type: 'POST',
+                asyn: false,
+                cache: false,
+                dataType: 'json',
+                data: { UserId: userid ,GroupType:grouptype },
+                success: function (data) {
+                    $('#ajaxtab').html("<h3 style='padding: 10px;width:400px;word-wrap:break-word'>" + data + "</h3>").modal({
+                        onShow: function (e) {
+                            e.container.css({ 'height': 'auto', 'width': 'auto' });
+                        }
+                    });
+                    setTimeout(function () {
+                        window.location = "/";
+                    }, 3000);
+                }
+
+            });
+            return false;
+        });
+
+    });
+</script>
+<h2>Confirm account</h2>
+<form action="@Url.Action("ConfirmSubUserAccount", "ConfirmAccount")" method="post">
+<input type="hidden" name="UserId" id="UserId" />
+<input type="hidden" name="GroupType" id="GroupType" /> 
+<input type="button" value="confirm" id="btnconfirm" />
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>
+
+</form>
+

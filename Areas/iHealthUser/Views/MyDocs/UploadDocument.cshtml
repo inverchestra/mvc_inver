@@ -1,0 +1,250 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    
+    var UserCasesList = ViewBag.UserCaseslist;
+    var UserCaseProcList = ViewBag.UserCaseProcList;
+                    //var UserCaseProcList = 0;
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('#_ProcId').hide();
+        $(function () {
+            $('#btnCancel').click(function () {
+                $.modal.close();
+            });
+        });
+        $('#dateOfServiceprocedure1').datepicker({
+            changeYear: true,
+            changeMonth: true
+        });
+
+        $("#_CaseId").change(function () {
+            var CaseId = $(this).val();
+            //alert(CaseId);
+            $.ajax({
+                url: '/iHealthUser/MyDocs/CaseCheckedChanged',
+                type: 'GET',
+                async: false,
+                cache: false,
+                data: { CaseId: CaseId, type: "proc" },
+                success: function (data) {
+                    $("#_procid").empty();
+                    data = $.map(data, function (key, value) {
+                        return "<option value='" + key.Value + "' >" + key.Text + "</option>";
+                    });
+                    $("#_procid").html(data.join(""));
+                }
+            });
+        });
+
+        $("#btnUpload").click(function () {
+            var caseUploadIdValue = $("#_CaseId").val();
+            if (caseUploadIdValue == "") {
+                alert("Please select any case");
+            }
+            else {
+
+                var procedureUploadIdValue = $("#procedureUploadId").val();
+                if (procedureUploadIdValue == "") {
+                    alert("Please select file");
+                }
+                else {
+
+                    var CaseId = $("#_CaseId").val();
+                    $("#hdnCaseId").val(CaseId);
+                    var ProcId = $("#_procid").val();
+                    if (ProcId != 0) {
+                        $.ajax({
+                            url: '/iHealthUser/MyDocs/procUpload',
+                            type: 'POST',
+                            aync: false,
+                            cache: false,
+                            data: new FormData($(this).parents('#Upload-form').get(0)),
+                            contentType: false,
+                            processData: false,
+                            success: function (response, status, jqXHR) {
+
+                                if (jqXHR.responseText = "1010") {
+                                    alert("Uploaded successfully");
+                                    $("#ProcDiv").hide();
+                                    $.modal.close();
+                                    $('div#proc').load('/iHealthUser/MyDocs/ProcDocuments');
+                                }
+                                else {
+                                    alert("Upload Failed");
+                                }
+                            }
+
+                        });
+                    }
+                    else {
+                        if ($("#hdnProcNew").val() == "NewProcedure") {
+
+                            if ($("#txtProcName").val() != "", $("#dateOfServiceprocedure1").val() != "", $("#provider").val() != "", $("#surgeon").val() != "") {
+                                $.ajax({
+                                    url: '/iHealthUser/MyDocs/procUpload',
+                                    type: 'POST',
+                                    aync: false,
+                                    cache: false,
+                                    data: new FormData($(this).parents('#Upload-form').get(0)),
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response, status, jqXHR) {
+
+                                        if (jqXHR.responseText = "1010") {
+                                            alert("Uploaded successfully");
+                                            $("#ProcDiv").hide();
+                                            $.modal.close();
+                                            $('div#proc').load('/iHealthUser/MyDocs/ProcDocuments');
+                                        }
+                                        else {
+                                            alert("Upload Failed");
+                                        }
+                                    }
+
+                                });
+                            }
+                            else {
+                                alert("Procedure name, Date of service, Provider,and Surgeon name are required.");
+                            }
+                        }
+                        else {
+                            alert("Select one proceudre.");
+                        }
+                    }
+                }
+            }
+        });
+
+
+        //hide the block
+
+        $("#NewProcedure").click(function () {
+            $("#hdnProcId").val("");
+            $("#_procid").val("");
+            if ($("#hdnanchorProcId").val() != "", $("#txtProcName").val() != "", $("#dateOfServiceprocedure1").val() != "", $("#provider").val() != "", $("#surgeon").val() != "") {
+
+                $("#hdnanchorProcId").val("");
+                $("#txtProcName").val("");
+                $("#dateOfServiceprocedure1").val("");
+                $("#provider").val("");
+                $("#surgeon").val("");
+            }
+            $("#hdnProcNew").val("NewProcedure");
+            $("#ProcDiv").show();
+        });
+
+        $("#ProcView").click(function () {
+
+            var ProcId = $("#_procid").val();
+            if (ProcId != 0) {
+                $.ajax({
+                    url: '/iHealthUser/MyDocs/ProcView',
+                    type: 'GET',
+                    aync: false,
+                    cache: false,
+                    data: { ProcId: ProcId },
+                    success: function (data) {
+
+                        $("#hdnanchorProcId").val(data.ProcedureId);
+                        $("#txtProcName").val(data.ProcedureName);
+                        $("#dateOfServiceprocedure1").val(data.dateofservice1);
+                        $("#provider").val(data.ProviderOrFacility);
+                        $("#surgeon").val(data.Surgeon);
+                        $("#ProcDiv").show();
+
+                    }
+                });
+            }
+            else {
+                alert("Select one proceudre.");
+            }
+
+
+        });
+        $("#_procid").change(function () {
+            var ProcId = $("#_procid").val();
+            $("#hdnProcId").val(ProcId);
+            $("#ProcDiv").hide();
+        });
+
+    });
+
+    
+</script>
+<div id="uploadDiv">
+    <div id="view" style="width: 400px">
+        <div style="border-bottom: 1px solid rgb(218,221,226); float: left; width: 100%">
+            <h3>
+                Upload a document
+            </h3>
+        </div>
+        <form id="Upload-form" enctype="multipart/form-data">
+        <div class="upDoc">
+            <ul>
+                <li class="labelnormal ">Select case </li>
+                <li class="lbbold">@Html.DropDownList("UserCasesDetails", (IEnumerable<SelectListItem>)UserCasesList, "Please select", new { id = "_CaseId" })</li>
+                <li class="labelnormal ">Select procedure</li>
+                <li class="lbbold">@Html.DropDownList("UserCasesProcDetails", (IEnumerable<SelectListItem>)UserCaseProcList, "Please select", new { id = "_procid" })</li>
+                <li style="width: 100%;"><a id="ProcView" class="viewmore_DOC">View</a> <a id="NewProcedure"
+                    class="add_popup">New</a> </li>
+                <li style="width: 100%;">
+                    <div id="ProcDiv" style="display: none">
+                        <ul style="display: inline-block; padding: 0px 13px; margin: 5px 0;">
+                            <li style="width: 100%; display: none;">
+                                <input type="hidden" id="hdnanchorProcId" value="Procedures.ProcedureId" />
+                            </li>
+                            <li class="labelnormal ">Procedure name: </li>
+                            <li class="labelbold">
+                                <input type="text" id="txtProcName" name="Procedures.ProcedureName" required />
+                            </li>
+                            <li class="labelnormal ">Date of service:</li>
+                            <li class="labelbold">
+                                <input type="text" id="dateOfServiceprocedure1" name="Procedures.DateOfService" placeholder="MM/DD/YYYY"
+                                    title="Date you Service" 
+                                    class="create-logtxts" required />
+                            </li>
+                            <li class="labelnormal ">Provider or facility</li>
+                            <li class="labelbold">
+                                <input type="text" id="provider" name="Procedures.ProviderOrFacility" class="create-logtxts"
+                                    title="Enter the Hospital name " required />
+                            </li>
+                            <li class="labelnormal ">Surgeon:</li>
+                            <li class="labelbold">
+                                <input type="text" id="surgeon" name="Procedures.Surgeon" class="create-logtxts"
+                                    title="Enter the doctorname" required />
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="labelnormal">Add document</li>
+                <li>
+                    <input type="file" id="procedureUploadId" name="procfiles" multiple="multiple" required />
+                </li>
+                <li>
+                    <input type="hidden" id="hdnCaseId" name="CaseId" />
+                    <input type="hidden" id="hdnProcId" name="Procedures.ProcedureId" />
+                    <input type="hidden" id="hdnProcNew" />
+                </li>
+            </ul>
+        </div>
+        <div style="float: right">
+            <input id="btnCancel" class="graygrad btn_space" type="button" value="Cancel" />
+            <input id="btnUpload" class="greengrad btn_space" type="button" value="Upload" />
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

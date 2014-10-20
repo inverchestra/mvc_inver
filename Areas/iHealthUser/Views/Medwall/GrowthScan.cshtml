@@ -1,0 +1,474 @@
+﻿@model  InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.GrowthScan
+@{
+    ViewBag.Title = "GrowthScan";
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#PatientName,#ReffDoctor,#Radiologist').keydown(function (e) {
+            if (e.ctrlKey || e.altKey || e.entrKey) {
+                e.preventDefault();
+            } else {
+                var key = e.keyCode;
+                if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        $('#Age,#Height,#Weight,#BmI,#NumberofFetuses,#AC,#CRL,#NT,#BPD,#HC,#FL,#Efw,#PiLeft,#Piright,#MPI,#PSV').keydown(function (event) {
+            var $th = $(this);
+
+            if (event.keyCode == 110 || event.keyCode == 173 || event.keyCode == 190 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+            // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+            // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 5)) {
+                    event.preventDefault();
+                }
+            }
+
+
+        });
+        $('#ScanDate,#LastPeriod,#Ebydate,#Ebyultra').keydown(function (event) {
+            event.preventDefault();
+        });
+        $('#ScanDate').datepicker({
+            dateFormat: 'dd MM yy',
+            changeYear: true,
+            changeMonth: true,
+            maxDate: new Date()
+        });
+
+        $('#LastPeriod').datepicker({
+            dateFormat: 'dd MM yy',
+            changeYear: true,
+            changeMonth: true,
+            maxDate: new Date()
+        });
+
+        $('#Ebydate').datepicker({
+            dateFormat: 'dd MM yy',
+            changeYear: true,
+            changeMonth: true
+
+        });
+
+        $('#Ebyultra').datepicker({
+            dateFormat: 'dd MM yy',
+            changeYear: true,
+            changeMonth: true
+
+        });
+
+       
+
+        $(".PinfoViewInfo").accordion({ heightStyle: "content"
+        })
+
+        $('#btngrowthSubmit').click(function () {
+            var patientid, scanon, reffdoc, radiolgist, age, height, weight, bloodg, lastperiod, nf;
+
+            patientid = $('#PatientID').val();
+            scanon = $('#ScanDate').val();
+            reffdoc = $('#ReffDoctor').val();
+            age = $('#Age').val();
+            height = $('#Height').val();
+            weight = $('#Weight').val();
+            bloodg = $('#BloodGroup').val();
+            lastperiod = $('#LastPeriod').val();
+            nf = $('#NumberofFetuses').val();
+            radiolgist = $('#Radiologist').val();
+            // var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+            var rxDatePattern = /^(([0-9])|([0-2][0-9])|([3][0-1])){2}\ (January|February|March|April|May|June|July|August|September|October|November|Deccember)\ \d{4}$/;
+            var chkDateFormat = scanon.match(rxDatePattern);
+
+            if (patientid == "") {
+                alert('Please enter patient ID');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=1]').focus();
+                return false;
+            } else if (scanon == "") {
+                alert('Please enter scan date');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=2]').focus();
+                return false;
+            }
+            else if (chkDateFormat == null) {
+                alert('Please enter correct date format');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=2]').focus();
+                return false;
+            }
+            else if (reffdoc == "") {
+                alert('Please enter reference doctor');
+                $(".PinfoViewInfo").accordion({ active: 0 });
+                $('input[tabindex=3]').focus();
+                return false;
+            } else if (radiolgist == "") {
+                alert("Please enter Radiologist's name");
+                $(".PinfoViewInfo").accordion({ active: 7 });
+                $('input[tabindex=47]').focus();
+                return false;
+            }
+
+            $.ajax({
+                url: '/iHealthUser/MedWall/SaveGrowthScan',
+                type: "POST",
+                aync: false,
+                cache: false,
+                data: new FormData($(this).parents('#frmgrowthscan').get(0)),
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data != "0") {
+                        alert("Growth scan information saved successfully");
+                        $('div#GrthScan').empty().load('/iHealthUser/Medwall/GrowthScans');
+                        $.modal.close();
+                    }
+                    else {
+                        alert("Creation Failed !!");
+                    }
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+<h2>
+    Growth scan</h2>
+<div style="width: 550px">
+    <form id="frmgrowthscan" action="/" method="post" enctype="multipart/form-data">
+    <div class="PinfoViewInfo">
+        <h3 id="patient">
+            Patient Information</h3>
+        <div id="l" style="height: auto">
+            <p>
+                <div>
+                    <ul style="margin-top:0px">
+                        <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45% !important; float: left;background-color:#f7f7f7;">
+                            Patient ID<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                                color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+                        <li class="Faminfo_gap_value" style="width: 50% !important;">
+                            @Html.TextBoxFor(model => model.PatientId, new { title = "PatientID", @id = "PatientID", @class = "logintxts", tabindex = "1" })
+                        </li>
+                       @* <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;background-color:#f7f7f7;">
+                            PatientName</li>
+                        <li class="Faminfo_gap_value" style="width: 50% !important;">
+                            @Html.TextBoxFor(model => model.PatientName, new { title = "PatientName", @id = "PatientName", @class = "logintxts" })
+                        </li>*@
+                        <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;background-color:#f7f7f7;">
+                            Scanned on<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                                color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+                        <li class="Faminfo_gap_value" style="width: 50% !important;">
+                            @Html.TextBoxFor(model => model.ScanOnDate, new { title = "ScanOn", @id = "ScanDate", @class = "logintxts", tabindex = "2", placeholder = "DD MMM YYYY", style = "font-size:smaller;" })
+                        </li>
+                        <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;background-color:#f7f7f7;">
+                            Referring doctor<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                                color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+                        <li class="Faminfo_gap_value" style="width: 50% !important;">
+                            @Html.TextBoxFor(model => model.ReffDoctor, new { title = "Reffering Doctor", @id = "ReffDoctor", @class = "logintxts", tabindex = "3" })
+                        </li>
+                    </ul>
+                </div>
+            </p>
+        </div>
+        <h3>
+            Maternal history</h3>
+        <div>
+            <ul style="margin-top:0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 30%  !important; float: left;background-color:#f7f7f7;">
+                    Maternal history </li>
+                <li class="Faminfo_gap_value" style="height: auto !important; width: 65% !important;">
+                    <div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">Age</span>
+                            @Html.TextBoxFor(model => model.MaternalHistory1.Age, new { title = "Age", @id = "Age", @class = "logintxts", style = "width:70px;margin-left:5px;", tabindex = "4" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align:right; margin-left:5px">
+                            <span style="float: left">Height</span>
+                            @Html.TextBoxFor(model => model.MaternalHistory1.Height, new { title = "Height", @id = "Height", @class = "logintxts", style = "width:70px;margin-left:5px;", tabindex = "5", placeholder = "Cms" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">Weight</span>
+                            @Html.TextBoxFor(model => model.MaternalHistory1.Weight, new { title = "Weight", @id = "Weight", @class = "logintxts", style = "width:70px;margin-left:5px;", tabindex = "6", placeholder = "Kgs" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align:right; margin-left:5px">
+                            <span style="float: left">BloodGroup</span>
+                            @Html.TextBoxFor(model => model.MaternalHistory1.BloodGroup, new { title = "BloodGroup", @id = "BloodGroup", @class = "logintxts", style = "width:70px;margin-left:5px;", tabindex = "7" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">BMI</span>
+                            @Html.TextBoxFor(model => model.MaternalHistory1.BmI, new { title = "BmI", @id = "BmI", @class = "logintxts", style = "width:70px;margin-left:5px;", tabindex = "8" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align:right; margin-left:5px">
+                            <span style="float: left">Last period</span>
+                            @Html.TextBoxFor(model => model.MaternalHistory1.LastPeriod, new { title = "LastPeriod", @id = "LastPeriod", @class = "logintxts", style = "width:70px;margin-left:0px;", tabindex = "9" })
+                        </div>
+                    </div>
+                    </li>
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 30%  !important; float: left;background-color:#f7f7f7;">
+                    Gestation</li>
+                <li class="Faminfo_gap_value" style="width: 65% !important;">
+                    <div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">By date</span>
+                            @Html.TextBoxFor(model => model.Gestinat.ByDates, new { title = "Gestation", @id = "bydate", @class = "logintxts", style = "width:70px;font-size:xx-small;", tabindex = "10" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align:right; margin-left:5px">
+                            <span style="float: left">By ultraSound</span>
+                            @Html.TextBoxFor(model => model.Gestinat.ByUltra, new { title = "Gestation", @id = "byultra", @class = "logintxts", style = "width:70px;font-size:xx-small;" , tabindex = "11" })
+                        </div>
+                    </div>
+                </li>
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 30%  !important; float: left;background-color:#f7f7f7; margin-top:2px">
+                    EDD</li>
+                <li class="Faminfo_gap_value" style="width: 65%  !important;">
+                    <div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">By date</span>
+                            @Html.TextBoxFor(model => model.EDDvalue.ByDates, new { title = "EDD", @id = "Ebydate", @class = "logintxts", style = "width:70px;font-size:xx-small;", placeholder = "DD MMM YYYY", tabindex = "12" })
+                        </div>
+                        <div style="float: left; width: 165px; text-align:right; margin-left:5px">
+                            <span style="float: left">By ultraSound</span>
+                            @Html.TextBoxFor(model => model.EDDvalue.ByUltra, new { title = "EDD", @id = "Ebyultra", @class = "logintxts", style = "width:70px;font-size:xx-small;", placeholder = "DD MMM YYYY", tabindex = "13" })
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Findings</h3>
+        <div>
+            <ul style="margin-top:0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 35%  !important; float: left;background-color:#f7f7f7;">
+                    Findings </li>
+                <li class="Faminfo_gap_value" style="height:auto !important; width: 60% !important;">
+                    <div>
+                        <div style="text-align:right">
+                            <span style="float: left">Number of fetuses</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.NumberofFetuses, new { title = "NumberofFetuses", @id = "NumberofFetuses", @class = "logintxts", style = "width:50px;margin-left:15px;", tabindex = "14" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float: left">Crown-rump length</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.CRL, new { title = "CRL", placeholder = "mm", @id = "CRL", @class = "logintxts", style = "width:50px;margin-left:15px;font-size:smaller; color:gray", tabindex = "15" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float: left">Abdominal Circumference (AC)</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Ac, new { title = "Ac", placeholder = "mm", @id = "Ac", @class = "logintxts", style = "width:50px;margin-left:15px;font-size:smaller; color:gray", tabindex = "16" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float: left">Femur length (FL)</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Fl, new { title = "Fl", placeholder = "mm", @id = "Fl", @class = "logintxts", style = "width:50px;margin-left:15px;font-size:smaller; color:gray", tabindex = "17" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float: left">Biparietal diameter</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.BPD, new { title = "BPD", placeholder = "mm", @id = "BPD", @class = "logintxts", style = "width:50px;margin-left:15px;font-size:smaller; color:gray", tabindex = "18" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float:left">Head circumference</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.HC, new { title = "HC", placeholder = "mm", @id = "HC", @class = "logintxts", style = "width:50px;margin-left:15px;font-size:smaller; color:gray", tabindex = "19" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float: left">Placenta grade</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.PlacentaGrade, new { title = "PlacentaGrade", @id = "PlacentaGrade", @class = "logintxts", style = "width:50px;margin-left:15px;", tabindex = "20" })
+                        </div>
+                        <div style="float: left; width: 151px; text-align:right">
+                            <span style="float: left">Amnioticfluid</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Amnioticfluid, new { title = "Amnioticfluid", @id = "Amnioticfluid", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "21" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right; margin-left:5px">
+                            <span style="float: left">Movenents</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Movenents, new { title = "Movenents", @id = "Movenents", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "22" })
+                        </div>
+                        <div style="float: left; width: 151px; text-align:right">
+                            <span style="float: left">Placenta</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Placenta, new { title = "Placenta", @id = "Placenta", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "23" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right; margin-left:5px">
+                            <span style="float: left">Presentation</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Presentation, new { title = "Presentation", @id = "Presentation", @class = "logintxts", style = "width:50px;margin-left:0px;", tabindex = "24" })
+                        </div>
+                       @* <div style="float: left; width: 161px; text-align:right">
+                            <span>Head placenta</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Placenta, new { title = "Placenta", @id = "Placenta", @class = "logintxts", style = "width:50px;margin-left:15px;", tabindex = "25" })
+                        </div>*@
+                        <div style="float: right; width: 134px; text-align:right">
+                            <span style="float: left">Efw</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.Efw, new { title = "Efw", @id = "Efw", @class = "logintxts", style = "width:50px;margin-left:15px;", tabindex = "26", placeholder = "Grams" })
+                        </div>
+                       @* <div style="float: left; width: 150px; text-align:right">
+                            <span>Placenta grade</span>
+                            @Html.TextBoxFor(model => model.NTScanFinds.PlacentaGrade, new { title = "PlacentaGrade", @id = "PlacentaGrade", @class = "logintxts", style = "width:50px;margin-left:0px;" })
+                        </div>*@
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Fetal anatomy</h3>
+        <div>
+            <ul style="margin-top:0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 35%  !important; float: left;background-color:#f7f7f7;">
+                    Fetal anatomy </li>
+                <li class="Faminfo_gap_value" style="height: auto !important; width: 60% !important;">
+                    <div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">AVH</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.AVH, new { title = "AVH", @id = "AVH", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "27" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right; margin-left:5px">
+                            <span style="float: left">PVH</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.PVH, new { title = "AVH", @id = "AVH", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "28" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">Skull</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Skull, new { title = "Skull", @id = "Skull", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "29" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right; margin-left:5px">
+                            <span style="float: left">Spine</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Spine, new { title = "Spine,", @id = "Spine,", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "30" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">Heart</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Heart, new { title = "Heart", @id = "Heart", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "31" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right; margin-left:5px">
+                            <span style="float: left">Thorax</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Thorax, new { title = "Thorax", @id = "Thorax", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "32" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right">
+                            <span style="float: left">Glt</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Glt, new { title = "Glt", @id = "Glt", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "33" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right; margin-left:5px">
+                            <span style="float: left">Urin tract</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.UrinTract, new { title = "UrinTract", @id = "UrinTract", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "34" })
+                        </div>
+                        <div style="float: left; width: 141px; text-align:right">
+                            <span style="float: left">Extremities</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Extremities, new { title = "Extremities", @id = "Extremities", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "35" })
+                        </div>
+                        <div style="float: left; width: 140px; text-align:right; margin-left:5px">
+                            <span style="float: left">Genitalia</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Genetilia, new { title = "Genetilia", @id = "Genetilia", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "36" })
+                        </div>
+                        <div style="float: left; width: 281px; text-align:right; margin-left:5px">
+                            <span>Abdomen wall</span>
+                            @Html.TextBoxFor(model => model.FetalAnatomy1.Abdomen, new { title = "Abdomen", @id = "Abdomen", @class = "logintxts", style = "width:50px;margin-left:5px;", tabindex = "37" })
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Umbillical artery</h3>
+        <div>
+            <ul style="margin-top:0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;background-color:#f7f7f7;">
+                    Umbillical artery </li>
+                <li class="Faminfo_gap_value" style="height: auto !important; width: 40% !important;">
+                    <div>
+                        <div style="text-align:right">
+                            <span style="float: left">PI left</span>
+                            @Html.TextBoxFor(model => model.Umbillical.PI, new { title = "PI,", @id = "PiLeft,", @class = "logintxts", style = "width:50px", tabindex = "38" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float: left">PI right</span>
+                            @Html.TextBoxFor(model => model.Umbillical.RI, new { title = "RI", @id = "Piright", @class = "logintxts", style = "width:50px", tabindex = "39" })
+                        </div>
+                        <div style="text-align:right">
+                            <span style="float: left">Cervix length</span>
+                            @Html.TextBoxFor(model => model.Umbillical.EDF, new { title = "EDF", @id = "EDF", @class = "logintxts", style = "width:50px", tabindex = "40" })
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Middle cerebral artery</h3>
+        <div>
+            <ul style="margin-top:0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;background-color:#f7f7f7;">
+                    Middle cerebral artery</li>
+                <li class="Faminfo_gap_value" style="height: auto !important; width: 40%  !important;">
+                    <div style="text-align:right; margin-right:40px">
+                        <span style="float: left">PI</span>
+                        @Html.TextBoxFor(model => model.Middlecele.MPI, new { title = "MPI", @id = "MPI", @class = "logintxts", style = "width:50px", tabindex = "41" })
+                    </div>
+                    <div style="text-align:right">
+                        <span style="float: left">PSV</span>
+                        @Html.TextBoxFor(model => model.Middlecele.PSV, new { title = "PSV", @id = "PSV", @class = "logintxts", style = "width:50px", tabindex = "42" })cm/sec
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Ductus Venosus</h3>
+        <div>
+            <ul style="margin-top:0px">
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 45%  !important; float: left;background-color:#f7f7f7;">
+                    Ductus Venosus</li>
+                <li class="Faminfo_gap_value" style="height: auto !important; width: 45%  !important;">
+                    <div style="text-align:right">
+                        <span style="float: left">Cervical comment</span>
+                        @Html.TextBoxFor(model => model.Ductusven.PIV, new { title = "PIV", @id = "PIV", @class = "logintxts", style = "width:50px", tabindex = "43" })
+                    </div>
+                    <div style="text-align:right">
+                        <span style="float: left">Cervix length</span>
+                        @Html.TextBoxFor(model => model.Ductusven.AWare, new { title = "AWare", @id = "AWare", @class = "logintxts", style = "width:50px", tabindex = "44" })
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h3>
+            Doctor Recommendations</h3>
+        <div>
+            <ul style="margin-top:0px">
+                @* @Html.TextBoxFor(model => model.EarlyFindings, new { title = "EarlyFindings", @id = "EarlyFindings", @class = "logintxts" })*@
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 35%  !important; float: left;background-color:#f7f7f7;">
+                    Impression</li>
+                <li class="Faminfo_gap_value" style="width: 60%  !important;">
+                    @Html.TextBoxFor(model => model.Impression, new { title = "impression", @id = "impression", @class = "logintxts", tabindex = "45" })
+                </li>
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 35%  !important; float: left;background-color:#f7f7f7;">
+                    Recommendations</li>
+                <li class="Faminfo_gap_value" style="width: 60%  !important;">
+                    @Html.TextBoxFor(model => model.Recomandations, new { title = "Recommendations", @id = "Recommendations", @class = "logintxts", tabindex = "46" })
+                </li>
+                <li class="PinfoViewInfo_lbl Faminfo_gap" style="width: 35%  !important; float: left;background-color:#f7f7f7;">
+                    Radiologist<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                                color: rgb(251, 2, 2); font-size: medium;">*</span></li>
+                <li class="Faminfo_gap_value" style="width: 60%  !important;">
+                    @Html.TextBoxFor(model => model.Radiologist, new { title = "Radiologist", @id = "Radiologist", @class = "logintxts", tabindex = "47" })
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ul>
+        <li style="width: 100%" class="inline">
+            <input type="button" name="btnCancel" class="graygrad" value="Close" onclick="$.modal.close();" />
+            <input id="btngrowthSubmit" type="button" class="greengrad" value="Submit" />
+        </li>
+    </ul>
+    </form>
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

@@ -1,0 +1,272 @@
+﻿@model IList<InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.User>
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Areas/iHealthUser/Views/Shared/_iHealthUserLayout.cshtml";
+}
+<script src="~/UIScripts/chatScript.js" type="text/javascript"></script>
+<script src="~/UIScripts/chat.js" type="text/javascript"></script>
+<link href="~/Content/Chat.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    //    function filter(element, what) {
+
+    //        var value = $(element).val();
+    //        alert(value);
+    //        value = value.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+    //            return letter.toUpperCase();
+    //        });
+    //        if (value == '')
+    //            $(what + ' > li').show();
+    //        else {
+    //            $(what + ' > li:not(:contains(' + value + '))').hide();
+    //            $(what + ' > li:contains(' + value + ')').show();
+    //        }
+    //    };
+
+    function filter(element) {
+        var value = $(element).val();
+        $("#active > li").each(function () {
+            if ($(this).text().search(value) > -1) {
+                $(this).show();
+            }
+            else {
+                $(this).hide();
+            }
+        });
+    }
+
+    //function listFilter(header, list) {
+    // 
+    //  $(input).change( function () {
+    //    var filter = $(this).val();
+    //    if (filter) {
+    //      $(list).find("a:not(:contains(" + filter + "))").parent().slideUp();
+    //      $(list).find("a:contains(" + filter + ")").parent().slideDown();
+    //    } else {
+    //      $(list).find("li").slideDown();
+    //    }
+    //  });
+
+    $(document).ready(function () {
+
+        //$('#search_input').fastLiveFilter('#active');
+        var filter = $('#filtertext').val();
+
+        var Interest = $('#interests').val();
+
+        if (filter == "" && Interest == "") {
+            $.ajax({
+                url: '/iHealthUser/Chat/AddFilters',
+                type: 'GET',
+                success: function (result) {
+                    $.modal.close();
+                    $('#ajaxtab').html(result).modal({
+                        escClose: false,
+                        closeHTML: "",
+                        position: ["2%", "30%"],
+                        onShow: function (e) {
+                            $(".viewbutton").attr("disabled", true);
+                            e.container.css({ 'height': 'auto', 'margin-top': '0px !important', 'width': '400px' });
+                        }
+                    });
+                }
+            });
+        }
+        $('#content').css({ 'border': 'none', 'height': '500px', 'width': '700px', 'background': 'transparent', 'font-family': 'calibri' });
+    });
+</script>
+@section LeftPanel {
+    <div class="left-pane">
+        <div class="left-tabs">
+            <ul>
+                <li><a href="@Url.Action("Index", "Chat")" class="pink-a">Chat</a></li>
+                <li><a href="@Url.Action("Index", "Medwall")">Timeline</a></li>
+                <li><a href="@Url.Action("VitalsNew", "Medwall")">Vitals</a></li>
+                <li><a href="@Url.Action("GetWeeks", "Medwall")">Albums</a></li>
+                <li><a href="@Url.Action("PInfo", "PersonalInfo")">My<span style="color: #fff">-</span>Info</a></li>
+                @*  <li><a href="@Url.Action("VitalsNew", "Medwall")">Vitals</a></li>
+                <li><a href="@Url.Action("Index", "Medwall")">Timeline</a></li>
+                <li><a href="@Url.Action("GetWeeks", "Medwall")">Albums</a></li>
+                <li><a href="@Url.Action("PInfo", "PersonalInfo")">My<span style="color: #fff">-</span>Info</a></li>
+                <li><a href="@Url.Action("Index", "Chat")" class="pink-a">Network</a></li>*@
+            </ul>
+        </div>
+        <div id="tablequestions">
+        </div>
+    </div>
+}
+@section RightPanel{
+    <div style="float: left" id="chatContainer">
+        <div id="chatWindow" class="chatdiv" style="position: relative">
+            <div class="chat_window chat_online">
+                <label data-rel="userName">
+                </label>
+            </div>
+            <a id="Pasthistory" href="#" style="font-size: smaller; float: right; color: gray">View
+                history</a>
+            <div data-rel="msgs" class="msgswindow">
+            </div>
+            <div style="position: absolute; bottom: 10px; left: 10px; width: 93%; border: 1px solid #d5d5d5;
+                background: #f2f2f2">
+                <form method="post" action="/">
+                <textarea class="msgbox" placeholder="Type your message here"></textarea>
+                @*<input type="submit" value="Send" class="chatbutton" />*@
+                </form>
+            </div>
+        </div>
+    </div>
+}
+<div class="filter_list" style="">
+    <ul id="peer">
+        <li>As per to your Country
+            <p>
+                <span class="span_text">@ViewBag.CountryCount</span> peers
+            </p>
+        </li>
+        <li>As per to your Location/Zipcode
+            <p>
+                <span class="span_text">@ViewBag.PinCount</span> peers
+            </p>
+        </li>
+        <li>As per to your gestation date
+            <p>
+                <span class="span_text">@ViewBag.GestationCount</span> peers
+            </p>
+        </li>
+        <li>As per to your interest
+            <p>
+                <span class="span_text">@ViewBag.IntrestCount</span> peers
+            </p>
+        </li>
+    </ul>
+    <div style="border: 1px solid #d5d5d5">
+        <div style="padding: 5px">
+            <p class="filter_block">
+                The Bumpy filter
+            </p>
+            <div id="filters" style="height: 164px; background-color: #4BACC6;">
+                <p>
+                    <input type="checkbox" role="checkbox" style="" name="filter" value="Asthma" class="CheckBox" /><label>Asthma</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" role="checkbox" name="filter" value="Early pregnancy" class="CheckBox" /><label>Early
+                        pregnancy</label>
+                </p>
+                <p>
+                    <input type="checkbox" role="checkbox" style="" name="filter" value="Thyroid" class="CheckBox" /><label>Thyroid</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" role="checkbox" name="filter" value="Late pregnancy" class="CheckBox" /><label>Late
+                        pregnancy</label>
+                </p>
+                <p>
+                    <input type="checkbox" role="checkbox" name="filter" value="Diabetic" class="CheckBox" /><label>Diabetic</label>
+                    &nbsp;
+                    <input type="checkbox" role="checkbox" name="filter" value="Hypertension" class="CheckBox" /><label>Hypertension</label>
+                </p>
+                <p>
+                    <input type="checkbox" role="checkbox" style="" name="filter" value="Tripplets" class="CheckBox" /><label>Tripplets</label>
+                    &nbsp;<input type="checkbox" role="checkbox" style="" name="filter" value="Twins"
+                        class="CheckBox" /><label>Twins</label>
+                </p>
+            </div>
+            <input type="button" role="button" value="Search" class="Search" id="btnFilter" />
+        </div>
+    </div>
+</div>
+<div class="users_result">
+    <p class="userlist">
+        Users
+    </p>
+    <ul id="tUsers">
+    @*<li style="padding:2px 5px;"><a class="allusers">All</a></li>
+<li style="padding:2px 5px;"><a class="onlineusers">Online</a></li>
+<li style="padding:2px 5px;"><a class="recentusers">Recent</a></li>*@
+        <li><a class="allusers">All</a></li>
+        <li><a class="onlineusers">Online</a></li>
+        <li><a class="recentusers">Recent</a></li>
+    </ul>
+    <div class="user_block">
+        <ul id="userList" class="chat">
+        </ul>
+       
+    </div>
+     <div>
+            <div style="float: left;">
+                <a class="Prev" >Prev</a></div>
+            <div style="float: right;">
+                <a class="Next" >Next</a></div>
+            <div style="clear: both;">
+            </div>
+        </div>
+</div>
+<div class="chat_history" style="">
+    <div class="search_textbox">
+        <p style="padding: 6px; font-size: 20px; color: #fff">
+            Active Chat
+        </p>
+        <input type="text" id="search_input" onkeyup="filter(this)" role="textbox" placeholder="Search for Users.."
+            style="width: 80%; background: #fff" />
+        @*<a id="others" href="#">signout others</a>*@
+    </div>
+    <div class="user_history">
+        <ul id="invitations">
+        </ul>
+        <ul id="active">
+        </ul>
+    </div>
+</div>
+<div id="invitation">
+    <h5>
+        Invitaton from <span id="from"></span>
+    </h5>
+    <p id="icontent" style="color: gray">
+    </p>
+    <p>
+        <input type="button" value="Yes" data-rel="1" class="addbutton" style="width: 55px" />
+        <input type="button" value="No" data-rel="0" class="viewbutton" style="width: 55px" />
+    </p>
+    <input type="hidden" id="caller" value="" />
+</div>
+<div id="alert">
+    <h5>
+    </h5>
+</div>
+<input type="hidden" id="connectionId" value="" />
+<input type="hidden" id="filtertext" value="@ViewBag.FilterText" />
+<input type="hidden" id="interests" value="@ViewBag.Interests" />
+<ul id="active_templt" style="display: none">
+    @*<li class="active"><a class="delete" style="font-size: 15px; float: right; display: none">
+        &times;</a>
+        <p data-rel="name" style="color: #8064A2">
+            <span class="msgtime"></span>
+        </p>
+        <p data-rel="message" style="font-size: 11px; margin-top: 3px; -ms-text-overflow: ellipsis;
+            -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+        </p>
+    </li>*@
+    <li class="active">
+        <div style="width: 89%; float: left;">
+            <p data-rel="name" style="color: #8064A2">
+                <span class="msgtime"></span>
+            </p>
+            <p data-rel="message" style="font-size: 11px; margin-top: 3px; -ms-text-overflow: ellipsis;
+                -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+            </p>
+        </div>
+        <div style="width: 9%; float: right">
+            <a class="delete" title="delete">&times;</a>
+        </div>
+    </li>
+</ul>
+<ul id="invitations_templt" style="display: none">
+    <li class="invited_user">
+        <div style="width: 89%; float: left; border-right: 1px solid #d5d5d5">
+            <p data-rel="name" style="color: #8064A2">
+            </p>
+            <p data-rel="message" style="font-size: 12px; margin-top: 2px">
+            </p>
+        </div>
+        <div style="width: 9%; float: left">
+            <a class="tick" title="accept">&#10004;</a> <a class="close" title="reject">&times;</a>
+        </div>
+    </li>
+</ul>

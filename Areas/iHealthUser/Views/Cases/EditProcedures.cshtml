@@ -1,0 +1,231 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    int i = 1;
+}
+<script src="~/CustomScripts/documentsview.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $('#nav > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('#nav li ul').slideUp();
+                $(this).next().slideToggle();
+                $('#nav li a').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+        $("#dateOfServiceprocedurenotify1").hide();
+        $("input[type='radio']").change(function () {
+
+            if ($(this).val() == "true") {
+                $("#dateOfServiceprocedurenotify1").show();
+
+            }
+
+            else {
+                $("#dateOfServiceprocedurenotify1").hide();
+            }
+
+        });
+        $('input[name="Procedures.DateOfService"]').datepicker();
+
+        $('img.btneditProc').click(function (e) {
+            e.stopPropagation()
+            $.ajax({
+                url: '/iHealthuser/Cases/UpdateProcView',
+                type: 'GET',
+                async: false,
+                data: { procId: $(this).parents("li").find('input[name="Procedures.ProcedureId"]').val() },
+                cache: false,
+                success: function (result) {
+                    $('#modal-Pupdate').html(result).modal({
+                        closeHTML: '',
+                        onShow: function () {
+                            //                            $('#dateOfServiceprocedure2').datepicker({
+                            //                                changeYear: true,
+                            //                                changeMonth: true
+                            //                            });
+                            $('#dateOfServiceprocedure2').datetimepicker();
+                            $('#dateOfServiceprocedurenotify2').datepicker({
+                                changeYear: true,
+                                changeMonth: true
+                            });
+                            $('input[name="btncanel"]').click(function () {
+                                $.modal.close();
+                            });
+
+                            $('input[name="btnProcUpdate"]').click(function () {
+
+                                if ($("#EditPName").val() == "") {
+                                    alert("Please enter procedure name");
+                                    $('input[tabindex=1]').focus();
+                                    //  return false;
+                                }
+                                else if ($("#dateOfServiceprocedure2").val() == "") {
+                                    alert("Please enter procedure date");
+                                    $('input[tabindex=2]').focus();
+                                }
+                                else if ($("#EditPProvider").val() == "") {
+                                    alert("Please enter provider or facility name");
+                                    $('input[tabindex=3]').focus();
+                                }
+                                else if ($("#EditPSurgieon").val() == "") {
+                                    alert("Please enter surgeon name");
+                                    $('input[tabindex=4]').focus();
+                                }
+                                else {
+                                    $.ajax({
+                                        url: '/iHealthuser/Cases/UpdateProcedure',
+                                        type: "POST",
+                                        async: false,
+                                        cache: false,
+                                        data: new FormData($(this).parents('#frmUprocedureId').get(0)),
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (data) {
+                                            alert("Your modifications are updates successfully");
+                                            $(data).accordion({ collapsible: true });
+                                            $('#proclst').html(data);
+                                            $.modal.close();
+                                        }
+
+                                    });
+                                }
+                                return false;
+                            });
+                        }
+                    });
+                }
+            });
+
+            return false;
+
+        });
+
+
+        $('img[name="delProcedure"]').click(function (e) {
+            e.stopPropagation();
+            // alert("Are you sure you Want to delete ?");
+            var id = $(this).parents('li').find('input[name="Procedures.ProcedureId"]').val(); //Modified AswinCOde By V
+            var CaseId = $(this).parents('li').find('input[name="Procedures.CaseId"]').val();
+            var d = $(this).parents('li');
+            var response = confirm("Please confirm if you really want to delete");
+            if (response) {
+                $.ajax({
+                    url: "/iHealthUser/Cases/DeleteProcedure",
+                    type: 'POST',
+                    async: false,
+                    cache: false,
+                    data: $(this).parents("#frmEditproc").serialize(),
+                    success: function (data) {
+                        alert("Deleted Successfully");
+                        $(d).remove();
+                        $(data).accordion({ collapsible: true });
+                        $('#proclst').html(data);
+                        $.modal.close();
+
+                    }
+
+                });
+            }
+            return false; //Dileep
+        });
+
+    });
+</script>
+<div id="procedures">
+    <form id="frmEditproc" enctype="multipart/form-data">
+    <input type="hidden" name="CaseId" id="CaseId" value="@Model.CaseId" />
+    @if (Model.lstProcedure.Count == 0)
+    {
+        <br />
+        <span class="results">You have no procedures for this case</span>
+    }
+    else
+    {
+        <ul id="nav">
+            @foreach (var proceduresList in Model.lstProcedure)
+            {
+                try
+                {
+                <li><a href="#procList[@i]" onclick="return false;"><span style="-ms-text-overflow: ellipsis;
+                    -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+                    display: inline-block; width: 100px">@proceduresList.dateofservice1| @proceduresList.ProcedureName</span>
+                    <img src="~/Images/edit.png" alt="Edit" class="btneditProc" style="float: right;" />
+                    <img src="~/Images/delete.png" name="delProcedure" class="delProcedure" alt="Delete Procedure"
+                        style="float: right;" />
+                    <input type="hidden" name="Procedures.CaseId" value="@proceduresList.CaseId" />
+                    <input type="hidden" name="Procedures.ProcedureId" value="@proceduresList.ProcedureId" />
+                </a>
+                    <ul id="procList[@i]" style="border: none">
+                        <li class="labelChart">Procedure name: </li>
+                        <li class="labelChartB">
+                            @if (proceduresList.ProcedureName == null || proceduresList.ProcedureName == "")
+                            {
+                                <text>no name</text>
+                            }
+                            else
+                            {
+                                @proceduresList.ProcedureName
+                            }
+                        </li>
+                        <li class="labelChart">Date of service: </li>
+                        <li class="labelChartB">@proceduresList.dateofservice1 </li>
+                        <li class="labelChart">Provider or facility: </li>
+                        <li class="labelChartB">
+                            @proceduresList.ProviderOrFacility
+                        </li>
+                        <li class="labelChart">Surgeon: </li>
+                        <li class="labelChartB">
+                            @proceduresList.Surgeon
+                        </li>
+                        <li class="labelChart">Notes: </li>
+                        <li class="labelChartB">
+                            @if (proceduresList.Notes == null)
+                            {
+                                <span></span>
+                                <br />
+                            }
+                            else
+                            {
+                                @proceduresList.Notes
+                                <br />
+                            }
+                        </li>
+                        <li class="labelChart">Documents: </li>
+                        <li class="labelChartB">
+                            @if (proceduresList.lstDocuments == null || proceduresList.lstDocuments.Count == 0)
+                            {
+                                <text>--No Documents--</text>
+                            }
+                            else
+                            {
+                                foreach (var documents in proceduresList.lstDocuments)
+                                {<a id="@documents.Id" class="anchor">@documents.OriginalName</a> }
+                            }
+                        </li>
+                    </ul>
+                </li>
+                }
+                finally { i++; }
+            }
+        </ul>
+    }
+    </form>
+</div>
+<div id="modal-Pupdate" style="display: none">
+</div>
+<div id="tab" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

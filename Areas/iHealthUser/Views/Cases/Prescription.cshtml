@@ -1,0 +1,505 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    ViewBag.title = "";
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        //        $('#pdate1').datepicker({
+        //            changeYear: true,
+        //            changeMonth: true
+        ////            showAnim: "slideDown"
+        //        });
+        //        //        $('#pdate2').datepicker({
+        //        //            changeYear: true,
+        //        //            changeMonth: true
+        //        //        });
+        //        $('#pdate2').datepicker({
+        //            minDate: $("#pdate1").val()
+        //        });
+
+        $("#idfrequencyTaken").change(function () {
+
+            var selectedid = $(this).val();
+
+            if (selectedid == "0") {
+                $("#FQ1,#FQ2,#FQ3,#FQ4,#FQ5,#FQ6,#FQ7,#FQ8,#lblstarttime").hide();
+
+            } else if (selectedid == "1") {
+                $('#date1').timepicker();
+                $("#FQ1,#lblstarttime").show();
+                $("#FQ2,#FQ3,#FQ4,#FQ5,#FQ6,#FQ7,#FQ8").hide();
+
+            } else if (selectedid == "2") {
+                $('#date2,#date3').timepicker();
+
+                $("#FQ1,#FQ3,#FQ4,#FQ5,#FQ6,#FQ7,#FQ8").hide();
+                $("#FQ2,#lblstarttime").show();
+            }
+            else if (selectedid == "3") {
+                $('#date4,#date5,#date6').timepicker();
+
+                $("#FQ1,#FQ2,#FQ4,#FQ5,#FQ6,#FQ7,#FQ8").hide();
+                $("#FQ3,#lblstarttime").show();
+            }
+            else if (selectedid == "4") {
+                $('#date7,#date8,#date9,#date10').timepicker();
+
+                $("#FQ1,#FQ2,#FQ3,#FQ5,#FQ6,#FQ7,#FQ8").hide();
+                $("#FQ4,#lblstarttime").show();
+            }
+            else if (selectedid == "5") {
+
+                $('#date11').datetimepicker();
+
+                $("#FQ1,#FQ2,#FQ3,#FQ4,#FQ6,#FQ7,#FQ8").hide();
+                $("#FQ5,#lblstarttime").show();
+
+            }
+            else if (selectedid == "6") {
+
+                $('#date12,#date13').datetimepicker();
+
+                $("#FQ1,#FQ2,#FQ3,#FQ4,#FQ5,#FQ7,#FQ8").hide();
+                $("#FQ6,#lblstarttime").show();
+            }
+            else if (selectedid == "7") {
+
+                $('#date14,#date15,#date16').datetimepicker();
+
+                $("#FQ1,#FQ2,#FQ3,#FQ4,#FQ5,#FQ6,#FQ8").hide();
+                $("#FQ7,#lblstarttime").show();
+            }
+            else if (selectedid == "8") {
+
+                $('#date17,#date18,#date19,#date20').datetimepicker();
+
+                $("#FQ1,#FQ2,#FQ3,#FQ4,#FQ5,#FQ6,#FQ7").hide();
+                $("#FQ8,#lblstarttime").show();
+            }
+        });
+    });
+
+
+    $("#iddosagetaken").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+        // Allow: Ctrl+A
+    (event.keyCode == 65 && event.ctrlKey === true) ||
+        // Allow: home, end, left, right
+    (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 2)) {
+                event.preventDefault();
+            }
+        }
+    });
+
+    $("#idquantity").keydown(function (event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+        // Allow: Ctrl+A
+    (event.keyCode == 65 && event.ctrlKey === true) ||
+        // Allow: home, end, left, right
+    (event.keyCode >= 35 && event.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 4)) {
+                event.preventDefault();
+            }
+        }
+    });
+
+
+
+    //    $('#form0').submit(function (e) {
+    //        e.preventDefault();
+    //        $.ajax({
+    //            url: $(this).attr('action'),
+    //            type: 'POST',
+    //            cache: false,
+    //            data: new FormData($(this).get(0)),
+    //            contentType: false,
+    //            processData: false,
+    //            success: function (data) {
+    //                successAjax(data);
+    //            }
+    //        });
+    //        return false;
+    //    });    
+
+   
+     
+
+</script>
+@*@Scripts.Render("~/bundles/ajaxuserfns")*@
+<form id="frmmed" enctype="multipart/form-data">
+@*@using (Html.BeginForm("SaveMedicalSchedule", "Cases", FormMethod.Post, new { id = "form0", @class = "crtproc", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true);*@
+<div style="width: 630px; height: 379px !important;">
+    <div class="h3border">
+        <h3>
+            Prescription:</h3>
+    </div>
+    <input type="hidden" name="CaseId" id="CaseId2" value="@Model.CaseId" />
+    @*  <div id="presccontnr">
+        <div id="presctop">*@
+    <div class="crtproc" style="width: 96%;">
+        <ul>
+            @*<li class="labelnormal">Pharmacy name: </li>
+                    <li>
+                        <input type="text" name="MedicalSchdule.Pharmacy" title="Name of the Doctor" /></li>*@
+            <li style="width: 100%; height: 18px; margin-bottom: 10px;" class="h3border">
+                <h6>
+                    Presciprtion period</h6>
+            </li>
+            <li class="labelnormal">Start Date:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+            <li>
+                <input type="text" id="pdate1" tabindex="1" placeholder="MM/DD/YYYY" name="MedicalSchdule.StartDate"
+                    class="crt" />
+                @*@Html.TextBoxFor(model => model.MedicalSchdule.DatePrescribed, new { placeholder = "MM/DD/YYYY", id = "pdate1" })
+                            @Html.ValidationMessageFor(model => Model.MedicalSchdule.DatePrescribed)*@
+            </li>
+            <li class="labelnormal">End Date:<span style="font-weight: 600; padding: 15px 0px 0px 2px;
+                color: rgb(251, 2, 2); font-size: medium;">*</span> </li>
+            <li>
+                <input type="text" name="MedicalSchdule.EndDate" tabindex="2" class="crt" id="pdate2"
+                    placeholder="MM/DD/YYYY" />
+                @*@Html.TextBoxFor(model => model.MedicalSchdule.Dispensed, new { placeholder = "MM/DD/YYYY", id = "pdate2" })
+                            @Html.ValidationMessageFor(model => Model.MedicalSchdule.Dispensed)*@
+            </li>
+            <li class="labelnormal">Prescription Description: </li>
+            <li>
+                <input type="text" name="MedicalSchdule.PrescriptionDescription" title="Enter prescription description"
+                    class="crt" tabindex="3"></li>
+            <li class="labelnormal">Pharmacy Name: </li>
+            <li>
+                <input type="text" name="MedicalSchdule.PharmacyName" title="Enter pharmacy name"
+                    class="crt" tabindex="4" />
+            </li>
+            <li class="labelnormal" style="width: 100%;">
+                <div id="prescbtm" class="inline" style="width: 100%">
+                    <div class="h3border">
+                        <img id="addmed" src="~/Images/add.png" alt="add" class="inline" style="float: right"
+                            tabindex="5" />
+                        <h6 class="subheading">
+                            Medicines:</h6>
+                    </div>
+                    <div id="medlist" class="inline Medlist">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <br />
+                <div class="tldiv" style="width: 35%">
+                    <h6>
+                        Documents:</h6>
+                </div>
+                <div class="trdiv" style="width: 55%">
+                    <input type="file" name="msfiles" title="Select the Document" multiple="multiple"
+                        tabindex="6" />
+                </div>
+            </li>
+            <li style="width: 100%;">
+                <div style="width: 100%" class="inline">
+                    <input type="button" name="cancel" value="Close" style="float: right" class="graygrad"
+                        tabindex="7" onclick="$.modal.close();" />
+                    <input type="submit" id="btnMsSave" value="Save" style="float: right; margin-right: 10px;"
+                        tabindex="8" class="greengrad" />
+                </div>
+            </li>
+        </ul>
+    </div>
+    @*        </div>
+    </div>*@
+</div>
+</form>
+@*}*@
+<div id="schedule" class="slide">
+    @*<form id="frmschmed" enctype="multipart/form-data">*@ @*<div id="iderror" style="display: none; padding-left: 200px;">
+        <label style="width: 150px; height: 40px; color: Red; font-family: Arial; font-size: medium;">
+            <br />
+            Please enter all fields</label>
+    </div>*@ @* <ul style="padding: 13px 13px">
+        <li>Medicine Name: </li>
+        <li>
+            <input type="text" id="idMedicineName" title="Enter Name of the Medicine" class="create-logtxts"
+                style="width: 200px;" />
+        </li>
+        <li>Dosage Taken: </li>
+        <li>
+            <input type="text" id="iddosagetaken" title="Enter How much quantity you need to take"
+                style="width: 40px;" />
+            <select id="dtaken" style="width: 155px;">
+                <option value="tablet(s)">tablet(s)</option>
+                <option value="drop(s)">trop(s)</option>
+                <option value="capsule(s)">tapsule(S)</option>
+                <option value="tsp(s)">tsps(s)</option>
+                <option value="tbsp(s)">tbsp(s)</option>
+                <option value="puff(s)">puff(s)</option>
+                <option value="application(s)">application(s)</option>
+            </select>
+        </li>
+        <li>Total Quantity: </li>
+        <li>
+            <input type="text" id="idquantity" title="Enter Medicine Quantity" class="create-logtxts"
+                style="width: 200px;" />
+        </li>
+        <li>Frequency Taken: </li>
+        <li>
+            <select id="frequencyTaken" style="width: 212px;">
+                <option value="as needed">as needed</option>
+                <option value="Every 1hr">Every 1hr</option>
+                <option value="Every 2hrs">Every 2hrs</option>
+                <option value="Every 3hrs">Every 3hrs</option>
+                <option value="Every 4hrs">Every 4hrs</option>
+                <option value="Every morning">Every morning</option>
+                <option value="Every evening">Every evening</option>
+                <option value="Once a day">Once a day</option>
+                <option value="2times a day">2times a day</option>
+                <option value="3times a day">3times a day</option>
+                <option value="4times a day">4times a day</option>
+                <option value="once a week">once a week</option>
+                <option value="twice a week">twice a week</option>
+                <option value="thrice a week">thrice a week</option>
+                <option value="4 times a week">4 times a week</option>
+                <option value="before bed">before bed</option>
+                <option value="before meals">before meals</option>
+                <option value="after meals">after meals</option>
+                <option value="with meals">with meals</option>
+            </select>
+        </li>
+        <li>Reason: </li>
+        <li>
+            <input type="text" id="idreason" title="Enter reason" class="create-logtxts" style="width: 200px;" />
+        </li>
+        <li>
+            <div id="lblstarttime" style="display: none">
+                Start Time:
+            </div>
+        </li>
+        <li>
+            <div id="FQ1" style="display: none">
+                <input type="text" id="date1" title="Enter the Quantity" style="width: 120px;" />
+            </div>
+            <div id="FQ2" style="display: none">
+                <input type="text" id="date2" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date3" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ3" style="display: none">
+                <input type="text" id="date4" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date5" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date6" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ4" style="display: none">
+                <input type="text" id="date7" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date8" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date9" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date10" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ5" style="display: none">
+                <input type="text" id="date11" title="Enter the Quantity" style="width: 120px;" />
+            </div>
+            <div id="FQ6" style="display: none">
+                <input type="text" id="date12" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date13" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ7" style="display: none">
+                <input type="text" id="date14" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date15" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date16" title="Enter the Date" style="width: 120px;" />
+            </div>
+            <div id="FQ8" style="display: none">
+                <input type="text" id="date17" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date18" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date19" title="Enter the Date" style="width: 120px;" />
+                <br />
+                <input type="text" id="date20" title="Enter the Date" style="width: 120px;" />
+            </div>
+        </li>
+    </ul>*@
+    <ul style="padding: 13px 13px">
+        <li>Medicine Name:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+            font-size: medium;">*</span> </li>
+        <li>
+            <input type="text" id="idMedicineName" tabindex="12" title="Enter Name of the Medicine"
+                class="create-logtxts" style="width: 200px;" />
+        </li>
+        <li>Dosage Taken:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+            font-size: medium;">*</span> </li>
+        <li>@*<input type="text" id="iddosagetaken" tabindex="4" title="Enter How much quantity you need to take"
+                    style="width: 40px;" />*@ @* sandeep inte*@
+            <select id="iddosagetaken" style="width: 55px;" tabindex="13">
+                <option value=""></option>
+                <option value="1/2">1/2</option>
+                @for (int k = 1; k <= 20; k++)
+                {
+                    <option value="@k">@k</option>
+                }
+            </select>
+            <select id="iddtaken" style="width: 155px;" tabindex="14">
+                <option value="tablet(s)">tablet(s)</option>
+                <option value="drop(s)">drop(s)</option>
+                <option value="capsule(s)">capsule(S)</option>
+                <option value="tsp(s)">tsps(s)</option>
+                <option value="tbsp(s)">tbsp(s)</option>
+                <option value="puff(s)">puff(s)</option>
+                <option value="application(s)">application(s)</option>
+            </select>
+        </li>
+        <li>Frequency Taken:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+            font-size: medium;">*</span> </li>
+        <li>
+            <select id="idfrequencyTaken" style="width: 212px;" tabindex="15">
+                <option value="0">as needed</option>
+                <option value="1">Every 1hr</option>
+                <option value="1">Every 2hrs</option>
+                <option value="1">Every 3hrs</option>
+                <option value="1">Every 4hrs</option>
+                <option value="1">Every morning</option>
+                <option value="1">Every evening</option>
+                <option value="1">Once a day</option>
+                <option value="2">2times a day</option>
+                <option value="3">3times a day</option>
+                <option value="4">4times a day</option>
+                <option value="5">once a week</option>
+                <option value="6">twice a week</option>
+                <option value="7">thrice a week</option>
+                <option value="8">4 times a week</option>
+                <option value="1">before bed</option>
+                <option value="2">before meals</option>
+                <option value="2">after meals</option>
+                <option value="2">with meals</option>
+            </select>
+        </li>
+        <li>Reason: </li>
+        <li>
+            <input type="text" id="idreason" title="Enter reason" class="create-logtxts" style="width: 200px;"
+                tabindex="16" />
+        </li>
+        <li>Total Quantity: </li>
+        <li>
+            <input type="text" id="idquantity" tabindex="17" title="Enter Medicine Quantity"
+                class="create-logtxts" style="width: 200px;" />
+        </li>
+        <li>
+            <div id="lblstarttime" style="display: none">
+                Start Time:<span style="font-weight: 600; padding: 15px 0px 0px 2px; color: rgb(251, 2, 2);
+                    font-size: medium;">*</span>
+            </div>
+        </li>
+        <li>
+            <div id="FQ1" style="display: none">
+                <input type="text" id="date1" tabindex="6" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+            <div id="FQ2" style="display: none">
+                <input type="text" id="date2" tabindex="7" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date3" tabindex="8" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+            <div id="FQ3" style="display: none">
+                <input type="text" id="date4" tabindex="9" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date5" tabindex="10" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date6" tabindex="11" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+            <div id="FQ4" style="display: none">
+                <input type="text" id="date7" tabindex="12" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date8" tabindex="13" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date9" tabindex="14" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date10" tabindex="15" placeholder="HH:MM" title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+            <div id="FQ5" style="display: none">
+                <input type="text" id="date11" tabindex="16" placeholder="dd-mm-yyyy hh:mm " title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+            <div id="FQ6" style="display: none">
+                <input type="text" id="date12" tabindex="17" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date13" tabindex="18" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+            <div id="FQ7" style="display: none">
+                <input type="text" id="date14" tabindex="19" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date15" tabindex="20" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date16" tabindex="21" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+            <div id="FQ8" style="display: none">
+                <input type="text" id="date17" tabindex="22" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date18" tabindex="23" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date19" tabindex="24" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+                <br />
+                <input type="text" id="date20" tabindex="25" placeholder="dd-mm-yyyy hh:mm" title="Enter the Date"
+                    style="width: 120px;" />
+            </div>
+        </li>
+    </ul>
+    @*<div style="float: right">
+        <input type="button" id="schedulsave" value="Save" class="greengrad" />
+        <input type="button" name="slidecancel" value="Cancel" class="graygrad" />
+    </div>*@
+    <div style="width: 100%" class="inline">
+        <input type="button" name="slidecancel" value="Cancel" style="float: right" class="graygrad"
+            tabindex="26" />
+        <input type="button" id="schedulsave" value="Save" style="float: right; margin-right: 10px;"
+            tabindex="27" class="greengrad" />
+    </div>
+    @*</form>*@
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

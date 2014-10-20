@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content="1800;url=/home/home" />
+    <meta http-equiv="X-Frame-Options" content="sameorigin" />
+    <title>@ViewBag.Title</title>
+    <link href="~/icon-bumdocs.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/bundles/inndocsnewstyles")
+    @* <link href="~/Content/basic_ie.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/User.css" rel="stylesheet" media="all" />
+    <link href="~/Content/ui.dropdownchecklist.standalone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/trend.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/basic.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/dd.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ui.dropdownchecklist.standalone.css" rel="stylesheet" type="text/css" />*@
+    
+    <link href="~/Content/standalone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/clockpicker.css" rel="stylesheet" type="text/css" />
+
+   
+  @*   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>*@
+   <script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.9.2.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/knockout-2.2.1.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/globalize.min.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/dx.chartjs.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.simplemodal.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquery.signalR-1.1.4.js" type="text/javascript"></script>
+
+@*
+    <script src="~/Scripts/jquery.signalR-1.1.4.min.js" type="text/javascript"></script>
+*@
+    <script src="~/Scripts/fileDownload.js" type="text/javascript"></script>
+    <script src="~/Scripts/ui.dropdownchecklist-1.4-min.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/selected-tab.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/change-pswd.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/FooterLinks.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/Administration.js" type="text/javascript"></script>
+    <script src="~/CustomScripts/mywizard.js" type="text/javascript"></script>
+    <script src="~/Scripts/clockpicker.js" type="text/javascript"></script>
+    <script src="~/signalr/hubs"></script>
+    @*<link href="~/Content/Feedback.css" rel="stylesheet" />
+    <link href="../../../../Content/resolution.css" rel="stylesheet" type="text/css" />*@
+    <script type="text/javascript">
+        function timeout_trigger() {
+
+            var currentTime = new Date()
+            var month = currentTime.getMonth() + 1
+            var day = currentTime.getDate()
+            var year = currentTime.getFullYear()
+            var hours = currentTime.getHours()
+            var minutes = currentTime.getMinutes()
+
+            // alert(minutes + "/" + hours + "/" + month + "/" + day + "/" + year)
+
+            if (hours == 10 && minutes == 00) {
+                // alert("time up")
+                $.ajax({
+                    url: '/iHealthUser/Medwall/ViewTips',
+                    type: "GET",
+                    async: false,
+                    closeOnEscape: true,
+                    success: function (data) {
+                        if (data != "") {
+                            // alert('broke in');
+                            $('#ajaxtab').html(data).modal({
+                                closeHTML: "",
+                                onShow: function (e) {
+
+                                    $('#viewtips').click(function () {
+                                        // alert("View Tips Click");
+                                        $.ajax({
+                                            url: '/iHealthUser/Medwall/UpdateTip',
+                                            type: "POST",
+                                            async: false,
+                                            success: function (data) {
+                                            }
+                                        });
+
+
+                                    });
+
+                                }
+                            });
+                        }
+
+                        //Timer
+                    }
+                });
+            }
+            else {
+                setTimeout('timeout_trigger()', 10000);
+            }
+
+        }
+
+
+
+
+        function timeout_questions() {
+            // alert("timeout");
+            $.ajax({
+                url: '/iHealthUser/Medwall/GetAlert',
+                type: "GET",
+                async: false,
+
+                success: function (data) {
+
+                    var Tips = [];
+                    Tips = data.lstTips;
+
+                    var Ques = [];
+                    Ques = data.lstQues;
+
+
+
+                    if (Ques.length > 0) {
+                        if (hours == 19 && minutes == 14) {
+                            alert("hai1");
+                            $.each(Ques, function (key, value) {
+
+                                //
+                                //alert(value.ResponseType);
+
+                                if (value.ResponseType == "input") {
+                                    //alert("input");
+                                    $('input[name="QuestionId"]').val(value.QuestionId);
+                                    // $('#inputQues').modal({});
+                                    // $('div#inputQues ul li').eq(1).empty();
+                                    // $('div#inputQues ul li').eq(1).append(value.Question);
+                                    var QuestionId = $('input[name="QuestionId"]').val();
+
+                                    var result = prompt(value.Question);
+                                    alert(result);
+                                    $('input[name="responseB"]').val(value.result);
+
+                                    $.ajax({
+                                        url: '/iHealthUser/Medwall/UpdateQuestion',
+                                        type: "POST",
+                                        async: false,
+                                        data: { QuestionId: QuestionId, result: result },
+                                        success: function (data) {
+                                        }
+                                    });
+                                }
+                                else if (value.ResponseType == "boolean") {
+                                    // alert("boo");
+                                    $('input[name="QuestionId"]').val(value.QuestionId);
+                                    // $('#booleanQues').modal({});
+                                    // $('div#booleanQues ul li').eq(1).empty();
+                                    // $('div#booleanQues ul li').eq(1).append(value.Question);
+                                    var QuestionId = $('input[name="QuestionId"]').val();
+                                    var result = confirm(value.Question);
+                                    alert(result);
+                                    $('input[name="responseB"]').val(value.result);
+
+                                    $.ajax({
+                                        url: '/iHealthUser/Medwall/UpdateQuestion',
+                                        type: "POST",
+                                        async: false,
+                                        data: { QuestionId: QuestionId, result: result },
+                                        success: function (data) {
+                                        }
+                                    });
+                                }
+                                else if (value.ResponseType == "mixed") {
+
+                                    $('input[name="QuestionId"]').val(value.QuestionId);
+
+                                    $('#mixedQues').modal();
+                                    $('div#mixedQues ul li').eq(1).empty();
+                                    $('div#mixedQues ul li').eq(1).append(value.Question);
+                                    var QuestionId = $('input[name="QuestionId"]').val();
+                                    $('#mixedbutton').click(function () {
+                                        var value = $('input:radio[name=theme]:checked').val();
+                                        var l = document.getElementById('textbox').value;
+
+                                        var result = value + "," + l;
+                                        alert(result);
+                                        $.ajax({
+                                            url: '/iHealthUser/Medwall/UpdateQuestion',
+                                            type: "POST",
+                                            async: false,
+                                            data: { QuestionId: QuestionId, result: result },
+                                            success: function (data) {
+                                                if (data != "0") {
+                                                    $.modal.close();
+                                                }
+
+                                            }
+                                        });
+
+                                    });
+
+                                    $('input[name="cancel"]').click(function () {
+                                        $.modal.close();
+                                    });
+
+                                }
+                            });
+                        }
+                        // else {
+                        // setTimeout('timeout_trigger()', 10000);
+                        // }
+                        //
+
+
+                    }
+
+
+
+                }
+            });
+
+        }
+
+
+
+
+
+
+
+
+        $(document).ready(function () {
+
+            setTimeout(timeout_trigger, 10000);
+
+            setTimeout(timeout_questions, 1000);
+            //   alert("hai");
+            $("#formT").submit(function (e) {
+                e.preventDefault();
+                alert("form");
+                $.ajax({
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(),
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        $.modal.close();
+                    }
+                });
+                return false;
+            });
+
+            $('#btnCancel').click(function () {
+                $.modal.close();
+
+            });
+
+            $('#feedbackImg').click(function () {
+
+                $.ajax({
+                    url: '/iHealthUser/AccountSettings/feedback',
+                    type: "GET",
+                    async: false,
+                    success: function (data) {
+                        $('#some').html(data).modal({
+                            closeHTML: "",
+
+                            onShow: function (e) {
+                                e.container.css({ 'height': 'auto' });
+                                $('#Contact').show();
+                                $('#Feedback').hide();
+
+                            }
+
+                        });
+                    }
+                });
+
+            });
+
+            $('span.WelcomeUser').hover(function () {
+                $('div.aria').fadeIn(300);
+            });
+
+            $(document).click(function (e) {
+                if (e.target.id != 'aria') {
+                    $('div.aria').fadeOut(1000);
+                }
+            });
+
+            $('#wizard').mywizard();
+
+            $('span.ContactUs').click(function () {
+
+                var status = $('div.wizard').css("display");
+                if (status == "none") {
+
+                    $('div.wizard').fadeIn(300);
+
+                    var alldivs = $('div#wizard');
+                    var childdivs = alldivs.children('div');
+                    $(childdivs).not(':eq(0)').hide();
+                    $(childdivs).eq(0).show();
+
+                    $('#txtmessage').val("");
+                }
+                else {
+                    $('div.wizard').fadeOut(300);
+                }
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    @*<header>
+        <div id="head-wrapper">
+            <div id="head">
+                @RenderPage("~/Areas/iHealthUser/Views/Shared/_Header.cshtml")
+                <div id="bottom-head">
+                    @RenderSection("Search", false)
+                </div>
+            </div>
+        </div>
+        @* <a href="#" class="feedback" id="feedbackImg"></a>
+    <div id="container">
+     @RenderSection("AdsPanel", false)
+        <div id="sidebar-wrapper">
+            @RenderPage("~/Areas/iHealthUser/Views/Shared/_Sidebar.cshtml")
+        </div>
+        <div id="content">
+            @RenderBody()
+            <div id="some" style="display: none">
+            </div>
+            @Scripts.Render("~/bundles/validate")
+        </div>
+         @RenderSection("LeftPanel", false)
+        <div id="ajaxtab" style="display: none;">
+        </div>
+    </div>*@
+    <header>
+        <div id="head-wrapper">
+            @RenderPage("~/Areas/iHealthUser/Views/Shared/_Header.cshtml")
+            @RenderSection("Search", false)
+        </div>
+    </header>
+    <div class="container">
+        @RenderSection("AdsPanel", false)
+        @RenderSection("LeftPanel", false)
+        @RenderSection("chat",false)
+        <div id="content" style="float: left">
+            @RenderBody()
+            <div id="some" style="display: none">
+            </div>
+            @Scripts.Render("~/bundles/validate")
+        </div>
+        <div id="rightdiv" style="float: left">
+            @RenderSection("RightPanel", false)
+        </div>
+        @*<div id="right-ads" style="width: 245px; height: 250px; float: left">
+            <img src="../../../../Images/ads%20banner%20250x250.jpg" id="ad-image" />
+        </div>
+        @RenderSection("UserProfile", false)
+        @RenderSection("Ads", false)*@ @*<div id="sidebar-ads">
+            @RenderPage("~/Areas/iHealthUser/Views/Shared/_Sidebar.cshtml")
+            <div id="right-ads" style="width:240px; height:250px; float:right">
+    <img src="../../../../Images/ads%20banner%20250x250.jpg" />
+        </div>
+        </div>*@
+        <div id="ajaxtab" style="display: none;">
+        </div>
+    </div>
+    <footer>
+        <div id="footer-wrapper">
+            @RenderPage("~/Areas/iHealthUser/Views/Shared/_Footer.cshtml")
+        </div>
+    </footer>
+    <input type="hidden" name="tipId" />
+    <input type="hidden" name="QuestionId" />
+    <input type="hidden" name="responseB" />
+    @* <div id="Tips" style="display: none">
+<form action="" method="post" id="formT">
+<input type="hidden" name="tipId" />
+<ul>
+<li>Tip:</li>
+<li></li>
+</ul>
+<input type="submit" value="OK" />
+</form>
+</div>*@
+    <div id="inputQues" style="display: none">
+        <form action="" method="post" id="formIQ">
+        <input type="hidden" name="QuestionId" />
+        <ul>
+            <li>Q:</li>
+            <li></li>
+        </ul>
+        <input type="text" name="txtinput" />
+        </form>
+    </div>
+    <div id="booleanQues" style="display: none">
+        <form action="" method="post" id="formBQ">
+        <input type="hidden" name="QuestionId" />
+        <ul>
+            <li>Q:</li>
+            <li></li>
+        </ul>
+        <input type="radio" value="yes" />
+        <input type="radio" value="No" />
+        </form>
+    </div>
+    <div id="mixedQues" style="display: none">
+        <form action="" method="post" id="formMQ">
+        <input type="hidden" name="QuestionId" />
+        <ul>
+            <li>Q:</li>
+            <li></li>
+        </ul>
+        <input type="radio" id="radio1" name="theme" value="yes" />
+        <input type="radio" id="radio2" name="theme" value="No" />
+        <input type="text" id="textbox" name="txtinput" />
+        <input type="button" id="mixedbutton" value="Ok" />
+        <input type="button" id="mixcancel" name="cancel" value="cancel" />
+        </form>
+    </div>
+</body>
+</html>

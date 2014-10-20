@@ -1,0 +1,16 @@
+﻿@media (max-width: 480px)
+{
+    /*.three-blocks {
+	height: 650px;
+}*/
+    .facebook-article
+    {
+        top: 200px;
+        left: 0;
+    }
+    .adsblock
+    {
+	right:0; 
+	top: 450px;
+    }
+}

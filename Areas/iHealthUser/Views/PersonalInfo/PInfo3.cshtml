@@ -1,0 +1,951 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.MedicalAndPersonal
+@{
+    ViewBag.Title = "MyInfo";
+}
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#content').css({ 'width': '725px', 'background': 'none', 'border': 'none', 'padding': '0' });
+    });
+
+    $(document).ready(function () {
+
+        //This is to block UI
+
+        $('#InsuranceAddBtn').click(function () {
+            // alert("2");
+            // $.blockUI.defaults.css = {}; //this will remove the default css for centering all elements
+            var result = $(this).attr('Id');
+            var result1;
+            //updated by ck
+            if (result == "InsuranceAddBtn") {
+                //added by jagadeesh
+                //                $('#txtValue1').keydown(function (event) {
+                //                    var $th = $(this);
+
+                //                    if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                //                        // Allow: Ctrl+A
+                //                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                //                        // Allow: home, end, left, right
+                //                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                //                        // let it happen, don't do anything
+                //                        return;
+                //                    }
+                //                    else {
+                //                        // Ensure that it is a number and stop the keypress
+                //                        if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) ) {
+                //                            event.preventDefault();
+                //                        }
+                //                    }
+                //                });
+
+
+                $('#txtValue1').keydown(function (e) {
+                    if (e.shiftKey || e.ctrlKey || e.altKey) {
+                        e.preventDefault();
+                    } else {
+                        var key = e.keyCode;
+                        if (!((key == 8) || (key == 32) || (key == 46) || (key == 9) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+                $('#txtValue2').keydown(function (e) {
+                    if (e.ctrlKey || e.altKey || e.entrKey) {
+                        e.preventDefault();
+                    } else {
+                        var key = e.keyCode;
+                        if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+                // alert("2");
+                document.getElementById("Title").innerHTML = "Add Insurance Info";
+
+
+                //document.getElementById("hdSelectedItems").value = $('#Title').val();
+                document.getElementById("lblValue1").innerHTML = "Policy number";
+                document.getElementById("lblValue2").innerHTML = "Insurance provider name";
+                result1 = "Insurance";
+                var showResult = $('#PopupBlockUI');
+            }
+
+            $.post('/iHealthUser/PersonalInfo/GetBMIInfoItems', { data: result1 }, function (success) {
+
+                //debugger;
+                //                    var data = [];c
+
+                //                    for (i = 0; i < success.length; i++) {
+
+                //                        data[i] = success[i].Text;
+                //                    }
+
+                //$.each(success, function (a) {
+
+
+                //});
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+                        $('#txtValue1').val(success.Value1);
+                        $('#txtValue2').val(success.Value2);
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+
+            }, "json");
+
+        });
+
+
+        $("#btnsave1").click(function () {
+            // alert("1");
+            var result = $(this).attr('Id');
+            //alert(result);
+            document.getElementById("hdSelectedItems").value = "";
+            var T = document.getElementById("T");
+
+            T.value = document.getElementById("Title1").innerHTML;
+            //alert(T.value);
+            T.value += ",";
+            T.value += "PInfo3";
+            //alert(T);
+            var Tvalue = T.value;
+
+            var hdSelectedItems = document.getElementById("hdSelectedItems");
+            hdSelectedItems.value = document.getElementById("searchtxt").value;
+            //   alert(hdSelectedItems.value);
+            var sendRes = hdSelectedItems.value;
+            if (!sendRes == "" && sendRes != null) {
+                $.ajax({
+                    url: '/iHealthUser/PersonalInfo/EditAlergiesInfo',
+                    data: { hdSelectedItems: sendRes, T: Tvalue },
+                    type: 'post',
+                    async: false,
+                    cache: false,
+                    dataType: 'json',
+                    success: function () {
+                        //$("#viewAudits").html(data);
+                    }
+
+                });
+
+            }
+            else {
+                alert("Please enter any value");
+                return false;
+            }
+
+
+        });
+
+        $('#CancerAddBtn,#AsthmaAddBtn,#LiverAddBtn,#HeartAddBtn,#ThyroidAddBtn,#ChronicAddBtn').click(function () {
+            $('#searchtxt').keyup(function (event) {
+                var th = $(this).val();
+
+                if (th.length == 1) {
+                    if ((event.keyCode > 64 && event.keyCode < 91) || (event.keyCode > 96 && event.keyCode < 123) || event.keyCode == 8)
+                        return true;
+                    else {
+                        $(this).val('');
+                        alert("First letter should be alphabet");
+                    }
+                }
+            });
+            // alert("1");
+            //$.blockUI.defaults.css = {}; //this will remove the default css for centering all elements
+            var result = $(this).attr('Id');
+
+            var result1;
+            if (result == "CancerAddBtn") {
+                document.getElementById("Title1").innerHTML = "Add Cancer";
+                document.getElementById("SubTitle").innerHTML = "Add cancer diseases from a list";
+                result1 = "Cancer";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "AsthmaAddBtn") {
+                document.getElementById("Title1").innerHTML = "Add Asthma";
+                document.getElementById("SubTitle").innerHTML = "Add asthma or chest problems from a list";
+                result1 = "Asthma";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "LiverAddBtn") {
+                document.getElementById("Title1").innerHTML = "Add Liver";
+                document.getElementById("SubTitle").innerHTML = "Add liver diseases from a list";
+                result1 = "Liver";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "HeartAddBtn") {
+                document.getElementById("Title1").innerHTML = "Add Heart";
+                document.getElementById("SubTitle").innerHTML = "Add heart problems from a list";
+                result1 = "Heart";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "ThyroidAddBtn") {
+                document.getElementById("Title1").innerHTML = "Add Thyroid Problems";
+                document.getElementById("SubTitle").innerHTML = "Add thyroid problems from a list";
+                result1 = "Thyroid";
+                var showResult = $('#ThyroidPopup1');
+            }
+            else if (result == "ChronicAddBtn") {
+                document.getElementById("Title1").innerHTML = "Add Chronic Diseases";
+                document.getElementById("SubTitle").innerHTML = "Add chronic diseases from a list";
+                result1 = "Chronic";
+                var showResult = $('#ThyroidPopup1');
+            }
+
+
+            //$.post('PersonalInfo/GetListItems', { data: result1 }, function (success) {   //// For local
+            $.post('/iHealthUser/PersonalInfo/GetListItems', { data: result1 }, function (success) {  ////// For Datacenter
+
+
+
+                var data = [];
+
+                for (i = 0; i < success.length; i++) {
+
+                    data[i] = success[i].Text;
+                }
+
+                $(showResult).modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+
+                        //Inteliisense
+                        function split(val) {
+                            return val.split(/,\s*/);
+                        }
+
+                        function extractLast(term) {
+
+                            return split(term).pop();
+                        }
+
+                        $('#searchtxt').bind('keydown', function (event) {
+
+                            if (event.keyCode === $.ui.keyCode.TAB &&
+                            $(this).data('autocomplete').menu.active) {
+
+                                event.preventDefault();
+                            }
+                        }).autocomplete({
+                            source: function (request, response) {
+                                $.getJSON('/iHealthUser/PersonalInfo/LookUpReasons?name=' + result1, {
+                                    term: extractLast(request.term)
+                                }, response);
+                            },
+                            search: function () {
+                                var term = extractLast(this.value);
+                                if (term.length < 1) {
+                                    return false;
+                                }
+                            },
+                            focus: function () { return false; },
+                            select: function (event, ui) {
+                                var terms = split(this.value);
+
+
+
+                                var vals = this.value.split(',');
+                                terms.pop();
+
+                                $.each(vals, function (key, val) {
+
+                                    if (ui.item.value.trim() == val.trim()) {
+                                        ui.item.value = '';
+                                    }
+                                });
+                                if (ui.item.value != '') {
+                                    terms.push(ui.item.value);
+
+                                    terms.push('');
+
+                                    this.value = terms.join(', ');
+                                } else {
+                                    this.value = terms + ', ';
+                                }
+
+                                return false;
+                            }
+                        });
+
+                        //                                terms.pop();
+                        //                                terms.push(ui.item.value);
+                        //                                terms.push('');
+                        //                                this.value = terms.join(', ');
+                        //                                return false;
+                        //                            }
+                        //                        });
+
+                        //End of Intellisense
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                            // $('#Alergies').empty();
+
+                        });
+                    }
+
+                });
+            }, "json");
+
+        });
+
+        $('#btnUpdate').click(function () {
+
+            var viewid = document.getElementById("viewid");
+
+            viewid.value = document.getElementById("viewid").value;
+            viewid.value += ",";
+            viewid.value += "PInfo3";
+            document.getElementById("button").value = "btnUpdate";
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            //                var dateNoticed = document.getElementById("DateNoticed").val;
+            var reaction = document.getElementById("Reaction").value;
+            //alert(tbVieInfoName);
+            var severity = document.getElementById("Severity").val;
+            var provider = document.getElementById("Provider").val;
+            var notes = document.getElementById("Notes").val;
+
+            if (jQuery.browser.safari) {
+
+                //                setTimeout("window.location.href= '" + this.href + "'", 500);
+                $.ajax({
+
+                    url: '@Url.Action("UpdateAlergiesInfo", "PersonalInfo", new { id = "UpdateInfoform" })',
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($(this).get(0)),
+                    async: false,
+                    success: function (data) {
+                        location.reload();
+                    }
+
+
+                });
+                return false;
+            }
+            else {
+                $.post($(this).attr("action"), { data1: tbVieInfoName, data2: button, data3: reaction, data4: severity, data5: provider, data6: notes, data7: viewid }, {}, "json");
+            }
+        });
+
+        $('#btnRemove').click(function () {
+
+            document.getElementById("button").value = "btnRemove";
+
+            var viewid = document.getElementById("viewid");
+
+            viewid.value = document.getElementById("viewid").value;
+            viewid.value += ",";
+            viewid.value += "PInfo3";
+
+
+
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            //alert(tbVieInfoName);
+            if (jQuery.browser.safari) {
+
+                //                setTimeout("window.location.href= '" + this.href + "'", 500);
+                $.ajax({
+
+                    url: '@Url.Action("UpdateAlergiesInfo", "PersonalInfo", new { id = "UpdateInfoform" })',
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($(this).get(0)),
+                    async: false,
+                    success: function (data) {
+                        location.reload();
+                    }
+
+
+                });
+                return false;
+            }
+            else {
+
+                $.post($(this).attr("action"), { data1: tbVieInfoName, data2: button, data3: viewid }, {}, "json");
+            }
+
+
+
+        });
+
+
+        $('#btnAddBMIInfo').click(function () {
+
+            var value1, value2, type;
+
+            value1 = $('#txtValue1').val();
+            value2 = $('#txtValue2').val();
+            type = document.getElementById("Title").innerHTML;
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddBMI',
+                type: 'POST',
+                data: { value1: value1, value2: value2, type: type },
+                success: function (success) {
+                    // debugger;
+                    if (success == '1010') {
+                        location.reload();
+                    }
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+
+                    }
+                }
+                //, "json");
+            });
+        });
+
+        //test ul popup
+        $(".Ulist li ").click(function () { //"#ulAllergies li"  
+            //            $.blockUI.defaults.css = {};
+            //   alert("1");
+            //debugger;
+            $('#tbVieInfoName').val($(this).text().trim());
+
+            var Result = ['Reaction', 'Severity', 'Provider', 'Notes'];
+
+            var reaction = document.getElementById("Reaction").val;
+            var severity = document.getElementById("Severity").val;
+            var provider = document.getElementById("Provider").val;
+            var notes = document.getElementById("Notes").val;
+
+
+            var g = $(this).parent().attr("id");
+            document.getElementById("viewid").value = g.substring(2);
+
+
+            var viewid = document.getElementById("viewid").value;
+
+            var tbVieInfoName = document.getElementById("tbVieInfoName").value;
+            $.post('/iHealthUser/PersonalInfo/GetRelated', { data: tbVieInfoName, data1: viewid }, function (Result) {
+
+                $("#ViewAllInfo").modal({
+                    closeHTML: "",
+                    escClose: true,
+                    onShow: function () {
+                        $("input[name = 'btnCancel']").click(function () {
+                            $.modal.close();
+                        });
+                    }
+
+                });
+
+                $('#Reaction').val(Result.Reaction);
+                $('#Severity').val(Result.Severity);
+                $('#Provider').val(Result.Provider);
+                $('#Notes').val(Result.Notes);
+
+
+            }, "json");
+
+
+
+        });
+
+        // AD 31-12-2012
+        $(".Ulist li").hover(
+ function () {
+     $(this).css("background", "gray");
+     $(this).css("color", "white");
+
+ },
+ function () {
+     $(this).css("background", "");
+     $(this).css("color", "black");
+ }
+);
+        //end test ul popup
+
+
+
+
+        $('#EmergencyAddBtn').click(function () {
+
+            $('#txtPriContactPerName').keydown(function (e) {
+                if (e.ctrlKey || e.altKey || e.entrKey) {
+                    e.preventDefault();
+                } else {
+                    var key = e.keyCode;
+                    if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                        e.preventDefault();
+                    }
+                }
+            });
+
+            $('#txtPriContactNo').keydown(function (event) {
+                var $th = $(this);
+
+                if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 10)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+            $('#txtSecContactPerName').keydown(function (e) {
+                if (e.ctrlKey || e.altKey || e.entrKey) {
+                    e.preventDefault();
+                } else {
+                    var key = e.keyCode;
+                    if (!((key == 8) || (key == 32) || (key == 13) || (key == 9) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+                        e.preventDefault();
+                    }
+                }
+            });
+            $('#txtSecContactNo').keydown(function (event) {
+                var $th = $(this);
+
+                if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                // Allow: Ctrl+A
+                       (event.keyCode == 65 && event.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                      (event.keyCode >= 35 && event.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                else {
+                    // Ensure that it is a number and stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) || ($(this).val().length >= 10)) {
+                        event.preventDefault();
+                    }
+                }
+            });
+
+
+
+
+            $("#EmergencyInfo").modal({
+                closeHTML: "",
+                escClose: true,
+                onShow: function () {
+                    $("input[name = 'btnCancel']").click(function () {
+                        $.modal.close();
+                    });
+                }
+
+            });
+        });
+
+
+        $('#btnAddEmergencyInfo').click(function () {
+            // $.blockUI.defaults.css = {}; //this will remove the default css for centering all elements
+            var PriContactPerName, PriContactNo, SecContactPerName, SecondaryContactNo;
+            PriContactPerName = $('#txtPriContactPerName').val();
+            PriContactNo = $('#txtPriContactNo').val();
+            SecContactPerName = $('#txtSecContactPerName').val();
+            SecondaryContactNo = $('#txtSecContactNo').val();
+
+            if (PriContactNo.length == "") {
+            }
+            else if (PriContactNo.length < 10) {
+                alert("Please enter valid primary contact number");
+                return false;
+            }
+
+
+            if (SecondaryContactNo.length == "") {
+            }
+            else if (SecondaryContactNo.length < 10) {
+                alert("Please enter valid secondary contact number");
+                return false;
+            }
+
+            $.ajax({
+                url: '/iHealthUser/PersonalInfo/BtnAddEmergencyInfo',
+                type: 'POST',
+                cache: false,
+                async: false,
+                data: { PrimaryContactPersonName: PriContactPerName, PrimaryContactNumber: PriContactNo, SecondaryContactPersonName: SecContactPerName, SecondaryContactNumber: SecondaryContactNo },
+                success: function (result) {
+                    if (result == 1010)
+                        location.reload();
+                    else {
+                        $(success).modal({
+                            closeHTML: "",
+                            escClose: true,
+                            onShow: function () {
+                                $("input[name = 'btnCancel']").click(function () {
+                                    $.modal.close();
+                                });
+                            }
+
+                        });
+                    }
+                }
+            });
+
+        });
+
+
+    });
+</script>
+<style type="text/css">
+    .ui-widget-content
+    {
+        height: 200px !important;
+        overflow-y: auto;
+        width: 306px !important;
+    }
+</style>
+
+
+@section AdsPanel{
+    <div id="adsdiv">
+        <img src="../../../../Images/full-banner-468x60.jpg" />
+    </div>
+}
+
+<div id="MainContainer">
+    <div class="blocks_wrp">
+        @*updated by ck*@
+        <div class="PInfo_blocks">
+            <h2>
+                Asthma or chest problems <a href="#" onclick="return false;" class="addmore" id="AsthmaAddBtn"
+                    title="Add"></a>
+            </h2>
+            <ul class="Ulist" id="ULAsthma">
+                @foreach (var UsrInfo in Model.al)
+                {
+                    for (var i = 0; i < UsrInfo.Asthamas.Count; i++)
+                    {
+                    <li>
+                        <label id="Name3" style="margin-right: 30px;">
+                            @Html.DisplayFor(model => UsrInfo.Asthamas[i])
+                        </label>
+                    </li>
+                    }
+                    break;
+                }
+            </ul>
+        </div>
+        @*updated by ck*@
+        <div class="PInfo_blocks">
+            <h2>
+                Liver disease <a href="#" onclick="return false;" id="LiverAddBtn" class="addmore"
+                    title="Add"></a>
+            </h2>
+            <ul class="Ulist" id="ULLiver">
+                @foreach (var UsrInfo in Model.al)
+                {
+                    for (var i = 0; i < UsrInfo.Liverproblems.Count; i++)
+                    {
+                    <li>
+                        <label id="Name4" style="margin-right: 30px;">
+                            @Html.DisplayFor(model => UsrInfo.Liverproblems[i])
+                        </label>
+                    </li>
+                    }
+                    break;
+                }
+            </ul>
+        </div>
+        @*updated by ck*@
+        <div class="PInfo_blocks">
+            <h2>
+                Cancer <a href="#" onclick="return false;" class="addmore" id="CancerAddBtn" title="Add">
+                </a>
+            </h2>
+            <ul class="Ulist" id="UlCancer">
+                @foreach (var UsrInfo in Model.al)
+                {
+
+                    for (var i = 0; i < UsrInfo.Cancers.Count; i++)
+                    {
+                    <li>
+                        <label id="Name2" style="margin-right: 30px;">
+                            @Html.DisplayFor(model => UsrInfo.Cancers[i])
+                        </label>
+                    </li>
+                     
+                    }
+                    break;
+                }
+            </ul>
+        </div>
+        <div class="PInfo_blocks">
+            <h2>
+                Heart problems <a href="#" onclick="return false;" id="HeartAddBtn" class="addmore"
+                    title="Add"></a>
+            </h2>
+            <ul class="Ulist" id="ULHeart">
+                @foreach (var UsrInfo in Model.al)
+                {
+                    for (var i = 0; i < UsrInfo.Heartproblems.Count; i++)
+                    {
+                    <li>
+                        <label id="Name5" style="margin-right: 30px;">
+                            @Html.DisplayFor(model => UsrInfo.Heartproblems[i])
+                        </label>
+                    </li>
+                    }
+                    break;
+                }
+            </ul>
+        </div>
+        @*updated by ck*@
+        <div class="PInfo_blocks">
+            <h2>
+                Thyroid problems <a href="#" onclick="return false;" class="addmore" id="ThyroidAddBtn"
+                    title="Add"></a>
+            </h2>
+            <ul class = "Ulist" id = "ULThyroid" @*style = "overflow:auto;  padding-bottom:10px; height:70%; max-width:98%;"*@>
+                @foreach (var UsrInfo in Model.al)
+                {
+                    for (var i = 0; i < UsrInfo.ThyroidProblems.Count; i++)
+                    {
+                    <li>
+                        <label id="Name1" style="margin-right: 30px;">
+                            @Html.DisplayFor(model => UsrInfo.ThyroidProblems[i])
+                        </label>
+                    </li>
+                    }
+                    break;
+                }
+            </ul>
+        </div>
+        @*updated by ck*@
+        <div class="PInfo_blocks">
+            <h2>
+                Chronic diseases <a href="#" onclick="return false;" class="addmore" id="ChronicAddBtn"
+                    title="Add"></a>
+            </h2>
+            <ul class="Ulist" id="ULChronicDiseases">
+                @foreach (var UsrInfo in Model.al)
+                {
+                    for (var i = 0; i < UsrInfo.ChronicDiseases.Count; i++)
+                    {
+                    <li>
+                        <label id="Name1" style="margin-right: 30px;">
+                            @Html.DisplayFor(model => UsrInfo.ChronicDiseases[i])
+                        </label>
+                    </li>
+                    }
+                    break;
+                }
+            </ul>
+        </div>
+        <div class="PInfo_Multiline">
+            <h2>
+                Insurance Info <a href="#" onclick="return false;" class="edit" id="InsuranceAddBtn"
+                    title="Edit"></a>
+            </h2>
+            <ul>
+                <li>Policy number</li>
+                <li>
+                    @Html.DisplayFor(model => model.MInfo1.PolicyNumber)
+                </li>
+                <li>Insurance provider name </li>
+                <li>@Html.DisplayFor(model => model.MInfo1.InsuranceProviderName)
+                </li>
+            </ul>
+        </div>
+        <div class="PInfo_Multiline">
+            <h2>
+                Emergency Info<a href="#" onclick="return false;" class="edit" id="EmergencyAddBtn"
+                    title="Edit"></a></h2>
+            <ul>
+                <div align="center" style="height: 35px;">
+                    Primary Contact Number</div>
+                <li style="background-color: transparent; font-weight: normal;">Contact person name
+                </li>
+                <li>
+                    @Html.DisplayFor(model => model.MInfo1.PrimaryContactPersonName)
+                </li>
+                <li>Contact number </li>
+                <li>
+                    @Html.DisplayFor(model => model.MInfo1.PrimaryContactNumber)
+                </li>
+                <div align="center" style="float: left; height: 35px; width: 100%;">
+                    Secondary Contact Number</div>
+                <li>Contact person name </li>
+                <li>
+                    @Html.DisplayFor(model => model.MInfo1.SecondaryContactPersonName)
+                </li>
+                <li>Contact number </li>
+                <li>
+                    @Html.DisplayFor(model => model.MInfo1.SecondaryContactNumber, new { id = "secContactNo" })
+                </li>
+            </ul>
+        </div>
+        <div class="next_page_wrapper">
+            <a class="prev_page" title="Previous page" style="clear: right;" href="@Url.Action("PInfo2", "PersonalInfo")">
+            </a>
+        </div>
+    </div>
+</div>
+@*Emergency Info Popup *@
+<div>
+    <div id="EmergencyInfo" style="display: none; width: 300px;">
+        <form id="EmergencyInfoForm" style="width: 100%; background-color: transparent" action=""
+        method="post">
+        <div style="border-bottom: 1px solid rgb(218,221,226);">
+            <h3>
+                Add emergency info</h3>
+        </div>
+        <div class="PinfoViewInfo">
+            <ul>
+                <li style="width: 100%;" class="lbl_title">Primary emergency </li>
+                <li class="labelnormal">Person name </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.PrimaryContactPersonName, new { id = "txtPriContactPerName" })
+                </li>
+                <li class="labelnormal">Contact number </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.PrimaryContactNumber, new { id = "txtPriContactNo" })
+                </li>
+                <li style="width: 100%;" class="lbl_title">Secondary emergency </li>
+                <li class="labelnormal">Person name </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.SecondaryContactPersonName, new { id = "txtSecContactPerName" })
+                </li>
+                <li class="labelnormal">Contact number </li>
+                <li class="labelbold">
+                    @Html.TextBoxFor(model => model.MInfo1.SecondaryContactNumber, new { id = "txtSecContactNo" })
+                </li>
+                <li style="width: 100%" class="inline">
+                    <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad" />
+                    <input type="button" id="btnAddEmergencyInfo" value="Save" style="float: right; margin-right: 10px;"
+                        class="greengrad" />
+                </li>
+            </ul>
+        </div>
+        </form>
+    </div>
+</div>
+@*Emergency Info Popup *@ @*Poppup Div of Thyroid Problems*@
+<div id="ThyroidPopup1" style="width: 310px; display: none;">
+    <form id="CancerForm" style="width: 100%; background-color: transparent">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title1" />
+        </h3>
+    </div>
+    <div class="subtitle">
+        <label id="SubTitle" />
+    </div>
+    <div class="Vaccination">
+        <label id="ThyroidSearch">
+            Search/Add
+        </label>
+        <input type="text" id="searchtxt" style="width: 300px;" />
+        <div style="border-bottom: 1px solid rgb(218,221,226); float: left;">
+            @Html.Hidden("hdSelectedItems")
+            @Html.Hidden("T")
+            @Html.HiddenFor(model => model.MInfo1.UserId)
+        </div>
+        <div class="inline" style="width: 61%">
+            <input type="button" name="btnCancel" value="Cancel" style="float: right;" class="graygrad btn_space" />
+            <input type="Submit" value="Save" id="btnsave1" style="float: right; margin-right: 10px;"
+                class="greengrad btn_space" />
+            @*<input type="Submit" value="Save" id="btnsave1" class="greengrad btn_space" />
+            <input type="button" name="btnCancel" value="Cancel" class="graygrad btn_space" style="float: right" />*@
+        </div>
+    </div>
+    </form>
+</div>
+@*Poppup Div of Thyroid Problems*@ @*pop up for block ui*@
+<div id="PopupBlockUI" style="display: none; width: 331px;">
+    <form id="BMIInfoForm" style="width: 100%; background-color: transparent" action=""
+    method="post">
+    <div style="border-bottom: 1px solid rgb(218,221,226);">
+        <h3>
+            <label id="Title" />
+        </h3>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue1" />
+            </li>
+            <li>
+                <input type="text" id="txtValue1" />
+            </li>
+            <li class="PinfoViewInfo_lbl">
+                <label id="lblValue2" />
+            </li>
+            <li>
+                <input type="text" id="txtValue2" />
+            </li>
+            @*@Html.Hidden("hdSelectedItems");
+                @Html.HiddenFor(model => model.MInfo1.UserId)*@
+            <li class="inline" style="width: 89%">
+                <input type="button" name="btnCancel" value="Cancel" class="graygrad" style="float: right;" />
+                <input type="button" id="btnAddBMIInfo" value="Save" class="greengrad" style="float: right;
+                    margin-right: 5px;" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@*end ogf popup block ui*@ @* AD Code for View Information when User click on list, starts here*@
+<div id="ViewAllInfo" style="display: none; width: 350px;">
+    <form id="UpdateInfoform" action="@Url.Action("UpdateAlergiesInfo", "PersonalInfo")" method="post">
+    <div class="popup_header">
+        <h2>
+            View Information</h2>
+    </div>
+    <div class="PinfoViewInfo">
+        <ul>
+            <li style="display: none">
+                <input type="hidden" id="viewid" name="viewid" />
+            </li>
+            <li style="display: none">
+                <input type="hidden" id="button" name="button" />
+            </li>
+            @*  @Html.Hidden("viewid")
+           @Html.Hidden("button")*@
+            <li id="AName" class="labelnormal">Name </li>
+            <li class="labelbold">
+                <input type="text" id="tbVieInfoName" name="tbVieInfoName" readonly="readonly" class="pli"
+                    value="" />
+            </li>
+            <li id="AReact" class="labelnormal">Reaction </li>
+            <li class="labelbold">
+                <input type="text" id="Reaction" name="Reaction" class="pli" value="" /></li>
+            <li id="ASiv" class="labelnormal">Severity </li>
+            <li class="labelbold">
+                <input type="text" name="Severity" id="Severity" class="pli" /></li>
+            <li id="AProv" class="labelnormal">Provider or facility </li>
+            <li class="labelbold">
+                <input type="text" id="Provider" name="Provider" class="pli" /></li>
+            <li id="ANotes" class="labelnormal">Notes </li>
+            <li class="labelbold">
+                <textarea style="width: 152px; float: left" rows="4" cols="16" id="Notes" name="Notes"
+                    class="pli"> </textarea></li>
+            <li class="popup_btn_wrap">
+                <input type="button" name="btnCancel" value="Cancel" class="graygrad btn_space" />
+                <input type="submit" id="btnRemove" value="Remove" class="greengrad btn_space" />
+                <input type="submit" value="Update" id="btnUpdate" class="greengrad btn_space" />
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+@* AD Code for View Allergies  Info End here*@

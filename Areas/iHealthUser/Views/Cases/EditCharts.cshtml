@@ -1,0 +1,260 @@
+﻿@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.Cases
+@{
+    int i = 1;
+}
+<script src="~/CustomScripts/documentsview.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $('#nav > li > a').click(function () {
+            if ($(this).attr('class') != 'active') {
+                $('#nav li ul').slideUp();
+                $(this).next().slideToggle();
+                $('#nav li a').removeClass('active');
+                $(this).addClass('active');
+            }
+        });
+
+        //        $('img.btneditCT').click(function (e) {
+        //            e.stopPropagation()
+        //            $.ajax({
+        //                url: '/ihealthuser/Cases/UpdateCTView',
+        //                type: 'GET',
+        //                async: false,
+        //                data: { ctId: $(this).parents('li').find('input[name="Charts.ChartId"]').val() },
+        //                cache: false,
+        //                success: function (result) {
+        //                    $('#modal-Chartupdate').html(result).modal({
+        //                    closeHTML:'',
+        //                        onShow: function () {
+
+        //                            $('#dateOfChart2').datepicker({
+        //                                changeYear: true,
+        //                                changeMonth: true
+        //                            }); // ck added
+        //                            $('input[name="btncanel"]').click(function () {
+        //                                $.modal.close();
+        //                            });
+
+
+        //                        }
+
+        //                    });
+
+        //                }
+
+
+        //            });
+
+        //        });
+
+
+        $('img.btneditCT').click(function (e) {
+            e.stopPropagation()
+            $.ajax({
+                url: '/iHealthuser/Cases/UpdateCTView',
+                type: 'GET',
+                async: false,
+                data: { ctId: $(this).parents('li').find('input[name="Charts.ChartId"]').val() },
+                cache: false,
+                success: function (result) {
+                    $('#modal-Chartupdate').html(result).modal({
+                        closeHTML: "",
+                        onShow: function () {
+
+                            $('#dateOfChart2').datepicker({
+                                changeYear: true,
+                                changeMonth: true
+                            }); // ck added
+                            $('input[name="btncanel"]').click(function () {
+                                $.modal.close();
+                            });
+
+                            $('input[name="btnCTUpdate"]').click(function () {
+
+                                if ($("#EditChartName").val() == "") {
+                                    alert("Please enter chart name");
+                                    $('input[tabindex=1]').focus();
+                                    //  return false;
+                                }
+                                else if ($("#dateOfChart2").val() == "") {
+                                    alert("Please enter chart date");
+                                    $('input[tabindex=2]').focus();
+                                }
+                                else if ($("#editctype").val() == "") {
+                                    alert("please enter chart type");
+                                    $('input[tabindex=3]').focus();
+                                }
+                                else {
+                                    $.ajax({
+                                        url: '/iHealthuser/Cases/UpdateCharts',
+                                        type: "POST",
+                                        async: false,
+                                        cache: false,
+                                        data: new FormData($(this).parents('#frmUChartId').get(0)),
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (data) {
+                                            alert("Your modifications are updates successfully");
+                                            $(data).accordion({ collapsible: true });
+                                            $('#chartlst').html(data);
+                                            $.modal.close();
+                                        }
+
+                                    });
+                                }
+                                return false;
+                            });
+                        }
+
+                    });
+
+                }
+
+
+            });
+
+        });
+
+
+
+        $('img[name="delChart"]').click(function (e) {
+            e.stopPropagation();
+            var id = $(this).parents('li').find('input[name="Charts.ChartId"]').val(); //ck
+            var CaseId = $(this).parents('li').find('input[name="Charts.CaseId"]').val();
+            var d = $(this).parents('li');
+            var response = confirm("Please confirm if you really want to delete");
+            if (response) {
+                $.ajax({
+                    url: "/ihealthuser/Cases/DeleteChart",
+                    type: 'POST',
+                    async: false,
+                    cache: false,
+                    data: $(this).parents("#frmEditChart").serialize(),
+                    success: function (data) {
+                        //                        if (success == '1020') {
+                        //                            alert("Deleted Successfully");
+                        //                            $(d).remove();
+                        //                            $('ul.accordion').accordion('destroy').accordion({
+                        //                                collapsable: true
+                        //                            });
+                        //                        }
+                        //                        else {
+                        //                            alert("Not Deleted, Error in Server Code");
+                        //                        }
+                        alert("Deleted Successfully");
+                        $(d).remove();
+                        $(data).accordion({ collapsible: true });
+                        $('#chartlst').html(data);
+                        $.modal.close();
+                    }
+
+                });
+            }
+            return false;
+        });
+
+    });
+</script>
+<div id="Charts">
+    <form id="frmEditChart" action="" enctype="multipart/form-data">
+    <input type="hidden" name="CaseId" id="CaseId" value="@Model.CaseId" />
+    @if (Model.lstChart.Count == 0)
+    {
+        <br />
+        <span class="results">You have no Charts for this Case</span>
+    }
+    else
+    {
+        <ul id="nav">
+            @foreach (var chartList in Model.lstChart)
+            {
+                try
+                {
+                <li><a href="#chartList[@i]"><span style="-ms-text-overflow: ellipsis; -o-text-overflow: ellipsis;
+                    text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block;
+                    width: 100px">@chartList.ChartDate
+                    | @chartList.ChartName</span>
+                    <img src="~/Images/edit.png" alt="Edit" class="btneditCT" style="float: right;" />
+                    <img src="~/Images/delete.png" name="delChart" class="delChart" alt="Delete Chart"
+                        style="float: right;" />
+                    <input type="hidden" name="Charts.CaseId" value="@chartList.CaseId" />
+                    <input type="hidden" name="Charts.ChartId" value="@chartList.ChartId" />
+                </a>
+                    <ul id="chartList[@i]" style="border: none">
+                        <li class="labelChart">Chart name: </li>
+                        <li class="labelChartB">
+                            @if (chartList.ChartName == null || chartList.ChartName == "")
+                            {
+                                <text>no name</text>
+                            }
+                            else
+                            {
+                                @chartList.ChartName
+                            }
+                        </li>
+                        <li class="labelChart">Chart date: </li>
+                        <li class="labelChartB">@chartList.ChartDate
+                        </li>
+                        <li class="labelChart">Chart type: </li>
+                        <li class="labelChartB">@chartList.ChartType
+                        </li>
+                        <li class="labelChart">Chart details: </li>
+                        <li class="labelChartB">
+                            @if (chartList.ChartDetails == null)
+                            {
+                                <br />
+                            }
+                            else
+                            {
+                                @chartList.ChartDetails
+                            }
+                        </li>
+                        <li class="labelChart">Comments: </li>
+                        <li class="labelChartB">
+                            @if (chartList.Comments == null)
+                            {
+                                <br />
+                            }
+                            else
+                            {
+                                @chartList.Comments
+                            }
+                        </li>
+                        <li class="labelChart">Documents: </li>
+                        <li class="labelChartB">
+                            @if (chartList.lstDocuments == null || chartList.lstDocuments.Count == 0)
+                            {
+                                <text>--No Documents--</text>
+                            }
+                            else
+                            {
+                                foreach (var documents in chartList.lstDocuments)
+                                {<a id="@documents.Id" class="anchor">@documents.OriginalName</a> }
+                            }
+                        </li>
+                    </ul>
+                </li>
+                }
+                finally { i++; }
+            }
+        </ul>
+    }
+    </form>
+</div>
+<div id="modal-Chartupdate" style="display: none">
+</div>
+<div id="tab" style="display: none">
+</div>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+  m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-47299480-1', 'bumpdocs.com');
+    ga('send', 'pageview');
+
+</script>

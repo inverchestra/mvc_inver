@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "ViewLogToLog.cshtml";
+}
+
+@model InnDocs.iHealth.Web.UI.Areas.iHealthUser.Models.UserRepository.UserHealthLog
+@{
+    int i = 1;
+}
+<script type="text/javascript">
+
+    $('#nav > li > a').click(function () {
+        if ($(this).attr('class') != 'active') {
+            $('#nav li ul').slideUp();
+            $(this).next().slideToggle();
+            $('#nav li a').removeClass('active');
+            $(this).addClass('active');
+        }
+    });
+
+</script>
+<div id="view" style="width: 440px">
+    <div id="viewlog">
+        <div style="border-bottom: 1px solid rgb(218,221,226); float: left; width: 100%">
+            @if (Model.logName == null)
+            {
+                <h2>
+                    --No Name--</h2>
+            }
+            else
+            {
+                <h2>@Model.logName</h2>                
+            }
+            <input type="hidden" value="@Model.logId" />
+        </div>
+        <div class="HLog">
+            <ul>
+                <li>Log name: </li>
+                <li style="width:-3px">
+                    @Model.logName
+                </li>
+                <li>Log description: </li>
+                <li style="width:-3px">
+                    @Model.logDescription
+                </li>
+                <li>First observed: </li>
+                <li style="width:-3px">
+                    @Model.FirstObserved
+                </li>
+            </ul>
+        </div>
+        <h5 class="PMoreInfo_btm" style="margin-top: 8px;">
+            Symptoms</h5>
+        <div id="sym-div">
+            @if (Model.symptoms == null)
+            {
+           
+                <span class="results">You have no symptoms for this log.</span>
+            }
+            else
+            {
+                     <ul id="nav">
+                    @foreach (var symptom in Model.symptoms)
+                    {
+                        try
+                        {
+                        <li><a href="#symp[@i]"><span style="text-overflow: ellipsis; white-space: nowrap;
+                            overflow: hidden; display: inline-block; width: 350px">@symptom.DateTime.ToShortDateString()
+                            | @symptom.Description</span></a>
+                            <ul id="symp[@i]" style="border: none; margin:0 0 0 0px;" class="hlogAc">
+                                <li class="labelnormal">Name: </li>
+                                <li class="labelbold">
+                                    @if (symptom.Name == null || symptom.Name == "")
+                                    {
+                                        <text>no name</text>
+                                    }
+                                    else
+                                    {
+                                        @symptom.Name
+                                    }
+                                </li>
+                                <li class="labelnormal">Description: </li>
+                                <li class="labelbold">
+                                    @symptom.Description
+                                </li>
+                                <li class="labelnormal">Reasons: </li>
+                                <li class="labelbold">
+                                    @symptom.Reasons
+                                </li>
+                                <li class="labelnormal">Medicines: </li>
+                                <li class="labelbold">
+                                    @symptom.Medicines
+                                </li>
+                                <li class="labelnormal">Observed on: </li>
+                                <li class="labelbold">
+                                    @symptom.DateTime
+                                </li>
+                            </ul>
+                        </li>
+                        }
+                        finally { i++; }
+                    }
+                </ul>
+            }
+        </div>
+        <div style="width: 100%" class="inline">
+            <input type="button" id="btnlogCancel" value="close" style="float: right" class="graygrad" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿body {
+}
+div#CaseDropDown
+{
+    height:14px;
+    width:100px;
+    overflow:hidden;
+}
+div#CaseDropDown:hover
+{
+    height:70px;
+    overflow-y:scroll;
+}
+div#LogDropDown
+{
+    height:14px;
+    width:100px;
+    overflow:hidden;
+}
+div#LogDropDown:hover
+{
+    height:70px;
+    overflow-y:scroll;
+}

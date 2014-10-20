@@ -1,0 +1,22 @@
+﻿@{ InnDocs.iHealth.Web.UI.Models.UserInformation user = (InnDocs.iHealth.Web.UI.Models.UserInformation)HttpContext.Current.Session["LoginUser"]; }
+<div class="Side_bar_wrapper">
+    <ul>
+        <li><a href="@Url.Action("AllUsersReports", "Report")" class="Side_bar_Icons Paccount">
+            Reports</a> </li>
+        <li><a href="@Url.Action("ShowAllPatient", "HospAdmin")" class="Side_bar_Icons Paccount">
+            Signup Patient</a> </li>
+        <li><a class="Side_bar_Icons DwnScanner" id="brnach" href="@Url.Action("ShowAllBranches", "HospAdmin")">
+            Branch</a> </li>
+       
+        <li><a class="Side_bar_Icons DwnScanner" id = "Departments" href="@Url.Action("ShowAllDepartments", "HospAdmin")">
+            Department</a> </li>
+        <li><a href="@Url.Action("ShowAllDoctors", "HospAdmin")" class="Side_bar_Icons ChangePW" id="doctorsinfo">
+            Doctors</a></li>
+            <li><a href="@Url.Action("HospitalInfo", "AccountSettings")" class="Side_bar_Icons ChangePW" id="signup staff">
+            Signup Staff</a></li>
+            <li><a href="@Url.Action("SearchPatient", "HospAdmin")" class="Side_bar_Icons ChangePW" id="hospinfo">
+            Search For Patient</a>
+            <input type="hidden" id="hospUserID" value="@user.UserId" />
+        </li>
+    </ul>
+</div>

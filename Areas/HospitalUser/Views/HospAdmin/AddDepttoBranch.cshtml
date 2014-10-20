@@ -1,0 +1,63 @@
+﻿
+@using InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary
+
+@model InnDocs.iHealth.Web.UI.Areas.HospitalUser.Models.HospitalOnBoundary.Departments
+@{
+    ViewBag.title = "";
+  
+   }
+<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+   
+</script>
+@Scripts.Render("~/bundles/ajaxfns")
+<div class="bluegrad" style="width: 400px;">
+    @using (Html.BeginForm("AddDepttoBranch", "HospAdmin", new { @class = "bluegrad" }))
+    {
+        @Html.ValidationSummary(true)
+        <div>
+            <div id="rhead" style="border-bottom: 1px solid rgb(218,221,226);">
+                <h3>
+                   Add to Branch</h3>
+            </div>
+            <div id="rbody" class="Payment">
+                <ul>
+              
+                    <li class="labelnormal">Branch name</li>
+                    <li class="payment_txtbx">
+                        <input type="hidden" value="@Model.DeptId" name="DeptId" />
+                        <input type="hidden" value="@Model.HospitalInfoId" name="HospitalInfoId"/>
+
+                  @* @Html.DropDownList("BranchName" ,Model.Branches, new { id = "SelectId" ,style="width:100px"})*@
+                   <select id="s3" name="departtobranchs" multiple="multiple" tabindex="4">
+                            @if (Model.Branches == null || Model.Branches.Count == 0)
+                            {
+                                <option disabled="disabled">--No Logs--</option>
+                            }
+                            else
+                            {
+
+                                foreach (var value in Model.Branches)
+                                {
+                                <option value="@value.Value">@value.Text </option>  
+                                }
+                            }
+                        </select>
+
+                  
+                    </li>
+                   
+                  
+                    <li class="labelnormal"></li>
+                    <li class="payment_txtbx">
+                        <div style="width: 100%; float: right; margin: 0 7px 0 0;" class="inline">
+                            <input type="button" class="graygrad" value="close" onclick="$.modal.close();" />
+                            <input id="btnsubmit" type="submit" value="Update" class="greengrad" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+
+</div>

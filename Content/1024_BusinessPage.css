@@ -1,0 +1,168 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+
+.Container
+{
+    width: 1024px;
+    height: auto;
+    float: left;
+    overflow: hidden;
+}
+
+
+#my_slider
+{
+    width: 100%;
+    max-width: 1024px;
+    height: 535px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    list-style: none outside none;
+    padding: 0;
+    margin: 0;
+}
+#my_slider li
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+#my_slider li:first-child
+{
+    display: block;
+}
+
+
+.slider_img1
+{
+    height: 552px;
+    width: 100%;
+    float: left;
+    background: url('../Images/Slider_img1_1024.jpg') no-repeat;
+}
+
+.slider_img2
+{
+    height: 552px;
+    width: 100%;
+    float: left;
+    background: url('../Images/Slider_img2_1024.jpg') no-repeat;
+}
+
+.slider_img3
+{
+    height: 552px;
+    width: 100%;
+    float: left;
+    background: url('../Images/Slider_img3_1024.jpg') no-repeat;
+}
+
+
+/*.forgotPW{
+	color: #FFFFFF;
+    float: left;
+    cursor:pointer;
+    font: 12px "Segoe UI";
+    margin: 4px 0px 0 11px !important;
+    text-decoration: none;
+    width: auto;
+}*/
+
+
+
+.login_wrap
+{
+    float: right;
+    height: 70px;
+    margin: 15px 0 0 0;
+    position: relative;
+    width: 593px;
+}
+.forgotPW
+{
+    bottom: 4px;
+    color: #626262;
+    cursor: pointer;
+    font: 13px "Segoe UI";
+    right: 13%;
+    position: absolute;
+    /*width: 96%;*/
+}
+
+.Credentials
+{
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font: 13px "Segoe UI";
+    margin: 1px 0 0;
+    width: 98%;
+}
+
+.GroupTypeValidation
+{
+    color: #FAB3B3;
+    float: left;
+    cursor: pointer;
+    font: 13px "Segoe UI"; /*margin: 4px 0 0 11px !important;*/
+    margin: 2px 0 0 0px !important; /*  text-decoration: underline;*/
+    width: 21%;
+}
+.EmailValidation
+{
+    color: #FAB3B3;
+    float: left;
+    cursor: pointer;
+    font: 13px "Segoe UI"; /*margin: 4px 0 0 11px !important;*/
+    margin: 2px 0 0 0px !important; /*  text-decoration: underline;*/
+    width: 27%;
+}
+.HIdValidation
+{
+    color: #FAB3B3;
+    float: left;
+    cursor: pointer;
+    font: 13px "Segoe UI"; /*margin: 4px 0 0 11px !important;*/
+    margin: 2px 0 0 0px !important; /*  text-decoration: underline;*/
+    width: 27%;
+}
+.PwdValidation
+{
+    color: #FAB3B3;
+    float: left;
+    cursor: pointer;
+    font: 13px "Segoe UI"; /*margin: 4px 0 0 11px !important;*/
+    margin: 2px 0 0 0px !important; /*  text-decoration: underline;*/
+    width: auto;
+}
+
+.InvalidCredentials
+{
+    color: #FAB3B3 !important;
+    cursor: pointer;
+    float: left;
+    font: italic 13px "Segoe UI";
+    margin: -4px 0 0 !important; /* width: 100%; */
+    text-indent: 5px;
+}
+
+
+.field-validation-error
+{
+    float: left;
+    margin: 0 !important;
+}
+
+
+.invCred
+{
+    color: Red;
+    float: left;
+    margin: 6px 0 0 10px;
+    font-style: italic;
+}
+
